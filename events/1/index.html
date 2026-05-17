@@ -1198,7 +1198,16 @@ function App() {
         maxHeight: 200,
         overflowY: "auto"
       }
-    }, attendees.filter(a => a.name.toLowerCase().includes(myName.toLowerCase())).map(a => /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "7px 16px",
+        fontSize: 10,
+        color: "#F5E642",
+        letterSpacing: 1.5,
+        borderBottom: "1px solid #303030",
+        textTransform: "uppercase"
+      }
+    }, "↓ TAP YOUR NAME"), attendees.filter(a => a.name.toLowerCase().includes(myName.toLowerCase())).map(a => /*#__PURE__*/React.createElement("div", {
       key: a.id,
       onClick: () => setMyName(a.name),
       style: {
@@ -1206,11 +1215,14 @@ function App() {
         cursor: "pointer",
         borderBottom: "1px solid #252525",
         fontSize: 13,
-        color: "#c0c0c0"
+        color: "#c0c0c0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
       },
       onMouseEnter: e => e.currentTarget.style.background = "#242424",
       onMouseLeave: e => e.currentTarget.style.background = "transparent"
-    }, /*#__PURE__*/React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
       style: {
         color: "#fff",
         fontWeight: 700
@@ -1221,7 +1233,15 @@ function App() {
         marginLeft: 8,
         fontSize: 11
       }
-    }, a.project))))), myName.length > 0 && !me && /*#__PURE__*/React.createElement("div", {
+    }, a.project)), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#F5E642",
+        fontSize: 10,
+        letterSpacing: 1,
+        marginLeft: 12,
+        whiteSpace: "nowrap"
+      }
+    }, "THIS IS ME →"))))), myName.length > 0 && !me && /*#__PURE__*/React.createElement("div", {
       style: {
         color: "#686868",
         fontSize: 13,
