@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeployTLV #1 — Attendee Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0f0f0f; color: #EFEFEF; font-family: 'IBM Plex Mono', 'Courier New', monospace; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #141414; }
+    ::-webkit-scrollbar-thumb { background: #333; }
+    ::-webkit-scrollbar-thumb:hover { background: #F5E642; }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script>
+const {
+  useState
+} = React;
+const YELLOW = "#F5E642";
+const BLACK = "#0A0A0A";
+const GRAY = "#1A1A1A";
+const attendees = [{
+  id: 1,
+  name: "Drew Stone",
+  project: "Tangle Network",
+  tagline: "Agent Optimization Infrastructure",
+  stack: ["Claude", "Codex", "OpenCode", "Cursor"],
+  revenue: "Pre-Revenue",
+  linkedin: "drewcstone",
+  seeking: "Meeting people",
+  cluster: ["AI Infrastructure & Agents", "Web3 Veterans"],
+  insight: "Senior infra/protocol builder with academic ML credibility. Rare crypto veteran making a clean, credible pivot to AI agent infrastructure.",
+  bg: "UPenn BSE + MA Mathematics. Founder of Edgeware blockchain, now Tangle Network (Sep 2021–present). ML Research Intern at MANA Partners under Prof. Michael Kearns."
+}, {
+  id: 2,
+  name: "David Mekibel",
+  project: "Balancē Creative",
+  tagline: "AI-Native Visual Production",
+  stack: ["Claude", "Midjourney", "ChatGPT Image 2", "Seedance", "ComfyUI"],
+  revenue: "Pre-Revenue (consulting profitable)",
+  linkedin: "david-mekibel",
+  seeking: "Sharing",
+  cluster: ["Media / Content", "Design + Automation"],
+  insight: "The only attendee with deep production-grade AI visual expertise AND paying enterprise clients (Ozon Fresh, Dota 2, IRI).",
+  bg: "Emerson College. Co-founder & AI Video Specialist, Balancē Creative (7 yrs). Enterprise clients: Ozon Fresh, Winline, Dota 2. Ships 'The Monk Who Melted Snows' animated short."
+}, {
+  id: 3,
+  name: "Ilan Oz",
+  project: "EmberNovels",
+  tagline: "Custom AI Romance Novels",
+  stack: ["Claude", "Codex"],
+  revenue: "$5K–$10K/month",
+  linkedin: "ilan-oz-36520464",
+  seeking: "Being around other builders",
+  cluster: ["Revenue Leaders", "B2C Consumer"],
+  insight: "Has proven B2C generative content can convert to consistent revenue ($5–10K/mo) while operating inside Team8, one of Israel's premier AI/security ecosystems.",
+  bg: "TAU Coller MBA. Business Development Manager at Team8. Prior: Atera, anecdotes, monday.com, Google Ireland (Large Customer Sales + Cloud Inside Sales)."
+}, {
+  id: 4,
+  name: "Eitan Dooreck-Aloni",
+  project: "Fintech Ideation (stealth)",
+  tagline: "Exploring Fintech — Unit 81 Pedigree",
+  stack: ["Claude", "Cursor"],
+  revenue: "Pre-Revenue",
+  linkedin: "eitan-dooreck-aloni",
+  seeking: "Meeting go-getters",
+  cluster: ["Fintech / Finance", "Co-founder Seeking", "Web3 Veterans"],
+  insight: "IDF Unit 81 alumnus — the source of many of Israel's top founders. Pre-idea but elite-pedigree. A live wire looking for the right collision.",
+  bg: "IDF Unit 81 alumnus (elite tech-development unit). Exploring fintech ideation after months of validation. Sparse public profile — signals intentional discretion."
+}, {
+  id: 5,
+  name: "Alan Mekibel",
+  project: "Yallagan + heirloom-audio",
+  tagline: "Global Jewish Events + Oral History AI",
+  stack: ["Codex", "Claude"],
+  revenue: "Pre-Revenue",
+  linkedin: "amekibel",
+  seeking: "Meeting people",
+  cluster: ["Media / Content", "B2C Consumer"],
+  insight: "Operator/connector with a proven global community platform (1,200+ events/year, 250+ orgs, 36 countries). The community-distribution channel in the room.",
+  bg: "IE University BBA + Syracuse Whitman. Co-Founder Yallagan, 2 WJC seed grants + Nevatim grant. Russian-speaking. Brother of David Mekibel."
+}, {
+  id: 6,
+  name: "Benjamin Lieber",
+  project: "OriginAI + cowriter.com",
+  tagline: "Applied AI Research & Writing Tools",
+  stack: ["Claude", "Cursor", "Other"],
+  revenue: "N/A",
+  linkedin: "",
+  seeking: "Meet and learn",
+  cluster: ["AI Infrastructure & Agents"],
+  insight: "If affiliated with OriginAI (Elbit/NVIDIA/Axon Vision), has access to defense-grade applied ML infrastructure — a rare foundational advantage for any AI product builder.",
+  bg: "OriginAI — applied AI research center involving Elbit Systems, Axon Vision, NVIDIA. Focused on vision, speech, NLP, and ML. Building AI writing product on the side."
+}, {
+  id: 7,
+  name: "Gershon Ballas",
+  project: "DragonBot",
+  tagline: "AI Agent for Amazon Store Operators",
+  stack: ["Claude", "OpenCode", "Other"],
+  revenue: "Pre-Revenue",
+  linkedin: "ggballas",
+  seeking: "New connections / ideas",
+  cluster: ["E-Commerce / Retail AI", "Web3 Veterans"],
+  insight: "Web3 security background (smart contract auditing) translates directly to building AI agents for e-commerce. Pivoting fast with genuine technical depth.",
+  bg: "Founder of Ginger Security (web3 smart contract auditing, Starknet Cairo/Ethereum). Published white-hat analyst (Beanstalk). Now building DragonBot under Ballistic Brands."
+}, {
+  id: 8,
+  name: "Artem Belyakov",
+  project: "Medida",
+  tagline: "Computer Vision for Home Renovation",
+  stack: ["Claude", "Codex", "OpenCode"],
+  revenue: "Employed ($3M ARR)",
+  linkedin: "belyakov-am",
+  seeking: "Good people + consulting",
+  cluster: ["AI Infrastructure & Agents", "PropTech", "Web3 Veterans"],
+  insight: "Yandex School of Data Analysis + $3M ARR at one year (Angular Ventures) = elite ML foundation meets proven shipping velocity. Open to consulting on the side.",
+  bg: "B.Sc. CS, Higher School of Economics Moscow. External student at Yandex School of Data Analysis (FAANG-equivalent ML program). Founding Member at Medida, Tel Aviv."
+}, {
+  id: 9,
+  name: "Max Neuberger",
+  project: "Level Three Labs / The Seven Spices",
+  tagline: "Media Products for the Middle East",
+  stack: ["Claude"],
+  revenue: "Pre-Revenue",
+  linkedin: "max-neuberger-23445046",
+  seeking: "Collaborators + knowledge",
+  cluster: ["Media / Content", "VC / Deal Flow"],
+  insight: "Proven niche media founder (Jewish Insider) applying the same formula to the Middle East. Backed by a venture studio role and a powerful D.C./Gulf network no other attendee has.",
+  bg: "Founded Jewish Insider, The Circuit, eJewish Philanthropy. Director for the Middle East at 25madison (NYC venture studio). Splits time Abu Dhabi / Washington D.C."
+}, {
+  id: 10,
+  name: "Stan Neviasky",
+  project: "AI Agents at Tipalti",
+  tagline: "Enterprise AI Agents at $8B Fintech",
+  stack: ["Claude (heavy)", "Cursor", "Other"],
+  revenue: "N/A (employee)",
+  linkedin: "nevyazhsky",
+  seeking: "Idea exchange",
+  cluster: ["AI Infrastructure & Agents", "Fintech / Finance"],
+  insight: "Senior data scientist at Israel's most AI-aggressive fintech unicorn, heavy Claude user — a rare window into enterprise AI agent deployment in regulated financial systems.",
+  bg: "Nuclear Physics degree + Master's telecom. PMP + AWS certified. Alcatel-Lucent → Kaspersky USA (Head of Sales Enablement) → Data Scientist at Tipalti ($8B valuation)."
+}, {
+  id: 11,
+  name: "Noa Yehoshua",
+  project: "Deep Insight / Viola Group",
+  tagline: "AI Investment Workflow Tooling",
+  stack: ["Claude"],
+  revenue: "N/A",
+  linkedin: "noa-yehoshua-219424276",
+  seeking: "Inspiration and tools",
+  cluster: ["Fintech / Finance", "VC / Deal Flow"],
+  insight: "Access to Viola Group ($5B AUM, fresh $250M fund) + building automated investment tools = both a potential customer for AI-powered VC tooling AND a connector to the portfolio.",
+  bg: "Psychology background. IDF Operations Sergeant (active reservist). Digital marketing + executive assistance. Now marketing ops at Viola Group."
+}, {
+  id: 12,
+  name: "Menachem Berrebi",
+  project: "Renaissance ML",
+  tagline: "AI Design → Physical Product",
+  stack: ["Claude", "Cursor"],
+  revenue: "Pre-Revenue",
+  linkedin: "mendy-berrebi",
+  seeking: "Co-founders + collaborators",
+  cluster: ["Design + Automation", "Co-founder Seeking", "French-Israeli"],
+  insight: "AI-generated design to physical manufactured product is genuinely novel. Runs Edeneum Substack on political philosophy — a systemic thinker building toward a 'network society' thesis.",
+  bg: "Reichman University. Lightchain Labs → Applitools (Enterprise AE) → Unleash → Renaissance ML. Runs Edeneum Substack (classical political philosophy + logic)."
+}, {
+  id: 13,
+  name: "Menachem Cowen",
+  project: "Mana Intelligence",
+  tagline: "AI Food Waste Prevention (Computer Vision)",
+  stack: ["Claude", "Codex", "OpenCode", "Other"],
+  revenue: "$10K+/month",
+  linkedin: "menachemcowen",
+  seeking: "Networking",
+  cluster: ["Revenue Leaders", "AI Infrastructure & Agents"],
+  insight: "Strongest commercial traction among all attendees in this batch. $10K+/mo with deployed computer vision. 'No new hardware' GTM is a classic enterprise adoption unlock.",
+  bg: "Programming since 2014. Q Information Technologies → Tadabase (Director of Ops) → CowenDev LLC → CTO at Mana Intelligence. American-Israeli background."
+}, {
+  id: 14,
+  name: "Solal Berrebi",
+  project: "VERSATIL + VocaFast",
+  tagline: "AI Consulting & Vocabulary Learning App",
+  stack: ["Claude", "Codex"],
+  revenue: "$1–$1K/month",
+  linkedin: "solal-berrebi-22a834202",
+  seeking: "Co-founders, feedback",
+  cluster: ["B2C Consumer", "EdTech", "Co-founder Seeking", "French-Israeli"],
+  insight: "Finance + CIB background combined with a shipped iOS app generating revenue. Rare hybrid of financial operator and technical builder. VocaFast proves he can ship and monetize.",
+  bg: "Université Paris Dauphine-PSL (finance). Crédit Agricole CIB. French-Israeli. Now: VERSATIL (AI consulting) + VocaFast (iOS App Store, early revenue)."
+}, {
+  id: 15,
+  name: "Eliahu Cohen",
+  project: "Veev by Lennar",
+  tagline: "AI ConTech Apps (Internal)",
+  stack: ["Claude", "Cursor", "Other"],
+  revenue: "N/A (employee)",
+  linkedin: "eliahu-cohen-b32374114",
+  seeking: "Collaborating + sharing",
+  cluster: ["PropTech", "Design + Automation"],
+  insight: "BIM + full-stack + AI in a Lennar-owned ConTech context. CAD-to-CAM expertise directly applicable to any PropTech or physical-product builder in the room.",
+  bg: "Born Brazil, studied Netherlands. Full-stack (React, Node, AWS Serverless). Trained in BIM + CAD-to-CAM. R&D Product Architect at Veev ($1B valuation, acquired by Lennar Dec 2023)."
+}, {
+  id: 16,
+  name: "Sam Weinstein",
+  project: "White City AI + Lunchbox Legends",
+  tagline: "AI Consulting & AI-Generated Trading Cards",
+  stack: ["Claude"],
+  revenue: "$1–$1K/month",
+  linkedin: "sam-weinstein-b202b658",
+  seeking: "Meeting others, learning",
+  cluster: ["B2C Consumer", "E-Commerce / Retail AI"],
+  insight: "Lunchbox Legends — your child as a superhero trading card — has strong emotional hook, physical form factor premium, and gift/occasion virality built in.",
+  bg: "Reichman University. 7.5 years at Litify (Associate Director, Customer Success). Relocated to Israel, launched White City AI (2024) + Lunchbox Legends."
+}, {
+  id: 17,
+  name: "Amit Shalev",
+  project: "Portview",
+  tagline: "Social Platform for Investors",
+  stack: ["Cursor", "Codex", "Other"],
+  revenue: "Pre-Revenue",
+  linkedin: "amit-shalev-47a803244",
+  seeking: "Collaboration",
+  cluster: ["Fintech / Finance", "B2C Consumer"],
+  insight: "Insider institutional finance perspective (Phoenix Holdings) + retail investor instincts = rare advantage. Already marketing on TikTok before the product launches.",
+  bg: "Head of Operational Control at ESOP — Phoenix (one of Israel's largest financial conglomerates: insurance, asset management, pension funds). Building Portview on the side."
+}, {
+  id: 18,
+  name: "Eliyahu Yifrach",
+  project: "HomeSprint",
+  tagline: "Apartment & Roommate Finder for Young Adults",
+  stack: ["Claude", "Other"],
+  revenue: "Pre-Revenue",
+  linkedin: "eliyahu-yifrach",
+  seeking: "Co-founders, networking",
+  cluster: ["PropTech", "B2C Consumer", "Co-founder Seeking"],
+  insight: "Lone Soldier founding story is authentic and compelling. Personal lived experience with exact pain point. 'Operational layer' framing shows real differentiation thinking without technical background.",
+  bg: "Lone Soldier in Golani Brigade's 51st Battalion. Studying Economics & Business at Ariel University. Founded HomeSprint from personal housing navigation experience as a lone soldier."
+}, {
+  id: 19,
+  name: "Moshe Schlussel",
+  project: "TheraTrain AI",
+  tagline: "Training Platform for Therapists",
+  stack: ["Claude", "Codex", "OpenCode"],
+  revenue: "Pre-Revenue",
+  linkedin: "moshe-schlussel-5b87441ab",
+  seeking: "Co-founder, feedback",
+  cluster: ["HealthTech / Clinical AI", "EdTech", "Co-founder Seeking"],
+  insight: "Building in an academically validated category at exactly the right time. Therapist training is a multi-billion dollar market with structural inefficiencies. Concept and timing are strong.",
+  bg: "Solar Consultant (day job). Outsider building for insiders. TheraTrain: AI simulation of therapy clients that therapists practice on. Tagline: 'Never judge, never break character.'"
+}, {
+  id: 20,
+  name: "Roy Keren",
+  project: "Independent AI Agent / UX Design",
+  tagline: "UX Design + AI Agent Builder",
+  stack: ["Claude", "Cursor"],
+  revenue: "$1K–$5K/month",
+  linkedin: "roy-keren-uxuidesigner",
+  seeking: "Connecting",
+  cluster: ["Design + Automation", "Revenue Leaders"],
+  insight: "The most immediately 'useful' person in the room for other attendees. Design + AI agent building + automation fills a gap that almost every pre-revenue founder here has.",
+  bg: "UX/UI designer and AI builder, Haifa. Has evolved beyond pure design into AI agent building and ops automation. Generating $1K–$5K/month. Cursor usage signals active coding."
+}, {
+  id: 21,
+  name: "Vlad Neyshtadt",
+  project: "AVA Self-Photography Atelier",
+  tagline: "Self-Portrait Studio + Automation Tools",
+  stack: ["Claude"],
+  revenue: "$5K–$10K/month",
+  linkedin: "vneyshyadt",
+  seeking: "Expertise + feedback",
+  cluster: ["Revenue Leaders", "Design + Automation", "B2C Consumer"],
+  insight: "Running a revenue-generating physical business AND building software tools to automate it — the purest 'scratch your own itch' product development. New web app likely broadly applicable.",
+  bg: "Runs AVA Self-Photography Atelier (anivea.com), Ben Yehuda 94, Tel Aviv. Camera hidden behind a mirror; clients photograph themselves. Serves individuals + corporate clients."
+}, {
+  id: 22,
+  name: "Eitan Smilchensky",
+  project: "Kahoona",
+  tagline: "AI First-Party Data & E-Commerce Personalization",
+  stack: ["Claude"],
+  revenue: "$10K+/month",
+  linkedin: "eitansmilchensky",
+  seeking: "Expand network, discuss AI",
+  cluster: ["Revenue Leaders", "E-Commerce / Retail AI", "VC / Deal Flow"],
+  insight: "Dior integration + LVMH Innovation Award 2025 + $4.5M from Global Founders Capital = the most externally validated company in this room. Sold seed-stage AI into Dior. Extraordinary.",
+  bg: "New Frontier Capital → DataRails → OurCrowd → Triple Whale (Senior Partnerships EMEA) → Kahoona (Head of Sales & Partnerships). $4.5M raised. LVMH Innovation Award 2025."
+}, {
+  id: 23,
+  name: "Guillaume Bensoussan",
+  project: "Mai Boyar School CRM",
+  tagline: "AI Teacher Replacement + School Admin Portal",
+  stack: ["Claude", "Codex", "Cursor", "Obsidian"],
+  revenue: "$1K–$5K/month",
+  linkedin: "guillaume-bensoussan",
+  seeking: "AI builder connections",
+  cluster: ["EdTech", "Design + Automation", "French-Israeli"],
+  insight: "Shipped a working Firebase web app for a real institution with AI-powered teacher replacement module — deployed, not a prototype. The buyer-builder hybrid persona at its best.",
+  bg: "French-Israeli. Built Firebase-hosted school portal at Mai Boyar School (IB program, 1,000+ students). Also runs personal AI second brain using Obsidian + Graphify + Claude."
+}, {
+  id: 24,
+  name: "Samuel Jefroykin",
+  project: "Baget",
+  tagline: "Clinical AI / Behavioral Health (stealth)",
+  stack: ["Claude", "Codex", "OpenCode"],
+  revenue: "Pre-Revenue",
+  linkedin: "samueljefroykin",
+  seeking: "Builder mode",
+  cluster: ["AI Infrastructure & Agents", "HealthTech / Clinical AI", "Co-founder Seeking", "French-Israeli"],
+  insight: "Published AI researcher who built production clinical NLP systems at Eleos Health for 5 years. Possibly the most technically credentialed founder in the entire attendee list.",
+  bg: "B.Sc. + M.Sc. Mathematics (France). French-Israeli. Co-founded Data For Good Israel. 5 years at Eleos Health (NLP/ML for therapy sessions). Published in JMIR + PubMed (2025)."
+}, {
+  id: 25,
+  name: "Daniel Conway",
+  project: "Proofed",
+  tagline: "Attribution & Deals — Restaurants & Creators",
+  stack: ["Claude"],
+  revenue: "Pre-Revenue",
+  linkedin: "danielpconway",
+  seeking: "Feedback + collaborators",
+  cluster: ["Media / Content", "B2C Consumer"],
+  insight: "The attribution problem (did this creator post drive actual restaurant revenue?) is legitimate and underserved. Berkeley + Beyond Meat + Food Impact background gives real food industry credibility.",
+  bg: "B.S. Environmental Economics, UC Berkeley. Founded Plant Futures Berkeley chapter. Food Impact Partners. Content Strategist at PikMe. Runs content consulting business."
+}, {
+  id: 26,
+  name: "Josh Klawansky",
+  project: "Nerativ",
+  tagline: "B2B AEO Actionability Platform",
+  stack: ["Claude", "Codex"],
+  revenue: "$10K+/month",
+  linkedin: "joshua-klawansky",
+  seeking: "Interesting people",
+  cluster: ["Revenue Leaders", "E-Commerce / Retail AI", "Media / Content"],
+  insight: "$10K+/month, 25+ B2B clients, solo AEO operator. Early-mover in a nascent category. Positioned at the intersection of AI distribution and B2B marketing at exactly the right moment.",
+  bg: "IDC Herzliya (Communications). B2B growth: WalkMe, SolarEdge, Checkmarx, Syte, Granulate, monday.com. Created WalkMe's first podcast series. Building Nerativ + stealth platform."
+}, {
+  id: 27,
+  name: "Michael Heiser",
+  project: "Newhedge / Vault 721 / Megga Ventures",
+  tagline: "Web3 + Bitcoin Analytics + AI Trading",
+  stack: ["Cursor"],
+  revenue: "N/A",
+  linkedin: "michael-heiser-dev",
+  seeking: "Not specified",
+  cluster: ["Fintech / Finance", "Web3 Veterans"],
+  insight: "Rare combination: deep web3 execution ($500K+ NFT sales) + Bitcoin analytics (Newhedge) + AI trading systems (LIT Ai). He and Alon Shvartsman appear to already be collaborating.",
+  bg: "CS certification, UCLA Extension coding bootcamp. Led teams of 6+ on blockchain/NFT. Co-founder CTO, Vault 721 (DeFi/NFT protocol). Also operates as 'LIT Ai' (AI-driven crypto trading)."
+}, {
+  id: 28,
+  name: "Omer Geva",
+  project: "Boundly",
+  tagline: "Private Second-Home Sharing Platform",
+  stack: ["Claude"],
+  revenue: "Pre-Revenue",
+  linkedin: "omergeva",
+  seeking: "Not specified",
+  cluster: ["PropTech", "B2C Consumer"],
+  insight: "Differentiated niche: trusted-circle second home sharing fills the gap between informal key-lending and full Airbnb listing. Technical full-stack team lead can build this himself.",
+  bg: "Reichman University. Full-stack developer (Express, Node, SQL). Engineering team lead. Previous stealth AI startup before pivoting to Boundly."
+}, {
+  id: 29,
+  name: "Shimon Rosen",
+  project: "PodSnacks",
+  tagline: "AI Podcast Summarization + Daily News Podcast",
+  stack: ["Claude", "Other"],
+  revenue: "Generating revenue",
+  linkedin: "shimondotcom",
+  seeking: "Not specified",
+  cluster: ["Revenue Leaders", "Media / Content", "B2C Consumer"],
+  insight: "Fast Company mention + serial founder track record (SpeakerGram, MakeSpace, Scaffold) + HN traction = externally validated media AI product with real distribution instincts.",
+  bg: "Serial founder. Prior: SpeakerGram (speaker booking, Mixergy featured), MakeSpace, Scaffold. PodSnacks: AI podcast summaries at $1/hour. Listed by Fast Company among best AI podcast tools 2026."
+}, {
+  id: 30,
+  name: "Alon Shvartsman",
+  project: "Newhedge",
+  tagline: "Bitcoin Intelligence Platform",
+  stack: ["Codex"],
+  revenue: "Not specified",
+  linkedin: "alonshvartsman",
+  seeking: "Not specified",
+  cluster: ["Fintech / Finance", "Web3 Veterans"],
+  insight: "March 2026 Bitcoin Data API launch signals Newhedge is evolving from dashboard to B2B data infrastructure — a much larger opportunity. 12 institutional clients at $400K raised.",
+  bg: "DeepUI Engineer at WalkMe → LiquidApps → Founded Bitrawr (Bitcoin education). Co-founded Newhedge with Omri Shabtay + Mert Gunduz. ~2,000 users, 12 institutional clients, $400K raised."
+}, {
+  id: 31,
+  name: "Ari Eliezrie",
+  project: "RadfixAI (stealth) + Radware LLM Firewall",
+  tagline: "LLM Security & AI Vulnerability Remediation",
+  stack: ["Claude"],
+  revenue: "Not specified",
+  linkedin: "ari-eliezrie",
+  seeking: "Not specified",
+  cluster: ["AI Infrastructure & Agents"],
+  insight: "Columbia undergrad who shipped core logic of a publicly-released enterprise LLM security product (Radware). Named Radware MVP 2024. Most credentialed relative to age.",
+  bg: "Physics student, Columbia University (2023–2027). R&D in CTO's Office at Radware (NASDAQ: RDWR). Led development of Radware LLM Firewall (launched Nov 2025). Named Radware MVP 2024."
+}];
+const matches = [{
+  rank: 1,
+  a: "Samuel Jefroykin",
+  b: "Moshe Schlussel",
+  why: "CRITICAL: Jefroykin spent 5 years building clinical NLP at Eleos Health for the therapy session lifecycle. Schlussel is building a therapist training simulator. They may be co-founders who don't know it yet.",
+  tag: "CRITICAL"
+}, {
+  rank: 2,
+  a: "Menachem Cowen",
+  b: "Noa Yehoshua",
+  why: "Mana is revenue-generating ($10K+/mo) with deployed computer vision in food manufacturing. Viola's fresh $250M fund targets enterprise AI. Noa can make a warm intro.",
+  tag: "FUNDING"
+}, {
+  rank: 3,
+  a: "Samuel Jefroykin",
+  b: "Alan Mekibel",
+  why: "Jefroykin used AI to preserve his grandfather's WWII Resistance story. Alan is building heirloom-audio for community oral history preservation. Identical mission.",
+  tag: "MISSION MATCH"
+}, {
+  rank: 4,
+  a: "Drew Stone",
+  b: "Ari Eliezrie",
+  why: "Agent infrastructure needs LLM security architecture. Ari built the Radware LLM Firewall — the exact security layer an agent infra protocol needs.",
+  tag: "PRODUCT PARTNERSHIP"
+}, {
+  rank: 5,
+  a: "Eitan Smilchensky",
+  b: "Josh Klawansky",
+  why: "Kahoona needs to appear in AI answers to 'best e-commerce personalization tool.' Josh runs an AEO platform with 25+ B2B clients. Direct commercial match.",
+  tag: "REVENUE"
+}, {
+  rank: 6,
+  a: "Menachem Berrebi",
+  b: "Eliahu Cohen",
+  why: "Renaissance ML turns AI-generated designs into physical manufactured products. Eliahu's CAD-to-CAM and BIM expertise at Veev is the exact technical foundation Renaissance ML needs.",
+  tag: "TECHNICAL"
+}, {
+  rank: 7,
+  a: "Gershon Ballas",
+  b: "Drew Stone",
+  why: "Gershon builds an AI agent app for Amazon sellers. Drew builds agent optimization infrastructure. Classic infra-meets-application pairing.",
+  tag: "PRODUCT PARTNERSHIP"
+}, {
+  rank: 8,
+  a: "Artem Belyakov",
+  b: "Gershon Ballas",
+  why: "Both Russian-Israeli, both have web3 security history (SmartDec / Ginger Security), both full-stack vibe-coders. Very high natural chemistry.",
+  tag: "CHEMISTRY"
+}, {
+  rank: 9,
+  a: "Roy Keren",
+  b: "Eliyahu Yifrach",
+  why: "Eliyahu is a non-technical founder who explicitly needs design + AI integration. Roy provides exactly that and is currently generating $1–5K/month from it.",
+  tag: "SKILL MATCH"
+}, {
+  rank: 10,
+  a: "Max Neuberger",
+  b: "David Mekibel",
+  why: "Max is launching a Middle East media brand. David runs a production-grade AI visual pipeline with enterprise clients. Max needs David's visual capabilities at launch.",
+  tag: "COLLABORATION"
+}, {
+  rank: 11,
+  a: "Alon Shvartsman",
+  b: "Josh Klawansky",
+  why: "'Best Bitcoin analytics platform' should appear in AI search results. Josh optimizes exactly for this. Natural service relationship.",
+  tag: "REVENUE"
+}, {
+  rank: 12,
+  a: "Solal Berrebi",
+  b: "Ilan Oz",
+  why: "Ilan has cracked B2C AI content monetization ($5–10K/mo). Solal is building VocaFast with early revenue. Ilan is the mentor Solal needs on the D2C conversion path.",
+  tag: "MENTORSHIP"
+}, {
+  rank: 13,
+  a: "Guillaume Bensoussan",
+  b: "Eitan Smilchensky",
+  why: "If Guillaume productizes his school CRM into a SaaS, Eitan is the GTM expert he needs — Eitan has sold seed-stage AI products into enterprise accounts (Dior).",
+  tag: "GTM"
+}, {
+  rank: 14,
+  a: "Stan Neviasky",
+  b: "Eitan Dooreck-Aloni",
+  why: "Stan builds AI agents in production fintech at an $8B unicorn. Eitan is a Unit 81 alumnus in fintech ideation mode. Stan is the sounding board Eitan needs.",
+  tag: "MENTORSHIP"
+}, {
+  rank: 15,
+  a: "Shimon Rosen",
+  b: "Max Neuberger",
+  why: "Both in newsletter/media AI. Max builds niche publications; Shimon automates podcast content. Potential integration: PodSnacks for Level Three Labs' audio strategy.",
+  tag: "COLLABORATION"
+}];
+const clusters = [{
+  name: "Revenue Leaders",
+  color: "#F5E642",
+  members: ["Josh Klawansky", "Menachem Cowen", "Eitan Smilchensky", "Ilan Oz", "Vlad Neyshtadt"]
+}, {
+  name: "AI Infrastructure & Agents",
+  color: "#FF6B6B",
+  members: ["Drew Stone", "Artem Belyakov", "Samuel Jefroykin", "Ari Eliezrie", "Stan Neviasky"]
+}, {
+  name: "Design + Automation",
+  color: "#4ECDC4",
+  members: ["Roy Keren", "David Mekibel", "Vlad Neyshtadt", "Guillaume Bensoussan"]
+}, {
+  name: "B2C Consumer",
+  color: "#A8E6CF",
+  members: ["Ilan Oz", "Sam Weinstein", "Omer Geva", "Eliyahu Yifrach", "Solal Berrebi", "Shimon Rosen"]
+}, {
+  name: "HealthTech / Clinical AI",
+  color: "#FF8B94",
+  members: ["Samuel Jefroykin", "Moshe Schlussel"]
+}, {
+  name: "Fintech / Finance",
+  color: "#B4A7E5",
+  members: ["Stan Neviasky", "Amit Shalev", "Eitan Dooreck-Aloni", "Alon Shvartsman", "Noa Yehoshua", "Michael Heiser"]
+}, {
+  name: "PropTech / Real Estate",
+  color: "#FAD7A0",
+  members: ["Artem Belyakov", "Eliyahu Yifrach", "Eliahu Cohen", "Omer Geva"]
+}, {
+  name: "EdTech / Training",
+  color: "#85C1E9",
+  members: ["Solal Berrebi", "Guillaume Bensoussan", "Moshe Schlussel", "Samuel Jefroykin"]
+}, {
+  name: "E-Commerce / Retail AI",
+  color: "#F7DC6F",
+  members: ["Gershon Ballas", "Eitan Smilchensky", "Josh Klawansky", "Sam Weinstein"]
+}, {
+  name: "Media / Content",
+  color: "#FDEBD0",
+  members: ["David Mekibel", "Max Neuberger", "Shimon Rosen", "Daniel Conway", "Alan Mekibel"]
+}, {
+  name: "Web3 Veterans",
+  color: "#AAB7B8",
+  members: ["Drew Stone", "Gershon Ballas", "Artem Belyakov", "Michael Heiser", "Alon Shvartsman"]
+}, {
+  name: "French-Israeli Cluster",
+  color: "#D7BDE2",
+  members: ["Menachem Berrebi", "Solal Berrebi", "Samuel Jefroykin", "Guillaume Bensoussan"]
+}, {
+  name: "Co-founder Seeking",
+  color: "#FADBD8",
+  members: ["Menachem Berrebi", "Solal Berrebi", "Moshe Schlussel", "Eliyahu Yifrach", "Samuel Jefroykin"]
+}, {
+  name: "VC / Deal Flow",
+  color: "#D5F5E3",
+  members: ["Noa Yehoshua", "Max Neuberger", "Eitan Smilchensky", "Josh Klawansky"]
+}];
+
+const revenueColor = rev => {
+  if (rev.includes("$10K+")) return "#F5E642";
+  if (rev.includes("$5K") || rev.includes("$3M") || rev.includes("Generating")) return "#c8a84b";
+  if (rev.includes("$1K")) return "#3a3a2a";
+  if (rev.includes("Pre-Revenue")) return "#2a2a2a";
+  return "#242424";
+};
+const revenueTextColor = rev => {
+  if (rev.includes("$10K+")) return "#000";
+  if (rev.includes("$5K") || rev.includes("$3M") || rev.includes("Generating")) return "#000";
+  if (rev.includes("$1K")) return "#c8b86a";
+  return "#686868";
+};
+const tagColor = {
+  "CRITICAL": "#FF3B3B",
+  "FUNDING": "#F5E642",
+  "MISSION MATCH": "#4ECDC4",
+  "PRODUCT PARTNERSHIP": "#A8E6CF",
+  "REVENUE": "#F5E642",
+  "TECHNICAL": "#85C1E9",
+  "CHEMISTRY": "#D7BDE2",
+  "SKILL MATCH": "#FAD7A0",
+  "COLLABORATION": "#B4A7E5",
+  "MENTORSHIP": "#FF8B94",
+  "GTM": "#FADBD8"
+};
+const darkTagText = ["CRITICAL", "FUNDING", "MISSION MATCH", "PRODUCT PARTNERSHIP", "REVENUE", "SKILL MATCH", "COLLABORATION", "MENTORSHIP", "GTM"];
+function App() {
+  const [tab, setTab] = useState("profiles");
+  const [selected, setSelected] = useState(null);
+  const [search, setSearch] = useState("");
+  const [clusterFilter, setClusterFilter] = useState(null);
+  const [hovered, setHovered] = useState(null);
+  const [myName, setMyName] = useState("");
+  const filtered = attendees.filter(a => {
+    const q = search.toLowerCase();
+    const matchSearch = !q || a.name.toLowerCase().includes(q) || a.project.toLowerCase().includes(q) || a.tagline.toLowerCase().includes(q);
+    const matchCluster = !clusterFilter || a.cluster.includes(clusterFilter);
+    return matchSearch && matchCluster;
+  });
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#0f0f0f",
+      minHeight: "100vh",
+      fontFamily: "'IBM Plex Mono', 'Courier New', monospace",
+      color: "#EFEFEF"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#0f0f0f",
+      borderBottom: "2px solid #F5E642",
+      padding: "16px 20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      position: "sticky",
+      top: 0,
+      zIndex: 100
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#fff",
+      fontWeight: 900,
+      fontSize: 20,
+      letterSpacing: -1
+    }
+  }, "Deploy"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#F5E642",
+      fontWeight: 900,
+      fontSize: 20,
+      letterSpacing: -1
+    }
+  }, "TLV")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: "#F5E642",
+      color: "#000",
+      fontSize: 10,
+      fontWeight: 900,
+      padding: "2px 8px",
+      letterSpacing: 2
+    }
+  }, "DEPLOY #1"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#686868",
+      fontSize: 11
+    }
+  }, "31 ATTENDEES \xB7 MAY 2026"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 0,
+      padding: "0 16px",
+      borderBottom: "1px solid #2a2a2a",
+      overflowX: "auto"
+    }
+  }, [["profiles", "PROFILES"], ["matches", "MATCHMAKING"], ["clusters", "SKILL MAP"], ["forme", "WHO TO MEET"]].map(([key, label]) => /*#__PURE__*/React.createElement("button", {
+    key: key,
+    onClick: () => setTab(key),
+    style: {
+      background: "none",
+      border: "none",
+      color: tab === key ? "#F5E642" : "#555",
+      fontSize: 11,
+      fontWeight: 700,
+      letterSpacing: 2,
+      padding: "12px 16px",
+      cursor: "pointer",
+      borderBottom: tab === key ? "2px solid #F5E642" : "2px solid transparent",
+      whiteSpace: "nowrap",
+      fontFamily: "inherit"
+    }
+  }, label))), tab === "profiles" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "12px 16px 8px",
+      borderBottom: "1px solid #232323"
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    style: {
+      background: "#1c1c1c",
+      border: "1px solid #303030",
+      color: "#fff",
+      padding: "10px 14px",
+      fontSize: 12,
+      width: "100%",
+      outline: "none",
+      fontFamily: "inherit",
+      letterSpacing: 1
+    },
+    placeholder: "SEARCH BY NAME, PROJECT, OR KEYWORD...",
+    value: search,
+    onChange: e => setSearch(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      padding: "8px 16px",
+      overflowX: "auto",
+      borderBottom: "1px solid #232323"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setClusterFilter(null),
+    style: {
+      background: !clusterFilter ? "#F5E642" : "#141414",
+      border: `1px solid ${!clusterFilter ? "#F5E642" : "#2a2a2a"}`,
+      color: !clusterFilter ? "#000" : "#666",
+      fontSize: 10,
+      fontWeight: 700,
+      padding: "4px 10px",
+      cursor: "pointer",
+      letterSpacing: 1,
+      whiteSpace: "nowrap",
+      fontFamily: "inherit"
+    }
+  }, "ALL (", attendees.length, ")"), clusters.map(c => /*#__PURE__*/React.createElement("button", {
+    key: c.name,
+    onClick: () => setClusterFilter(clusterFilter === c.name ? null : c.name),
+    style: {
+      background: clusterFilter === c.name ? c.color : "#141414",
+      border: `1px solid ${clusterFilter === c.name ? c.color : "#2a2a2a"}`,
+      color: clusterFilter === c.name ? "#000" : "#909090",
+      fontSize: 10,
+      fontWeight: 700,
+      padding: "4px 10px",
+      cursor: "pointer",
+      letterSpacing: 1,
+      whiteSpace: "nowrap",
+      fontFamily: "inherit"
+    }
+  }, c.name.toUpperCase(), " (", c.members.length, ")"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "6px 16px 0",
+      color: "#686868",
+      fontSize: 11
+    }
+  }, filtered.length, " attendees shown"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+      gap: 10,
+      padding: 16
+    }
+  }, filtered.map(a => /*#__PURE__*/React.createElement("div", {
+    key: a.id,
+    style: {
+      background: hovered === a.id ? "#1e1e1e" : "#1A1A1A",
+      border: `1px solid ${hovered === a.id ? "#F5E642" : "#252525"}`,
+      padding: 16,
+      cursor: "pointer",
+      transition: "all 0.15s"
+    },
+    onMouseEnter: () => setHovered(a.id),
+    onMouseLeave: () => setHovered(null),
+    onClick: () => setSelected(a)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      marginBottom: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#686868",
+      fontSize: 11,
+      fontWeight: 900
+    }
+  }, "#", String(a.id).padStart(2, "0")), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: revenueColor(a.revenue),
+      color: revenueTextColor(a.revenue),
+      fontSize: 10,
+      fontWeight: 900,
+      padding: "2px 7px",
+      letterSpacing: 0.5
+    }
+  }, a.revenue)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 900,
+      color: "#fff",
+      letterSpacing: -0.5,
+      marginBottom: 2
+    }
+  }, a.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#F5E642",
+      fontWeight: 700,
+      letterSpacing: 1,
+      textTransform: "uppercase",
+      marginBottom: 5
+    }
+  }, a.project), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#b8b8b8",
+      lineHeight: 1.5,
+      marginBottom: 10
+    }
+  }, a.tagline), /*#__PURE__*/React.createElement("div", null, a.stack.slice(0, 3).map(t => /*#__PURE__*/React.createElement("span", {
+    key: t,
+    style: {
+      display: "inline-block",
+      background: "#141414",
+      border: "1px solid #303030",
+      color: "#b8b8b8",
+      fontSize: 10,
+      padding: "2px 6px",
+      marginRight: 4,
+      marginTop: 4
+    }
+  }, t)), a.stack.length > 3 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-block",
+      background: "#141414",
+      border: "1px solid #303030",
+      color: "#686868",
+      fontSize: 10,
+      padding: "2px 6px",
+      marginTop: 4
+    }
+  }, "+", a.stack.length - 3)))))), tab === "matches" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 16,
+      maxWidth: 680
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      fontWeight: 900,
+      color: "#fff",
+      letterSpacing: -1
+    }
+  }, "TOP 15 INTRODUCTIONS"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#787878",
+      marginTop: 4,
+      letterSpacing: 1
+    }
+  }, "RANKED BY SIGNAL STRENGTH AND POTENTIAL IMPACT")), matches.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.rank,
+    style: {
+      background: "#1c1c1c",
+      border: "1px solid #2e2e2e",
+      padding: 16,
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#F5E642",
+      fontSize: 11,
+      fontWeight: 900,
+      letterSpacing: 2
+    }
+  }, "#", m.rank), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: tagColor[m.tag] || "#3a3a3a",
+      color: darkTagText.includes(m.tag) ? "#000" : "#fff",
+      fontSize: 10,
+      fontWeight: 900,
+      padding: "3px 8px",
+      letterSpacing: 2
+    }
+  }, m.tag)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 900,
+      color: "#fff",
+      marginBottom: 8
+    }
+  }, m.a, " ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#F5E642"
+    }
+  }, "\u2194"), " ", m.b), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#b8b8b8",
+      lineHeight: 1.6
+    }
+  }, m.why)))), tab === "clusters" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      fontWeight: 900,
+      color: "#fff",
+      letterSpacing: -1
+    }
+  }, "SKILL & DOMAIN CLUSTERS"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#787878",
+      marginTop: 4,
+      letterSpacing: 1
+    }
+  }, "CLICK A CLUSTER TO FILTER THE PROFILES VIEW")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+      gap: 10
+    }
+  }, clusters.map(c => /*#__PURE__*/React.createElement("div", {
+    key: c.name,
+    style: {
+      background: "#1c1c1c",
+      borderLeft: `3px solid ${c.color}`,
+      padding: 14,
+      cursor: "pointer"
+    },
+    onClick: () => {
+      setClusterFilter(c.name);
+      setTab("profiles");
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 900,
+      color: c.color,
+      letterSpacing: 2,
+      textTransform: "uppercase",
+      marginBottom: 10
+    }
+  }, c.name), c.members.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m,
+    style: {
+      fontSize: 12,
+      color: "#b0b0b0",
+      marginBottom: 4
+    }
+  }, "\xB7 ", m)))))), tab === "forme" && (() => {
+    const q = myName.trim().toLowerCase();
+    const me = q ? attendees.find(a => a.name.toLowerCase().includes(q)) : null;
+    const myMatches = me ? matches.filter(m => m.a === me.name || m.b === me.name) : [];
+    const myClusterNames = me ? me.cluster : [];
+    const clusterPeers = me ? attendees.filter(a => a.name !== me.name && a.cluster.some(c => myClusterNames.includes(c))).map(a => ({
+      ...a,
+      sharedClusters: a.cluster.filter(c => myClusterNames.includes(c))
+    })).sort((a, b) => b.sharedClusters.length - a.sharedClusters.length) : [];
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: 16,
+        maxWidth: 680
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 20
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 20,
+        fontWeight: 900,
+        color: "#fff",
+        letterSpacing: -1
+      }
+    }, "WHO SHOULD I MEET?"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#787878",
+        marginTop: 4,
+        letterSpacing: 1
+      }
+    }, "TYPE YOUR NAME TO GET YOUR PERSONAL MATCH LIST")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "relative",
+        marginBottom: 24
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      style: {
+        background: "#1c1c1c",
+        border: `2px solid ${me ? "#F5E642" : "#303030"}`,
+        color: "#fff",
+        padding: "14px 16px",
+        fontSize: 14,
+        width: "100%",
+        outline: "none",
+        fontFamily: "inherit",
+        letterSpacing: 1,
+        transition: "border 0.15s"
+      },
+      placeholder: "TYPE YOUR NAME...",
+      value: myName,
+      onChange: e => setMyName(e.target.value),
+      autoFocus: true
+    }), myName.length > 0 && !me && /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        top: "100%",
+        left: 0,
+        right: 0,
+        background: "#1c1c1c",
+        border: "1px solid #303030",
+        zIndex: 10,
+        maxHeight: 200,
+        overflowY: "auto"
+      }
+    }, attendees.filter(a => a.name.toLowerCase().includes(myName.toLowerCase())).map(a => /*#__PURE__*/React.createElement("div", {
+      key: a.id,
+      onClick: () => setMyName(a.name),
+      style: {
+        padding: "10px 16px",
+        cursor: "pointer",
+        borderBottom: "1px solid #252525",
+        fontSize: 13,
+        color: "#c0c0c0"
+      },
+      onMouseEnter: e => e.currentTarget.style.background = "#242424",
+      onMouseLeave: e => e.currentTarget.style.background = "transparent"
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#fff",
+        fontWeight: 700
+      }
+    }, a.name), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#686868",
+        marginLeft: 8,
+        fontSize: 11
+      }
+    }, a.project))))), myName.length > 0 && !me && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#686868",
+        fontSize: 13,
+        letterSpacing: 1
+      }
+    }, "NO MATCH FOUND \u2014 TRY FIRST OR LAST NAME"), me && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#1c1c1c",
+        borderLeft: "3px solid #F5E642",
+        padding: "14px 16px",
+        marginBottom: 24
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 18,
+        fontWeight: 900,
+        color: "#fff",
+        marginBottom: 2
+      }
+    }, me.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#F5E642",
+        fontWeight: 700,
+        letterSpacing: 2,
+        textTransform: "uppercase",
+        marginBottom: 6
+      }
+    }, me.project), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6,
+        flexWrap: "wrap"
+      }
+    }, me.cluster.map(c => {
+      const cl = clusters.find(x => x.name === c);
+      return /*#__PURE__*/React.createElement("span", {
+        key: c,
+        style: {
+          background: "#141414",
+          border: `1px solid ${cl?.color || "#333"}`,
+          color: cl?.color || "#888",
+          fontSize: 10,
+          padding: "2px 7px",
+          fontWeight: 700
+        }
+      }, c);
+    }))), myMatches.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 900,
+        color: "#F5E642",
+        letterSpacing: 3,
+        marginBottom: 12
+      }
+    }, "\u2B50 YOUR PRIORITY MATCHES (", myMatches.length, ")"), myMatches.map(m => {
+      const otherName = m.a === me.name ? m.b : m.a;
+      const other = attendees.find(a => a.name === otherName);
+      return /*#__PURE__*/React.createElement("div", {
+        key: m.rank,
+        style: {
+          background: "#1c1c1c",
+          border: "1px solid #2e2e2e",
+          padding: 16,
+          marginBottom: 10,
+          cursor: "pointer"
+        },
+        onClick: () => other && setSelected(other)
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#686868",
+          fontSize: 11
+        }
+      }, "MATCH #", m.rank), /*#__PURE__*/React.createElement("span", {
+        style: {
+          background: tagColor[m.tag] || "#3a3a3a",
+          color: darkTagText.includes(m.tag) ? "#000" : "#fff",
+          fontSize: 10,
+          fontWeight: 900,
+          padding: "3px 8px",
+          letterSpacing: 1
+        }
+      }, m.tag)), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 16,
+          fontWeight: 900,
+          color: "#fff",
+          marginBottom: 4
+        }
+      }, otherName), other && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#F5E642",
+          fontWeight: 700,
+          letterSpacing: 1,
+          textTransform: "uppercase",
+          marginBottom: 8
+        }
+      }, other.project), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: "#b8b8b8",
+          lineHeight: 1.6
+        }
+      }, m.why), /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginTop: 10,
+          fontSize: 10,
+          color: "#686868",
+          letterSpacing: 1
+        }
+      }, "TAP TO VIEW FULL PROFILE \u2192"));
+    })), clusterPeers.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 900,
+        color: "#F5E642",
+        letterSpacing: 3,
+        marginBottom: 12,
+        marginTop: myMatches.length > 0 ? 24 : 0
+      }
+    }, "OTHERS IN YOUR DOMAIN (", clusterPeers.length, ")"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#686868",
+        marginBottom: 14,
+        lineHeight: 1.6
+      }
+    }, "These attendees share at least one cluster with you \u2014 common ground for a conversation."), clusterPeers.map(a => /*#__PURE__*/React.createElement("div", {
+      key: a.id,
+      style: {
+        background: "#1c1c1c",
+        border: "1px solid #252525",
+        padding: "12px 16px",
+        marginBottom: 8,
+        cursor: "pointer",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start"
+      },
+      onClick: () => setSelected(a)
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 900,
+        color: "#fff",
+        marginBottom: 2
+      }
+    }, a.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#F5E642",
+        fontWeight: 700,
+        letterSpacing: 1,
+        textTransform: "uppercase",
+        marginBottom: 5
+      }
+    }, a.project), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 5,
+        flexWrap: "wrap"
+      }
+    }, a.sharedClusters.map(c => {
+      const cl = clusters.find(x => x.name === c);
+      return /*#__PURE__*/React.createElement("span", {
+        key: c,
+        style: {
+          background: "#141414",
+          border: `1px solid ${cl?.color || "#333"}`,
+          color: cl?.color || "#888",
+          fontSize: 10,
+          padding: "2px 6px",
+          fontWeight: 700
+        }
+      }, c);
+    }))), /*#__PURE__*/React.createElement("span", {
+      style: {
+        background: revenueColor(a.revenue),
+        color: revenueTextColor(a.revenue),
+        fontSize: 10,
+        fontWeight: 900,
+        padding: "2px 7px",
+        whiteSpace: "nowrap",
+        marginLeft: 10
+      }
+    }, a.revenue)))), myMatches.length === 0 && clusterPeers.length === 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#686868",
+        fontSize: 13
+      }
+    }, "No matches found for this profile.")));
+  })(), selected && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(10,10,10,0.97)",
+      zIndex: 200,
+      overflowY: "auto",
+      padding: 20
+    },
+    onClick: () => setSelected(null)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 580,
+      margin: "0 auto",
+      background: "#141414",
+      border: "1px solid #F5E642",
+      padding: 24
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "#686868",
+      fontSize: 11,
+      marginBottom: 4
+    }
+  }, "#", String(selected.id).padStart(2, "0"), " / ", selected.cluster[0]), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 900,
+      letterSpacing: -1,
+      color: "#fff"
+    }
+  }, selected.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "#F5E642",
+      fontSize: 11,
+      fontWeight: 700,
+      letterSpacing: 2,
+      textTransform: "uppercase",
+      marginTop: 2
+    }
+  }, selected.project)), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setSelected(null),
+    style: {
+      background: "none",
+      border: "1px solid #3a3a3a",
+      color: "#909090",
+      padding: "6px 12px",
+      cursor: "pointer",
+      fontSize: 11,
+      fontFamily: "inherit",
+      letterSpacing: 2
+    }
+  }, "\u2715 CLOSE")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: "#c0c0c0",
+      lineHeight: 1.6,
+      marginBottom: 14
+    }
+  }, selected.tagline), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: revenueColor(selected.revenue),
+      color: revenueTextColor(selected.revenue),
+      fontSize: 10,
+      fontWeight: 900,
+      padding: "3px 8px"
+    }
+  }, selected.revenue), selected.linkedin && /*#__PURE__*/React.createElement("a", {
+    href: `https://linkedin.com/in/${selected.linkedin}`,
+    target: "_blank",
+    rel: "noreferrer",
+    style: {
+      color: "#787878",
+      fontSize: 11,
+      textDecoration: "none",
+      border: "1px solid #303030",
+      padding: "3px 8px"
+    }
+  }, "LINKEDIN \u2197")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 900,
+      color: "#F5E642",
+      letterSpacing: 3,
+      textTransform: "uppercase",
+      marginBottom: 8,
+      marginTop: 18
+    }
+  }, "\u2B50 KEY INSIGHT"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#161616",
+      borderLeft: "3px solid #F5E642",
+      padding: "12px 16px",
+      fontSize: 13,
+      lineHeight: 1.7,
+      color: "#d4d4d4"
+    }
+  }, selected.insight), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 900,
+      color: "#F5E642",
+      letterSpacing: 3,
+      marginBottom: 8,
+      marginTop: 18
+    }
+  }, "BACKGROUND"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#b8b8b8",
+      lineHeight: 1.7
+    }
+  }, selected.bg), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 900,
+      color: "#F5E642",
+      letterSpacing: 3,
+      marginBottom: 8,
+      marginTop: 18
+    }
+  }, "STACK"), /*#__PURE__*/React.createElement("div", null, selected.stack.map(t => /*#__PURE__*/React.createElement("span", {
+    key: t,
+    style: {
+      display: "inline-block",
+      background: "#161616",
+      border: "1px solid #303030",
+      color: "#b8b8b8",
+      fontSize: 10,
+      padding: "3px 8px",
+      marginRight: 5,
+      marginBottom: 5
+    }
+  }, t))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 900,
+      color: "#F5E642",
+      letterSpacing: 3,
+      marginBottom: 8,
+      marginTop: 18
+    }
+  }, "SEEKING"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "inline-block",
+      background: "#161616",
+      border: "1px solid #303030",
+      color: "#b8b8b8",
+      fontSize: 12,
+      padding: "4px 10px"
+    }
+  }, selected.seeking), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 900,
+      color: "#F5E642",
+      letterSpacing: 3,
+      marginBottom: 8,
+      marginTop: 18
+    }
+  }, "CLUSTERS"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap"
+    }
+  }, selected.cluster.map(c => {
+    const cl = clusters.find(x => x.name === c);
+    return /*#__PURE__*/React.createElement("span", {
+      key: c,
+      style: {
+        background: "#161616",
+        border: `1px solid ${cl?.color || "#3a3a3a"}`,
+        color: cl?.color || "#888",
+        fontSize: 10,
+        padding: "3px 8px",
+        fontWeight: 700,
+        letterSpacing: 1
+      }
+    }, c);
+  })), matches.filter(m => m.a === selected.name || m.b === selected.name).length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 900,
+      color: "#F5E642",
+      letterSpacing: 3,
+      marginBottom: 8,
+      marginTop: 18
+    }
+  }, "MATCHMAKING SIGNALS"), matches.filter(m => m.a === selected.name || m.b === selected.name).map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.rank,
+    style: {
+      background: "#161616",
+      border: "1px solid #303030",
+      padding: "10px 12px",
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#F5E642",
+      fontSize: 11
+    }
+  }, "#", m.rank), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: tagColor[m.tag] || "#3a3a3a",
+      color: darkTagText.includes(m.tag) ? "#000" : "#fff",
+      fontSize: 10,
+      padding: "2px 6px",
+      fontWeight: 900
+    }
+  }, m.tag)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: "#ddd",
+      marginBottom: 4
+    }
+  }, m.a === selected.name ? m.b : m.a), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#a0a0a0",
+      lineHeight: 1.5
+    }
+  }, m.why)))))));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+
+  </script>
+</body>
+</html>
