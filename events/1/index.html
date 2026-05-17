@@ -15,6 +15,75 @@
     ::-webkit-scrollbar-thumb:hover { background: #F5E642; }
     #root { min-height: 100vh; }
   </style>
+  <style>
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-8px); }
+      40%      { transform: translateX(8px); }
+      60%      { transform: translateX(-6px); }
+      80%      { transform: translateX(6px); }
+    }
+    #gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #0A0A0A;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    }
+    #gate-logo {
+      width: 64px; height: 64px;
+      border: 3px solid #F5E642;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+    }
+    #gate-logo span {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 22px;
+      color: #F5E642; letter-spacing: -1px;
+    }
+    #gate h1 {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: clamp(28px, 5vw, 48px);
+      color: #EFEFEF; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    #gate-sub {
+      font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+      color: #F5E642; margin-bottom: 40px;
+    }
+    #gate-form {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      width: 100%; max-width: 320px;
+    }
+    #gate-input {
+      width: 100%; padding: 14px 18px;
+      background: #1A1A1A; border: 1px solid #333;
+      color: #EFEFEF; font-family: 'IBM Plex Mono', monospace; font-size: 16px;
+      letter-spacing: 3px; text-align: center;
+      outline: none; transition: border-color 0.2s;
+    }
+    #gate-input:focus { border-color: #F5E642; }
+    #gate-input::placeholder { letter-spacing: 2px; color: #555; }
+    #gate-btn {
+      width: 100%; padding: 14px;
+      background: #F5E642; color: #0A0A0A;
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 18px; letter-spacing: 3px;
+      text-transform: uppercase; border: none; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    #gate-btn:hover { opacity: 0.85; }
+    #gate-error {
+      font-size: 11px; letter-spacing: 2px;
+      color: #ff4444; text-transform: uppercase;
+      min-height: 16px; margin-top: 4px;
+    }
+    #gate-form.shake { animation: shake 0.4s ease; }
+    #gate.fade-out { animation: fadeOut 0.4s ease forwards; }
+    @keyframes fadeOut { to { opacity: 0; pointer-events: none; } }
+  </style>
 </head>
 <body>
   <div id="root"></div>
@@ -1485,6 +1554,56 @@ function App() {
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
 
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&display=swap" rel="stylesheet" />
+
+  <div id="gate">
+    <div id="gate-logo"><span>DE</span></div>
+    <h1>Deploy TLV #1</h1>
+    <div id="gate-sub">Builders Only.</div>
+    <div id="gate-form">
+      <input id="gate-input" type="password" placeholder="enter password" autocomplete="off" />
+      <button id="gate-btn">ENTER →</button>
+      <div id="gate-error"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var STORAGE_KEY = 'deploytlv_event1_unlocked';
+      var gate = document.getElementById('gate');
+
+      if (localStorage.getItem(STORAGE_KEY)) {
+        gate.style.display = 'none';
+        return;
+      }
+
+      function unlock() {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        gate.classList.add('fade-out');
+        setTimeout(function() { gate.style.display = 'none'; }, 400);
+      }
+
+      function wrong() {
+        var form = document.getElementById('gate-form');
+        var err  = document.getElementById('gate-error');
+        err.textContent = '// INCORRECT. TRY AGAIN.';
+        form.classList.remove('shake');
+        void form.offsetWidth;
+        form.classList.add('shake');
+        document.getElementById('gate-input').value = '';
+      }
+
+      document.getElementById('gate-btn').addEventListener('click', function() {
+        var val = document.getElementById('gate-input').value.trim().toLowerCase();
+        if (val === 'pinsker') { unlock(); } else { wrong(); }
+      });
+
+      document.getElementById('gate-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { document.getElementById('gate-btn').click(); }
+      });
+    })();
   </script>
 </body>
 </html>
