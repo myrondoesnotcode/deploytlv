@@ -18,7 +18,7 @@
       flex-direction: column;
     }
 
-    /* ── Top bar ── */
+    /* ── Header ── */
     header {
       display: flex;
       align-items: center;
@@ -26,9 +26,7 @@
       padding: 24px 40px;
       border-bottom: 1px solid #1A1A1A;
     }
-    .logo {
-      display: flex; align-items: center; gap: 14px;
-    }
+    .logo { display: flex; align-items: center; gap: 14px; }
     .logo-circle {
       width: 44px; height: 44px;
       border: 2.5px solid #F5E642;
@@ -64,12 +62,11 @@
     .hero h1 {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: clamp(56px, 10vw, 120px);
+      font-size: clamp(64px, 11vw, 130px);
       line-height: 0.9;
       text-transform: uppercase;
       color: #EFEFEF;
       letter-spacing: -1px;
-      margin-bottom: 0;
     }
     .hero h1 .yellow { color: #F5E642; }
     .hero-sub {
@@ -79,23 +76,74 @@
       border-top: 1px solid #1A1A1A;
       padding-top: 20px;
     }
-    .hero-sub span { color: #F5E642; }
 
-    /* ── Event cards ── */
+    /* ── Manifesto ── */
+    .manifesto {
+      padding: 0 40px 60px;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .manifesto-block {
+      border-left: 2px solid #F5E642;
+      padding: 20px 0 20px 28px;
+      border-bottom: 1px solid #1A1A1A;
+    }
+    .manifesto-block:last-child {
+      border-bottom: none;
+    }
+    .manifesto-block p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #AFAFAF;
+    }
+    .manifesto-block p strong {
+      color: #EFEFEF;
+      font-weight: 700;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 40px 40px 80px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #F5E642;
+      color: #0A0A0A;
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 40px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .cta-caption {
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    /* ── Events ── */
     .events-section {
       padding: 0 40px 80px;
       flex: 1;
+      border-top: 1px solid #1A1A1A;
     }
     .events-label {
       font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-      color: #555; margin-bottom: 24px;
+      color: #555; margin: 40px 0 24px;
     }
     .events-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
     }
-
     .event-card {
       width: 280px;
       border: 1px solid #333;
@@ -103,54 +151,32 @@
       display: flex; flex-direction: column; gap: 12px;
       text-decoration: none;
       transition: border-color 0.2s, transform 0.15s;
-      position: relative;
     }
-    .event-card.active {
-      border-color: #F5E642;
-      cursor: pointer;
-    }
-    .event-card.active:hover {
-      transform: translateY(-2px);
-      border-color: #fff;
-    }
-    .event-card.locked {
-      border-color: #1E1E1E;
-      cursor: default;
-      opacity: 0.5;
-    }
-
+    .event-card.active { border-color: #F5E642; cursor: pointer; }
+    .event-card.active:hover { transform: translateY(-2px); border-color: #fff; }
+    .event-card.locked { border-color: #1E1E1E; cursor: default; opacity: 0.5; }
     .card-number {
-      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-      color: #555;
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #555;
     }
     .event-card.active .card-number { color: #F5E642; }
-
     .card-title {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900; font-size: 32px; letter-spacing: 1px;
-      text-transform: uppercase; color: #EFEFEF;
-      line-height: 1;
+      text-transform: uppercase; color: #EFEFEF; line-height: 1;
     }
-
     .card-meta {
-      font-size: 11px; letter-spacing: 2px; color: #555;
-      text-transform: uppercase;
+      font-size: 11px; letter-spacing: 2px; color: #555; text-transform: uppercase;
     }
     .event-card.active .card-meta { color: #888; }
-
-    .card-divider {
-      border: none; border-top: 1px solid #1A1A1A; margin: 4px 0;
-    }
+    .card-divider { border: none; border-top: 1px solid #1A1A1A; margin: 4px 0; }
     .event-card.active .card-divider { border-color: #2A2A2A; }
-
     .card-cta {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900; font-size: 14px; letter-spacing: 3px;
       text-transform: uppercase; color: #F5E642;
     }
     .card-lock {
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      color: #333;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #333;
     }
   </style>
 </head>
@@ -165,9 +191,28 @@
   </header>
 
   <section class="hero">
-    <div class="hero-eyebrow">// Select your event</div>
-    <h1>WHO'S<br>IN THE<br><span class="yellow">ROOM?</span></h1>
-    <div class="hero-sub">Not spectators. &nbsp;<span>Builders.</span></div>
+    <div class="hero-eyebrow">// deploytlv.com</div>
+    <h1>THE ROOM<br>WHERE TLV<br><span class="yellow">BUILDS.</span></h1>
+    <div class="hero-sub">Real builders. Real projects. No panels.</div>
+  </section>
+
+  <section class="manifesto">
+    <div class="manifesto-block">
+      <p><strong>Most rooms are full of people talking about building.</strong><br>This one is full of people doing it.</p>
+    </div>
+    <div class="manifesto-block">
+      <p>Deploy TLV is a recurring gathering for founders, engineers, and makers shipping real things with AI — startups, side projects, agents, tools, experiments that became companies. Small groups. Vetted. Structured to spark the conversations worth having.</p>
+    </div>
+    <div class="manifesto-block">
+      <p><strong>Tel Aviv has some of the best builders in the world.</strong><br>We're putting them in the same room.</p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <a class="cta-btn" href="https://luma.com/bf01yb5r" target="_blank" rel="noopener">
+      Request to Join Deploy #1 &nbsp;→
+    </a>
+    <div class="cta-caption">~20 people &nbsp;·&nbsp; Tel Aviv &nbsp;·&nbsp; Approval required &nbsp;·&nbsp; Spots limited</div>
   </section>
 
   <section class="events-section">
