@@ -873,6 +873,64 @@ const clusters = [{
   color: "#E8D5B7",
   members: ["Yuval Dor", "David Mekibel"]
 }];
+const breakoutGroups = [
+  {
+    id: 1,
+    name: "The Stack",
+    subtitle: "AI infra · agents · security",
+    color: "#85C1E9",
+    critical: false,
+    members: ["Drew Stone", "Ari Eliezrie", "Amir Shoob", "Orel Zion", "Artem Belyakov", "Benjamin Lieber"]
+  },
+  {
+    id: 2,
+    name: "The Thera Group",
+    subtitle: "behavioral & mental health AI — CRITICAL",
+    color: "#FFB3C1",
+    critical: true,
+    members: ["Tzur Barak", "Doron Assness", "Moshe Schlussel"]
+  },
+  {
+    id: 3,
+    name: "The Feed",
+    subtitle: "content · media · distribution",
+    color: "#F5E642",
+    critical: false,
+    members: ["Myron Shneider", "Shimon Rosen", "Josh Klawansky", "Daniel Conway", "David Mekibel", "Alan Mekibel", "Yuval Dor"]
+  },
+  {
+    id: 4,
+    name: "Consumer & Education",
+    subtitle: "B2C apps · early monetization",
+    color: "#A8E6CF",
+    critical: false,
+    members: ["Ilan Oz", "Sam Weinstein", "Solal Berrebi", "Guillaume Bensoussan", "Matan Porat", "Eliyahu Yifrach"]
+  },
+  {
+    id: 5,
+    name: "Money & Markets",
+    subtitle: "fintech · crypto · VC",
+    color: "#B4A7E5",
+    critical: false,
+    members: ["Alon Shvartsman", "Michael Heiser", "Eitan Dooreck-Aloni", "Amit Shalev", "Noa Yehoshua", "Kovi Lightman", "Orly Shefler"]
+  },
+  {
+    id: 6,
+    name: "Autonomous",
+    subtitle: "UAV · robotics · defense — CRITICAL",
+    color: "#4ECDC4",
+    critical: true,
+    members: ["Fedorov Dmitrii", "Benjamin Breger", "Yuval Grimberg", "Shoval Seidman"]
+  },
+  {
+    id: 7,
+    name: "Physical World & B2B",
+    subtitle: "built environment · revenue operators",
+    color: "#FAD7A0",
+    critical: false,
+    members: ["Menachem Cowen", "Eliahu Cohen", "Menachem Berrebi", "Gershon Ballas", "Yonatan Langheim Halaf", "Roy Keren", "Vlad Neyshtadt"]
+  }
+];
 
 const revenueColor = rev => {
   if (rev === "Revenue" || (rev && rev.startsWith("$"))) return "#F5E642";
@@ -1012,7 +1070,7 @@ function App() {
       borderBottom: "1px solid #2a2a2a",
       overflowX: "auto"
     }
-  }, [["profiles", "PROFILES"], ["matches", "MATCHMAKING"], ["clusters", "SKILL MAP"], ["forme", "WHO TO MEET"]].map(([key, label]) => /*#__PURE__*/React.createElement("button", {
+  }, [["profiles", "PROFILES"], ["matches", "MATCHMAKING"], ["clusters", "SKILL MAP"], ["groups", "BREAKOUT"], ["forme", "WHO TO MEET"]].map(([key, label]) => /*#__PURE__*/React.createElement("button", {
     key: key,
     onClick: () => setTab(key),
     style: {
@@ -1294,7 +1352,91 @@ function App() {
       color: "#b0b0b0",
       marginBottom: 4
     }
-  }, "\xB7 ", m)))))), tab === "forme" && (() => {
+  }, "\xB7 ", m)))))), tab === "groups" && React.createElement("div", {
+  style: { padding: 16 }
+},
+  React.createElement("div", { style: { marginBottom: 20 } },
+    React.createElement("div", {
+      style: { fontSize: 20, fontWeight: 900, color: "#fff", letterSpacing: -1 }
+    }, "BREAKOUT GROUPS"),
+    React.createElement("div", {
+      style: { fontSize: 12, color: "#787878", marginTop: 4, letterSpacing: 1 }
+    }, "CLICK ANY NAME TO VIEW FULL PROFILE")
+  ),
+  React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+      gap: 12
+    }
+  }, breakoutGroups.map(group => {
+    const memberAttendees = group.members.map(name =>
+      attendees.find(a => a.name === name) || { name, photo: null, project: "" }
+    );
+    return React.createElement("div", {
+      key: group.id,
+      style: {
+        background: "#1c1c1c",
+        borderLeft: `3px solid ${group.color}`,
+        padding: 16
+      }
+    },
+      React.createElement("div", {
+        style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }
+      },
+        React.createElement("span", {
+          style: { fontSize: 10, color: "#505050", fontWeight: 700, letterSpacing: 2 }
+        }, `CLUSTER ${group.id}`),
+        group.critical && React.createElement("span", {
+          style: {
+            background: "#FF3B3B",
+            color: "#fff",
+            fontSize: 9,
+            fontWeight: 900,
+            padding: "1px 6px",
+            letterSpacing: 1
+          }
+        }, "CRITICAL")
+      ),
+      React.createElement("div", {
+        style: { fontSize: 13, fontWeight: 900, color: group.color, letterSpacing: 0.5, marginBottom: 2 }
+      }, group.name),
+      React.createElement("div", {
+        style: { fontSize: 10, color: "#686868", letterSpacing: 1, marginBottom: 14 }
+      }, group.subtitle.toUpperCase()),
+      memberAttendees.map(a =>
+        React.createElement("div", {
+          key: a.name,
+          onClick: () => a.id ? setSelected(a) : null,
+          style: {
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            marginBottom: 8,
+            cursor: a.id ? "pointer" : "default",
+            padding: "6px 8px",
+            background: "#141414",
+            borderLeft: "2px solid #2a2a2a",
+            transition: "border-color 0.15s"
+          },
+          onMouseEnter: e => { if (a.id) e.currentTarget.style.borderColor = group.color; },
+          onMouseLeave: e => { e.currentTarget.style.borderColor = "#2a2a2a"; }
+        },
+          photoAvatar(a, 32),
+          React.createElement("div", null,
+            React.createElement("div", {
+              style: { fontSize: 12, fontWeight: 700, color: "#efefef" }
+            }, a.name),
+            React.createElement("div", {
+              style: { fontSize: 10, color: "#686868", marginTop: 1 }
+            }, a.project || "")
+          )
+        )
+      )
+    );
+  }))
+),
+tab === "forme" && (() => {
     const q = myName.trim().toLowerCase();
     const me = q ? attendees.find(a => a.name.toLowerCase().includes(q)) : null;
     const myMatches = me ? matches.filter(m => m.a === me.name || m.b === me.name) : [];
