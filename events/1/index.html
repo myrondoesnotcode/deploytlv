@@ -100,8 +100,8 @@ const attendees = [{
   id: 1,
   photo: "photos/Myron_Shneider.jpg",
   name: "Myron Shneider",
-  project: "Clipmatic.ai + Founder & Organizer, Deploy TLV",
-  tagline: "AI Short-Form Content Engine + Israel's AI Builders Community",
+  project: "Founder, DeployTLV",
+  tagline: "Israel's AI Builders Community",
   stack: ["Claude", "Codex"],
   revenue: "Pre-Revenue",
   linkedin: "mshneider",
@@ -321,14 +321,14 @@ const attendees = [{
   id: 17,
   photo: null,
   name: "Moshe Schlussel",
-  project: "TheraTrain AI",
-  tagline: "Training Platform for Therapists",
+  project: "TheraTrain AI — Training Platform for Therapists",
+  tagline: "AI Simulation Platform for Therapist Training",
   stack: ["Claude", "Codex", "OpenCode"],
   revenue: "Pre-Revenue",
   linkedin: "moshe-schlussel-5b87441ab",
   seeking: "Co-founder, sharing, feedback",
   cluster: ["HealthTech / Clinical AI", "EdTech / Training", "Behavioral Health / Mental Health AI", "Co-founder Seeking"],
-  insight: "Building in an academically validated category at exactly the right time — therapist training is a multi-billion dollar market with structural inefficiencies. His outsider status requires a clinical co-founder but the timing and concept are strong.",
+  insight: "Building in an academically validated category at exactly the right time — therapist training is a multi-billion dollar market with structural inefficiencies. His outsider status (solar consultant by day) requires a clinical co-founder but the timing and concept are strong.",
   bg: "Solar Consultant at Flex Power (day job) — an outsider building a training platform for therapists. TheraTrain AI (theratrainai.com) — AI simulation of therapy clients that therapists can practice on. Tagline: AI clients that 'never judge, never break character, and never run out of patience.' Category validated by Stanford HAI and academic research (TherapyTrainer, TheraQuest)."
 }, {
   id: 18,
@@ -347,10 +347,10 @@ const attendees = [{
   id: 19,
   photo: null,
   name: "Vlad Neyshtadt",
-  project: "AVA Self-Photography Atelier",
+  project: "AVA Self-Photography Atelier + Studio Automation Tools",
   tagline: "Self-Portrait Studio + Automation Tools",
   stack: ["Claude"],
-  revenue: "Revenue",
+  revenue: "$5,000–$10,000/month",
   linkedin: "vneyshyadt",
   seeking: "Connecting, sharing expertise, feedback",
   cluster: ["Revenue Leaders", "Design + Automation"],
@@ -755,6 +755,42 @@ const matches = [{
   b: "Artem Belyakov",
   why: "Medida is a mobile-first CV app (iOS/Android). Artem vibecodes everything including the mobile layer. Stag.build is the infrastructure Artem would use to deploy AI-generated mobile code faster. Natural early customer conversation.",
   tag: "PRODUCT PARTNERSHIP"
+}, {
+  rank: 26,
+  a: "Myron Shneider",
+  b: "Josh Klawansky",
+  why: "Deploy TLV and Clipmatic need to surface in AI search results. Josh runs the AEO platform with 25+ B2B clients. Direct service relationship — Myron's distribution reach at Aleph makes him a high-value AEO client.",
+  tag: "REVENUE"
+}, {
+  rank: 27,
+  a: "Myron Shneider",
+  b: "Daniel Conway",
+  why: "Clipmatic creates short-form content; Proofed attributes and monetizes it for creators. Natural end-to-end integration: generate → attribute → deal.",
+  tag: "COLLABORATION"
+}, {
+  rank: 28,
+  a: "Orel Zion",
+  b: "Drew Stone",
+  why: "Tangle builds agent optimization infrastructure; Stag builds the mobile execution layer for AI agents. Adjacent platform layers — Orel builds where Drew's agents run on mobile.",
+  tag: "PRODUCT PARTNERSHIP"
+}, {
+  rank: 29,
+  a: "Kovi Lightman",
+  b: "Noa Yehoshua",
+  why: "Both are junior VCs at top Israeli funds (Aleph $850M+ / Viola $5B+). Cross-fund founder intelligence exchange and co-investment signals. Every founder in the room should know both.",
+  tag: "COLLABORATION"
+}, {
+  rank: 30,
+  a: "Matan Porat",
+  b: "Sam Weinstein",
+  why: "CRITICAL for the kids market: Sam builds physical AI products for kids (trading cards); Matan builds digital AI products for kids. Same purchasing demographic (parents), different delivery channels — they should share everything.",
+  tag: "CRITICAL"
+}, {
+  rank: 31,
+  a: "Amir Shoob",
+  b: "Drew Stone",
+  why: "Tangle builds agent optimization infrastructure; Onyx builds the AI agent control plane. Adjacent platform layers — agent infrastructure needs a security/control governance layer, and Onyx is that layer for Tangle's customers.",
+  tag: "PRODUCT PARTNERSHIP"
 }];
 const clusters = [{
   name: "Revenue Leaders",
@@ -763,7 +799,7 @@ const clusters = [{
 }, {
   name: "AI Infrastructure & Agents",
   color: "#FF6B6B",
-  members: ["Drew Stone", "Artem Belyakov", "Ari Eliezrie", "Amir Shoob", "Orel Zion"]
+  members: ["Drew Stone", "Artem Belyakov", "Ari Eliezrie"]
 }, {
   name: "Design + Automation",
   color: "#4ECDC4",
@@ -771,7 +807,7 @@ const clusters = [{
 }, {
   name: "B2C Consumer Products",
   color: "#A8E6CF",
-  members: ["Ilan Oz", "Sam Weinstein", "Eliyahu Yifrach", "Solal Berrebi", "Shimon Rosen", "Matan Porat"]
+  members: ["Ilan Oz", "Sam Weinstein", "Eliyahu Yifrach", "Solal Berrebi", "Shimon Rosen"]
 }, {
   name: "HealthTech / Clinical AI",
   color: "#FF8B94",
@@ -793,7 +829,7 @@ const clusters = [{
   color: "#F7DC6F",
   members: ["Gershon Ballas", "Josh Klawansky", "Sam Weinstein"]
 }, {
-  name: "Media / Content",
+  name: "Media / Content / Audio",
   color: "#FDEBD0",
   members: ["David Mekibel", "Shimon Rosen", "Daniel Conway", "Alan Mekibel", "Yuval Dor", "Myron Shneider"]
 }, {
@@ -809,11 +845,11 @@ const clusters = [{
   color: "#C0D8C0",
   members: ["David Mekibel", "Alan Mekibel", "Artem Belyakov", "Vlad Neyshtadt", "Fedorov Dmitrii"]
 }, {
-  name: "Co-founder Seeking",
+  name: "Co-founder Actively Seeking",
   color: "#FADBD8",
-  members: ["Menachem Berrebi", "Solal Berrebi", "Moshe Schlussel", "Eliyahu Yifrach", "Myron Shneider", "Orel Zion"]
+  members: ["Menachem Berrebi", "Solal Berrebi", "Moshe Schlussel", "Eliyahu Yifrach", "Myron Shneider"]
 }, {
-  name: "VC / Deal Flow",
+  name: "VC / Deal Flow Connectors",
   color: "#D5F5E3",
   members: ["Noa Yehoshua", "Kovi Lightman", "Josh Klawansky", "Myron Shneider"]
 }, {
@@ -839,12 +875,12 @@ const clusters = [{
 }];
 
 const revenueColor = rev => {
-  if (rev === "Revenue") return "#F5E642";
+  if (rev === "Revenue" || (rev && rev.startsWith("$"))) return "#F5E642";
   if (rev === "Pre-Revenue") return "#2a2a2a";
   return "#242424";
 };
 const revenueTextColor = rev => {
-  if (rev === "Revenue") return "#000";
+  if (rev === "Revenue" || (rev && rev.startsWith("$"))) return "#000";
   return "#686868";
 };
 function photoAvatar(attendee, size) {
