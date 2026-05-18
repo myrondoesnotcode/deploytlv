@@ -1423,12 +1423,12 @@ function App() {
           onMouseLeave: e => { e.currentTarget.style.borderColor = "#2a2a2a"; }
         },
           photoAvatar(a, 32),
-          React.createElement("div", null,
+          React.createElement("div", { style: { minWidth: 0, flex: 1 } },
             React.createElement("div", {
-              style: { fontSize: 12, fontWeight: 700, color: "#efefef" }
+              style: { fontSize: 12, fontWeight: 700, color: "#efefef", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }
             }, a.name),
             React.createElement("div", {
-              style: { fontSize: 10, color: "#686868", marginTop: 1 }
+              style: { fontSize: 10, color: "#686868", marginTop: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }
             }, a.project || "")
           )
         )
