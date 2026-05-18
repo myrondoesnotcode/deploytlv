@@ -782,6 +782,7 @@ function photoAvatar(attendee, size) {
     return React.createElement("img", {
       src: attendee.photo,
       alt: attendee.name,
+      onError: e => { e.currentTarget.style.display = "none"; },
       style: {
         width: size,
         height: size,
@@ -1524,7 +1525,7 @@ function App() {
     }
   }, /*#__PURE__*/React.createElement("div", { style: { display: "flex", gap: 14, alignItems: "flex-start" } },
     photoAvatar(selected, 72),
-    React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    React.createElement("div", { style: { minWidth: 0 } }, /*#__PURE__*/React.createElement("div", {
       style: {
         color: "#686868",
         fontSize: 11,
