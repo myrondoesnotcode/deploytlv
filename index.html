@@ -20,11 +20,13 @@
 
     /* ── Header ── */
     header {
+      position: relative;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 24px 40px;
-      border-bottom: 1px solid #1A1A1A;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .logo { display: flex; align-items: center; gap: 14px; }
     .logo-circle {
@@ -45,94 +47,120 @@
       text-transform: uppercase; color: #EFEFEF;
     }
     .logo-text span { color: #F5E642; }
-    .header-label {
-      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-      color: #555;
+    .header-cta {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 15px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: #0A0A0A; background: #F5E642;
+      text-decoration: none;
+      padding: 10px 22px;
+      transition: opacity 0.15s;
+    }
+    .header-cta:hover { opacity: 0.85; }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-member { font-size: 11px; color: #888; white-space: nowrap; }
+    .header-member-a { color: #AFAFAF; text-decoration: none; border-bottom: 1px solid #555; transition: color 0.15s, border-color 0.15s; }
+    .header-member-a:hover { color: #EFEFEF; border-color: #999; }
+
+    /* ── Hero — full-bleed background ── */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
     }
 
-    /* ── Hero ── */
-    .hero {
-      padding: 80px 40px 60px;
-      max-width: 900px;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url(tlv-bg.png);
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
     }
+
+    /* gradient: dark bottom-left for text, fades to transparent top-right */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.6) 40%, rgba(10,10,10,0.1) 100%),
+        linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 0 40px 60px;
+      max-width: 720px;
+    }
+
     .hero-eyebrow {
       font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-      color: #555; margin-bottom: 20px;
+      color: #666; margin-bottom: 20px;
     }
-    .hero h1 {
+    .hero-h1 {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: clamp(64px, 11vw, 130px);
-      line-height: 0.9;
+      font-size: clamp(72px, 10vw, 130px);
+      line-height: 0.88;
       text-transform: uppercase;
       color: #EFEFEF;
       letter-spacing: -1px;
     }
-    .hero h1 .yellow { color: #F5E642; }
-    .hero-sub {
+    .hero-h1 .yellow { color: #F5E642; }
+
+    .hero-desc {
       margin-top: 28px;
-      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-      color: #555;
-      border-top: 1px solid #1A1A1A;
-      padding-top: 20px;
-    }
-
-    /* ── Manifesto ── */
-    .manifesto {
-      padding: 0 40px 60px;
-      max-width: 700px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .manifesto-block {
-      border-left: 2px solid #F5E642;
-      padding: 20px 0 20px 28px;
-      border-bottom: 1px solid #1A1A1A;
-    }
-    .manifesto-block:last-child {
-      border-bottom: none;
-    }
-    .manifesto-block p {
-      font-size: 14px;
-      line-height: 1.8;
+      font-size: 13px; line-height: 1.8;
       color: #AFAFAF;
-    }
-    .manifesto-block p strong {
-      color: #EFEFEF;
-      font-weight: 700;
+      max-width: 480px;
     }
 
-    /* ── CTA ── */
-    .cta-section {
-      padding: 40px 40px 80px;
-    }
     .cta-btn {
       display: inline-block;
       background: #F5E642;
       color: #0A0A0A;
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: 22px;
+      font-size: 20px;
       letter-spacing: 4px;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 20px 40px;
+      padding: 18px 36px;
+      margin-top: 32px;
       transition: opacity 0.15s, transform 0.15s;
     }
     .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-    .cta-caption {
+
+    .member-link {
       margin-top: 14px;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      font-size: 11px;
+      color: #555;
+    }
+    @media (min-width: 601px) { .member-link { display: none; } }
+    .member-link-a {
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .member-link-a:hover { color: #EFEFEF; border-color: #666; }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
       color: #444;
+      border-top: 1px solid #222;
+      padding-top: 20px;
     }
 
     /* ── Events ── */
     .events-section {
       padding: 0 40px 80px;
-      flex: 1;
       border-top: 1px solid #1A1A1A;
     }
     .events-label {
@@ -178,6 +206,42 @@
     .card-lock {
       font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #333;
     }
+
+    /* ── Footer ── */
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      border-top: 1px solid #1A1A1A;
+      margin-top: auto;
+    }
+    .footer-link {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: #888; text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: #EFEFEF; }
+    .footer-whatsapp { color: #888; }
+
+    /* ── Mobile tweaks ── */
+    @media (max-width: 600px) {
+      header { padding: 20px 24px; }
+      .header-cta { font-size: 11px; letter-spacing: 2px; padding: 8px 14px; }
+      .header-member { display: none; }
+      footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero { min-height: 92vh; }
+      .hero-content { padding: 0 24px 48px; }
+      .hero-bg { background-position: 70% 30%; }
+      .events-section { padding: 0 24px 60px; }
+      .event-card { width: 100%; }
+    }
+
+    /* ── Desktop tweaks ── */
+    @media (min-width: 900px) {
+      .hero-content { padding: 0 60px 80px 40px; }
+      .hero-bg { background-position: center 25%; }
+    }
   </style>
 </head>
 <body>
@@ -187,32 +251,27 @@
       <div class="logo-circle"><span>DE</span></div>
       <div class="logo-text">Deploy<span>TLV</span></div>
     </div>
-    <div class="header-label">Builders Only.</div>
+    <div class="header-right">
+      <span class="header-member">Already a member? <a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener" class="header-member-a">WhatsApp →</a></span>
+      <a class="header-cta" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join Community →</a>
+    </div>
   </header>
 
   <section class="hero">
-    <div class="hero-eyebrow">// deploytlv.com</div>
-    <h1>THE ROOM<br>WHERE TLV<br><span class="yellow">BUILDS.</span></h1>
-    <div class="hero-sub">Real builders. Real projects. No panels.</div>
-  </section>
-
-  <section class="manifesto">
-    <div class="manifesto-block">
-      <p><strong>Most rooms are full of people talking about building.</strong><br>This one is full of people doing it.</p>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+<h1 class="hero-h1">THE ROOM<br>WHERE TLV<br><span class="yellow">BUILDS.</span></h1>
+      <p class="hero-desc">
+        A recurring gathering for founders, engineers, and makers
+        shipping real things with AI — startups, side projects,
+        agents, tools, experiments that became companies.
+        Small groups. Vetted. No panels.
+      </p>
+      <a class="cta-btn" href="https://luma.com/bf01yb5r" target="_blank" rel="noopener">
+        Request to Join Deploy #1 &nbsp;→
+      </a>
+<div class="hero-sub">Real builders. Real projects. No panels.</div>
     </div>
-    <div class="manifesto-block">
-      <p>Deploy TLV is a recurring gathering for founders, engineers, and makers shipping real things with AI — startups, side projects, agents, tools, experiments that became companies. Small groups. Vetted. Structured to spark the conversations worth having.</p>
-    </div>
-    <div class="manifesto-block">
-      <p><strong>Tel Aviv has some of the best builders in the world.</strong><br>We're putting them in the same room.</p>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <a class="cta-btn" href="https://luma.com/bf01yb5r" target="_blank" rel="noopener">
-      Request to Join Deploy #1 &nbsp;→
-    </a>
-    <div class="cta-caption">~20 people &nbsp;·&nbsp; Tel Aviv &nbsp;·&nbsp; Approval required &nbsp;·&nbsp; Spots limited</div>
   </section>
 
   <section class="events-section">
@@ -245,6 +304,15 @@
 
     </div>
   </section>
+
+  <footer>
+    <a href="https://instagram.com/deploytlv" target="_blank" rel="noopener" class="footer-link">
+      Instagram &nbsp;@deploytlv
+    </a>
+    <a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener" class="footer-link footer-whatsapp">
+      Members WhatsApp →
+    </a>
+  </footer>
 
 </body>
 </html>
