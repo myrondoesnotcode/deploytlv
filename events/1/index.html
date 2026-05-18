@@ -1004,45 +1004,28 @@ function App() {
     onMouseLeave: () => setHovered(null),
     onClick: () => setSelected(a)
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-      marginBottom: 6
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: "#686868",
-      fontSize: 11,
-      fontWeight: 900
-    }
-  }, "#", String(a.id).padStart(2, "0")), /*#__PURE__*/React.createElement("span", {
-    style: {
-      background: revenueColor(a.revenue),
-      color: revenueTextColor(a.revenue),
-      fontSize: 10,
-      fontWeight: 900,
-      padding: "2px 7px",
-      letterSpacing: 0.5
-    }
-  }, a.revenue)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 15,
-      fontWeight: 900,
-      color: "#fff",
-      letterSpacing: -0.5,
-      marginBottom: 2
-    }
-  }, a.name), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 11,
-      color: "#F5E642",
-      fontWeight: 700,
-      letterSpacing: 1,
-      textTransform: "uppercase",
-      marginBottom: 5
-    }
-  }, a.project), /*#__PURE__*/React.createElement("div", {
+    style: { display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 8 }
+  },
+    photoAvatar(a, 52),
+    React.createElement("div", { style: { flex: 1, minWidth: 0 } },
+      React.createElement("div", {
+        style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }
+      },
+        React.createElement("span", { style: { color: "#686868", fontSize: 11, fontWeight: 900 } },
+          "#", String(a.id).padStart(2, "0")
+        ),
+        React.createElement("span", {
+          style: { background: revenueColor(a.revenue), color: revenueTextColor(a.revenue), fontSize: 10, fontWeight: 900, padding: "2px 7px", letterSpacing: 0.5 }
+        }, a.revenue)
+      ),
+      React.createElement("div", {
+        style: { fontSize: 15, fontWeight: 900, color: "#fff", letterSpacing: -0.5, marginBottom: 2 }
+      }, a.name),
+      React.createElement("div", {
+        style: { fontSize: 11, color: "#F5E642", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }
+      }, a.project)
+    )
+  ), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
       color: "#b8b8b8",
