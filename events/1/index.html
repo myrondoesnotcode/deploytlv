@@ -98,6 +98,7 @@ const BLACK = "#0A0A0A";
 const GRAY = "#1A1A1A";
 const attendees = [{
   id: 1,
+  photo: null,
   name: "Drew Stone",
   project: "Tangle Network",
   tagline: "Agent Optimization Infrastructure",
@@ -110,6 +111,7 @@ const attendees = [{
   bg: "UPenn BSE + MA Mathematics. Founder of Edgeware blockchain, now Tangle Network (Sep 2021–present). ML Research Intern at MANA Partners under Prof. Michael Kearns."
 }, {
   id: 2,
+  photo: "photos/David_Mekibel.jpg",
   name: "David Mekibel",
   project: "Balancē Creative",
   tagline: "AI-Native Visual Production",
@@ -122,6 +124,7 @@ const attendees = [{
   bg: "Emerson College. Co-founder & AI Video Specialist, Balancē Creative (7 yrs). Enterprise clients: Ozon Fresh, Winline, Dota 2. Ships 'The Monk Who Melted Snows' animated short."
 }, {
   id: 3,
+  photo: "photos/Ilan_Oz.jpg",
   name: "Ilan Oz",
   project: "EmberNovels",
   tagline: "Custom AI Romance Novels",
@@ -134,6 +137,7 @@ const attendees = [{
   bg: "TAU Coller MBA. Business Development Manager at Team8. Prior: Atera, anecdotes, monday.com, Google Ireland (Large Customer Sales + Cloud Inside Sales)."
 }, {
   id: 4,
+  photo: "photos/Eitan_Dooreck-Aloni.jpg",
   name: "Eitan Dooreck-Aloni",
   project: "Fintech Ideation (stealth)",
   tagline: "Exploring Fintech — Unit 81 Pedigree",
@@ -146,6 +150,7 @@ const attendees = [{
   bg: "IDF Unit 81 alumnus (elite tech-development unit). Exploring fintech ideation after months of validation. Sparse public profile — signals intentional discretion."
 }, {
   id: 5,
+  photo: "photos/Alan_Mekibel.jpg",
   name: "Alan Mekibel",
   project: "Yallagan + heirloom-audio",
   tagline: "Global Jewish Events + Oral History AI",
@@ -158,6 +163,7 @@ const attendees = [{
   bg: "IE University BBA + Syracuse Whitman. Co-Founder Yallagan, 2 WJC seed grants + Nevatim grant. Russian-speaking. Brother of David Mekibel."
 }, {
   id: 6,
+  photo: null,
   name: "Benjamin Lieber",
   project: "OriginAI + cowriter.com",
   tagline: "Applied AI Research & Writing Tools",
@@ -170,6 +176,7 @@ const attendees = [{
   bg: "OriginAI — applied AI research center involving Elbit Systems, Axon Vision, NVIDIA. Focused on vision, speech, NLP, and ML. Building AI writing product on the side."
 }, {
   id: 7,
+  photo: "photos/Gershon_Ballas.jpg",
   name: "Gershon Ballas",
   project: "DragonBot",
   tagline: "AI Agent for Amazon Store Operators",
@@ -182,6 +189,7 @@ const attendees = [{
   bg: "Founder of Ginger Security (web3 smart contract auditing, Starknet Cairo/Ethereum). Published white-hat analyst (Beanstalk). Now building DragonBot under Ballistic Brands."
 }, {
   id: 8,
+  photo: "photos/Artem.jpg",
   name: "Artem Belyakov",
   project: "Medida",
   tagline: "Computer Vision for Home Renovation",
@@ -194,6 +202,7 @@ const attendees = [{
   bg: "B.Sc. CS, Higher School of Economics Moscow. External student at Yandex School of Data Analysis (FAANG-equivalent ML program). Founding Member at Medida, Tel Aviv."
 }, {
   id: 9,
+  photo: "photos/Noa_Yehoshua.jpg",
   name: "Noa Yehoshua",
   project: "Deep Insight / Viola Group",
   tagline: "AI Investment Workflow Tooling",
@@ -206,6 +215,7 @@ const attendees = [{
   bg: "Psychology background. IDF Operations Sergeant (active reservist). Digital marketing + executive assistance. Now marketing ops at Viola Group."
 }, {
   id: 10,
+  photo: "photos/Mendy_Berrebi.jpg",
   name: "Menachem Berrebi",
   project: "Renaissance ML",
   tagline: "AI Design → Physical Product",
@@ -218,6 +228,7 @@ const attendees = [{
   bg: "Reichman University. Lightchain Labs → Applitools (Enterprise AE) → Unleash → Renaissance ML. Runs Edeneum Substack (classical political philosophy + logic)."
 }, {
   id: 11,
+  photo: "photos/Menachem_Cowen.jpg",
   name: "Menachem Cowen",
   project: "Mana Intelligence",
   tagline: "AI Food Waste Prevention (Computer Vision)",
@@ -230,6 +241,7 @@ const attendees = [{
   bg: "Programming since 2014. Q Information Technologies → Tadabase (Director of Ops) → CowenDev LLC → CTO at Mana Intelligence. American-Israeli background."
 }, {
   id: 12,
+  photo: "photos/Solal_Berrebi.jpg",
   name: "Solal Berrebi",
   project: "VERSATIL + VocaFast",
   tagline: "AI Consulting & Vocabulary Learning App",
@@ -242,6 +254,7 @@ const attendees = [{
   bg: "Université Paris Dauphine-PSL (finance). Crédit Agricole CIB. French-Israeli. Now: VERSATIL (AI consulting) + VocaFast (iOS App Store, early revenue)."
 }, {
   id: 13,
+  photo: "photos/Eliahu_Cohen.jpg",
   name: "Eliahu Cohen",
   project: "Veev by Lennar",
   tagline: "AI ConTech Apps (Internal)",
@@ -254,6 +267,7 @@ const attendees = [{
   bg: "Born Brazil, studied Netherlands. Full-stack (React, Node, AWS Serverless). Trained in BIM + CAD-to-CAM. R&D Product Architect at Veev ($1B valuation, acquired by Lennar Dec 2023)."
 }, {
   id: 14,
+  photo: "photos/Sam_Weinstein.jpg",
   name: "Sam Weinstein",
   project: "White City AI + Lunchbox Legends",
   tagline: "AI Consulting & AI-Generated Trading Cards",
@@ -266,6 +280,7 @@ const attendees = [{
   bg: "Reichman University. 7.5 years at Litify (Associate Director, Customer Success). Relocated to Israel, launched White City AI (2024) + Lunchbox Legends."
 }, {
   id: 15,
+  photo: "photos/Amit_Shalev.jpg",
   name: "Amit Shalev",
   project: "Portview",
   tagline: "Social Platform for Investors",
@@ -278,6 +293,7 @@ const attendees = [{
   bg: "Head of Operational Control at ESOP — Phoenix (one of Israel's largest financial conglomerates: insurance, asset management, pension funds). Building Portview on the side."
 }, {
   id: 16,
+  photo: "photos/Eliyahu_Yifrach.jpg",
   name: "Eliyahu Yifrach",
   project: "HomeSprint",
   tagline: "Apartment & Roommate Finder for Young Adults",
@@ -290,6 +306,7 @@ const attendees = [{
   bg: "Lone Soldier in Golani Brigade's 51st Battalion. Studying Economics & Business at Ariel University. Founded HomeSprint from personal housing navigation experience as a lone soldier."
 }, {
   id: 17,
+  photo: null,
   name: "Moshe Schlussel",
   project: "TheraTrain AI",
   tagline: "Training Platform for Therapists",
@@ -302,6 +319,7 @@ const attendees = [{
   bg: "Solar Consultant (day job). Outsider building for insiders. TheraTrain: AI simulation of therapy clients that therapists practice on. Tagline: 'Never judge, never break character.'"
 }, {
   id: 18,
+  photo: "photos/Roy_Keren.jpg",
   name: "Roy Keren",
   project: "Independent AI Agent / UX Design",
   tagline: "UX Design + AI Agent Builder",
@@ -314,6 +332,7 @@ const attendees = [{
   bg: "UX/UI designer and AI builder, Haifa. Has evolved beyond pure design into AI agent building and ops automation. Generating $1K–$5K/month. Cursor usage signals active coding."
 }, {
   id: 19,
+  photo: null,
   name: "Vlad Neyshtadt",
   project: "AVA Self-Photography Atelier",
   tagline: "Self-Portrait Studio + Automation Tools",
@@ -326,6 +345,7 @@ const attendees = [{
   bg: "Runs AVA Self-Photography Atelier (anivea.com), Ben Yehuda 94, Tel Aviv. Camera hidden behind a mirror; clients photograph themselves. Serves individuals + corporate clients."
 }, {
   id: 20,
+  photo: "photos/Guillaume_Bensoussan.jpg",
   name: "Guillaume Bensoussan",
   project: "Mai Boyar School CRM",
   tagline: "AI Teacher Replacement + School Admin Portal",
@@ -338,6 +358,7 @@ const attendees = [{
   bg: "French-Israeli. Built Firebase-hosted school portal at Mai Boyar School (IB program, 1,000+ students). Also runs personal AI second brain using Obsidian + Graphify + Claude."
 }, {
   id: 21,
+  photo: "photos/Samuel_Jefroykin.jpg",
   name: "Samuel Jefroykin",
   project: "Baget",
   tagline: "Clinical AI / Behavioral Health (stealth)",
@@ -350,6 +371,7 @@ const attendees = [{
   bg: "B.Sc. + M.Sc. Mathematics (France). French-Israeli. Co-founded Data For Good Israel. 5 years at Eleos Health (NLP/ML for therapy sessions). Published in JMIR + PubMed (2025)."
 }, {
   id: 22,
+  photo: "photos/Daniel_Conway.jpg",
   name: "Daniel Conway",
   project: "Proofed",
   tagline: "Attribution & Deals — Restaurants & Creators",
@@ -362,6 +384,7 @@ const attendees = [{
   bg: "B.S. Environmental Economics, UC Berkeley. Founded Plant Futures Berkeley chapter. Food Impact Partners. Content Strategist at PikMe. Runs content consulting business."
 }, {
   id: 23,
+  photo: "photos/Josh_K.jpg",
   name: "Josh Klawansky",
   project: "Nerativ",
   tagline: "B2B AEO Actionability Platform",
@@ -374,6 +397,7 @@ const attendees = [{
   bg: "IDC Herzliya (Communications). B2B growth: WalkMe, SolarEdge, Checkmarx, Syte, Granulate, monday.com. Created WalkMe's first podcast series. Building Nerativ + stealth platform."
 }, {
   id: 24,
+  photo: "photos/Michael_Heiser.jpg",
   name: "Michael Heiser",
   project: "Newhedge / Vault 721 / Megga Ventures",
   tagline: "Web3 + Bitcoin Analytics + AI Trading",
@@ -386,6 +410,7 @@ const attendees = [{
   bg: "CS certification, UCLA Extension coding bootcamp. Led teams of 6+ on blockchain/NFT. Co-founder CTO, Vault 721 (DeFi/NFT protocol). Also operates as 'LIT Ai' (AI-driven crypto trading)."
 }, {
   id: 25,
+  photo: "photos/Shimon_Rosen.jpg",
   name: "Shimon Rosen",
   project: "PodSnacks",
   tagline: "AI Podcast Summarization + Daily News Podcast",
@@ -398,6 +423,7 @@ const attendees = [{
   bg: "Serial founder. Prior: SpeakerGram (speaker booking, Mixergy featured), MakeSpace, Scaffold. PodSnacks: AI podcast summaries at $1/hour. Listed by Fast Company among best AI podcast tools 2026."
 }, {
   id: 26,
+  photo: null,
   name: "Alon Shvartsman",
   project: "Newhedge",
   tagline: "Bitcoin Intelligence Platform",
@@ -410,6 +436,7 @@ const attendees = [{
   bg: "DeepUI Engineer at WalkMe → LiquidApps → Founded Bitrawr (Bitcoin education). Co-founded Newhedge with Omri Shabtay + Mert Gunduz. ~2,000 users, 12 institutional clients, $400K raised."
 }, {
   id: 27,
+  photo: "photos/Ari_Eliezrie.jpg",
   name: "Ari Eliezrie",
   project: "RadfixAI (stealth) + Radware LLM Firewall",
   tagline: "LLM Security & AI Vulnerability Remediation",
@@ -422,6 +449,7 @@ const attendees = [{
   bg: "Physics student, Columbia University (2023–2027). R&D in CTO's Office at Radware (NASDAQ: RDWR). Led development of Radware LLM Firewall (launched Nov 2025). Named Radware MVP 2024."
 }, {
   id: 28,
+  photo: "photos/Tzur_Barak.jpg",
   name: "Tzur Barak",
   project: "0-1P",
   tagline: "Agentic Behavioral Health Platform",
@@ -434,6 +462,7 @@ const attendees = [{
   bg: "Technion B.Arch + Bezalel MDesign. Co-founded BeexOS (Intel, HP, Philips, Gett clients). Sr. PM at Start-Up Nation Central (scaled 500→900 startups). Sr. AI PM at Commit (legal, health, fintech). 14,622 LinkedIn followers."
 }, {
   id: 29,
+  photo: "photos/Benjamin_Breger.jpg",
   name: "Benjamin Breger",
   project: "Stealth — Drone/UAV",
   tagline: "UAV Startup (Stealth)",
@@ -446,6 +475,7 @@ const attendees = [{
   bg: "IDF Air Force UAV unit veteran. B.Sc. Electrical Engineering at Bar-Ilan University (Electro Optics + Nano Electronics). BIU VC Club member. HESEG Foundation scholarship holder. Previously ran BREGPROP (property investment, 2021–2026)."
 }, {
   id: 30,
+  photo: "photos/ORily_Shefler.jpg",
   name: "ORily Shefler",
   project: "Payoneer R&D / InfraOps",
   tagline: "Enterprise R&D Operations Leader",
@@ -458,6 +488,7 @@ const attendees = [{
   bg: "B.Sc. Industrial Engineering, Holon Institute of Technology. PMI-PMP, SAFe, Agile Coach. Dataloop AI (NVIDIA-acquired) → Head of Cloud Dev at Startup Booster (27 people, Microsoft) → R&D Dept Manager + InfraOps at Payoneer."
 }, {
   id: 31,
+  photo: "photos/Fedorov_Dmitrii.jpg",
   name: "Fedorov Dmitrii",
   project: "SinsingRisk",
   tagline: "UAV + CV Platform for Disaster Response",
@@ -470,6 +501,7 @@ const attendees = [{
   bg: "MArch + MSc, Architectural Association (AA) London — Design&Make studio. Educator Architect at AA School. Project Architect at OOO studio, St. Petersburg (11 years, airports, palaces). Expert in Rhino/Grasshopper, robotic fabrication (KUKA). Based Tel Aviv. Russian-speaking."
 }, {
   id: 32,
+  photo: "photos/Yuval_Grimberg.jpg",
   name: "Yuval Grimberg",
   project: "Stealth — VLA Simulation / Sim2Real",
   tagline: "VLA Local Simulation + Sim2Real Transfer",
@@ -482,6 +514,7 @@ const attendees = [{
   bg: "BSc student, Ben-Gurion University of the Negev. Head of Path Planning & Control at BGRacing — built Israel's first autonomous electric racing car. Specializes in sensor integration, simulation deployment, and path planning algorithms."
 }, {
   id: 33,
+  photo: null,
   name: "Shoval Seidman",
   project: "Metatron Digital Infrastructure",
   tagline: "AI + Blockchain + Vertical Fintech",
@@ -494,6 +527,7 @@ const attendees = [{
   bg: "Ariel University (Engineering). Senior Researcher at K&CG Lab (6+ years, autonomous systems, AI, resilient navigation, satellite tech). Director of Innovation at Tehiru Aerial Systems (counter-UAS, autonomous aerial). Founder & CEO, Metatron Digital Infrastructure."
 }, {
   id: 34,
+  photo: "photos/Yonatan_Langheim.jpg",
   name: "Yonatan Langheim Halaf",
   project: "Pagerising",
   tagline: "Pre-Paid Patient Acquisition for Plastic Surgeons",
@@ -506,6 +540,7 @@ const attendees = [{
   bg: "Founder at Pagerising Services. Built a Surgery Scale System: Meta/Instagram ads + trained patient coordinator team (1,000+ dials/month) + pre-payment collection + exclusive territory. Clients in Beverly Hills, Nashville, Dallas, London, Germany. Avg cost/pre-paid consult: $93. 94% show rate."
 }, {
   id: 35,
+  photo: "photos/Doron_Assness.jpg",
   name: "Doron Assness",
   project: "TheraMind.io",
   tagline: "AI Automation — Mental Health (Confidential)",
@@ -518,6 +553,7 @@ const attendees = [{
   bg: "Technical Program Manager (confidential). Previously at Transmit Security (4+ years, CIAM automation specialist). Published viral SSO architecture diagram (5,548 likes). Discovered and disclosed Apple iOS 26.5 vulnerability. 10,000 LinkedIn followers."
 }, {
   id: 36,
+  photo: "photos/Yuval_Dor.jpg",
   name: "Yuval Dor",
   project: "Dreampics.ai",
   tagline: "AI Event Photo Booths + Video/Web Automation",
