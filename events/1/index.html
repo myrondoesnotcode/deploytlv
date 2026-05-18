@@ -1522,29 +1522,32 @@ function App() {
       alignItems: "flex-start",
       marginBottom: 16
     }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      color: "#686868",
-      fontSize: 11,
-      marginBottom: 4
-    }
-  }, "#", String(selected.id).padStart(2, "0"), " / ", selected.cluster[0]), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 22,
-      fontWeight: 900,
-      letterSpacing: -1,
-      color: "#fff"
-    }
-  }, selected.name), /*#__PURE__*/React.createElement("div", {
-    style: {
-      color: "#F5E642",
-      fontSize: 11,
-      fontWeight: 700,
-      letterSpacing: 2,
-      textTransform: "uppercase",
-      marginTop: 2
-    }
-  }, selected.project)), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("div", { style: { display: "flex", gap: 14, alignItems: "flex-start" } },
+    photoAvatar(selected, 72),
+    React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#686868",
+        fontSize: 11,
+        marginBottom: 4
+      }
+    }, "#", String(selected.id).padStart(2, "0"), " / ", selected.cluster[0]), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22,
+        fontWeight: 900,
+        letterSpacing: -1,
+        color: "#fff"
+      }
+    }, selected.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#F5E642",
+        fontSize: 11,
+        fontWeight: 700,
+        letterSpacing: 2,
+        textTransform: "uppercase",
+        marginTop: 2
+      }
+    }, selected.project))
+  ), /*#__PURE__*/React.createElement("button", {
     onClick: () => setSelected(null),
     style: {
       background: "none",
