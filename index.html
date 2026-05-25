@@ -207,6 +207,77 @@
       font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #333;
     }
 
+    /* ── Members ── */
+    .members-section {
+      padding: 0 40px 80px;
+      border-top: 1px solid #1A1A1A;
+    }
+    .members-label {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: #888; margin: 40px 0 24px;
+    }
+    .members-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .member-card {
+      width: 220px;
+      border: 1px solid #1E1E1E;
+      padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .member-card:hover { border-color: #F5E642; transform: translateY(-2px); }
+    .mc-tag {
+      font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #333;
+    }
+    .mc-name {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 22px; letter-spacing: 1px;
+      text-transform: uppercase; color: #EFEFEF; line-height: 1.05;
+    }
+    .mc-desc {
+      font-size: 10px; line-height: 1.6; color: #555;
+    }
+    /* ── Alumni ── */
+    .alumni-section {
+      padding: 0 40px 80px;
+      border-top: 1px solid #1A1A1A;
+    }
+    .alumni-label {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: #888; margin: 40px 0 32px;
+    }
+    .alumni-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 36px;
+    }
+    .alumni-logo {
+      height: 22px;
+      filter: brightness(0) invert(1);
+      opacity: 0.3;
+      transition: opacity 0.2s;
+    }
+    .alumni-logo:hover { opacity: 0.65; }
+    .alumni-unit {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 16px; letter-spacing: 3px;
+      text-transform: uppercase; color: #2A2A2A;
+      border: 1px solid #222;
+      padding: 4px 10px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .alumni-unit:hover { color: #555; border-color: #444; }
+    @media (max-width: 600px) {
+      .alumni-section { padding: 0 24px 60px; }
+      .alumni-logos { gap: 28px; }
+    }
+
     /* ── Footer ── */
     footer {
       display: flex;
@@ -235,6 +306,8 @@
       .hero-bg { background-position: 70% 30%; }
       .events-section { padding: 0 24px 60px; }
       .event-card { width: 100%; }
+      .members-section { padding: 0 24px 60px; }
+      .member-card { width: 100%; }
     }
 
     /* ── Desktop tweaks ── */
@@ -308,6 +381,88 @@
         <div class="card-cta">Enter →</div>
       </a>
 
+    </div>
+  </section>
+
+  <section class="members-section">
+    <div class="members-label">// Built by our members</div>
+    <div class="members-grid">
+
+      <a class="member-card" href="https://newhedge.io" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">Newhedge</div>
+        <div class="mc-desc">Bloomberg terminal for Bitcoin</div>
+      </a>
+
+      <a class="member-card" href="https://getDragonBot.com" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">DragonBot</div>
+        <div class="mc-desc">AI agent for Amazon store operators</div>
+      </a>
+
+      <a class="member-card" href="https://podsnacks.com" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">PodSnacks</div>
+        <div class="mc-desc">AI podcast summaries by email</div>
+      </a>
+
+      <a class="member-card" href="https://anivea.com" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">Anivea</div>
+        <div class="mc-desc">Self-portrait studio & automation tools</div>
+      </a>
+
+      <a class="member-card" href="https://whitecity.ai" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">White City AI</div>
+        <div class="mc-desc">AI automation consulting</div>
+      </a>
+
+      <a class="member-card" href="https://portail-boyar.web.app" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">Boyar Portal</div>
+        <div class="mc-desc">School CRM + AI teacher matching</div>
+      </a>
+
+      <a class="member-card" href="https://parshamap.com" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">Parsha Map</div>
+        <div class="mc-desc">Interactive Torah portion learning tool</div>
+      </a>
+
+      <a class="member-card" href="https://thediasporamap.com" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">Diaspora Map</div>
+        <div class="mc-desc">Interactive global Jewish community geography</div>
+      </a>
+
+      <a class="member-card" href="https://postmaxx.ai" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">PostMaxx</div>
+        <div class="mc-desc">Turn code output into LinkedIn &amp; X posts</div>
+      </a>
+
+      <a class="member-card" href="https://clipmatic.ai" target="_blank" rel="noopener">
+        <div class="mc-tag">Deploy #1</div>
+        <div class="mc-name">Clipmatic</div>
+        <div class="mc-desc">Long-form content into trending short clips</div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="alumni-section">
+    <div class="alumni-label">// Members have worked at</div>
+    <div class="alumni-logos">
+      <span class="alumni-unit">Unit 81</span>
+      <img class="alumni-logo" src="https://logo.clearbit.com/google.com" alt="Google" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Google'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/monday.com" alt="monday.com" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'monday.com'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/walkme.com" alt="WalkMe" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'WalkMe'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/tipalti.com" alt="Tipalti" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Tipalti'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/radware.com" alt="Radware" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Radware'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/transmitsecurity.com" alt="Transmit Security" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Transmit Security'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/aleph.vc" alt="Aleph VC" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Aleph VC'}))" />
+      <img class="alumni-logo" src="https://logo.clearbit.com/viola-group.com" alt="Viola Group" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Viola Group'}))" />
     </div>
   </section>
 
