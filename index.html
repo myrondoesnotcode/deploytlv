@@ -264,6 +264,11 @@
       transition: opacity 0.2s;
     }
     .alumni-logo:hover { opacity: 0.65; }
+    .alumni-logo-sq { height: 32px; width: 32px; object-fit: contain; }
+    .alumni-logo-emblem { filter: grayscale(100%) brightness(1.1); }
+    .alumni-logo-emblem:hover { filter: grayscale(0%) brightness(1); opacity: 0.85; }
+    .alumni-logo-nofilter { filter: none; }
+    .alumni-logo-nofilter:hover { opacity: 0.9; }
     .alumni-unit {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900; font-size: 16px; letter-spacing: 3px;
@@ -454,15 +459,18 @@
   <section class="alumni-section">
     <div class="alumni-label">// Members have worked at</div>
     <div class="alumni-logos">
-      <span class="alumni-unit">Unit 81</span>
-      <img class="alumni-logo" src="https://logo.clearbit.com/google.com" alt="Google" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Google'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/monday.com" alt="monday.com" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'monday.com'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/walkme.com" alt="WalkMe" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'WalkMe'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/tipalti.com" alt="Tipalti" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Tipalti'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/radware.com" alt="Radware" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Radware'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/transmitsecurity.com" alt="Transmit Security" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Transmit Security'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/aleph.vc" alt="Aleph VC" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Aleph VC'}))" />
-      <img class="alumni-logo" src="https://logo.clearbit.com/viola-group.com" alt="Viola Group" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'alumni-unit',textContent:'Viola Group'}))" />
+      <img class="alumni-logo alumni-logo-sq alumni-logo-emblem" src="logos/aman.png" alt="Aman" />
+      <img class="alumni-logo" src="logos/google.png" alt="Google" />
+      <img class="alumni-logo" src="logos/monday.png" alt="monday.com" />
+      <img class="alumni-logo alumni-logo-nofilter" src="logos/walkme_light.svg" alt="WalkMe" />
+      <img class="alumni-logo" src="logos/tipalti.png" alt="Tipalti" />
+      <img class="alumni-logo" src="logos/radware.png" alt="Radware" />
+      <img class="alumni-logo" src="logos/transmitsecurity.svg" alt="Transmit Security" />
+      <img class="alumni-logo" src="logos/aleph.svg" alt="Aleph VC" />
+      <img class="alumni-logo" src="logos/viola.png" alt="Viola Group" />
+      <img class="alumni-logo" src="logos/team8.svg" alt="Team8" />
+      <img class="alumni-logo" src="logos/payoneer.svg" alt="Payoneer" />
+      <img class="alumni-logo" src="logos/kaspersky.svg" alt="Kaspersky" />
     </div>
   </section>
 
