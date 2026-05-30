@@ -54,6 +54,7 @@
       color: #0A0A0A; background: #F5E642;
       text-decoration: none;
       padding: 10px 22px;
+      white-space: nowrap;
       transition: opacity 0.15s;
     }
     .header-cta:hover { opacity: 0.85; }
@@ -158,6 +159,81 @@
       padding-top: 20px;
     }
 
+    /* ── Deploy #01 Reel ── */
+    .reel-section { border-top: 1px solid #1A1A1A; }
+    .reel-video-wrap {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      overflow: hidden;
+    }
+    .reel-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .reel-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.5) 45%, rgba(10,10,10,0) 80%),
+        linear-gradient(to top, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0) 40%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 44px 48px;
+      gap: 14px;
+    }
+    .reel-overlay-tag {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #888;
+    }
+    .reel-overlay-heading {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 64px; line-height: 0.88;
+      text-transform: uppercase; color: #EFEFEF;
+    }
+    .reel-overlay-heading .yellow { color: #F5E642; }
+    .reel-overlay-link {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 13px; letter-spacing: 3px;
+      text-transform: uppercase; color: #F5E642;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245,230,66,0.35);
+      padding-bottom: 2px;
+      width: fit-content;
+      transition: border-color 0.15s;
+    }
+    .reel-overlay-link:hover { border-color: #F5E642; }
+    .reel-stats {
+      display: flex;
+      border-top: 1px solid #1A1A1A;
+    }
+    .reel-stat {
+      flex: 1;
+      padding: 22px 40px;
+      border-right: 1px solid #1A1A1A;
+    }
+    .reel-stat:last-child { border-right: none; }
+    .reel-stat-val {
+      display: block;
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 26px; letter-spacing: 1px;
+      text-transform: uppercase; color: #EFEFEF; margin-bottom: 3px;
+    }
+    .reel-stat-label {
+      font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #555;
+    }
+    @media (max-width: 600px) {
+      .reel-video-wrap { height: 300px; }
+      .reel-overlay { padding: 28px 24px; gap: 10px; }
+      .reel-overlay-heading { font-size: 44px; }
+      .reel-stats { flex-wrap: wrap; }
+      .reel-stat { flex: 0 0 50%; padding: 16px 24px; border-bottom: 1px solid #1A1A1A; }
+      .reel-stat:nth-child(2n) { border-right: none; }
+      .reel-stat:nth-child(3), .reel-stat:nth-child(4) { border-bottom: none; }
+    }
+
     /* ── Events ── */
     .events-section {
       padding: 0 40px 80px;
@@ -207,6 +283,58 @@
       font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #333;
     }
 
+    /* ── Events List ── */
+    .events-list { display: flex; flex-direction: column; }
+    .event-row {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+      border-top: 1px solid #1A1A1A;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.15s;
+    }
+    .event-row:last-child { border-bottom: 1px solid #1A1A1A; }
+    .event-active:hover { opacity: 0.75; }
+    .event-upcoming {
+      background: rgba(245,230,66,0.03);
+      margin: 0 -40px;
+      padding: 20px 40px;
+    }
+    .event-row-num {
+      font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+      color: #444; width: 90px; flex-shrink: 0;
+    }
+    .event-active .event-row-num { color: #F5E642; }
+    .event-row-name {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 20px; letter-spacing: 2px;
+      text-transform: uppercase; color: #EFEFEF; flex: 1;
+    }
+    .event-locked .event-row-name { color: #2A2A2A; }
+    .event-row-meta {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #555; width: 240px; flex-shrink: 0; text-align: right;
+    }
+    .event-active .event-row-meta { color: #777; }
+    .event-row-cta {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 13px; letter-spacing: 3px;
+      text-transform: uppercase; color: #F5E642;
+      width: 120px; flex-shrink: 0; text-align: right;
+    }
+    .event-row-lock {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #2A2A2A; width: 120px; flex-shrink: 0; text-align: right;
+    }
+    @media (max-width: 600px) {
+      .event-row { flex-wrap: wrap; gap: 4px 0; padding: 16px 0; }
+      .event-upcoming { margin: 0 -24px; padding: 16px 24px; }
+      .event-row-name { flex: 1; }
+      .event-row-meta { width: auto; flex: 0 0 100%; order: 3; text-align: left; padding-left: 90px; font-size: 10px; margin-top: 2px; }
+      .event-row-cta, .event-row-lock { width: auto; }
+    }
+
     /* ── Members ── */
     .members-section {
       padding: 0 40px 80px;
@@ -217,12 +345,13 @@
       color: #888; margin: 40px 0 24px;
     }
     .members-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
+    @media (max-width: 900px) { .members-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .members-grid { grid-template-columns: 1fr; } }
     .member-card {
-      width: 220px;
       border: 1px solid #1E1E1E;
       padding: 20px;
       display: flex; flex-direction: column; gap: 8px;
@@ -304,16 +433,21 @@
     /* ── Mobile tweaks ── */
     @media (max-width: 600px) {
       header { padding: 20px 24px; }
-      .header-cta { font-size: 11px; letter-spacing: 2px; padding: 8px 14px; }
       .header-member { display: none; }
+      .header-cta { font-size: 0; padding: 8px 12px; letter-spacing: 0; }
+      .header-cta::after {
+        content: 'JOIN →';
+        font-size: 11px; letter-spacing: 2px;
+        font-family: 'Barlow Condensed', Impact, sans-serif;
+        font-weight: 900;
+      }
+      .cta-btn { font-size: 16px; letter-spacing: 3px; white-space: nowrap; }
       footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
       .hero { min-height: 92vh; }
       .hero-content { padding: 0 24px 48px; }
       .hero-bg { background-position: 70% 30%; }
       .events-section { padding: 0 24px 60px; }
-      .event-card { width: 100%; }
       .members-section { padding: 0 24px 60px; }
-      .member-card { width: 100%; }
     }
 
     /* ── Desktop tweaks ── */
@@ -332,6 +466,7 @@
     </div>
     <div class="header-right">
       <span class="header-member">Already a member? <a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener" class="header-member-a">WhatsApp →</a></span>
+      <a class="header-cta" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join the Community →</a>
     </div>
   </header>
 
@@ -345,47 +480,65 @@
         agents, tools, experiments that became companies.
         Small groups. Vetted. No panels.
       </p>
-      <a class="cta-btn" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
-        Join the Community &nbsp;→
+      <a class="cta-btn" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
+        Apply for Deploy 2 &nbsp;→
       </a>
-<div class="hero-sub">Real builders. Real projects. No panels.</div>
     </div>
   </section>
 
-  <section class="events-section">
-    <div class="events-label">// Upcoming</div>
-    <div class="events-grid">
-
-      <a class="event-card active" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
-        <div class="card-number">Event #02</div>
-        <div class="card-title">Deploy<br>TLV</div>
-        <div class="card-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; TLV</div>
-        <hr class="card-divider" />
-        <div class="card-cta">Apply Now →</div>
-      </a>
-
-      <div class="event-card locked">
-        <div class="card-number">Event #03</div>
-        <div class="card-title">Deploy<br>TLV</div>
-        <div class="card-meta">Coming soon</div>
-        <hr class="card-divider" />
-        <div class="card-lock">⌛ Locked</div>
+  <section class="reel-section">
+    <div class="reel-video-wrap">
+      <video src="deploy2-reel.mp4" autoplay muted loop playsinline class="reel-video"></video>
+      <div class="reel-overlay">
+        <div class="reel-overlay-tag">// From the room</div>
+        <div class="reel-overlay-heading">Deploy <span class="yellow">#01</span></div>
+        <a class="reel-overlay-link" href="events/1/">See what happened →</a>
       </div>
-
+    </div>
+    <div class="reel-stats">
+      <div class="reel-stat">
+        <span class="reel-stat-val">30</span>
+        <span class="reel-stat-label">Builders</span>
+      </div>
+      <div class="reel-stat">
+        <span class="reel-stat-val">5 min</span>
+        <span class="reel-stat-label">Demos each</span>
+      </div>
+      <div class="reel-stat">
+        <span class="reel-stat-val">Vetted</span>
+        <span class="reel-stat-label">Entry</span>
+      </div>
+      <div class="reel-stat">
+        <span class="reel-stat-val">Zero</span>
+        <span class="reel-stat-label">Panels</span>
+      </div>
     </div>
   </section>
 
   <section class="events-section">
-    <div class="events-label">// Past Events</div>
-    <div class="events-grid">
+    <div class="events-label">// Events</div>
+    <div class="events-list">
 
-      <a class="event-card active" href="events/1/">
-        <div class="card-number">Event #01</div>
-        <div class="card-title">Deploy<br>TLV</div>
-        <div class="card-meta">May 18 &nbsp;·&nbsp; TLV</div>
-        <hr class="card-divider" />
-        <div class="card-cta">Enter →</div>
+      <a class="event-row event-active" href="events/1/">
+        <div class="event-row-num">Event #01</div>
+        <div class="event-row-name">Deploy TLV</div>
+        <div class="event-row-meta">May 18 &nbsp;·&nbsp; TLV</div>
+        <div class="event-row-cta">Enter →</div>
       </a>
+
+      <a class="event-row event-active event-upcoming" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
+        <div class="event-row-num">Event #02</div>
+        <div class="event-row-name">Deploy TLV</div>
+        <div class="event-row-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; TLV</div>
+        <div class="event-row-cta">Apply Now →</div>
+      </a>
+
+      <div class="event-row event-locked">
+        <div class="event-row-num">Event #03</div>
+        <div class="event-row-name">Deploy TLV</div>
+        <div class="event-row-meta">Coming soon</div>
+        <div class="event-row-lock">⌛ Locked</div>
+      </div>
 
     </div>
   </section>
