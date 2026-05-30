@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploy TLV #01 — Recap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0A0A0A;
+      color: #EFEFEF;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0A0A0A;
+      border-bottom: 2px solid #F5E642;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-circle {
+      width: 36px; height: 36px;
+      border: 2px solid #F5E642;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-circle span {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 13px;
+      color: #F5E642; letter-spacing: -0.5px;
+    }
+    .logo-text {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 20px;
+      color: #fff; letter-spacing: 1px;
+    }
+    .logo-text span { color: #F5E642; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .back-link {
+      font-size: 11px;
+      color: #686868;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .back-link:hover { color: #EFEFEF; }
+    .header-cta {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 15px;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: #F5E642; color: #0A0A0A;
+      padding: 8px 18px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .header-cta:hover { opacity: 0.85; }
+
+    /* ── Event tag ── */
+    .page-tag {
+      padding: 32px 24px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tag-badge {
+      background: #F5E642;
+      color: #000;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 3px 10px;
+      letter-spacing: 2px;
+    }
+    .tag-meta {
+      font-size: 11px;
+      color: #686868;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero text ── */
+    .hero-text {
+      padding: 20px 24px 32px;
+    }
+    .hero-h1 {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 10vw, 100px);
+      line-height: 0.9;
+      color: #EFEFEF;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .hero-h1 .yellow { color: #F5E642; }
+    .hero-desc {
+      font-size: 13px;
+      color: #b0b0b0;
+      line-height: 1.8;
+      max-width: 520px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      display: flex;
+      border-top: 1px solid #1A1A1A;
+      border-bottom: 1px solid #1A1A1A;
+    }
+    .stat {
+      flex: 1;
+      padding: 24px 16px;
+      border-right: 1px solid #1A1A1A;
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-val {
+      display: block;
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 5vw, 48px);
+      color: #F5E642;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      display: block;
+      font-size: 10px;
+      color: #686868;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── Video section ── */
+    .video-section {
+      padding: 40px 24px;
+      border-bottom: 1px solid #1A1A1A;
+    }
+    .section-label {
+      font-size: 11px;
+      color: #686868;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .video-container {
+      position: relative;
+      max-width: 420px;
+      margin: 0 auto;
+      background: #0f0f0f;
+    }
+    .video-container video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      display: block;
+      object-fit: cover;
+    }
+    .video-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      margin-top: 12px;
+      border-top: 1px solid #1A1A1A;
+    }
+    .video-note {
+      font-size: 11px;
+      color: #686868;
+      letter-spacing: 1px;
+    }
+    .ig-link {
+      font-size: 11px;
+      font-weight: 700;
+      color: #F5E642;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .ig-link:hover { opacity: 0.75; }
+
+    /* ── Domains ── */
+    .domains-section {
+      padding: 40px 24px;
+      border-bottom: 1px solid #1A1A1A;
+    }
+    .domains-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .domain-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid #2a2a2a;
+      color: #909090;
+    }
+
+    /* ── Projects grid ── */
+    .projects-section {
+      padding: 40px 24px;
+      border-bottom: 1px solid #1A1A1A;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .project-card {
+      background: #141414;
+      border: 1px solid #252525;
+      padding: 16px;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.15s;
+    }
+    .project-card:hover { border-color: #F5E642; }
+    .project-tag {
+      font-size: 9px;
+      font-weight: 900;
+      color: #686868;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .project-name {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    .project-desc {
+      font-size: 11px;
+      color: #686868;
+      line-height: 1.5;
+    }
+
+    /* ── Members gate teaser ── */
+    .members-gate {
+      margin: 40px 24px;
+      border: 1px solid #2a2a2a;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .members-gate::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: #F5E642;
+    }
+    .gate-eyebrow {
+      font-size: 10px;
+      font-weight: 900;
+      color: #F5E642;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .gate-heading {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      color: #fff;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .gate-desc {
+      font-size: 12px;
+      color: #b0b0b0;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 24px;
+    }
+    .gate-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .gate-item {
+      font-size: 11px;
+      color: #686868;
+      letter-spacing: 1px;
+    }
+    .gate-item .dot {
+      color: #F5E642;
+      margin-right: 8px;
+    }
+    .gate-btn {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #686868;
+      text-decoration: none;
+      border: 1px solid #2a2a2a;
+      padding: 10px 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    .gate-btn:hover {
+      color: #F5E642;
+      border-color: #F5E642;
+    }
+
+    /* ── Next event CTA ── */
+    .next-event {
+      padding: 40px 24px 60px;
+      text-align: center;
+    }
+    .next-label {
+      font-size: 10px;
+      color: #686868;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .next-heading {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 7vw, 64px);
+      color: #fff;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .next-heading .yellow { color: #F5E642; }
+    .next-meta {
+      font-size: 12px;
+      color: #686868;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+    }
+    .next-cta {
+      display: inline-block;
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: #F5E642;
+      color: #0A0A0A;
+      padding: 16px 40px;
+      text-decoration: none;
+    }
+    .next-cta:hover { opacity: 0.85; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid #1A1A1A;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 10px;
+      color: #444;
+      letter-spacing: 1px;
+    }
+    .footer-ig {
+      font-size: 10px;
+      color: #686868;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+    .footer-ig:hover { color: #F5E642; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .stats-bar { flex-wrap: wrap; }
+      .stat { flex: 0 0 50%; border-bottom: 1px solid #1A1A1A; }
+      .stat:nth-child(2n) { border-right: none; }
+      .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+      .header-cta { display: none; }
+      .members-gate { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="/">
+      <div class="logo-circle"><span>DE</span></div>
+      <div class="logo-text">Deploy<span>TLV</span></div>
+    </a>
+    <div class="header-right">
+      <a class="back-link" href="/">← Home</a>
+      <a class="header-cta" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">Apply for #02 →</a>
+    </div>
+  </header>
+
+  <div class="page-tag">
+    <span class="tag-badge">DEPLOY #01</span>
+    <span class="tag-meta">May 18, 2026 &nbsp;·&nbsp; Tel Aviv</span>
+  </div>
+
+  <div class="hero-text">
+    <h1 class="hero-h1">What<br>Happened <span class="yellow">.</span></h1>
+    <p class="hero-desc">
+      40 founders, engineers, and makers in one room.
+      Each building something real with AI.
+      Breakout groups by industry. General mingling.
+      Zero panels. No investors pitching.
+      Just builders talking to builders.
+    </p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-val">40</span>
+      <span class="stat-label">Builders</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">13+</span>
+      <span class="stat-label">Revenue cos.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">20</span>
+      <span class="stat-label">Domains</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">7</span>
+      <span class="stat-label">Breakout groups</span>
+    </div>
+  </div>
+
+  <section class="video-section">
+    <div class="section-label">// From the room</div>
+    <div class="ig-embed-wrap">
+      <blockquote
+        class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/p/DYloit_xwfw/"
+        data-instgrm-version="14"
+        style="background:#0A0A0A;border:0;border-radius:0;box-shadow:none;margin:0 auto;max-width:420px;width:100%;padding:0;">
+      </blockquote>
+    </div>
+  </section>
+  <script async src="https://www.instagram.com/embed.js"></script>
+
+  <section class="domains-section">
+    <div class="section-label">// 20 domains in the room</div>
+    <div class="domains-grid">
+      <span class="domain-tag">AI Infrastructure &amp; Agents</span>
+      <span class="domain-tag">Revenue Leaders</span>
+      <span class="domain-tag">Fintech / Finance</span>
+      <span class="domain-tag">Media / Content</span>
+      <span class="domain-tag">B2C Consumer Products</span>
+      <span class="domain-tag">Behavioral Health AI</span>
+      <span class="domain-tag">PropTech / Real Estate</span>
+      <span class="domain-tag">EdTech / Training</span>
+      <span class="domain-tag">Design + Automation</span>
+      <span class="domain-tag">E-Commerce / Retail AI</span>
+      <span class="domain-tag">Web3 / Crypto Veterans</span>
+      <span class="domain-tag">Autonomous Systems / UAV</span>
+      <span class="domain-tag">AI Visual / Event Tech</span>
+      <span class="domain-tag">VC / Deal Flow</span>
+      <span class="domain-tag">Enterprise Infrastructure</span>
+      <span class="domain-tag">Vertical B2B SaaS</span>
+      <span class="domain-tag">French-Israeli Cluster</span>
+      <span class="domain-tag">Russian-Israeli Cluster</span>
+      <span class="domain-tag">HealthTech / Clinical AI</span>
+      <span class="domain-tag">Co-founder Seeking</span>
+    </div>
+  </section>
+
+  <section class="projects-section">
+    <div class="section-label">// Projects shipping from the room</div>
+    <div class="projects-grid">
+      <a class="project-card" href="https://newhedge.io" target="_blank" rel="noopener">
+        <div class="project-tag">Deploy #01</div>
+        <div class="project-name">Newhedge</div>
+        <div class="project-desc">Bloomberg terminal for Bitcoin — 2K users, $400K raised</div>
+      </a>
+      <a class="project-card" href="https://getDragonBot.com" target="_blank" rel="noopener">
+        <div class="project-tag">Deploy #01</div>
+        <div class="project-name">DragonBot</div>
+        <div class="project-desc">AI agent for Amazon store operators</div>
+      </a>
+      <a class="project-card" href="https://podsnacks.com" target="_blank" rel="noopener">
+        <div class="project-tag">Deploy #01</div>
+        <div class="project-name">PodSnacks</div>
+        <div class="project-desc">AI podcast summaries — Fast Company pick</div>
+      </a>
+      <a class="project-card" href="https://anivea.com" target="_blank" rel="noopener">
+        <div class="project-tag">Deploy #01</div>
+        <div class="project-name">AVA Atelier</div>
+        <div class="project-desc">Self-portrait studio — $5–10K/mo</div>
+      </a>
+      <a class="project-card" href="https://medida.co" target="_blank" rel="noopener">
+        <div class="project-tag">Deploy #01</div>
+        <div class="project-name">Medida</div>
+        <div class="project-desc">CV for home renovation — $3M ARR in year one</div>
+      </a>
+      <a class="project-card" href="https://stag.build" target="_blank" rel="noopener">
+        <div class="project-tag">Deploy #01</div>
+        <div class="project-name">Stag.build</div>
+        <div class="project-desc">The missing execution layer for mobile AI agents</div>
+      </a>
+    </div>
+  </section>
+
+  <div class="members-gate">
+    <div class="gate-eyebrow">// Members only</div>
+    <div class="gate-heading">Full Attendee Intelligence</div>
+    <p class="gate-desc">
+      Every attendee profile, curated intro write-ups, AI-generated
+      matchmaking recommendations, breakout group assignments,
+      and a "who should I meet" tool — available to everyone who was in the room.
+    </p>
+    <div class="gate-items">
+      <div class="gate-item"><span class="dot">→</span> 40 full attendee profiles + background research</div>
+      <div class="gate-item"><span class="dot">→</span> 34 ranked intro recommendations</div>
+      <div class="gate-item"><span class="dot">→</span> 20 skill &amp; domain cluster maps</div>
+      <div class="gate-item"><span class="dot">→</span> 7 breakout group assignments</div>
+      <div class="gate-item"><span class="dot">→</span> "Who should I meet?" personalized tool</div>
+    </div>
+    <a class="gate-btn" href="../">I was there — access intelligence →</a>
+  </div>
+
+  <section class="next-event">
+    <div class="next-label">// Coming up</div>
+    <div class="next-heading">Deploy <span class="yellow">#02</span></div>
+    <div class="next-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; Tel Aviv</div>
+    <a class="next-cta" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">Apply Now →</a>
+  </section>
+
+  <footer>
+    <span class="footer-copy">© 2026 DeployTLV</span>
+    <a class="footer-ig" href="https://instagram.com/deploytlv" target="_blank" rel="noopener">@deploytlv</a>
+  </footer>
+
+</body>
+</html>
