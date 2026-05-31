@@ -696,71 +696,6 @@
     }
 
     /* ─────────────────────────────────────────
-       NEWSLETTER CTA BAR
-    ───────────────────────────────────────── */
-    .newsletter-bar {
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      padding: 40px;
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-    .newsletter-icon {
-      width: 60px; height: 60px;
-      background: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .newsletter-icon-text {
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 700; font-size: 18px;
-      color: var(--accent);
-      letter-spacing: -1px;
-    }
-    .newsletter-text { flex: 1; }
-    .newsletter-stay {
-      font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 6px;
-    }
-    .newsletter-headline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 24px;
-      text-transform: uppercase; color: var(--text);
-      letter-spacing: -0.5px;
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 0;
-      flex-shrink: 0;
-    }
-    .newsletter-input {
-      border: 1px solid var(--border);
-      border-right: none;
-      padding: 12px 18px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--text);
-      background: var(--bg);
-      outline: none;
-      width: 260px;
-      transition: border-color 0.15s;
-    }
-    .newsletter-input:focus { border-color: var(--text); }
-    .newsletter-input::placeholder { color: #AAAAAA; }
-    .newsletter-submit {
-      background: var(--black);
-      color: var(--bg);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 13px;
-      letter-spacing: 2px; text-transform: uppercase;
-      border: none; cursor: pointer;
-      padding: 12px 24px;
-      transition: background 0.15s;
-    }
-    .newsletter-submit:hover { background: #333; }
-
-    /* ─────────────────────────────────────────
        STATS BAR
     ───────────────────────────────────────── */
     .stats-bar {
@@ -857,6 +792,7 @@
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
+      .nav-announcement { display: none; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-right { height: 300px; }
       .hero-left { padding: 48px 24px; }
@@ -868,18 +804,32 @@
       .coming-soon { grid-template-columns: 1fr; }
       .coming-soon-item { border-right: none; border-bottom: 1px solid var(--border); }
       .members-grid { grid-template-columns: repeat(2, 1fr); }
-      .newsletter-bar { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
-      .newsletter-form { width: 100%; }
-      .newsletter-input { flex: 1; width: auto; }
       .stats-bar { justify-content: center; padding: 24px; gap: 12px 20px; }
       .stat-divider { display: none; }
       footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
       .events-section, .members-section, .alumni-section { padding: 36px 24px; }
+      .reel-overlay { padding: 28px 24px; }
+      .reel-heading { font-size: 44px; }
+      .reel-stats { flex-wrap: wrap; }
+      .reel-stat { flex: 1 1 50%; padding: 16px 20px; }
+      .reel-stat:nth-child(2n) { border-right: none; }
+      .reel-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .event-row { flex-wrap: wrap; gap: 6px 12px; padding: 18px 0; }
+      .event-active:hover { margin: 0 -24px; padding: 18px 24px; }
+      .event-upcoming { margin: 0 -24px; padding: 18px 24px; }
+      .event-num { width: 100%; flex-basis: 100%; }
+      .event-name { flex-basis: 100%; font-size: 22px; }
+      .event-meta { width: auto; text-align: left; flex: 1; font-size: 10px; }
+      .event-cta, .event-lock { width: auto; }
+      .event-upcoming .event-cta { margin-left: 0; }
     }
     @media (max-width: 600px) {
       .members-grid { grid-template-columns: 1fr; }
       .hero-h1 { font-size: 44px; }
+      .reel-heading { font-size: 36px; }
+      .reel-stat-val { font-size: 20px; }
+      .reel-stat-label { font-size: 8px; letter-spacing: 3px; }
     }
   </style>
 </head>
@@ -1177,29 +1127,6 @@
   </div>
 
   <!-- ═══════════════════════════════════════
-       NEWSLETTER CTA BAR
-  ══════════════════════════════════════════ -->
-  <div class="newsletter-bar">
-    <div class="newsletter-icon">
-      <span class="newsletter-icon-text">&gt;_</span>
-    </div>
-    <div class="newsletter-text">
-      <div class="newsletter-stay">Stay in the loop</div>
-      <div class="newsletter-headline">Get updates on events, content and opportunities.</div>
-    </div>
-    <form class="newsletter-form" id="newsletter-form" action="https://formsubmit.co/myron@aleph.vc" method="POST">
-      <input type="hidden" name="_subject" value="New DeployTLV Newsletter Signup" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value="https://deploytlv.com/?subscribed=1" />
-      <input class="newsletter-input" type="email" name="email" placeholder="Enter your email" required />
-      <button class="newsletter-submit" type="submit">Subscribe</button>
-    </form>
-    <div class="newsletter-success" id="newsletter-success" style="display:none;">
-      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--text);">You're in ✓</span>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════ -->
   <footer>
@@ -1218,12 +1145,5 @@
     </div>
   </footer>
 
-  <script>
-    if (new URLSearchParams(window.location.search).get('subscribed') === '1') {
-      document.getElementById('newsletter-form').style.display = 'none';
-      document.getElementById('newsletter-success').style.display = 'block';
-      history.replaceState({}, '', '/');
-    }
-  </script>
 </body>
 </html>
