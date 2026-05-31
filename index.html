@@ -1217,22 +1217,6 @@
   </div>
 
   <!-- ═══════════════════════════════════════
-       MADE IN TLV BAR
-  ══════════════════════════════════════════ -->
-  <div class="stats-bar">
-    <div class="stat-made">
-      <span class="stat-made-icon">☀</span>
-      <span class="stat-made-text">Made in Tel Aviv</span>
-    </div>
-    <div class="stat-made">
-      <span class="stat-made-text">Deploy #01 — May 2026</span>
-    </div>
-    <div class="stat-made">
-      <span class="stat-made-text">40 Builders · 7 Breakout Groups · Zero Panels</span>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════ -->
   <footer>
@@ -1261,10 +1245,10 @@
       btn.textContent = '...';
       btn.disabled = true;
       try {
-        const res = await fetch('https://formspree.io/f/myron@aleph.vc', {
+        const res = await fetch('https://formsubmit.co/ajax/myron@aleph.vc', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email })
+          body: JSON.stringify({ email, _subject: 'New DeployTLV Newsletter Signup' })
         });
         if (res.ok) {
           form.style.display = 'none';
