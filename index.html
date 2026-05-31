@@ -1187,9 +1187,12 @@
       <div class="newsletter-stay">Stay in the loop</div>
       <div class="newsletter-headline">Get updates on events, content and opportunities.</div>
     </div>
-    <form class="newsletter-form" id="newsletter-form">
-      <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Enter your email" required />
-      <button class="newsletter-submit" type="submit" id="newsletter-btn">Subscribe</button>
+    <form class="newsletter-form" id="newsletter-form" action="https://formsubmit.co/myron@aleph.vc" method="POST">
+      <input type="hidden" name="_subject" value="New DeployTLV Newsletter Signup" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://deploytlv.com/?subscribed=1" />
+      <input class="newsletter-input" type="email" name="email" placeholder="Enter your email" required />
+      <button class="newsletter-submit" type="submit">Subscribe</button>
     </form>
     <div class="newsletter-success" id="newsletter-success" style="display:none;">
       <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--text);">You're in ✓</span>
@@ -1216,27 +1219,11 @@
   </footer>
 
   <script>
-    document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const email = document.getElementById('newsletter-email').value;
-      const btn = document.getElementById('newsletter-btn');
-      const form = document.getElementById('newsletter-form');
-      const success = document.getElementById('newsletter-success');
-      btn.textContent = '...';
-      btn.disabled = true;
-      try {
-        await fetch('https://formsubmit.co/ajax/myron@aleph.vc', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email, _subject: 'New DeployTLV Newsletter Signup', _captcha: 'false' })
-        });
-        form.style.display = 'none';
-        success.style.display = 'block';
-      } catch {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      }
-    });
+    if (new URLSearchParams(window.location.search).get('subscribed') === '1') {
+      document.getElementById('newsletter-form').style.display = 'none';
+      document.getElementById('newsletter-success').style.display = 'block';
+      history.replaceState({}, '', '/');
+    }
   </script>
 </body>
 </html>
