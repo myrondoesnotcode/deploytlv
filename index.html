@@ -118,10 +118,10 @@
     }
 
     .hero-left {
-      padding: 52px 60px 60px 40px;
+      padding: 60px 60px 60px 40px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       border-right: 1px solid var(--border);
     }
 
@@ -959,22 +959,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       BRAND BAR
-  ══════════════════════════════════════════ -->
-  <div class="brand-bar">
-    <div class="brand-bar-label">Join 3000+ builders from leading companies</div>
-    <div class="brand-logos">
-      <img class="brand-logo" src="logos/monday.png" alt="monday.com" />
-      <img class="brand-logo brand-logo-sq" src="logos/google.png" alt="Google" />
-      <img class="brand-logo" src="logos/walkme_light.svg" alt="WalkMe" />
-      <img class="brand-logo" src="logos/tipalti.png" alt="Tipalti" />
-      <img class="brand-logo" src="logos/radware.png" alt="Radware" />
-      <img class="brand-logo" src="logos/transmitsecurity.svg" alt="Transmit Security" />
-      <img class="brand-logo" src="logos/aleph.svg" alt="Aleph VC" />
-      <span class="brand-more">›</span>
-    </div>
-  </div>
 
   <!-- ═══════════════════════════════════════
        VIDEO REEL — Deploy #01
@@ -1241,18 +1225,13 @@
       btn.textContent = '...';
       btn.disabled = true;
       try {
-        const res = await fetch('https://formsubmit.co/ajax/myron@aleph.vc', {
+        await fetch('https://formsubmit.co/ajax/myron@aleph.vc', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email, _subject: 'New DeployTLV Newsletter Signup' })
+          body: JSON.stringify({ email, _subject: 'New DeployTLV Newsletter Signup', _captcha: 'false' })
         });
-        if (res.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          btn.textContent = 'Try again';
-          btn.disabled = false;
-        }
+        form.style.display = 'none';
+        success.style.display = 'block';
       } catch {
         btn.textContent = 'Try again';
         btn.disabled = false;
