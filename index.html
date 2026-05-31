@@ -68,20 +68,27 @@
       line-height: 0.7;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 10px;
-      letter-spacing: 2.5px;
+    .nav-announcement {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.15s;
-      font-weight: 500;
+      color: var(--text);
+      border: 1.5px solid var(--text);
+      padding: 6px 14px;
+      transition: background 0.15s, color 0.15s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-announcement:hover { background: var(--text); color: var(--bg); }
+    .nav-announcement .pulse {
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
     .nav-cta {
       display: inline-flex;
@@ -111,10 +118,10 @@
     }
 
     .hero-left {
-      padding: 70px 60px 60px 40px;
+      padding: 52px 60px 60px 40px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       border-right: 1px solid var(--border);
     }
 
@@ -884,14 +891,10 @@
   <nav>
     <div class="nav-logo">DEPLOY&nbsp;TLV<span class="underscore">_</span></div>
 
-    <ul class="nav-links">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Community</a></li>
-      <li><a href="#">Resources</a></li>
-      <li><a href="#">Sponsors</a></li>
-      <li><a href="#">Jobs</a></li>
-    </ul>
+    <a class="nav-announcement" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
+      <span class="pulse"></span>
+      Deploy #02 Applications Open →
+    </a>
 
     <a class="nav-cta" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
       Join Community <span class="arrow">↗</span>
@@ -905,13 +908,15 @@
     <div class="hero-left">
       <div class="hero-eyebrow">// From Tel Aviv</div>
       <h1 class="hero-h1">
-        THE STARTUP<br>
-        ECOSYSTEM<span class="period">.</span><br>
-        DEPLOYED<span class="period">.</span>
+        THE ROOM<br>
+        WHERE TLV<br>
+        BUILDS<span class="period">.</span>
       </h1>
       <p class="hero-desc">
-        DeployTLV connects builders, investors and operators to build what's next.
-        From Tel Aviv to the world.
+        A recurring gathering for founders, engineers, and makers
+        shipping real things with AI — startups, side projects,
+        agents, tools, experiments that became companies.
+        Small groups. Vetted. No panels.
       </p>
       <div class="hero-btns">
         <a class="btn-primary" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
@@ -1202,39 +1207,28 @@
       <div class="newsletter-stay">Stay in the loop</div>
       <div class="newsletter-headline">Get updates on events, content and opportunities.</div>
     </div>
-    <form class="newsletter-form" onsubmit="return false;">
-      <input class="newsletter-input" type="email" placeholder="Enter your email" />
-      <button class="newsletter-submit" type="submit">Subscribe</button>
+    <form class="newsletter-form" id="newsletter-form">
+      <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Enter your email" required />
+      <button class="newsletter-submit" type="submit" id="newsletter-btn">Subscribe</button>
     </form>
+    <div class="newsletter-success" id="newsletter-success" style="display:none;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--text);">You're in ✓</span>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════
-       STATS BAR
+       MADE IN TLV BAR
   ══════════════════════════════════════════ -->
   <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-val">3K+</div>
-      <div class="stat-label">Community Members</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-val">200+</div>
-      <div class="stat-label">Monthly Events</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-val">1K+</div>
-      <div class="stat-label">Startups</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-val">40+</div>
-      <div class="stat-label">Countries</div>
-    </div>
-    <div class="stat-divider"></div>
     <div class="stat-made">
       <span class="stat-made-icon">☀</span>
       <span class="stat-made-text">Made in Tel Aviv</span>
+    </div>
+    <div class="stat-made">
+      <span class="stat-made-text">Deploy #01 — May 2026</span>
+    </div>
+    <div class="stat-made">
+      <span class="stat-made-text">40 Builders · 7 Breakout Groups · Zero Panels</span>
     </div>
   </div>
 
@@ -1245,12 +1239,10 @@
     <div class="footer-logo">Deploy TLV<span>_</span></div>
 
     <ul class="footer-links">
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Community</a></li>
-      <li><a href="#">Resources</a></li>
-      <li><a href="#">Sponsors</a></li>
-      <li><a href="#">Jobs</a></li>
-      <li><a href="#">Privacy</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join</a></li>
+      <li><a href="events/1/recap/">Deploy #01 Recap</a></li>
+      <li><a href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">Apply for #02</a></li>
     </ul>
 
     <div class="footer-socials">
@@ -1259,5 +1251,33 @@
     </div>
   </footer>
 
+  <script>
+    document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      const btn = document.getElementById('newsletter-btn');
+      const form = document.getElementById('newsletter-form');
+      const success = document.getElementById('newsletter-success');
+      btn.textContent = '...';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/myron@aleph.vc', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
