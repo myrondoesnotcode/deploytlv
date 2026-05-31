@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deploy TLV #01 — Recap</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Barlow+Condensed:wght@800;900&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #0A0A0A;
-      color: #EFEFEF;
+      background: #FFFFFF;
+      color: #111111;
       font-family: 'IBM Plex Mono', 'Courier New', monospace;
     }
 
@@ -20,31 +20,22 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: #0A0A0A;
-      border-bottom: 2px solid #F5E642;
-      padding: 14px 24px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E0E0E0;
+      padding: 0 40px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-circle {
-      width: 36px; height: 36px;
-      border: 2px solid #F5E642;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .logo-circle span {
-      font-family: 'Barlow Condensed', Impact, sans-serif;
-      font-weight: 900; font-size: 13px;
-      color: #F5E642; letter-spacing: -0.5px;
-    }
-    .logo-text {
+    .logo-wordmark {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900; font-size: 20px;
-      color: #fff; letter-spacing: 1px;
+      color: #111111; letter-spacing: 1px;
+      text-transform: uppercase;
     }
-    .logo-text span { color: #F5E642; }
+    .logo-wordmark .underscore { color: #F5D400; }
     .header-right {
       display: flex;
       align-items: center;
@@ -52,17 +43,17 @@
     }
     .back-link {
       font-size: 11px;
-      color: #686868;
+      color: #666666;
       text-decoration: none;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
-    .back-link:hover { color: #EFEFEF; }
+    .back-link:hover { color: #111111; }
     .header-cta {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900; font-size: 15px;
       letter-spacing: 2px; text-transform: uppercase;
-      background: #F5E642; color: #0A0A0A;
+      background: #F5D400; color: #0A0A0A;
       padding: 8px 18px;
       text-decoration: none;
       white-space: nowrap;
@@ -71,13 +62,13 @@
 
     /* ── Event tag ── */
     .page-tag {
-      padding: 32px 24px 0;
+      padding: 36px 40px 0;
       display: flex;
       align-items: center;
       gap: 12px;
     }
     .tag-badge {
-      background: #F5E642;
+      background: #F5D400;
       color: #000;
       font-size: 10px;
       font-weight: 900;
@@ -86,44 +77,50 @@
     }
     .tag-meta {
       font-size: 11px;
-      color: #686868;
+      color: #666666;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     /* ── Hero text ── */
     .hero-text {
-      padding: 20px 24px 32px;
+      padding: 24px 40px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 60px;
+      align-items: end;
+      border-bottom: 1px solid #E0E0E0;
     }
     .hero-h1 {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: clamp(52px, 10vw, 100px);
-      line-height: 0.9;
-      color: #EFEFEF;
-      letter-spacing: -1px;
+      font-size: clamp(64px, 8vw, 110px);
+      line-height: 0.88;
+      color: #111111;
+      letter-spacing: -2px;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 0;
     }
-    .hero-h1 .yellow { color: #F5E642; }
+    .hero-h1 .yellow { color: #F5D400; }
     .hero-desc {
       font-size: 13px;
-      color: #b0b0b0;
+      color: #666666;
       line-height: 1.8;
-      max-width: 520px;
+      max-width: 480px;
       letter-spacing: 0.3px;
+      padding-bottom: 8px;
     }
 
     /* ── Stats bar ── */
     .stats-bar {
       display: flex;
-      border-top: 1px solid #1A1A1A;
-      border-bottom: 1px solid #1A1A1A;
+      border-top: 1px solid #E0E0E0;
+      border-bottom: 1px solid #E0E0E0;
     }
     .stat {
       flex: 1;
       padding: 24px 16px;
-      border-right: 1px solid #1A1A1A;
+      border-right: 1px solid #E0E0E0;
       text-align: center;
     }
     .stat:last-child { border-right: none; }
@@ -132,7 +129,7 @@
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
       font-size: clamp(28px, 5vw, 48px);
-      color: #F5E642;
+      color: #111111;
       letter-spacing: -1px;
       line-height: 1;
       margin-bottom: 6px;
@@ -140,7 +137,7 @@
     .stat-label {
       display: block;
       font-size: 10px;
-      color: #686868;
+      color: #999999;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
@@ -148,15 +145,15 @@
     /* ── Video / info split ── */
     .split-section {
       display: flex;
-      border-bottom: 1px solid #1A1A1A;
+      border-bottom: 1px solid #E0E0E0;
+      min-height: 520px;
     }
     .split-left {
-      flex: 0 0 auto;
-      width: 380px;
-      border-right: 1px solid #1A1A1A;
+      flex: 0 0 50%;
+      border-right: 1px solid #E0E0E0;
       overflow: hidden;
       position: relative;
-      background: #000;
+      background: #F8F7F2;
     }
     .split-left video {
       width: 100%;
@@ -170,8 +167,8 @@
       right: 16px;
       width: 36px;
       height: 36px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.25);
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -180,11 +177,12 @@
       z-index: 10;
       transition: background 0.15s;
     }
-    .sound-btn:hover { background: rgba(0,0,0,0.85); }
-    .sound-btn svg { width: 16px; height: 16px; fill: #fff; }
+    .sound-btn:hover { background: #F8F7F2; }
+    .sound-btn svg { width: 16px; height: 16px; fill: #666666; }
     .split-right {
       flex: 1;
-      padding: 40px 40px;
+      padding: 52px 56px;
+      background: #FFFFFF;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -192,14 +190,14 @@
     }
     .section-label {
       font-size: 11px;
-      color: #686868;
+      color: #999999;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
     .split-eyebrow {
       font-size: 10px;
-      color: #686868;
+      color: #999999;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 10px;
@@ -208,16 +206,16 @@
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
       font-size: 42px;
-      color: #fff;
+      color: #111111;
       letter-spacing: -1px;
       text-transform: uppercase;
       line-height: 0.95;
       margin-bottom: 14px;
     }
-    .split-heading .yellow { color: #F5E642; }
+    .split-heading .yellow { color: #F5D400; }
     .split-desc {
       font-size: 12px;
-      color: #909090;
+      color: #666666;
       line-height: 1.8;
       max-width: 440px;
     }
@@ -225,12 +223,12 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1px;
-      background: #1A1A1A;
-      border: 1px solid #1A1A1A;
+      background: #E0E0E0;
+      border: 1px solid #E0E0E0;
       max-width: 360px;
     }
     .split-stat {
-      background: #0A0A0A;
+      background: #FFFFFF;
       padding: 16px 20px;
     }
     .split-stat-val {
@@ -238,7 +236,7 @@
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
       font-size: 36px;
-      color: #F5E642;
+      color: #111111;
       letter-spacing: -1px;
       line-height: 1;
       margin-bottom: 4px;
@@ -246,7 +244,7 @@
     .split-stat-label {
       display: block;
       font-size: 10px;
-      color: #686868;
+      color: #999999;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
@@ -257,23 +255,24 @@
     }
     .split-groups-label {
       font-size: 10px;
-      color: #686868;
+      color: #999999;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 4px;
     }
     .split-group-item {
       font-size: 12px;
-      color: #b0b0b0;
+      color: #666666;
       letter-spacing: 0.5px;
     }
-    .split-group-item .bullet { color: #F5E642; margin-right: 8px; }
+    .split-group-item .bullet { color: #F5D400; margin-right: 8px; }
     .ig-cta {
       display: inline-block;
       font-size: 11px;
       font-weight: 700;
-      color: #F5E642;
+      color: #111111;
       text-decoration: none;
+      border-bottom: 1.5px solid #111111;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
@@ -281,17 +280,26 @@
 
     /* mobile: stack vertically */
     @media (max-width: 860px) {
-      .split-section { flex-direction: column; }
-      .split-left { width: 100%; border-right: none; border-bottom: 1px solid #1A1A1A; }
+      header { padding: 0 24px; }
+      .page-tag { padding: 24px 24px 0; }
+      .hero-text { padding: 20px 24px 28px; grid-template-columns: 1fr; gap: 20px; }
+      .split-section { flex-direction: column; min-height: auto; }
+      .split-left { flex: none; width: 100%; height: 300px; border-right: none; border-bottom: 1px solid #E0E0E0; }
       .split-right { padding: 28px 24px; gap: 24px; }
       .split-heading { font-size: 32px; }
       .split-stats { max-width: 100%; }
+      .domains-section, .projects-section { padding: 36px 24px; }
+      .members-gate { grid-template-columns: 1fr; }
+      .gate-left, .gate-right { padding: 36px 24px; border-right: none; }
+      .gate-left { border-bottom: 1px solid #E0E0E0; }
+      .next-event { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+      footer { padding: 20px 24px; }
     }
 
     /* ── Domains ── */
     .domains-section {
-      padding: 40px 24px;
-      border-bottom: 1px solid #1A1A1A;
+      padding: 52px 40px;
+      border-bottom: 1px solid #E0E0E0;
     }
     .domains-grid {
       display: flex;
@@ -305,34 +313,37 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 6px 12px;
-      border: 1px solid #2a2a2a;
-      color: #909090;
+      border: 1px solid #E0E0E0;
+      color: #666666;
+      background: #FFFFFF;
+      transition: border-color 0.15s, color 0.15s;
     }
+    .domain-tag:hover { border-color: #111111; color: #111111; }
 
     /* ── Projects grid ── */
     .projects-section {
-      padding: 40px 24px;
-      border-bottom: 1px solid #1A1A1A;
+      padding: 52px 40px;
+      border-bottom: 1px solid #E0E0E0;
     }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 10px;
       margin-top: 16px;
     }
     .project-card {
-      background: #141414;
-      border: 1px solid #252525;
+      background: #F8F7F2;
+      border: 1px solid #E0E0E0;
       padding: 16px;
       text-decoration: none;
       display: block;
       transition: border-color 0.15s;
     }
-    .project-card:hover { border-color: #F5E642; }
+    .project-card:hover { border-color: #F5D400; }
     .project-tag {
       font-size: 9px;
       font-weight: 900;
-      color: #686868;
+      color: #999999;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -340,154 +351,172 @@
     .project-name {
       font-size: 16px;
       font-weight: 900;
-      color: #fff;
+      color: #111111;
       letter-spacing: -0.5px;
       margin-bottom: 4px;
     }
     .project-desc {
       font-size: 11px;
-      color: #686868;
+      color: #666666;
       line-height: 1.5;
     }
 
     /* ── Members gate teaser ── */
     .members-gate {
-      margin: 40px 24px;
-      border: 1px solid #2a2a2a;
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #E0E0E0;
+      border-bottom: 1px solid #E0E0E0;
     }
-    .members-gate::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: #F5E642;
+    .gate-left {
+      padding: 52px 40px;
+      border-right: 1px solid #E0E0E0;
+    }
+    .gate-right {
+      padding: 52px 40px;
+      background: #F8F7F2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .gate-eyebrow {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
-      color: #F5E642;
-      letter-spacing: 3px;
+      color: #F5D400;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     .gate-heading {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: 28px;
-      color: #fff;
-      letter-spacing: 1px;
+      font-size: 42px;
+      color: #111111;
+      letter-spacing: -0.5px;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      line-height: 0.95;
+      margin-bottom: 16px;
     }
     .gate-desc {
       font-size: 12px;
-      color: #b0b0b0;
-      line-height: 1.7;
-      max-width: 480px;
-      margin-bottom: 24px;
+      color: #666666;
+      line-height: 1.8;
+      margin-bottom: 0;
     }
     .gate-items {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 24px;
+      gap: 0;
+      margin-bottom: 32px;
     }
     .gate-item {
       font-size: 11px;
-      color: #686868;
-      letter-spacing: 1px;
+      color: #666666;
+      letter-spacing: 0.5px;
+      padding: 12px 0;
+      border-bottom: 1px solid #E0E0E0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+    .gate-item:first-child { border-top: 1px solid #E0E0E0; }
     .gate-item .dot {
-      color: #F5E642;
-      margin-right: 8px;
+      color: #F5D400;
+      flex-shrink: 0;
     }
     .gate-btn {
       display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: #686868;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      color: #0A0A0A;
       text-decoration: none;
-      border: 1px solid #2a2a2a;
-      padding: 10px 18px;
+      background: #F5D400;
+      padding: 12px 24px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      transition: all 0.15s;
+      transition: background 0.15s;
+      width: fit-content;
     }
-    .gate-btn:hover {
-      color: #F5E642;
-      border-color: #F5E642;
-    }
+    .gate-btn:hover { background: #E0C000; }
 
     /* ── Next event CTA ── */
     .next-event {
-      padding: 40px 24px 60px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 40px;
+      background: #FFFFFF;
+      border-top: 1px solid #E0E0E0;
+      gap: 24px;
+      flex-wrap: wrap;
     }
+    .next-left {}
     .next-label {
-      font-size: 10px;
-      color: #686868;
-      letter-spacing: 3px;
+      font-size: 9px;
+      color: #999999;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
     .next-heading {
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: clamp(36px, 7vw, 64px);
-      color: #fff;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #111111;
       letter-spacing: -1px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      line-height: 1;
+      margin-bottom: 0;
     }
-    .next-heading .yellow { color: #F5E642; }
+    .next-heading .yellow { color: #F5D400; }
     .next-meta {
-      font-size: 12px;
-      color: #686868;
+      font-size: 11px;
+      color: #666666;
       letter-spacing: 2px;
-      margin-bottom: 28px;
+      margin-top: 8px;
     }
     .next-cta {
       display: inline-block;
       font-family: 'Barlow Condensed', Impact, sans-serif;
       font-weight: 900;
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      background: #F5E642;
+      background: #F5D400;
       color: #0A0A0A;
-      padding: 16px 40px;
+      padding: 16px 36px;
       text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .next-cta:hover { opacity: 0.85; }
 
     /* ── Footer ── */
     footer {
-      border-top: 1px solid #1A1A1A;
-      padding: 20px 24px;
+      border-top: 1px solid #E0E0E0;
+      padding: 20px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .footer-copy {
       font-size: 10px;
-      color: #444;
+      color: #999999;
       letter-spacing: 1px;
     }
     .footer-ig {
       font-size: 10px;
-      color: #686868;
+      color: #666666;
       text-decoration: none;
       letter-spacing: 2px;
     }
-    .footer-ig:hover { color: #F5E642; }
+    .footer-ig:hover { color: #111111; }
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .stats-bar { flex-wrap: wrap; }
-      .stat { flex: 0 0 50%; border-bottom: 1px solid #1A1A1A; }
+      .stat { flex: 0 0 50%; border-bottom: 1px solid #E0E0E0; }
       .stat:nth-child(2n) { border-right: none; }
       .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
       .header-cta { display: none; }
@@ -499,8 +528,7 @@
 
   <header>
     <a class="logo" href="/">
-      <div class="logo-circle"><span>DE</span></div>
-      <div class="logo-text">Deploy<span>TLV</span></div>
+      <div class="logo-wordmark">DEPLOY TLV<span class="underscore">_</span></div>
     </a>
     <div class="header-right">
       <a class="back-link" href="/">← Home</a>
@@ -651,27 +679,33 @@
   </section>
 
   <div class="members-gate">
-    <div class="gate-eyebrow">// Members only</div>
-    <div class="gate-heading">Full Attendee Intelligence</div>
-    <p class="gate-desc">
-      Every attendee profile, curated intro write-ups, AI-generated
-      matchmaking recommendations, breakout group assignments,
-      and a "who should I meet" tool — available to everyone who was in the room.
-    </p>
-    <div class="gate-items">
-      <div class="gate-item"><span class="dot">→</span> 40 full attendee profiles + background research</div>
-      <div class="gate-item"><span class="dot">→</span> 34 ranked intro recommendations</div>
-      <div class="gate-item"><span class="dot">→</span> 20 skill &amp; domain cluster maps</div>
-      <div class="gate-item"><span class="dot">→</span> 7 breakout group assignments</div>
-      <div class="gate-item"><span class="dot">→</span> "Who should I meet?" personalized tool</div>
+    <div class="gate-left">
+      <div class="gate-eyebrow">// Members only</div>
+      <div class="gate-heading">Full Attendee<br>Intelligence</div>
+      <p class="gate-desc">
+        Every attendee profile, curated intro write-ups, AI-generated
+        matchmaking recommendations, breakout group assignments,
+        and a "who should I meet" tool — available to everyone who was in the room.
+      </p>
     </div>
-    <a class="gate-btn" href="../">I was there — access intelligence →</a>
+    <div class="gate-right">
+      <div class="gate-items">
+        <div class="gate-item"><span class="dot">→</span> 40 full attendee profiles + background research</div>
+        <div class="gate-item"><span class="dot">→</span> 34 ranked intro recommendations</div>
+        <div class="gate-item"><span class="dot">→</span> 20 skill &amp; domain cluster maps</div>
+        <div class="gate-item"><span class="dot">→</span> 7 breakout group assignments</div>
+        <div class="gate-item"><span class="dot">→</span> "Who should I meet?" personalized tool</div>
+      </div>
+      <a class="gate-btn" href="../">I was there — access intelligence →</a>
+    </div>
   </div>
 
   <section class="next-event">
-    <div class="next-label">// Coming up</div>
-    <div class="next-heading">Deploy <span class="yellow">#02</span></div>
-    <div class="next-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; Tel Aviv</div>
+    <div class="next-left">
+      <div class="next-label">// Coming up</div>
+      <div class="next-heading">Deploy <span class="yellow">#02</span></div>
+      <div class="next-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; Tel Aviv</div>
+    </div>
     <a class="next-cta" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">Apply Now →</a>
   </section>
 
