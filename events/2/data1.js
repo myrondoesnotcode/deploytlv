@@ -4,7 +4,7 @@ window.D2.newAttendees = [
 {
   id: 1, d1: false, name: "Liron Achdut", project: "OpenSentry",
   tagline: "AI smart-contract risk analysis (open-source)",
-  photo: null, website: "opensentry.tech", linkedin: "lironachdut",
+  photo: "photos/Liron_Achdut.jpg", website: "opensentry.tech", linkedin: "lironachdut",
   stack: ["Claude", "Codex", "Cursor"], revenue: "$5,000–$10,000/month",
   seeking: "Connections and inspiration", showcasing: false,
   cluster: ["AI Security & Governance", "Crypto / Web3", "Revenue Leaders ($5K+/mo)"],
@@ -20,7 +20,7 @@ window.D2.newAttendees = [
 {
   id: 2, d1: false, name: "Matan Harsat", project: "Flare",
   tagline: "Eng Team Lead · co-founder-seeking AI builder",
-  photo: null, website: "helloflare.com", linkedin: "matan-harsat",
+  photo: "photos/Matan_Harsat.jpg", website: "helloflare.com", linkedin: "matan-harsat",
   stack: ["Claude"], revenue: "N/A (employed)",
   seeking: "Meeting potential co-founders and collaborators", showcasing: false,
   cluster: ["Enterprise / Internal AI", "Co-founder Actively Seeking"],
@@ -36,7 +36,7 @@ window.D2.newAttendees = [
 {
   id: 3, d1: false, name: "Yaacov Albietz", project: "Artifact",
   tagline: "Multi-LLM workspace + AI investment advisor",
-  photo: null, website: "artifact.chat", linkedin: "ydavid365",
+  photo: "photos/Yaacov_Albietz.jpg", website: "artifact.chat", linkedin: "ydavid365",
   stack: ["Claude", "Codex", "Cursor"], revenue: "$1–$1,000/month",
   seeking: "Meeting potential co-founders; connecting with builders", showcasing: false,
   cluster: ["Agentic Dev Tools", "Fintech / Finance", "Co-founder Actively Seeking"],
@@ -52,7 +52,7 @@ window.D2.newAttendees = [
 {
   id: 4, d1: false, name: "Ike Bodner", project: "The Sandbox / Soldiers Save Lives",
   tagline: "Defense/dual-use operator & ecosystem builder",
-  photo: null, website: "thesandbox.online", linkedin: "ikebodner",
+  photo: "photos/Ike_Bodner.jpg", website: "thesandbox.online", linkedin: "ikebodner",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "General networking", showcasing: false,
   cluster: ["Defense / Dual-Use"],
@@ -68,7 +68,7 @@ window.D2.newAttendees = [
 {
   id: 5, d1: false, name: "Alon Bronfeld", project: "Bronfelds Hub",
   tagline: "Video + AI connecting founders & investors",
-  photo: null, website: "hub.bronfelds.com", linkedin: "alonbronfeld",
+  photo: "photos/Alon_Bronfeld.jpg", website: "hub.bronfelds.com", linkedin: "alonbronfeld",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "Networking", showcasing: true,
   cluster: ["Founder–Investor / Dealmaking"],
@@ -84,7 +84,7 @@ window.D2.newAttendees = [
 {
   id: 6, d1: false, name: "Han Rabinovitz", project: "TheHan.co",
   tagline: "'Corporate brain' — human-first AI deployment",
-  photo: null, website: "aileadership.thehan.co", linkedin: "hanrabinovitz",
+  photo: "photos/Han_Rabinovitz.jpg", website: "aileadership.thehan.co", linkedin: "hanrabinovitz",
   stack: ["Claude", "Codex"], revenue: "N/A",
   seeking: "Networking; pitching his philosophy/methodology", showcasing: true,
   cluster: ["Human–AI Interface / Adoption", "Communication / Coaching"],
@@ -100,7 +100,7 @@ window.D2.newAttendees = [
 {
   id: 7, d1: false, name: "Avi Amoyal", project: "Zero Manual Work",
   tagline: "Voice/AI agent: calls → branch-based PRs",
-  photo: null, website: "zeromanualwork.com", linkedin: "aviran-amoyal-5b8b54345",
+  photo: "photos/Avi_Amoyal.jpg", website: "zeromanualwork.com", linkedin: "aviran-amoyal-5b8b54345",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "Improving and showcasing his startup", showcasing: true,
   cluster: ["Agentic Dev Tools", "Co-founder Actively Seeking"],
@@ -116,7 +116,7 @@ window.D2.newAttendees = [
 {
   id: 8, d1: false, name: "Amitay Keisar", project: "AgentMesh",
   tagline: "Freelance AI/dev · agent-to-agent tooling",
-  photo: null, website: "keisar.club", linkedin: "amitaykeisar",
+  photo: "photos/Amitay_Keisar.jpg", website: "keisar.club", linkedin: "amitaykeisar",
   stack: ["Claude"], revenue: "$1,000–$5,000/month",
   seeking: "Meeting great people to learn from", showcasing: false,
   cluster: ["Agentic Dev Tools"],
@@ -132,7 +132,7 @@ window.D2.newAttendees = [
 {
   id: 9, d1: false, name: "Gil G", project: "AI Gateway",
   tagline: "Prompt/tool analysis, enforcement & governance",
-  photo: null, website: "public-ai-gateway-production.up.railway.app", linkedin: "gil-g-4840103a3",
+  photo: "photos/Gil_G.jpg", website: "public-ai-gateway-production.up.railway.app", linkedin: "gil-g-4840103a3",
   stack: ["Claude", "Codex"], revenue: "N/A",
   seeking: "Meeting a co-founder/partner; feedback", showcasing: false,
   cluster: ["AI Security & Governance", "Co-founder Actively Seeking"],
@@ -148,7 +148,7 @@ window.D2.newAttendees = [
 {
   id: 10, d1: false, name: "Tom Cohen", project: "AI for Cybersecurity",
   tagline: "Building security AI agents (researcher)",
-  photo: null, website: null, linkedin: "tom-cohen-0",
+  photo: "photos/Tom_Cohen.jpg", website: null, linkedin: "tom-cohen-0",
   stack: ["Claude"], revenue: "N/A",
   seeking: "Sharing knowledge", showcasing: false,
   cluster: ["AI Security & Governance", "Defense / Dual-Use"],
@@ -163,7 +163,7 @@ window.D2.newAttendees = [
 {
   id: 11, d1: false, name: "Zohar Mosseri", project: "ReactFirst AI",
   tagline: "Narrative monitoring & crisis detection",
-  photo: null, website: "dashboard.reactfirst.ai", linkedin: "zohar-mosseri",
+  photo: "photos/Zohar_Mosseri.jpg", website: "dashboard.reactfirst.ai", linkedin: "zohar-mosseri",
   stack: ["Claude", "Codex"], revenue: "$5,000–$10,000/month",
   seeking: "Meeting builders and learning", showcasing: false,
   cluster: ["AI Visibility / Search / Marketing", "Revenue Leaders ($5K+/mo)"],
@@ -179,7 +179,7 @@ window.D2.newAttendees = [
 {
   id: 12, d1: false, name: "noam cohen", project: "Spikeet",
   tagline: "Historical financial-market & alt-data platform",
-  photo: null, website: "spikeet.com", linkedin: "noam-cohen-00854862",
+  photo: "photos/Noam_Cohen.jpg", website: "spikeet.com", linkedin: "noam-cohen-00854862",
   stack: ["Claude"], revenue: "$5,000–$10,000/month",
   seeking: "Learning", showcasing: false,
   cluster: ["Fintech / Finance", "Revenue Leaders ($5K+/mo)"],
@@ -195,7 +195,7 @@ window.D2.newAttendees = [
 {
   id: 13, d1: false, name: "Danya Dotan", project: "Bridge-iT / StickiT",
   tagline: "'The human layer for the AI era'",
-  photo: null, website: "dynamicbridge.io", linkedin: "danya-dotan",
+  photo: "photos/Danya_Dotan.jpg", website: "dynamicbridge.io", linkedin: "danya-dotan",
   stack: ["Claude", "Codex", "OpenCode", "Cursor"], revenue: "$1–$1,000/month",
   seeking: "Building a compounding circle of people & knowledge", showcasing: false,
   cluster: ["Human–AI Interface / Adoption"],
@@ -211,7 +211,7 @@ window.D2.newAttendees = [
 {
   id: 14, d1: false, name: "Lior Kupfer", project: "Tabbers",
   tagline: "All-in-one AI video/audio studio for guitarists",
-  photo: null, website: "tabbers.ai", linkedin: "lior-kupfer-369abb200",
+  photo: "photos/Lior_Kupfer.jpg", website: "tabbers.ai", linkedin: "lior-kupfer-369abb200",
   stack: ["Codex", "Claude", "Cursor"], revenue: "Pre-Revenue",
   seeking: "Learn and connect", showcasing: false,
   cluster: ["Consumer / Indie Builders", "Creator / Media / Audio"],
@@ -227,7 +227,7 @@ window.D2.newAttendees = [
 {
   id: 15, d1: false, name: "Amitay Manor", project: "Aleph (VC)",
   tagline: "Internal AI tools & agents for hiring/sourcing",
-  photo: null, website: "aleph.vc", linkedin: "amitaymanor",
+  photo: "photos/Amitay_Manor.jpg", website: "aleph.vc", linkedin: "amitaymanor",
   stack: ["Claude"], revenue: "N/A",
   seeking: "New ideas and functionalities others are using", showcasing: false,
   cluster: ["Enterprise / Internal AI", "Founder–Investor / Dealmaking", "Community / VC Connectors"],
@@ -243,7 +243,7 @@ window.D2.newAttendees = [
 {
   id: 16, d1: false, name: "Jeff Feiereisen", project: "Boona",
   tagline: "DTC consumer hardware (Tandem Shower); ex-Amazon Go",
-  photo: null, website: "boona.com", linkedin: "feiereisen",
+  photo: "photos/Jeff_Feiereisen.jpg", website: "boona.com", linkedin: "feiereisen",
   stack: ["Claude"], revenue: "$10,000+/month",
   seeking: "Meeting other builders", showcasing: false,
   cluster: ["Hardware / Manufacturing", "Revenue Leaders ($5K+/mo)"],
@@ -259,7 +259,7 @@ window.D2.newAttendees = [
 {
   id: 17, d1: false, name: "Samuel Green", project: "Multiple apps · Guesty",
   tagline: "Finance, tour-guide, WhatsApp filter, podcast apps",
-  photo: null, website: "studio.myisraeliguide.com", linkedin: "samuelgreen",
+  photo: "photos/Samuel_Green.jpg", website: "studio.myisraeliguide.com", linkedin: "samuelgreen",
   stack: ["Claude", "Codex"], revenue: "Pre-Revenue",
   seeking: "Learning, community, inspiration", showcasing: false,
   cluster: ["Consumer / Indie Builders"],
@@ -275,7 +275,7 @@ window.D2.newAttendees = [
 {
   id: 18, d1: false, name: "Daniel Benzaquen Moreno", project: "Glyph",
   tagline: "AI diagram design & editing; AI Engineer at Sisense",
-  photo: null, website: "glyphstudio.ai", linkedin: "daniel-benzaquen-moreno",
+  photo: "photos/Daniel_Benzaquen_Moreno.jpg", website: "glyphstudio.ai", linkedin: "daniel-benzaquen-moreno",
   stack: ["Claude", "Codex", "Cursor"], revenue: "N/A",
   seeking: "Connecting with like-minded people", showcasing: false,
   cluster: ["Deep Tech / Research"],
@@ -291,7 +291,7 @@ window.D2.newAttendees = [
 {
   id: 19, d1: false, name: "Marissa Posner", project: "Ethereum Foundation",
   tagline: "Crypto rails for AI-agent micropayments",
-  photo: null, website: "ethereum.org", linkedin: "marissaposner",
+  photo: "photos/Marissa_Posner.jpg", website: "ethereum.org", linkedin: "marissaposner",
   stack: ["Codex", "Claude", "Cursor"], revenue: "N/A",
   seeking: "Improving AI workflow; crypto-for-AI-payments ideas", showcasing: false,
   cluster: ["Crypto / Web3", "Fintech / Finance"],
@@ -307,7 +307,7 @@ window.D2.newAttendees = [
 {
   id: 20, d1: false, name: "Jorge Rybar", project: "Give10",
   tagline: "Maaser/Tzedakah giving tracker",
-  photo: null, website: "give10.app", linkedin: "jorgerybar",
+  photo: "photos/Jorge_Rybar.jpg", website: "give10.app", linkedin: "jorgerybar",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "Learning and networking", showcasing: true,
   cluster: ["Consumer / Indie Builders"],
@@ -338,7 +338,7 @@ window.D2.newAttendees = [
 {
   id: 22, d1: false, name: "Ben Barak", project: "monday.com",
   tagline: "Vibe-coding workflows & agents on monday",
-  photo: null, website: "monday.com", linkedin: "benbarak",
+  photo: "photos/Ben_Barak.jpg", website: "monday.com", linkedin: "benbarak",
   stack: ["Claude"], revenue: "N/A (employed)",
   seeking: "Connecting with AI builders; inspiration for personal builds", showcasing: false,
   cluster: ["Enterprise / Internal AI", "Community / VC Connectors"],
@@ -354,7 +354,7 @@ window.D2.newAttendees = [
 {
   id: 23, d1: false, name: "Shay Zaltsman", project: "frisimos",
   tagline: "CNC & sheet-metal manufacturing for Israeli businesses",
-  photo: null, website: null, linkedin: "shay-zaltsman",
+  photo: "photos/Shay_Zaltsman.jpg", website: null, linkedin: "shay-zaltsman",
   stack: ["Claude"], revenue: "N/A",
   seeking: "Connecting with AI builders; sharing; feedback", showcasing: true,
   cluster: ["Hardware / Manufacturing"],
@@ -370,7 +370,7 @@ window.D2.newAttendees = [
 {
   id: 24, d1: false, name: "Ishai Waisman", project: "Ish-AI",
   tagline: "AI coach for body language & storytelling",
-  photo: null, website: "ish-ai.com", linkedin: "ishai-waisman-05360617a",
+  photo: "photos/Ishai_Waisman.jpg", website: "ish-ai.com", linkedin: "ishai-waisman-05360617a",
   stack: ["Claude", "Codex", "Cursor"], revenue: "$1,000–$5,000/month",
   seeking: "Connecting and sharing ideas (site still in progress)", showcasing: false,
   cluster: ["Communication / Coaching"],
@@ -386,7 +386,7 @@ window.D2.newAttendees = [
 {
   id: 25, d1: false, name: "Akiva Lipshitz", project: "Stealth (physics + ML)",
   tagline: "AI-accelerated physics research + stealth startup",
-  photo: null, website: "github.com/theideasmith", linkedin: "akiva-lipshitz",
+  photo: "photos/Akiva_Lipshitz.jpg", website: "github.com/theideasmith", linkedin: "akiva-lipshitz",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "How people use AI for production systems; connecting with builders", showcasing: false,
   cluster: ["Deep Tech / Research"],
@@ -402,7 +402,7 @@ window.D2.newAttendees = [
 {
   id: 26, d1: false, name: "Coral Fussman", project: "Handshaik",
   tagline: "AI-native dealmaking + stealth fintech app",
-  photo: null, website: "handshaik.com", linkedin: "coral-fussman-21721538",
+  photo: "photos/Coral_Fussman.jpg", website: "handshaik.com", linkedin: "coral-fussman-21721538",
   stack: ["Codex", "Claude", "Cursor"], revenue: "N/A",
   seeking: "Socializing", showcasing: false,
   cluster: ["Fintech / Finance", "Founder–Investor / Dealmaking"],
@@ -418,7 +418,7 @@ window.D2.newAttendees = [
 {
   id: 27, d1: false, name: "Doron Haberer", project: "LovedByAI",
   tagline: "'Set & forget' AI-search/GEO plugin for WordPress",
-  photo: null, website: "lovedby.ai", linkedin: "Doronhaberer",
+  photo: "photos/Doron_Haberer.jpg", website: "lovedby.ai", linkedin: "Doronhaberer",
   stack: ["Claude"], revenue: "$1,000–$5,000/month",
   seeking: "Meeting others building in AI-search/GEO", showcasing: false,
   cluster: ["AI Visibility / Search / Marketing"],
@@ -434,7 +434,7 @@ window.D2.newAttendees = [
 {
   id: 28, d1: false, name: "Jonathan Harel", project: "HaJongler · HoneyBook",
   tagline: "AI workshops/keynotes; GTM engineer; side-builds",
-  photo: null, website: "hajongler.com", linkedin: "jonathan-harel",
+  photo: "photos/Jonathan_Harel.jpg", website: "hajongler.com", linkedin: "jonathan-harel",
   stack: ["Claude", "Codex", "Cursor"], revenue: "Pre-Revenue",
   seeking: "A community of builders", showcasing: false,
   cluster: ["Enterprise / Internal AI"],
@@ -450,7 +450,7 @@ window.D2.newAttendees = [
 {
   id: 29, d1: false, name: "martin miller", project: "SurvAI · Lasso",
   tagline: "Anonymous survey social network; GenAI security",
-  photo: null, website: "survai-dun.vercel.app", linkedin: "genai-security",
+  photo: "photos/Martin_Miller.jpg", website: "survai-dun.vercel.app", linkedin: "genai-security",
   stack: ["Claude", "Cursor"], revenue: "Pre-Revenue",
   seeking: "Finding shortcuts to scaling", showcasing: false,
   cluster: ["AI Security & Governance", "Consumer / Indie Builders"],

@@ -29,7 +29,7 @@ window.D2.alumni = [
 {
   id: 32, d1: true, name: "Drew Stone", project: "Tangle Network",
   tagline: "Agent Optimization Infrastructure",
-  photo: null, website: null, linkedin: "drewcstone",
+  photo: "photos/Drew_Stone.jpg", website: null, linkedin: "drewcstone",
   stack: ["Claude", "Codex", "OpenCode", "Cursor"], revenue: "Pre-Revenue",
   seeking: "Meeting people", showcasing: true,
   cluster: ["Agentic Dev Tools"],
@@ -173,7 +173,7 @@ window.D2.alumni = [
 {
   id: 44, d1: true, name: "Moshe Schlussel", project: "TheraTrain AI",
   tagline: "AI Simulation Platform for Therapist Training",
-  photo: null, website: "theratrainai.com", linkedin: "moshe-schlussel-5b87441ab",
+  photo: "photos/Moshe_Schlussel.jpg", website: "theratrainai.com", linkedin: "moshe-schlussel-5b87441ab",
   stack: ["Claude", "Codex", "OpenCode"], revenue: "Pre-Revenue",
   seeking: "Co-founder, sharing, feedback", showcasing: true,
   cluster: ["Co-founder Actively Seeking"],
