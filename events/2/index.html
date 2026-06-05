@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeployTLV #2 — Attendee Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F4EDD7;
+      --bg-off: #EBE3C8;
+      --card: #FBF7E8;
+      --card-hover: #FFFFFF;
+      --ink: #111111;
+      --muted: #6B6557;
+      --faint: #A49B7E;
+      --border: #DDD3B0;
+      --border-soft: #E7DDBE;
+      --accent: #F5D400;
+      --accent-hover: #E0C000;
+      --gold-ink: #8A6D00;
+      --black: #0A0A0A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      -webkit-font-smoothing: antialiased;
+    }
+    #root { min-height: 100vh; }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-off); }
+    ::-webkit-scrollbar-thumb { background: #CDBF92; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
+
+    .barlow { font-family: 'Barlow Condensed', Impact, sans-serif; }
+
+    /* card hover (used by profile + match + cluster cards) */
+    .d2-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-bottom: 2px solid transparent;
+      transition: background .15s, border-color .15s, transform .1s;
+      cursor: pointer;
+    }
+    .d2-card:hover {
+      background: var(--card-hover);
+      border-color: #C9BE92;
+      border-bottom-color: var(--accent);
+    }
+    .d2-flat { background: var(--card); border: 1px solid var(--border); }
+
+    .d2-link { transition: color .15s, border-color .15s; }
+    .d2-link:hover { color: var(--gold-ink); border-color: var(--accent); }
+
+    button { font-family: inherit; }
+
+    /* ── PASSWORD GATE ── */
+    @keyframes d2shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+    @keyframes d2fadeOut { to { opacity: 0; pointer-events: none; } }
+    #gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    #gate-logo {
+      width: 66px; height: 66px;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 26px;
+      background: #fff;
+    }
+    #gate-logo span {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 24px;
+      color: var(--ink); letter-spacing: -1px;
+    }
+    #gate h1 {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: clamp(30px, 5vw, 52px);
+      color: var(--ink); letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 6px; text-align: center; line-height: 0.95;
+    }
+    #gate h1 .dot { color: var(--accent); }
+    #gate-sub {
+      font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold-ink); margin-bottom: 40px;
+    }
+    #gate-form {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      width: 100%; max-width: 320px;
+    }
+    #gate-input {
+      width: 100%; padding: 14px 18px;
+      background: #fff; border: 1.5px solid var(--border);
+      color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 16px;
+      letter-spacing: 3px; text-align: center;
+      outline: none; transition: border-color 0.2s;
+    }
+    #gate-input:focus { border-color: var(--accent); }
+    #gate-input::placeholder { letter-spacing: 2px; color: #B6AC8B; }
+    #gate-btn {
+      width: 100%; padding: 14px;
+      background: var(--accent); color: var(--black);
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-weight: 900; font-size: 18px; letter-spacing: 3px;
+      text-transform: uppercase; border: none; cursor: pointer;
+      transition: background 0.15s;
+    }
+    #gate-btn:hover { background: var(--accent-hover); }
+    #gate-error {
+      font-size: 11px; letter-spacing: 2px;
+      color: #C0392B; text-transform: uppercase;
+      min-height: 16px; margin-top: 4px;
+    }
+    #gate-form.shake { animation: d2shake 0.4s ease; }
+    #gate.fade-out { animation: d2fadeOut 0.4s ease forwards; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- PASSWORD GATE -->
+  <div id="gate">
+    <div id="gate-logo"><span>DE</span></div>
+    <h1>Deploy TLV<span class="dot">.</span>02</h1>
+    <div id="gate-sub">Builders Only.</div>
+    <div id="gate-form">
+      <input id="gate-input" type="password" placeholder="enter password" autocomplete="off" />
+      <button id="gate-btn">ENTER →</button>
+      <div id="gate-error"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'deploytlv_event2_unlocked';
+      var gate = document.getElementById('gate');
+      if (localStorage.getItem(STORAGE_KEY)) { gate.style.display = 'none'; return; }
+      function unlock() {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        gate.classList.add('fade-out');
+        setTimeout(function () { gate.style.display = 'none'; }, 400);
+      }
+      function wrong() {
+        var form = document.getElementById('gate-form');
+        var err = document.getElementById('gate-error');
+        err.textContent = '// INCORRECT. TRY AGAIN.';
+        form.classList.remove('shake');
+        void form.offsetWidth;
+        form.classList.add('shake');
+        document.getElementById('gate-input').value = '';
+      }
+      document.getElementById('gate-btn').addEventListener('click', function () {
+        var val = document.getElementById('gate-input').value.trim().toLowerCase();
+        if (val === 'pinsker') { unlock(); } else { wrong(); }
+      });
+      document.getElementById('gate-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { document.getElementById('gate-btn').click(); }
+      });
+    })();
+  </script>
+
+  <!-- React + Babel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+
+  <!-- Data -->
+  <script src="data1.js"></script>
+  <script src="data2.js"></script>
+
+  <!-- App -->
+  <script type="text/babel" src="app.js" data-presets="react"></script>
+</body>
+</html>
