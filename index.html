@@ -784,6 +784,96 @@
     .footer-social:hover { color: var(--text); }
 
     /* ─────────────────────────────────────────
+       ATTENDEE INTELLIGENCE  (Deploy #02)
+    ───────────────────────────────────────── */
+    .intel-section {
+      padding: 52px 40px;
+      border-bottom: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+    .intel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .intel-lock {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      white-space: nowrap;
+    }
+    .intel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .intel-main .section-h2 { margin-bottom: 18px; }
+    .intel-main .section-body { max-width: 440px; margin-bottom: 26px; }
+    .intel-passnote {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+    .intel-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .intel-stat {
+      background: var(--bg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .intel-stat-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 48px; line-height: 0.9;
+      color: var(--text); letter-spacing: -1px;
+    }
+    .intel-stat-sub { color: var(--accent-hover); }
+    .intel-stat-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .intel-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .intel-tag-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-right: 4px;
+    }
+    .intel-tag {
+      font-size: 10px; letter-spacing: 1px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 6px 12px;
+    }
+    .intel-tag-more { color: var(--muted); border-style: dashed; }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
     @media (max-width: 1100px) {
@@ -823,6 +913,10 @@
       .event-meta { width: auto; text-align: left; flex: 1; font-size: 10px; }
       .event-cta, .event-lock { width: auto; }
       .event-upcoming .event-cta { margin-left: 0; }
+      .intel-section { padding: 36px 24px; }
+      .intel-grid { grid-template-columns: 1fr; gap: 28px; }
+      .intel-stat { padding: 22px 18px; }
+      .intel-stat-val { font-size: 40px; }
     }
     @media (max-width: 600px) {
       .members-grid { grid-template-columns: 1fr; }
@@ -846,8 +940,8 @@
       Deploy #02 Applications Open →
     </a>
 
-    <a class="nav-cta" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
-      Join Community <span class="arrow">↗</span>
+    <a class="nav-cta" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
+      Apply for Deploy #02 <span class="arrow">↗</span>
     </a>
   </nav>
 
@@ -869,11 +963,11 @@
         Small groups. Vetted. No panels.
       </p>
       <div class="hero-btns">
-        <a class="btn-primary" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
-          Join the Community ↗
+        <a class="btn-primary" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
+          Apply for Deploy #02 ↗
         </a>
-        <a class="btn-outline" href="#events">
-          Upcoming Events
+        <a class="btn-outline" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
+          Join the Community
         </a>
       </div>
       <div class="hero-social">
@@ -987,11 +1081,11 @@
         <div class="event-cta">Recap →</div>
       </a>
 
-      <a class="event-row event-active event-upcoming" href="https://lu.ma/tff55zc7" target="_blank" rel="noopener">
+      <a class="event-row event-active event-upcoming" href="events/2/" target="_blank" rel="noopener">
         <div class="event-num">Event #02</div>
         <div class="event-name">Deploy TLV</div>
         <div class="event-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; TLV</div>
-        <div class="event-cta">Apply Now →</div>
+        <div class="event-cta">Enter →</div>
       </a>
 
       <div class="event-row event-locked">
@@ -1001,6 +1095,62 @@
         <div class="event-lock">⌛ Locked</div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ATTENDEE INTELLIGENCE — Deploy #02
+  ══════════════════════════════════════════ -->
+  <section class="intel-section" id="attendee-intelligence">
+    <div class="intel-head">
+      <div class="section-eyebrow" style="margin-bottom:0">// Deploy #02 · Attendee Intelligence</div>
+      <span class="intel-lock"><span class="pulse" style="width:6px;height:6px;background:var(--accent);border-radius:50%;"></span> Builders Only</span>
+    </div>
+
+    <div class="intel-grid">
+      <div class="intel-main">
+        <h2 class="section-h2">Who's In<br>The Room</h2>
+        <p class="section-body">
+          Every Deploy #02 builder, mapped — profiles, skill clusters, and curated
+          1-on-1 intros, so you walk in already knowing who to meet. A private
+          briefing for the people in the room.
+        </p>
+        <a class="btn-primary" href="events/2/">
+          Enter the Portal →
+        </a>
+        <div class="intel-passnote">🔒 Password protected · Deploy #02 builders only</div>
+      </div>
+
+      <div class="intel-stats">
+        <div class="intel-stat">
+          <span class="intel-stat-val">66</span>
+          <span class="intel-stat-label">Builders in the room</span>
+        </div>
+        <div class="intel-stat">
+          <span class="intel-stat-val">37</span>
+          <span class="intel-stat-label">Curated 1:1 intros</span>
+        </div>
+        <div class="intel-stat">
+          <span class="intel-stat-val">20</span>
+          <span class="intel-stat-label">Skill clusters</span>
+        </div>
+        <div class="intel-stat">
+          <span class="intel-stat-val">9</span>
+          <span class="intel-stat-label">Breakout groups</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="intel-tags">
+      <span class="intel-tag-label">In the room:</span>
+      <span class="intel-tag">AI Security &amp; Governance</span>
+      <span class="intel-tag">Agentic Dev Tools</span>
+      <span class="intel-tag">Fintech / Finance</span>
+      <span class="intel-tag">Crypto / Web3</span>
+      <span class="intel-tag">Deep Tech / Clinical AI</span>
+      <span class="intel-tag">Defense / Dual-Use</span>
+      <span class="intel-tag">Creator / Media</span>
+      <span class="intel-tag intel-tag-more">+13 more</span>
     </div>
   </section>
 
