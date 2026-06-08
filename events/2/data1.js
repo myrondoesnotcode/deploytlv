@@ -359,7 +359,7 @@ window.D2.newAttendees = [
   photo: "photos/Ishai_Waisman.jpg", website: "ish-ai.com", linkedin: "ishai-waisman-05360617a",
   stack: ["Claude", "Codex", "Cursor"], revenue: "$1,000–$5,000/month",
   seeking: "Connecting and sharing ideas (site still in progress)", showcasing: false,
-  cluster: ["Communication / Coaching"],
+  cluster: ["Communication / Coaching", "Health, Wellness & Bio-AI"],
   insight: `A domain expert (body language/storytelling) who has already converted expertise into a revenue-generating AI product — credible founder-market fit.`,
   building: `Ish-AI is an AI coaching platform that analyzes and improves users' body language and storytelling — turning his offline communication-coaching practice into a scalable product. Early-revenue while the website is built out.`,
   bg: `Israel-based expert in body language, storytelling, and public speaking — a writer/speaker who studied at the Ruppin Academic Center, with an active presence around communication and presence coaching. Now productizing that expertise into software.`,
@@ -487,7 +487,7 @@ window.D2.newAttendees = [
   photo: null, website: "templatedocs.lovable.app", linkedin: "adam-kohler",
   stack: ["Claude", "Lovable"], revenue: "$1–$1,000/month",
   seeking: "Feedback, meeting like-minded people", showcasing: true,
-  cluster: ["Consumer / Indie Builders"],
+  cluster: ["Consumer / Indie Builders", "Law / Professional-Services AI"],
   insight: `A practicing junior lawyer building legaltech for his own workflow on no-code AI tools — a domain-authentic problem, already charging customers, and signed up to showcase.`,
   building: `A document-automation tool that generates automated template packs, built on Lovable — aimed at the repetitive document-drafting pain he sees in legal practice. Early monetization (under $1K/month).`,
   bg: `Trainee solicitor at Asserson — a UK law firm headquartered in London with its largest office in Tel Aviv, delivering UK legal services from Israel. Joined 2022 (intern → paralegal → trainee), completing his SQE; studied Philosophy at the University of Bristol. A junior lawyer, not a career engineer.`,
@@ -503,7 +503,7 @@ window.D2.newAttendees = [
   photo: "photos/Alex_Schajer.jpg", website: "sync-your-cycle.com", linkedin: "alex-schajer",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "Exploring the Tel Aviv AI scene", showcasing: true,
-  cluster: ["Consumer / Indie Builders"],
+  cluster: ["Consumer / Indie Builders", "Health, Wellness & Bio-AI"],
   insight: `Building a femtech performance app with a real founding team and an incorporated company, launching the same month as the meetup — concrete and near-shipping.`,
   building: `SYNC translates menstrual-cycle, sleep, recovery, training-load and wellbeing signals into a personalised daily 'SYNC Score' plus training guidance for women. App launching June 2026; currently pre-launch.`,
   bg: `Solo-listed; the product is operated by SYNC Cycle Ltd (registered in England & Wales), with two women founders credited (a performance coach and a senior leader/athlete). Alex is likely the technical/AI builder of the pair.`,
@@ -519,7 +519,7 @@ window.D2.newAttendees = [
   photo: "photos/Michael_Salaverry.jpg", website: "github.com/barakplasma", linkedin: "michaelsalaverry",
   stack: ["Claude", "OpenCode"], revenue: "N/A",
   seeking: "Connecting with other AI staff engineers for mutual guidance", showcasing: false,
-  cluster: ["Senior ML / Staff Engineers", "Deep Tech / Research / Clinical AI"],
+  cluster: ["Senior ML / Staff Engineers", "Deep Tech / Research / Clinical AI", "Health, Wellness & Bio-AI"],
   insight: `A seasoned, publicly active AI staff engineer at a deep-tech bio/AI startup — a high-signal technical peer explicitly seeking engineer-to-engineer exchange.`,
   building: `Quris-AI is an Israeli AI drug-safety/clinical-outcome prediction startup ('Patient-on-a-Chip'). His own time goes to exploratory side projects, hunting for one worth pursuing solo.`,
   bg: `Tel Aviv Senior Full-Stack Engineer at Quris-AI since 2022 (frontend architecture + streaming data pipelines for microscope images); previously Frontend Engineer at Intuit. Active open-source/writing presence as 'barakplasma' (GitHub, dev.to, Medium). A staff-engineer 'Solver' archetype.`,
@@ -583,7 +583,7 @@ window.D2.newAttendees = [
   photo: "photos/Gavriel_Hannuna.jpg", website: "datacliniq.net", linkedin: "gavriel-hannuna",
   stack: ["Claude", "Codex", "Cursor"], revenue: "$1,000–$5,000/month",
   seeking: "Connecting with founders, finding collaborators", showcasing: false,
-  cluster: ["AI Services / Agencies", "Deep Tech / Research / Clinical AI"],
+  cluster: ["AI Services / Agencies", "Deep Tech / Research / Clinical AI", "Health, Wellness & Bio-AI"],
   insight: `A deep-tech clinical-AI scientist (QuantHealth + ETH Zürich) monetizing a data/AI consultancy on the side — high technical credibility, revenue-generating, seeking collaborators.`,
   building: `Day job at QuantHealth, which simulates clinical trials via millions of patient-level 'digital twins' to de-risk drug development. On the side runs DataCliniq, an AI/data consultancy ('From Data to Products, Built to Scale'), apparently with Sara Spagnoletto. ~$1–5K/month.`,
   bg: `Clinical Data Scientist at QuantHealth (Tel Aviv), with a background spanning data science, venture capital, and bioinformatics; pursuing an MSc at ETH Zürich. Strong quantitative/scientific profile.`,
@@ -767,6 +767,86 @@ window.D2.newAttendees = [
     `Marissa Posner (Ethereum) — Prediction-market / on-chain settlement mechanics.`,
     `Noam Cohen (Spikeet) — Markets data and trading-systems peers.`,
     `Doron Haberer & Isaac Horowitz — Adtech / marketing distribution.`
+  ]
+},
+{
+  id: 49, d1: false, name: "Matan Porat", project: "Native",
+  tagline: "Consumer AI product for children (founding engineer)",
+  photo: "../1/photos/Matan_Porat.jpg", website: null, linkedin: null,
+  stack: [], revenue: "Pre-Revenue",
+  seeking: "—", showcasing: false,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `Founding engineer on a consumer kids-AI product — a strong builder profile in a hot, sensitive category, though the specific company has minimal public footprint. (Worth confirming details in person.)`,
+  building: `A consumer AI product for children at a company called 'Native', in a founding-engineer capacity. The safe-AI-for-kids category is active in Israel (peers include Askie and Yuvi Lab).`,
+  bg: `Limited public info; multiple unrelated 'Matan Porat' results exist (incl. a classical pianist, who is NOT this person). No confirmed public record ties a specific Matan Porat to a kids-AI company named 'Native'. Self-report implies a hands-on engineering profile in consumer/child-safety AI. Confirmed attending after an earlier scheduling question.`,
+  collab: [
+    `Sam Weinstein (Lunchbox Legends · D#1) — CRITICAL for the kids market: physical vs. digital AI products for the same buyer (parents).`,
+    `Alex Schajer (SYNC) & Arielle Aboav — Consumer product builders.`,
+    `Consumer-AI builders for product/distribution exchange.`
+  ]
+},
+{
+  id: 50, d1: false, name: "Louis Guthmann", project: "Law × AI (independent)",
+  tagline: "Law-meets-AI consulting; ex-StarkWare ecosystem lead",
+  photo: "photos/Louis_Guthmann.jpg", website: "louisguthmann.com", linkedin: "louisguthmann",
+  stack: ["Claude", "Codex", "OpenCode"], revenue: "$1,000–$5,000/month",
+  seeking: "Meeting people for fun", showcasing: false,
+  cluster: ["Crypto / Web3", "Law / Professional-Services AI"],
+  insight: `A serious technical strategist making a crypto-to-AI pivot — a former StarkWare ecosystem lead with deep ZK and ML credentials now applying them to legal/AI. Unusually high-caliber for a 'for fun' attendee.`,
+  building: `Now consulting independently at the intersection of law and AI — recent commentary focuses on AI governance for startups (training-data provenance, compliance, what US VCs now ask Israeli startups pre-revenue).`,
+  bg: `Former Head of Product / Market Strategy & ecosystem lead at StarkWare (the Israeli zero-knowledge / STARK cryptography firm behind Starknet and Cairo). M.Sc. in Computer Science (Centrale Paris) and Business Administration (ESSEC); began as an ML researcher and PM. Co-founded the ZK-Global meetups; active Ethereum contributor and Consensus 2023 speaker. Tel Aviv.`,
+  collab: [
+    `Adam Kohler (TemplateDocs) — CRITICAL: the two law-×-AI builders in the room; legal governance meets legal-doc automation.`,
+    `Marissa Posner (Ethereum) & Alon Shvartsman (Newhedge) — Crypto / ZK peers.`,
+    `Han Rabinovitz (TheHan) & Danya Dotan (Bridge-iT) — AI governance / adoption strategy.`
+  ]
+},
+{
+  id: 51, d1: false, name: "Eitan Engelberg", project: "Shemesh Wellness",
+  tagline: "Affordable cross-border online therapy",
+  photo: "photos/Eitan_Engelberg.jpg", website: "shemeshwellness.com", linkedin: "eitan-engelberg-88ab1b215",
+  stack: ["Claude", "Codex", "Cursor"], revenue: "$1,000–$5,000/month",
+  seeking: "Meet cool people", showcasing: false,
+  cluster: ["Health, Wellness & Bio-AI"],
+  insight: `A clean labor-arbitrage telehealth play — qualified, lower-cost South African mental-health professionals serving premium Western markets — a defensible wedge for an early-stage builder.`,
+  building: `Shemesh connects licensed South African therapists with English-speaking clients in the UK/US/Canada at roughly half local cost — matched within ~3 days, tiered plans, chat access, free therapist switching. Growing interest from Israeli corporate teams hints at a B2B workplace-wellness angle.`,
+  bg: `Founder building 'mental-health infrastructure that moves the needle'; studied at Reichman University. Early-stage solo builder.`,
+  collab: [
+    `Moshe Schlussel (TheraTrain · D#1) — CRITICAL: both mental-health AI; therapist training meets cross-border therapy delivery.`,
+    `Alex Schajer (SYNC) & Ishai Waisman (Ish-AI) — Health / wellness peers.`,
+    `Gavriel Hannuna (QuantHealth) — Clinical / health-data exchange.`
+  ]
+},
+{
+  id: 52, d1: false, name: "Micky Aflalo", project: "Gingi Security",
+  tagline: "Offensive cyber / red-team company (early)",
+  photo: "photos/Micky_Aflalo.jpg", website: "gingisecurity.com", linkedin: "mickyhaflalo",
+  stack: ["Vibe-coding (exploring)"], revenue: "Pre-Revenue",
+  seeking: "Learn the industry and how to vibe-code", showcasing: false,
+  cluster: ["AI Security & Governance"],
+  insight: `A credentialed offensive-security operator (IDF + pen-testing pedigree) at the very start of his founder journey — deep security depth, deliberately adding AI/coding capability.`,
+  building: `Gingi Security — his offensive-cyber / red-team venture, pre-revenue. He's at Deploy to learn the AI-builder landscape and how to 'vibe-code,' coming from a security/ops background rather than software product.`,
+  bg: `Long-standing security practitioner with a personal brand as 'the Security Ginger' (Ginger Security blog). Trajectory in penetration testing / ethical hacking (pursuing OSCP); interned in pen-testing. Lists IDF as current affiliation; exact role unconfirmed.`,
+  collab: [
+    `Tom Cohen, Liron Achdut, Gil G, martin miller & Sigal Sax — The AI-security cluster; offensive-security perspective.`,
+    `Ofek Seroussi & Michael Salaverry — Engineers to learn vibe-coding from.`,
+    `Ike Bodner — Defense / dual-use ecosystem.`
+  ]
+},
+{
+  id: 53, d1: false, name: "Dylan Redfield", project: "Wonderful",
+  tagline: "Enterprise agentic AI; builds agentic harnesses",
+  photo: "photos/Dylan_Redfield.jpg", website: "wonderful.ai", linkedin: "dylan-redfield",
+  stack: ["Claude", "Codex"], revenue: "N/A (employed)",
+  seeking: "Meeting good builders & sharing knowledge", showcasing: false,
+  cluster: ["Agentic Dev Tools"],
+  insight: `An in-the-trenches harness/agent engineer at one of Israel's most-funded enterprise-agent startups — a high-value technical peer for serious AI builders rather than a founder pitching.`,
+  building: `Builds 'agentic harnesses' at Wonderful — the scaffolding around LLMs (context delivery, tool interfaces, memory, verification loops, sandboxes) that turns raw models into reliable agents. Wonderful delivers 24/7 enterprise support across voice/chat/email in any language with 80%+ autonomous resolution.`,
+  bg: `Software engineer at Wonderful, an Insight/Index-backed Israeli enterprise-AI company. Engineering background (conversational AI experience); Wonderful actively hires 'Agent Engineers' in Tel Aviv.`,
+  collab: [
+    `Drew Stone (Tangle · D#1) — Agent infrastructure / orchestration peers.`,
+    `Avi Amoyal (Zero Manual Work) & Ben Badejo (VoiceClaw) — Agentic dev / voice-agent builders.`,
+    `Amitay Keisar (AgentMesh) & Ofek Seroussi — Multi-agent and systems engineering.`
   ]
 }
 ];

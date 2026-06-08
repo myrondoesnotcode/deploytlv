@@ -3,7 +3,7 @@ window.D2 = window.D2 || {};
 
 window.D2.alumni = [
 {
-  id: 49, d1: true, name: "Myron Shneider", project: "Deploy TLV · Clipmatic",
+  id: 54, d1: true, name: "Myron Shneider", project: "Deploy TLV · Clipmatic",
   tagline: "Founder/organizer · Aleph · short-form media",
   photo: "../1/photos/Myron_Shneider.jpg", website: "clipmatic.ai", linkedin: "mshneider",
   stack: ["Claude", "Codex"], revenue: "Pre-Revenue",
@@ -15,7 +15,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 50, d1: true, name: "David Mekibel", project: "Balancē Creative",
+  id: 55, d1: true, name: "David Mekibel", project: "Balancē Creative",
   tagline: "AI-Native Visual Production",
   photo: "../1/photos/David_Mekibel.jpg", website: null, linkedin: "david-mekibel",
   stack: ["Claude", "Midjourney v8.1", "ChatGPT Image 2", "Seedance 2.0", "Higgsfield", "ComfyUI"], revenue: "Pre-Revenue",
@@ -27,7 +27,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 51, d1: true, name: "Drew Stone", project: "Tangle Network",
+  id: 56, d1: true, name: "Drew Stone", project: "Tangle Network",
   tagline: "Agent Optimization Infrastructure",
   photo: "photos/Drew_Stone.jpg", website: null, linkedin: "drewcstone",
   stack: ["Claude", "Codex", "OpenCode", "Cursor"], revenue: "Pre-Revenue",
@@ -39,7 +39,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 52, d1: true, name: "Ari Eliezrie", project: "RadfixAI · Radware LLM Firewall",
+  id: 57, d1: true, name: "Ari Eliezrie", project: "RadfixAI · Radware LLM Firewall",
   tagline: "LLM Security Architecture",
   photo: "../1/photos/Ari_Eliezrie.jpg", website: null, linkedin: "ari-eliezrie",
   stack: ["Claude"], revenue: "N/A",
@@ -51,7 +51,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 53, d1: true, name: "Michael Heiser", project: "Newhedge · LIT Ai",
+  id: 58, d1: true, name: "Michael Heiser", project: "Newhedge · LIT Ai",
   tagline: "Web3 + Bitcoin Analytics + AI Trading",
   photo: "../1/photos/Michael_Heiser.jpg", website: null, linkedin: "michael-heiser-dev",
   stack: ["Cursor"], revenue: "N/A",
@@ -63,7 +63,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 54, d1: true, name: "Shimon Rosen", project: "PodSnacks",
+  id: 59, d1: true, name: "Shimon Rosen", project: "PodSnacks",
   tagline: "AI Podcast Summarization + Daily News Podcast",
   photo: "../1/photos/Shimon_Rosen.jpg", website: "podsnacks.com", linkedin: "shimondotcom",
   stack: ["Claude"], revenue: "Revenue",
@@ -75,7 +75,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 55, d1: true, name: "Sam Weinstein", project: "White City AI · Lunchbox Legends",
+  id: 60, d1: true, name: "Sam Weinstein", project: "White City AI · Lunchbox Legends",
   tagline: "AI consulting & AI trading cards for kids",
   photo: "../1/photos/Sam_Weinstein.jpg", website: null, linkedin: "sam-weinstein-b202b658",
   stack: ["Claude"], revenue: "Revenue",
@@ -87,7 +87,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 56, d1: true, name: "Ilan Oz", project: "EmberNovels",
+  id: 61, d1: true, name: "Ilan Oz", project: "EmberNovels",
   tagline: "Custom AI Romance Novels",
   photo: "../1/photos/Ilan_Oz.jpg", website: null, linkedin: "ilan-oz-36520464",
   stack: ["Claude", "Codex"], revenue: "Revenue",
@@ -99,7 +99,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 57, d1: true, name: "Artem Belyakov", project: "Medida",
+  id: 62, d1: true, name: "Artem Belyakov", project: "Medida",
   tagline: "Computer Vision for Home Renovation Measurements",
   photo: "../1/photos/Artem.jpg", website: null, linkedin: "belyakov-am",
   stack: ["Claude", "Codex", "OpenCode"], revenue: "N/A",
@@ -111,7 +111,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 58, d1: true, name: "Guillaume Bensoussan", project: "Mai Boyar School CRM",
+  id: 63, d1: true, name: "Guillaume Bensoussan", project: "Mai Boyar School CRM",
   tagline: "AI School Admin Portal + Personal Second Brain",
   photo: "../1/photos/Guillaume_Bensoussan.jpg", website: "portail-boyar.web.app", linkedin: "guillaume-bensoussan",
   stack: ["Claude", "Codex", "Cursor"], revenue: "Revenue",
@@ -123,7 +123,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 59, d1: true, name: "Daniel Conway", project: "Proofed",
+  id: 64, d1: true, name: "Daniel Conway", project: "Proofed",
   tagline: "Attribution & deal platform for restaurants + creators",
   photo: "../1/photos/Daniel_Conway.jpg", website: "tryproofed.app", linkedin: "danielpconway",
   stack: ["Claude"], revenue: "Pre-Revenue",
@@ -135,19 +135,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 60, d1: true, name: "Benjamin Breger", project: "Stealth — Drone/UAV",
-  tagline: "IDF UAV Veteran + EE Student + Drone Startup",
-  photo: "../1/photos/Benjamin_Breger.jpg", website: null, linkedin: "benjibreger",
-  stack: ["Claude"], revenue: "Pre-Revenue",
-  seeking: "Broadening network, learning, helping", showcasing: false,
-  cluster: ["Defense / Dual-Use", "Deep Tech / Research / Clinical AI"],
-  insight: `Rare combination: operational IDF UAV experience + Electro Optics engineering student + first-principles entrepreneurial mindset. Most drone founders come from either the academic or the military side — Breger has both.`,
-  building: null,
-  bg: `IDF UAV Veteran (Israeli Air Force drone unit). Currently studying Electrical Engineering at Bar-Ilan University (Electro Optics + Nano Electronics track) + BIU VC Club member. HESEG Foundation scholarship holder. Previously ran BREGPROP (property investment). Building in the drone space — stealth, undisclosed.`,
-  collab: []
-},
-{
-  id: 61, d1: true, name: "Fedorov Dmitrii", project: "SinsingRisk",
+  id: 65, d1: true, name: "Fedorov Dmitrii", project: "SinsingRisk",
   tagline: "UAV + CV Disaster Response Platform",
   photo: "../1/photos/Fedorov_Dmitrii.jpg", website: null, linkedin: "dmitriifedorov",
   stack: ["Claude"], revenue: "Pre-Revenue",
@@ -159,7 +147,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 62, d1: true, name: "Vlad Neyshtadt", project: "AVA Atelier + Studio Automation",
+  id: 66, d1: true, name: "Vlad Neyshtadt", project: "AVA Atelier + Studio Automation",
   tagline: "Self-Portrait Studio + Automation Tools",
   photo: null, website: "anivea.com", linkedin: "vneyshyadt",
   stack: ["Claude"], revenue: "$5,000–$10,000/month",
@@ -171,19 +159,19 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 63, d1: true, name: "Moshe Schlussel", project: "TheraTrain AI",
+  id: 67, d1: true, name: "Moshe Schlussel", project: "TheraTrain AI",
   tagline: "AI Simulation Platform for Therapist Training",
   photo: "photos/Moshe_Schlussel.jpg", website: "theratrainai.com", linkedin: "moshe-schlussel-5b87441ab",
   stack: ["Claude", "Codex", "OpenCode"], revenue: "Pre-Revenue",
   seeking: "Co-founder, sharing, feedback", showcasing: true,
-  cluster: ["Co-founder Actively Seeking"],
+  cluster: ["Health, Wellness & Bio-AI"],
   insight: `Building in an academically validated category at exactly the right time — therapist training is a multi-billion dollar market with structural inefficiencies. His outsider status requires a clinical co-founder, but the timing and concept are strong.`,
   building: null,
   bg: `Solar Consultant at Flex Power (day job) — an outsider building a training platform for therapists. TheraTrain AI (theratrainai.com) — AI simulation of therapy clients that therapists can practice on: AI clients that 'never judge, never break character, and never run out of patience.' Category validated by Stanford HAI and academic research.`,
   collab: []
 },
 {
-  id: 64, d1: true, name: "Menachem Berrebi", project: "Renaissance ML",
+  id: 68, d1: true, name: "Menachem Berrebi", project: "Renaissance ML",
   tagline: "AI Design to Physical Product",
   photo: "../1/photos/Mendy_Berrebi.jpg", website: null, linkedin: "mendy-berrebi",
   stack: ["Claude", "Cursor"], revenue: "Pre-Revenue",
@@ -195,7 +183,7 @@ window.D2.alumni = [
   collab: []
 },
 {
-  id: 65, d1: true, name: "Benjamin Lieber", project: "OriginAI · cowriter.com",
+  id: 69, d1: true, name: "Benjamin Lieber", project: "OriginAI · cowriter.com",
   tagline: "Applied AI research & AI writing tools",
   photo: null, website: "cowriter.com", linkedin: null,
   stack: ["Claude", "Cursor"], revenue: "N/A",
@@ -211,7 +199,7 @@ window.D2.alumni = [
   ]
 },
 {
-  id: 66, d1: true, name: "Omer Geva", project: "Boundly",
+  id: 70, d1: true, name: "Omer Geva", project: "Boundly",
   tagline: "Private second-home sharing platform",
   photo: "../1/photos/Omer_Geva.jpg", website: "boundly.app", linkedin: "omergeva",
   stack: ["Claude"], revenue: "Pre-Revenue",
@@ -224,6 +212,23 @@ window.D2.alumni = [
     `Arielle Aboav (HomieSwap) — CRITICAL: both home-sharing/travel consumer apps; the most direct domain peer in the room.`,
     `Samuel Green (Guesty) — Short-term-rental / proptech crossover.`,
     `Artem Belyakov (Medida) — PropTech / built-environment.`
+  ]
+},
+{
+  id: 71, d1: true, name: "Alon Shvartsman", project: "Newhedge",
+  tagline: "Bitcoin intelligence platform ('Bloomberg Terminal for Bitcoin')",
+  photo: "../1/photos/Alon_Shvartsman.jpg", website: "newhedge.io", linkedin: "alonshvartsman",
+  stack: ["Codex"], revenue: "$5,000–$10,000/month",
+  seeking: "New people", showcasing: false,
+  cluster: ["Crypto / Web3", "Fintech / Finance", "Revenue Leaders"],
+  insight: `The Bitcoin Data API launch signals Newhedge evolving from dashboard into data infrastructure — a much larger B2B opportunity; 12 institutional clients on $400K raised is strong unit economics for a bootstrapped Israeli analytics company.`,
+  building: `Newhedge aggregates on-chain data, analytics, live order books, and derivatives data from 15+ exchanges (~2,000 users, 12 institutional clients; $400K raised from Fusion VC + HashKey). In March 2026 launched a public Bitcoin Data API (MVRV, Realized Price, SOPR, HODL Waves, hashrate) — a pivot from dashboard to B2B data infrastructure.`,
+  bg: `Prior: DeepUI Engineer at WalkMe → developer at LiquidApps → founder of Bitrawr (Bitcoin education). Co-founded Newhedge with Omri Shabtay (CTO) and Mert Gunduz (Lead Engineer).`,
+  collab: [
+    `Michael Heiser (LIT Ai · D#1) — Already collaborating; Bitcoin analytics + AI trading.`,
+    `Marissa Posner (Ethereum) & Noam Cohen (Spikeet) — Crypto / markets-data peers.`,
+    `Doron Haberer (LovedByAI) — GEO so 'best Bitcoin analytics platform' surfaces Newhedge in AI search.`,
+    `Amitay Manor (Aleph) — Warm path into a fund if Newhedge is raising.`
   ]
 }
 ];
@@ -265,13 +270,21 @@ window.D2.matches = [
 { rank: 34, a: "Ilya Kogan", b: "Noam Cohen", tag: "COLLABORATION", why: `An alternative-assets / royalties analytics play needs market-data infrastructure — Spikeet is exactly that kind of data layer. Finance-data peers.` },
 { rank: 35, a: "Gabriel Gothold", b: "Jeff Feiereisen", tag: "COLLABORATION", why: `E-commerce pricing/ops at portfolio scale meets a hands-on DTC operator. Practical commerce exchange.` },
 { rank: 36, a: "Arielle Aboav", b: "Ben Barak", tag: "CHEMISTRY", why: `Colleagues at monday.com both building consumer products on the side — natural ally pairing.` },
-{ rank: 37, a: "Alexander Mendelsohn", b: "Matan Harsat", tag: "CO-FOUNDER?", why: `Two strong engineers/data scientists co-founder-shopping with production pedigrees. A direct co-founder conversation.` }
+{ rank: 37, a: "Alexander Mendelsohn", b: "Matan Harsat", tag: "CO-FOUNDER?", why: `Two strong engineers/data scientists co-founder-shopping with production pedigrees. A direct co-founder conversation.` },
+{ rank: 38, a: "Eitan Engelberg", b: "Moshe Schlussel", tag: "CRITICAL", why: `Both mental-health AI — cross-border therapy delivery meets AI therapist-training. Same market from two angles.` },
+{ rank: 39, a: "Louis Guthmann", b: "Adam Kohler", tag: "CRITICAL", why: `The two law-×-AI builders in the room — AI governance/compliance strategy meets hands-on legal-document automation.` },
+{ rank: 40, a: "Dylan Redfield", b: "Drew Stone", tag: "PRODUCT PARTNERSHIP", why: `Agentic harnesses (the scaffolding around LLMs) meet agent-optimization infrastructure — adjacent layers of the agent stack.` },
+{ rank: 41, a: "Micky Aflalo", b: "Tom Cohen", tag: "SECURITY", why: `Offensive-cyber founder meets a senior AI-security engineer — red-team perspective plus the broader Lasso/IRONSCALES security cluster.` },
+{ rank: 42, a: "Alon Shvartsman", b: "Doron Haberer", tag: "REVENUE", why: `'Best Bitcoin analytics platform' should surface in AI answers; Doron's GEO product is the exact channel for Newhedge's B2B data API.` },
+{ rank: 43, a: "Louis Guthmann", b: "Marissa Posner", tag: "TECHNICAL", why: `Two deep crypto/ZK technical strategists — StarkWare ecosystem meets Ethereum account-abstraction. Natural high-level peer exchange.` }
 ];
 
 window.D2.clusterDefs = [
 { name: "AI Security & Governance", color: "#C2410C" },
 { name: "Crypto / Web3", color: "#7C3AED" },
 { name: "Agentic Dev Tools", color: "#2563EB" },
+{ name: "Health, Wellness & Bio-AI", color: "#0D9488" },
+{ name: "Law / Professional-Services AI", color: "#A16207" },
 { name: "Enterprise / Internal AI", color: "#0F766E" },
 { name: "Fintech / Finance", color: "#15803D" },
 { name: "AI Services / Agencies", color: "#C026D3" },
@@ -309,23 +322,23 @@ window.D2.breakoutGroups = [
 { id: 1, color: "#C2410C", name: "Security, Governance & Cyber",
   focus: `Securing LLMs and agents — prompt firewalls, governance/enforcement gateways, red-teaming, and AI for the SOC.`,
   anchor: "Ari Eliezrie (Radware LLM firewall)",
-  members: ["Liron Achdut", "Gil G", "Tom Cohen", "Martin Miller", "Sigal Sax", "Ari Eliezrie"] },
+  members: ["Liron Achdut", "Gil G", "Tom Cohen", "Martin Miller", "Sigal Sax", "Micky Aflalo", "Ari Eliezrie"] },
 { id: 2, color: "#2563EB", name: "Agents, Dev Tools & Infrastructure",
   focus: `The agent stack — orchestration, voice/agentic dev interfaces, multi-LLM tooling, and what infrastructure agents need underneath.`,
   anchor: "Drew Stone (Tangle)",
-  members: ["Drew Stone", "Avi Amoyal", "Ben Badejo", "Amitay Keisar", "Yaacov Albietz", "Daniel Benzaquen Moreno", "Ofek Seroussi", "Matan Harsat"] },
+  members: ["Drew Stone", "Dylan Redfield", "Avi Amoyal", "Ben Badejo", "Amitay Keisar", "Yaacov Albietz", "Daniel Benzaquen Moreno", "Ofek Seroussi", "Matan Harsat"] },
 { id: 3, color: "#1E40AF", name: "Deep Tech, ML & Autonomous Systems",
   focus: `Production ML and research-to-product — RAG/agents over structured data, computer vision, autonomy/UAV, and applied research.`,
   anchor: "Max Matkovski (ex-Meta / Corvic)",
-  members: ["Akiva Lipshitz", "Max Matkovski", "Yaniv Azriel", "Fedorov Dmitrii", "Benjamin Breger", "Benjamin Lieber"] },
+  members: ["Akiva Lipshitz", "Max Matkovski", "Yaniv Azriel", "Fedorov Dmitrii", "Benjamin Lieber"] },
 { id: 4, color: "#15803D", name: "Fintech, Crypto & Markets",
   focus: `Crypto rails and agent payments, financial/market data, alternative assets, and AI in finance ops.`,
   anchor: "Marissa Posner (Ethereum Foundation)",
-  members: ["Marissa Posner", "Noam Cohen", "Coral Fussman", "Ilya Kogan", "Filipp Shilnikov", "Alexander Mendelsohn", "Michael Heiser"] },
+  members: ["Marissa Posner", "Noam Cohen", "Coral Fussman", "Ilya Kogan", "Filipp Shilnikov", "Alexander Mendelsohn", "Alon Shvartsman", "Michael Heiser"] },
 { id: 5, color: "#9333EA", name: "Consumer, Creator & Media",
   focus: `Consumer AI, creator and media tooling, visual production, and distribution — turning AI output into audience.`,
   anchor: "Shimon Rosen / Myron Shneider",
-  members: ["Lior Kupfer", "Jorge Rybar", "Samuel Green", "Arielle Aboav", "Daniel Warren", "Shimon Rosen", "David Mekibel", "Ilan Oz", "Vlad Neyshtadt"] },
+  members: ["Lior Kupfer", "Jorge Rybar", "Samuel Green", "Arielle Aboav", "Daniel Warren", "Matan Porat", "Shimon Rosen", "David Mekibel", "Ilan Oz", "Vlad Neyshtadt"] },
 { id: 6, color: "#C026D3", name: "AI Services, Agencies, GTM & AI-Search",
   focus: `Delivering AI as a service — agency/studio models, AEO/GEO (getting cited by AI), GTM engineering, and content/narrative.`,
   anchor: "Isaac Horowitz (ZipLyne)",
@@ -333,7 +346,7 @@ window.D2.breakoutGroups = [
 { id: 7, color: "#0F766E", name: "Enterprise, Internal AI, Productivity & Capital",
   focus: `AI inside organizations — internal agents, knowledge-work and productivity, education, legal/doc automation, and the founder–investor interface.`,
   anchor: "Amitay Manor / Myron Shneider",
-  members: ["Amitay Manor", "Ben Barak", "Danya Dotan", "Adam Kohler", "Alon Bronfeld", "Menachem Berrebi", "Guillaume Bensoussan", "Myron Shneider"] },
+  members: ["Amitay Manor", "Ben Barak", "Danya Dotan", "Adam Kohler", "Louis Guthmann", "Alon Bronfeld", "Menachem Berrebi", "Guillaume Bensoussan", "Myron Shneider"] },
 { id: 8, color: "#B91C1C", name: "Hardware, PropTech, Commerce & Physical",
   focus: `Where AI meets the physical world — hardware/DTC, manufacturing, robotics/UAV, proptech/rentals, and e-commerce ops.`,
   anchor: "Jeff Feiereisen / Sam Weinstein",
@@ -341,5 +354,5 @@ window.D2.breakoutGroups = [
 { id: 9, color: "#DB2777", name: "Health, Wellness & Bio-AI",
   focus: `Clinical, bio, and wellness AI — therapist training, drug-safety/clinical simulation, femtech, and communication/coaching.`,
   anchor: "Moshe Schlussel (TheraTrain)",
-  members: ["Moshe Schlussel", "Alex Schajer", "Ishai Waisman", "Gavriel Hannuna", "Michael Salaverry"] }
+  members: ["Moshe Schlussel", "Eitan Engelberg", "Alex Schajer", "Ishai Waisman", "Gavriel Hannuna", "Michael Salaverry"] }
 ];
