@@ -61,8 +61,7 @@ window.D2.newAttendees = [
   bg: `COO of Let's Do Something / Soldiers Save Lives, a donation-and-logistics nonprofit shipping tactical and aid equipment to Israeli soldiers (co-founded with Baruch Apisdorf, Gidon Hazony et al.). Also linked to The Sandbox, a program supporting early-stage defense/dual-use startups. An operator/ecosystem-builder rather than a coder.`,
   collab: [
     `Tom Cohen (AI for cyber) — Defense/security adjacency.`,
-    `Shay Zaltsman (CNC manufacturing) — Israeli hardware/defense manufacturing access.`,
-    `Benjamin Breger (IDF UAV, D#1) — Defense-tech founder who could use Sandbox program access.`
+    `Shay Zaltsman (CNC manufacturing) — Israeli hardware/defense manufacturing access.`
   ]
 },
 {
@@ -349,7 +348,6 @@ window.D2.newAttendees = [
   bg: `Public records point to a Shay Zaltsman who is a mechanical engineer (B.Sc. Mechanical Engineering, Ben-Gurion University) working as a Product/NPI engineer — a fit for launching a CNC/sheet-metal venture. Note: 'Frisimos' also exists as an established Israeli company (cable assembly) — verify whether this is a new brand or a name collision.`,
   collab: [
     `Jeff Feiereisen (Boona) — Hardware/DTC and manufacturing peers.`,
-    `Benjamin Breger (IDF UAV, D#1) — Manufacturing for drone hardware.`,
     `Ike Bodner — Defense/dual-use manufacturing access.`
   ]
 },
