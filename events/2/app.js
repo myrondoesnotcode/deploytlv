@@ -18,6 +18,7 @@ const CLUSTERS = (window.D2.clusterDefs || []).map(d => ({
 })).filter(c => c.members.length > 0);
 
 const byName = name => ATTENDEES.find(a => a.name === name);
+const byId = id => ATTENDEES.find(a => a.id === id);
 
 /* ── helpers ── */
 function revStyle(rev) {
@@ -100,6 +101,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [clusterFilter, setClusterFilter] = useState(null);
   const [myName, setMyName] = useState("");
+  const [myId, setMyId] = useState(null);
 
   const filtered = ATTENDEES.filter(a => {
     const q = search.toLowerCase();
@@ -259,7 +261,7 @@ function App() {
       )}
 
       {/* WHO TO MEET */}
-      {tab === "forme" && <ForMe myName={myName} setMyName={setMyName} setSelected={setSelected} />}
+      {tab === "forme" && <ForMe myName={myName} setMyName={setMyName} myId={myId} setMyId={setMyId} setSelected={setSelected} />}
 
       {/* MODAL */}
       {selected && <Modal a={selected} setSelected={setSelected} />}
@@ -268,12 +270,19 @@ function App() {
 }
 
 /* ── WHO TO MEET tab ── */
-function ForMe({ myName, setMyName, setSelected }) {
+function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
   const q = myName.trim().toLowerCase();
-  const me = q ? ATTENDEES.find(a => a.name.toLowerCase().includes(q)) : null;
+  // Resolve identity by unique id once a person is explicitly picked. Before that,
+  // only auto-resolve when the typed text is an EXACT, unique full-name match —
+  // otherwise show a candidate list so people who share a name can pick the right one.
+  const exact = q ? ATTENDEES.filter(a => a.name.toLowerCase() === q) : [];
+  const me = myId != null ? byId(myId) : (exact.length === 1 ? exact[0] : null);
+  const candidates = !me && q ? ATTENDEES.filter(a => a.name.toLowerCase().includes(q)) : [];
+  const pickMe = a => { setMyId(a.id); setMyName(a.name); };
+  const onType = v => { setMyName(v); if (myId != null) setMyId(null); };
   const myMatches = me ? MATCHES.filter(m => m.a === me.name || m.b === me.name) : [];
   const myClusters = me ? (me.cluster || []) : [];
-  const peers = me ? ATTENDEES.filter(a => a.name !== me.name && (a.cluster || []).some(c => myClusters.includes(c)))
+  const peers = me ? ATTENDEES.filter(a => a.id !== me.id && (a.cluster || []).some(c => myClusters.includes(c)))
     .map(a => ({ ...a, shared: a.cluster.filter(c => myClusters.includes(c)) }))
     .sort((x, y) => y.shared.length - x.shared.length) : [];
 
@@ -284,13 +293,13 @@ function ForMe({ myName, setMyName, setSelected }) {
         <div style={{ fontSize: 12, color: MUTED, marginTop: 4, letterSpacing: 1 }}>TYPE YOUR NAME TO GET YOUR PERSONAL MATCH LIST</div>
       </div>
       <div style={{ position: "relative", marginBottom: 24 }}>
-        <input value={myName} onChange={e => setMyName(e.target.value)} placeholder="TYPE YOUR NAME..." autoFocus
+        <input value={myName} onChange={e => onType(e.target.value)} placeholder="TYPE YOUR NAME..." autoFocus
           style={{ background: "#fff", border: "2px solid " + (me ? ACCENT : BORDER), color: INK, padding: "13px 16px", fontSize: 14, width: "100%", outline: "none", fontFamily: "inherit", letterSpacing: 1 }} />
-        {myName.length > 0 && !me && (
+        {candidates.length > 0 && (
           <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: "#fff", border: "1px solid " + BORDER, zIndex: 10, maxHeight: 220, overflowY: "auto" }}>
-            <div className="barlow" style={{ padding: "7px 16px", fontSize: 11, color: GOLD, letterSpacing: 1.5, borderBottom: "1px solid " + BORDER, textTransform: "uppercase" }}>↓ Tap your name</div>
-            {ATTENDEES.filter(a => a.name.toLowerCase().includes(myName.toLowerCase())).map(a => (
-              <div key={a.id} onClick={() => setMyName(a.name)} style={{ padding: "10px 16px", cursor: "pointer", borderBottom: "1px solid " + BORDER, fontSize: 13, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div className="barlow" style={{ padding: "7px 16px", fontSize: 11, color: GOLD, letterSpacing: 1.5, borderBottom: "1px solid " + BORDER, textTransform: "uppercase" }}>↓ Tap your name{candidates.length > 1 ? " (" + candidates.length + " matches)" : ""}</div>
+            {candidates.map(a => (
+              <div key={a.id} onClick={() => pickMe(a)} style={{ padding: "10px 16px", cursor: "pointer", borderBottom: "1px solid " + BORDER, fontSize: 13, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span><span style={{ fontWeight: 700 }}>{a.name}</span><span style={{ color: FAINT, marginLeft: 8, fontSize: 11 }}>{a.project}</span></span>
                 <span className="barlow" style={{ color: GOLD, fontSize: 11, letterSpacing: 1, whiteSpace: "nowrap", marginLeft: 12 }}>THIS IS ME →</span>
               </div>
@@ -299,12 +308,16 @@ function ForMe({ myName, setMyName, setSelected }) {
         )}
       </div>
 
-      {myName.length > 0 && !me && <div style={{ color: MUTED, fontSize: 13, letterSpacing: 1 }}>NO MATCH FOUND — TRY FIRST OR LAST NAME</div>}
+      {myName.length > 0 && !me && candidates.length === 0 && <div style={{ color: MUTED, fontSize: 13, letterSpacing: 1 }}>NO MATCH FOUND — TRY FIRST OR LAST NAME</div>}
 
       {me && (
         <React.Fragment>
           <div className="d2-flat" style={{ borderLeft: "3px solid " + ACCENT, padding: "14px 16px", marginBottom: 24 }}>
-            <div className="barlow" style={{ fontSize: 22, fontWeight: 900 }}>{me.name}</div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+              <div className="barlow" style={{ fontSize: 22, fontWeight: 900 }}>{me.name}</div>
+              <span className="barlow" onClick={() => { setMyId(null); setMyName(""); }}
+                style={{ cursor: "pointer", color: GOLD, fontSize: 11, letterSpacing: 1.5, whiteSpace: "nowrap", textTransform: "uppercase", borderBottom: "1px solid " + BORDER }}>NOT YOU? ↻</span>
+            </div>
             <div className="barlow" style={{ fontSize: 12, color: GOLD, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8 }}>{me.project}</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {me.cluster.map(c => {

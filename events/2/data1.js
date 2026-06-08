@@ -146,17 +146,18 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 10, d1: false, name: "Tom Cohen", project: "AI for Cybersecurity",
-  tagline: "Building security AI agents (researcher)",
+  id: 10, d1: false, name: "Tom Cohen", project: "IRONSCALES",
+  tagline: "Senior AI Engineer · AI for cybersecurity (Zagouri)",
   photo: "photos/Tom_Cohen.jpg", website: null, linkedin: "tom-cohen-0",
-  stack: ["Claude"], revenue: "N/A",
+  stack: ["Claude (Claude Code SDK)", "LangGraph", "DSPy", "Pydantic"], revenue: "N/A",
   seeking: "Sharing knowledge", showcasing: false,
   cluster: ["AI Security & Governance", "Defense / Dual-Use"],
-  insight: `A cyber/AI researcher attending to share and learn — a useful technical sounding board for security-focused builders (notably Liron Achdut, Gil G, martin miller).`,
-  building: `AI for cybersecurity — building AI agents in the security domain. No standalone product/website; attending to exchange knowledge rather than pitch.`,
-  bg: `Identity not fully pinned down (common name). Search ties the handle to a Tom Cohen at IRONSCALES (email security), while a separate stealth-mode 'Tom Cohen' is building AI agents for cybersecurity in Israel — matching the self-report most closely. Consistent signal: an Israel-based cybersecurity professional now working on AI/agents.`,
+  insight: `A senior, hands-on AI-security engineer at a real product company (IRONSCALES) with a modern agentic stack — one of the strongest pure-technical security profiles in the room.`,
+  building: `Builds AI agents for cybersecurity at IRONSCALES — agentic pipelines for SOC annotation, label validation, and active-learning data workflows (LangGraph / DSPy / Claude Code SDK). Attending to exchange knowledge rather than pitch a product.`,
+  bg: `Senior AI Engineer on the Innovation Team at IRONSCALES (email/phishing security) since 2024; previously Senior AI Engineer at MobileODT (4+ yrs), Senior Data Scientist at Jungo Connectivity, and Data Scientist at Earnix. BA in Statistics & Economics, Hebrew University; ITC Data Science Fellow. Active in Israel's AI-security builder scene.`,
   collab: [
-    `Liron Achdut, Gil G, martin miller — Security/AI-agent cluster sounding board.`,
+    `Liron Achdut, Gil G, martin miller, Sigal Sax — AI-security cluster; deepest peer set in the room.`,
+    `Sigal Sax & martin miller (Lasso) — GenAI-security engineers comparing agent/guardrail pipelines.`,
     `Ike Bodner — Defense/security ecosystem.`
   ]
 },
@@ -246,7 +247,7 @@ window.D2.newAttendees = [
   photo: "photos/Jeff_Feiereisen.jpg", website: "boona.com", linkedin: "feiereisen",
   stack: ["Claude"], revenue: "$10,000+/month",
   seeking: "Meeting other builders", showcasing: false,
-  cluster: ["Hardware / Manufacturing", "Revenue Leaders ($5K+/mo)"],
+  cluster: ["E-Commerce / Retail AI", "Hardware / Manufacturing", "Revenue Leaders ($5K+/mo)"],
   insight: `A proven hardware/DTC founder (ex-Amazon Go, successful Kickstarter, real revenue) applying AI to e-commerce ops — valuable to physical-product and DTC builders, and a rare hardware voice in a software-heavy room.`,
   building: `Boona is a consumer-products / e-commerce business; flagship Tandem Shower (dual showerheads off one line) blew past its Kickstarter goal (~$525K–$620K). Now an operating DTC business doing $10K+/month, with Claude in the build/ops loop.`,
   bg: `Co-founded Boona in 2022 with Brett Skaloud; the two were engineers on Amazon Go's cashier-less store hardware. Prior: Amazon, Microsoft, LivePerson. BS in Electrical Engineering (Robotics), Washington University in St. Louis.`,
@@ -278,7 +279,7 @@ window.D2.newAttendees = [
   photo: "photos/Daniel_Benzaquen_Moreno.jpg", website: "glyphstudio.ai", linkedin: "daniel-benzaquen-moreno",
   stack: ["Claude", "Codex", "Cursor"], revenue: "N/A",
   seeking: "Connecting with like-minded people", showcasing: false,
-  cluster: ["Deep Tech / Research"],
+  cluster: ["Senior ML / Staff Engineers", "Deep Tech / Research / Clinical AI"],
   insight: `A seasoned applied-AI engineer (7 yrs, currently at Sisense) building an LLM-native diagramming tool — valuable to anyone working on LLM apps, dev-tools, or visualization generation.`,
   building: `Glyph lets users design and edit diagrams with AI — create, explain, and modify diagrams by describing what you want in natural language. An LLM-native diagramming tool.`,
   bg: `AI Engineer at Sisense (BI/analytics), building LLM-powered applications and intelligent systems. ~7 years working in AI with side projects throughout. Israel-based; solid applied-AI/LLM engineering profile.`,
@@ -321,22 +322,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 21, d1: false, name: "Matan Porat", project: "Native",
-  tagline: "Consumer AI product for children (founding engineer)",
-  photo: "../1/photos/Matan_Porat.jpg", website: null, linkedin: null,
-  stack: [], revenue: "Unknown",
-  seeking: "—", showcasing: false, showcaseNote: "No response given",
-  cluster: ["Consumer / Indie Builders"],
-  insight: `Founding engineer on a consumer kids-AI product — a strong builder profile in a hot, sensitive category, though the specific company has minimal public footprint. (Worth confirming details in person.)`,
-  building: `A consumer AI product for children at a company called 'Native', in a founding-engineer capacity. The safe-AI-for-kids category is active in Israel.`,
-  bg: `Limited public info; multiple unrelated 'Matan Porat' results exist (incl. a classical pianist, who is NOT this person). No confirmed public record ties a specific Matan Porat to a kids-AI company named 'Native'. Self-report implies a hands-on engineering profile in consumer/child-safety AI. He was referenced in the Deploy #1 report but never fully profiled.`,
-  collab: [
-    `Sam Weinstein (Lunchbox Legends, D#1) — CRITICAL for the kids market: physical vs. digital AI products for the same buyer (parents).`,
-    `Consumer-AI builders for product/distribution exchange.`
-  ]
-},
-{
-  id: 22, d1: false, name: "Ben Barak", project: "monday.com",
+  id: 21, d1: false, name: "Ben Barak", project: "monday.com",
   tagline: "Vibe-coding workflows & agents on monday",
   photo: "photos/Ben_Barak.jpg", website: "monday.com", linkedin: "benbarak",
   stack: ["Claude"], revenue: "N/A (employed)",
@@ -352,7 +338,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 23, d1: false, name: "Shay Zaltsman", project: "frisimos",
+  id: 22, d1: false, name: "Shay Zaltsman", project: "frisimos",
   tagline: "CNC & sheet-metal manufacturing for Israeli businesses",
   photo: "photos/Shay_Zaltsman.jpg", website: null, linkedin: "shay-zaltsman",
   stack: ["Claude"], revenue: "N/A",
@@ -368,7 +354,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 24, d1: false, name: "Ishai Waisman", project: "Ish-AI",
+  id: 23, d1: false, name: "Ishai Waisman", project: "Ish-AI",
   tagline: "AI coach for body language & storytelling",
   photo: "photos/Ishai_Waisman.jpg", website: "ish-ai.com", linkedin: "ishai-waisman-05360617a",
   stack: ["Claude", "Codex", "Cursor"], revenue: "$1,000–$5,000/month",
@@ -384,12 +370,12 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 25, d1: false, name: "Akiva Lipshitz", project: "Stealth (physics + ML)",
+  id: 24, d1: false, name: "Akiva Lipshitz", project: "Stealth (physics + ML)",
   tagline: "AI-accelerated physics research + stealth startup",
   photo: "photos/Akiva_Lipshitz.jpg", website: "github.com/theideasmith", linkedin: "akiva-lipshitz",
   stack: ["Claude"], revenue: "Pre-Revenue",
   seeking: "How people use AI for production systems; connecting with builders", showcasing: false,
-  cluster: ["Deep Tech / Research"],
+  cluster: ["Senior ML / Staff Engineers", "Deep Tech / Research / Clinical AI"],
   insight: `A serious theoretical-physics/ML researcher with Ivy-lab pedigree running a stealth startup — deep technical horsepower; pre-revenue but high-signal.`,
   building: `Using AI to accelerate physics research workflows while running an early-stage stealth startup; focused on bringing statistical-physics theory to bear on machine learning.`,
   bg: `BA in Physics (magna cum laude), Yeshiva University; pursuing an MSc in theoretical physics / ML at the Racah Institute, Hebrew University. Computational-neuroscience research at Princeton, Columbia, and Rockefeller (co-authored a study). Works at the statistical-physics × ML intersection and reportedly leads a stealth startup alongside his studies.`,
@@ -400,7 +386,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 26, d1: false, name: "Coral Fussman", project: "Handshaik",
+  id: 25, d1: false, name: "Coral Fussman", project: "Handshaik",
   tagline: "AI-native dealmaking + stealth fintech app",
   photo: "photos/Coral_Fussman.jpg", website: "handshaik.com", linkedin: "coral-fussman-21721538",
   stack: ["Codex", "Claude", "Cursor"], revenue: "N/A",
@@ -416,12 +402,12 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 27, d1: false, name: "Doron Haberer", project: "LovedByAI",
+  id: 26, d1: false, name: "Doron Haberer", project: "LovedByAI",
   tagline: "'Set & forget' AI-search/GEO plugin for WordPress",
   photo: "photos/Doron_Haberer.jpg", website: "lovedby.ai", linkedin: "Doronhaberer",
   stack: ["Claude"], revenue: "$1,000–$5,000/month",
   seeking: "Meeting others building in AI-search/GEO", showcasing: false,
-  cluster: ["AI Visibility / Search / Marketing"],
+  cluster: ["AI Visibility / Search / Marketing", "E-Commerce / Retail AI"],
   insight: `Working on a fast-growing, revenue-generating GEO product (3,400+ installs) right in the booming AI-search-optimization category.`,
   building: `A generative-engine-optimization (GEO/AEO) plugin for WordPress that adds a machine-readable layer to win citations in AI answers, with page-level tracking of AI impressions and click-throughs. Already revenue-generating.`,
   bg: `Self-reported employer 'Beyond Trust' (distinct from the BeyondTrust security company). LovedByAI is a WordPress GEO/AEO plugin making sites readable and citable by ChatGPT, Claude, Perplexity, and Gemini, with 3,400+ active installs and a 5-star WordPress.org rating. Note: the lovedby.ai About page lists co-founders Niv Penso and Gilad Leshem (ex-accessiBe) — confirm his exact role.`,
@@ -432,7 +418,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 28, d1: false, name: "Jonathan Harel", project: "HaJongler · HoneyBook",
+  id: 27, d1: false, name: "Jonathan Harel", project: "HaJongler · HoneyBook",
   tagline: "AI workshops/keynotes; GTM engineer; side-builds",
   photo: "photos/Jonathan_Harel.jpg", website: "hajongler.com", linkedin: "jonathan-harel",
   stack: ["Claude", "Codex", "Cursor"], revenue: "Pre-Revenue",
@@ -448,7 +434,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 29, d1: false, name: "martin miller", project: "SurvAI · Lasso",
+  id: 28, d1: false, name: "martin miller", project: "SurvAI · Lasso",
   tagline: "Anonymous survey social network; GenAI security",
   photo: "photos/Martin_Miller.jpg", website: "survai-dun.vercel.app", linkedin: "genai-security",
   stack: ["Claude", "Cursor"], revenue: "Pre-Revenue",
@@ -461,6 +447,326 @@ window.D2.newAttendees = [
     `Gil G (AI governance gateway) — CRITICAL: GenAI-security peers; compare guardrail approaches.`,
     `Liron Achdut & Tom Cohen — Security cluster.`,
     `Samuel Green — Consumer-app distribution exchange.`
+  ]
+},
+{
+  id: 29, d1: false, name: "Ofek Seroussi", project: "Wisor.AI",
+  tagline: "Freight-AI tech lead; AI dev-tools side projects",
+  photo: "photos/Ofek_Seroussi.jpg", website: "ofeks.dev", linkedin: "ofek-seroussi-134865a6",
+  stack: ["Claude", "Codex"], revenue: "Pre-Revenue",
+  seeking: "Co-founders, building in AI, sharing, feedback", showcasing: false,
+  cluster: ["Senior ML / Staff Engineers", "Co-founder Actively Seeking"],
+  insight: `A senior, scale-tested LLM systems engineer who builds production conversational AI by day and dev tools by night — strong technical depth, actively looking for what's next.`,
+  building: `Designs scale-tested conversational/LLM systems by day at Wisor; spends his own time on AI developer-tooling side projects, hunting for his next venture.`,
+  bg: `Tel Aviv software engineer/entrepreneur with 10+ years building products end-to-end, lately deep in production LLM and conversational systems. Currently tech lead/freelance at Wisor.AI, a Team8-backed freight-forwarding AI startup that auto-generates door-to-door shipping quotes in ~60 seconds. GitHub: github.com/oksr.`,
+  collab: [
+    `Michael Salaverry (Quris) — AI staff engineers explicitly seeking mutual guidance.`,
+    `Avi Amoyal & Amitay Keisar — Agentic dev-tools peers.`,
+    `Matan Harsat & Yaacov Albietz — Co-founder conversations.`
+  ]
+},
+{
+  id: 30, d1: false, name: "Arielle Aboav", project: "HomieSwap",
+  tagline: "'The dating app for home swaps'; works at monday.com",
+  photo: "photos/Arielle_Aboav.jpg", website: "homieswap.com", linkedin: "arielle-aboav",
+  stack: ["Claude"], revenue: "Pre-Revenue",
+  seeking: "Co-founders, building in AI, sharing, feedback", showcasing: false,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `A product person at a top Israeli SaaS company building a consumer marketplace on the side — enterprise-product instincts plus a sharp consumer hook.`,
+  building: `HomieSwap (brand 'homies') is a swipe-to-match home-swap travel app — 'match and swap homes to travel somewhere new, no hotel fees.' Mobile-first, pre-revenue, early build.`,
+  bg: `Works at monday.com (public Israeli work-OS); her activity references a startup-within-monday initiative, suggesting an intrapreneurial/product role.`,
+  collab: [
+    `Ben Barak (monday.com) — Colleagues building consumer products on the side.`,
+    `Alon Bronfeld (Bronfelds Hub) — Marketplace/discovery product design.`,
+    `Samuel Green & Jorge Rybar — Indie consumer-app builders.`
+  ]
+},
+{
+  id: 31, d1: false, name: "Adam Kohler", project: "TemplateDocs",
+  tagline: "Document-automation (legaltech); trainee solicitor at Asserson",
+  photo: null, website: "templatedocs.lovable.app", linkedin: "adam-kohler",
+  stack: ["Claude", "Lovable"], revenue: "$1–$1,000/month",
+  seeking: "Feedback, meeting like-minded people", showcasing: true,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `A practicing junior lawyer building legaltech for his own workflow on no-code AI tools — a domain-authentic problem, already charging customers, and signed up to showcase.`,
+  building: `A document-automation tool that generates automated template packs, built on Lovable — aimed at the repetitive document-drafting pain he sees in legal practice. Early monetization (under $1K/month).`,
+  bg: `Trainee solicitor at Asserson — a UK law firm headquartered in London with its largest office in Tel Aviv, delivering UK legal services from Israel. Joined 2022 (intern → paralegal → trainee), completing his SQE; studied Philosophy at the University of Bristol. A junior lawyer, not a career engineer.`,
+  collab: [
+    `Danya Dotan (Bridge-iT) — Document/knowledge-work automation; legal drafting meets cognitive-friction reduction.`,
+    `Daniel Raccah & Isaac Horowitz — AI-services operators building doc/automation tooling.`,
+    `Professional-services automation peers.`
+  ]
+},
+{
+  id: 32, d1: false, name: "Alex Schajer", project: "SYNC",
+  tagline: "'Sync Your Cycle' — femtech performance app",
+  photo: "photos/Alex_Schajer.jpg", website: "sync-your-cycle.com", linkedin: "alex-schajer",
+  stack: ["Claude"], revenue: "Pre-Revenue",
+  seeking: "Exploring the Tel Aviv AI scene", showcasing: true,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `Building a femtech performance app with a real founding team and an incorporated company, launching the same month as the meetup — concrete and near-shipping.`,
+  building: `SYNC translates menstrual-cycle, sleep, recovery, training-load and wellbeing signals into a personalised daily 'SYNC Score' plus training guidance for women. App launching June 2026; currently pre-launch.`,
+  bg: `Solo-listed; the product is operated by SYNC Cycle Ltd (registered in England & Wales), with two women founders credited (a performance coach and a senior leader/athlete). Alex is likely the technical/AI builder of the pair.`,
+  collab: [
+    `Ishai Waisman (Ish-AI) — Coaching/wellness product peers.`,
+    `Arielle Aboav — Consumer app builders.`,
+    `Consumer-health / wearable-data builders.`
+  ]
+},
+{
+  id: 33, d1: false, name: "Michael Salaverry", project: "Quris-AI",
+  tagline: "Senior/staff engineer (drug-safety AI); solo side projects",
+  photo: "photos/Michael_Salaverry.jpg", website: "github.com/barakplasma", linkedin: "michaelsalaverry",
+  stack: ["Claude", "OpenCode"], revenue: "N/A",
+  seeking: "Connecting with other AI staff engineers for mutual guidance", showcasing: false,
+  cluster: ["Senior ML / Staff Engineers", "Deep Tech / Research / Clinical AI"],
+  insight: `A seasoned, publicly active AI staff engineer at a deep-tech bio/AI startup — a high-signal technical peer explicitly seeking engineer-to-engineer exchange.`,
+  building: `Quris-AI is an Israeli AI drug-safety/clinical-outcome prediction startup ('Patient-on-a-Chip'). His own time goes to exploratory side projects, hunting for one worth pursuing solo.`,
+  bg: `Tel Aviv Senior Full-Stack Engineer at Quris-AI since 2022 (frontend architecture + streaming data pipelines for microscope images); previously Frontend Engineer at Intuit. Active open-source/writing presence as 'barakplasma' (GitHub, dev.to, Medium). A staff-engineer 'Solver' archetype.`,
+  collab: [
+    `Ofek Seroussi (Wisor) — AI staff engineers seeking mutual guidance.`,
+    `Max Matkovski (construction AI, ex-Meta) — Production ML engineering peers.`,
+    `Gavriel Hannuna & Akiva Lipshitz — Deep-tech / clinical / research AI.`
+  ]
+},
+{
+  id: 34, d1: false, name: "Ben Badejo", project: "VoiceClaw · AI-ops",
+  tagline: "Voice client for agents (iOS/watchOS) + AI-ops consultancy",
+  photo: "photos/Benjamin_Badejo.jpg", website: "benbadejo.com", linkedin: "benjaminbadejo",
+  stack: ["Codex", "OpenClaw", "Hermes", "self-hosted Matrix"], revenue: "$5,000–$10,000/month",
+  seeking: "Co-founders/collaborators, learning, new connections", showcasing: false,
+  cluster: ["AI Services / Agencies", "Revenue Leaders ($5K+/mo)", "Co-founder Actively Seeking"],
+  insight: `The highest-revenue builder in this batch ($5–10K/month) with a real productized services business and a shipped, actively updated consumer app — a privacy/local-first AI-ops specialist.`,
+  building: `VoiceClaw Realtime — a thin, low-latency voice interface to your own OpenClaw/Hermes/MCP agent (no cloud middleman), live on iOS/watchOS with Android and Linux/Windows planned. Also ships LanguageCommand, a WhatsApp Collector, and PennyScribe (macOS meeting transcriber).`,
+  bg: `Independent builder who designs custom AI-operations systems — personalized automations, dashboards, and multi-agent orchestration via private self-hosted Matrix servers with Element as the console. Productized services with public pricing ($100 calls up to $2,500 installs).`,
+  collab: [
+    `Avi Amoyal (Zero Manual Work) — Both build voice/agentic developer interfaces; deepest voice-agent exchange.`,
+    `Daniel Raccah, Isaac Horowitz & DataCliniq (Gavriel/Sara) — AI-services / agency operators.`,
+    `Highest-revenue solo operator — a go-to for productizing AI services.`
+  ]
+},
+{
+  id: 35, d1: false, name: "Daniel Warren", project: "rali",
+  tagline: "Sports/social tech — 'make your match postable'",
+  photo: "photos/Daniel_Warren.jpg", website: "sharerali.app", linkedin: "daniel-william-warren",
+  stack: ["Claude", "Codex", "Cursor"], revenue: "Pre-Revenue",
+  seeking: "Meeting like-minded people in Tel Aviv (just relocated)", showcasing: false,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `An early-stage solo builder new to the TLV scene at the intersection of sports and social/content — primarily here to plug into the local community.`,
+  building: `rali is in pre-launch (waitlist landing page), positioned around making a sports match 'postable' — turning your game into shareable social content. Pre-revenue; built with Claude + Codex + Cursor.`,
+  bg: `Recently moved to Tel Aviv. Building 'Rali' (Instagram @padl.xyz hints at a racket/padel-sports angle). Note: don't conflate with an unrelated change-management platform of the same name.`,
+  collab: [
+    `Lior Kupfer (Tabbers) — Creator/social content tooling.`,
+    `Arielle Aboav & Jorge Rybar — Consumer-app builders.`,
+    `Newcomers' on-ramp into the Tel Aviv builder community.`
+  ]
+},
+{
+  id: 36, d1: false, name: "Daniel Raccah", project: "Lucent",
+  tagline: "AI-implementation agency for Italian SMBs",
+  photo: "photos/Daniel_Raccah.jpg", website: "lucentai.it", linkedin: "danielilanraccah",
+  stack: ["Claude", "Codex"], revenue: "$1,000–$5,000/month",
+  seeking: "Meeting potential co-founders", showcasing: false,
+  cluster: ["AI Services / Agencies", "Co-founder Actively Seeking"],
+  insight: `A repeat founder running a revenue-generating, geographically focused (Italy) AI services agency and actively hunting a co-founder — commercially live, not just experimenting.`,
+  building: `Lucent is a practical AI-implementation agency for Italian SMBs, pitching 'scale without hiring' by deploying AI into day-to-day operations. Generating $1–5K/month in early revenue.`,
+  bg: `Self-described 2x founder in the Tel Aviv District focused on bringing AI to underserved industries; listed as AI Consultant at Lucent. Clear Italy ties (.it domain, Italian-language site).`,
+  collab: [
+    `Isaac Horowitz (ZipLyne) — Two revenue-generating AI agency operators; compare delivery and productization.`,
+    `Gavriel Hannuna & Sara Spagnoletto (DataCliniq) — AI consultancy peers.`,
+    `Ben Badejo — AI-implementation services.`
+  ]
+},
+{
+  id: 37, d1: false, name: "Gavriel Hannuna", project: "DataCliniq",
+  tagline: "AI/data consultancy; Clinical Data Scientist at QuantHealth",
+  photo: "photos/Gavriel_Hannuna.jpg", website: "datacliniq.net", linkedin: "gavriel-hannuna",
+  stack: ["Claude", "Codex", "Cursor"], revenue: "$1,000–$5,000/month",
+  seeking: "Connecting with founders, finding collaborators", showcasing: false,
+  cluster: ["AI Services / Agencies", "Deep Tech / Research / Clinical AI"],
+  insight: `A deep-tech clinical-AI scientist (QuantHealth + ETH Zürich) monetizing a data/AI consultancy on the side — high technical credibility, revenue-generating, seeking collaborators.`,
+  building: `Day job at QuantHealth, which simulates clinical trials via millions of patient-level 'digital twins' to de-risk drug development. On the side runs DataCliniq, an AI/data consultancy ('From Data to Products, Built to Scale'), apparently with Sara Spagnoletto. ~$1–5K/month.`,
+  bg: `Clinical Data Scientist at QuantHealth (Tel Aviv), with a background spanning data science, venture capital, and bioinformatics; pursuing an MSc at ETH Zürich. Strong quantitative/scientific profile.`,
+  collab: [
+    `Sara Spagnoletto (DataCliniq / Google) — Apparent DataCliniq partner; deepen the consultancy.`,
+    `Akiva Lipshitz (physics + ML) — Deep-tech / clinical research peers.`,
+    `Daniel Raccah & Isaac Horowitz — AI-services operators.`
+  ]
+},
+{
+  id: 38, d1: false, name: "Gabriel Gothold", project: "Unybrands",
+  tagline: "Pricing automation at an e-commerce aggregator",
+  photo: "photos/Gabriel_Gothold.jpg", website: "unybrands.com", linkedin: "gabriel-g-38bb855b",
+  stack: ["Claude"], revenue: "N/A",
+  seeking: "Sharing knowledge, fellow builders, learning", showcasing: false,
+  cluster: ["E-Commerce / Retail AI"],
+  insight: `An operator at a large e-commerce roll-up applying Claude to real pricing/revenue-optimization at portfolio scale — practical applied-AI in commerce.`,
+  building: `Builds pricing-automation tooling inside Unybrands — automating competitive-pricing analysis and margin optimization (cost, ad spend, retailer margin) across the brand portfolio. Internal/operational, no standalone revenue.`,
+  bg: `Works at Unybrands, a venture-backed e-commerce aggregator ($300M raised; offices across the US, Europe, and Asia) that acquires and operates Amazon/DTC brands. His 'pricing automation' work fits its revenue-optimization functions.`,
+  collab: [
+    `Jeff Feiereisen (Boona) — E-commerce/DTC ops and pricing.`,
+    `noam cohen (Spikeet) — Pricing/market-data modeling.`,
+    `Doron Haberer (LovedByAI) — E-commerce visibility.`
+  ]
+},
+{
+  id: 39, d1: false, name: "Grigory Tal", project: "Tal Studio",
+  tagline: "AI web studio + micro-SaaS (ships via Claude Code)",
+  photo: "photos/Grigory_Tal.jpg", website: "grigorytal.com/studio", linkedin: "grigory-tal",
+  stack: ["Claude (Claude Code)"], revenue: "$1,000–$5,000/month",
+  seeking: "A room of people who actually ship; honest feedback; workflow tricks", showcasing: false,
+  cluster: ["AI Services / Agencies"],
+  insight: `Real paying clients across three countries with public testimonials and a polished portfolio — proof he ships sellable production work via AI orchestration despite being non-technical.`,
+  building: `A productized web studio (tiers ~$1,500 landing to custom e-commerce) plus micro-SaaS including 'KtoSkazal' (t.me/KtoSkazalBot — 'who said it'). Ships production software entirely through Claude Code.`,
+  bg: `Russian-speaking solo founder running 'Tal Studio,' a website-development studio promising a finished site in ~1 week from a single call. Confirmed live client work across Switzerland and Russia (GourmetLab, ShiftHappens, DJI-Market.ru) with testimonials. Non-technical: he architects/orchestrates while Claude Code builds.`,
+  collab: [
+    `Isaac Horowitz & Daniel Raccah — AI agency/studio operators.`,
+    `Avi Amoyal — Claude Code orchestration workflows.`,
+    `Russian-Israeli builders (Vlad, Artem, David Mekibel, Fedorov Dmitrii).`
+  ]
+},
+{
+  id: 40, d1: false, name: "Isaac Horowitz", project: "ZipLyne",
+  tagline: "AI-native dev agency; ReplyMagic, MentionWell, 'baba'",
+  photo: "photos/Isaac_Horowitz.jpg", website: "ziplyne.agency", linkedin: "iowitz",
+  stack: ["Claude Code", "React Native", "Python"], revenue: "$1,000–$5,000/month",
+  seeking: "Devs", showcasing: false,
+  cluster: ["AI Services / Agencies"],
+  insight: `A verified, deep portfolio of 150+ shipped AI products with named client testimonials — among the most demonstrably productive builders in the cohort; his self-reported revenue likely understates per-project economics.`,
+  building: `Client projects plus three own products: ReplyMagic (monitors Instagram comments and drafts brand-aware AI replies), MentionWell (a multi-tenant AEO/SEO agent that researches, drafts, and publishes long-form content, citation-tracked across ~10 AI answer engines), and 'baba' (context-aware Hebrew translator across web/iOS/Android/Chrome).`,
+  bg: `Tel Aviv founder/'prompt architect'; former military operator and top-ranked competitive gamer; among the earliest ChatGPT users. Runs ZipLyne (est. 2022) delivering fixed-bid MVPs (~$7,500, ~21-day builds) with 'the output of a 10-person agency' via parallel AI workflows. Portfolio claims 150+ products shipped (agency claims $50M+ generated for clients).`,
+  collab: [
+    `Doron Haberer (LovedByAI) — CRITICAL: MentionWell and LovedByAI are both AEO/GEO products; the strongest AI-search peer match in the room.`,
+    `Daniel Raccah (Lucent) & Grigory Tal — AI agency/studio operators.`,
+    `Ofek Seroussi & Michael Salaverry — Engineers (he's actively seeking devs).`
+  ]
+},
+{
+  id: 41, d1: false, name: "Filipp Shilnikov", project: "Filuet (FP&A)",
+  tagline: "Lead Data Analyst / FP&A; finance-ops automation",
+  photo: "photos/Filipp_Shilnikov.jpg", website: null, linkedin: "filippshil",
+  stack: ["Claude", "Cursor"], revenue: "N/A",
+  seeking: "Meeting smart people", showcasing: false,
+  cluster: ["Fintech / Finance"],
+  insight: `A genuine FP&A + data-engineering specialist (BI models over 20M+ rows) applying AI to finance automation — and a prior startup co-founder (Zazim.tech). Strong fit for any team needing finance/data infrastructure.`,
+  building: `Automating finance operations — building a 'financial department': P&L/cash-flow analytics, scalable data models, and automated reporting that connects operational data to financial outcomes. Strong FP&A + BI/data-engineering toolkit, now adding AI coding tools.`,
+  bg: `Lead Data Analyst / FP&A at Filuet (since 2024, Tel Aviv, remote). Previously FP&A Manager at Rostelecom (Moscow), where he cut reporting time ~30% and built BI data models (SSAS tabular, SSIS, DAX over 20M+ row tables). Co-founded Zazim.tech (2023–24), a social network for housing in Israel. MA and BA from Saint Petersburg State University. Crypto enthusiast.`,
+  collab: [
+    `Coral Fussman & noam cohen — Fintech / finance-data peers.`,
+    `Amitay Manor & Ben Barak — Internal-ops / reporting automation.`,
+    `Ilya Kogan & Alexander Mendelsohn — Finance / investment-analytics crossover.`
+  ]
+},
+{
+  id: 42, d1: false, name: "Ilya Kogan", project: "Alt-assets analytics",
+  tagline: "Investment analytics for music royalties / rights",
+  photo: "photos/Ilya_Kogan.jpg", website: "noteyetdeployed.io", linkedin: "ilyakogan1199",
+  stack: ["Claude", "Codex"], revenue: "Pre-Revenue",
+  seeking: "Meeting ambitious founders/operators/builders in AI", showcasing: false,
+  cluster: ["Fintech / Finance"],
+  insight: `An unusual domain edge — deep classical-music/arts-investment expertise (rare instruments, royalties) combined with formal VC/finance training, positioning him for a credible alternative-assets analytics play.`,
+  building: `A few projects across arts and tech; exploring an investment-analytics platform for alternative assets focused on music royalties and rights — a fusion of his classical-music background and finance training. Pre-launch.`,
+  bg: `Completing a Global MBA at Tel Aviv University (VC & Entrepreneurial Finance). Previously founded Kolico, a London-based consultancy/marketing firm for classical musicians, arts organizations, and rare stringed-instrument investments; earlier worked at an investment-management firm on fundraising and capital deployment.`,
+  collab: [
+    `noam cohen (Spikeet) — Royalties analytics needs market-data infrastructure.`,
+    `Marissa Posner (Ethereum) — Alternative-assets / on-chain royalties.`,
+    `Amitay Manor (Aleph) & Coral Fussman — VC and fintech.`
+  ]
+},
+{
+  id: 43, d1: false, name: "Max Matkovski", project: "Stealth — construction AI",
+  tagline: "AEC AI; ex-Meta / Corvic AI ML engineer",
+  photo: "photos/Max_Matkovski.jpg", website: "maxmatkovski.com", linkedin: "maxmatkovski",
+  stack: ["Claude", "Codex"], revenue: "$5,000–$10,000/month",
+  seeking: "Being in touch with other founders in the space", showcasing: false,
+  cluster: ["Senior ML / Staff Engineers", "Revenue Leaders ($5K+/mo)"],
+  insight: `A genuinely strong engineering pedigree (Meta + Corvic production LLM/RAG/agent work) paired with $5–10K/month revenue already — among the most technically credible builders in this batch.`,
+  building: `A stealth product in the construction-AI (AEC) space, built with Claude + Codex. Specifics undisclosed, but his profile points to LLM agents over structured/document data — a fit for construction workflows (quotes, specs, RFIs, project data).`,
+  bg: `ML/LLM engineer with a strong applied track record: built a production LLM knowledge assistant (RAG) at Meta and a production code-generation agent at Corvic AI (natural-language querying of tabular data). Deep production skills across RAG, agents, serving/scaling, and reliability.`,
+  collab: [
+    `Michael Salaverry (Quris) & Ofek Seroussi (Wisor) — Production ML/staff-engineer exchange.`,
+    `Akiva Lipshitz — Deep ML.`,
+    `Samuel Green (Guesty) — PropTech/built-environment crossover.`
+  ]
+},
+{
+  id: 44, d1: false, name: "Michaël Weizmann", project: "LaManna",
+  tagline: "Plant-based foodtech; serial fintech/blockchain founder",
+  photo: null, website: "lamanna.today", linkedin: "micha%C3%ABl-weizmann-51628a",
+  stack: ["Claude"], revenue: "N/A",
+  seeking: "Sharing knowledge, connecting with AI builders", showcasing: false,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `A rare fintech/blockchain + branding veteran (one acquisition under his belt) now building in plant-based foodtech — deep product, crypto, and creative-direction range.`,
+  building: `Co-founder/creator of LaManna ('Food, Designed') — an authentic alternative-protein, plant-based foodtech company crafting refined tastes and textures for culinary use; he describes a structured internal workspace ('lab') for organizing experiments. Currently invite-gated.`,
+  bg: `A 20-year serial founder, product manager, and Strategic Creative Director (French native, Paris/Israel). Co-founded Bsave (the first Bitcoin savings account — acquired), Finoware (fintech UI/UX + algo-trading software), and ran a bitcoin HFT arbitrage desk (+94.5% annual return) plus a 900 TH/s mining operation. Specializes in branding and FinTech/blockchain integration.`,
+  collab: [
+    `Marissa Posner (Ethereum) & Liron Achdut — Crypto/fintech veterans; deep blockchain history.`,
+    `David Mekibel (Balancē Creative, D#1) — Creative-direction / branding peers.`,
+    `Alon Bronfeld & Han Rabinovitz — Branding, product, and founder positioning.`
+  ]
+},
+{
+  id: 45, d1: false, name: "Sara Spagnoletto", project: "DataCliniq",
+  tagline: "AI consultancy; Data Scientist at Google",
+  photo: "photos/Sara_Spagnoletto.jpg", website: "datacliniq.net", linkedin: "saraspagnoletto",
+  stack: ["Claude", "Codex", "OpenCode", "Cursor"], revenue: "$1,000–$5,000/month",
+  seeking: "Sharing knowledge, feedback, connecting", showcasing: false,
+  cluster: ["AI Services / Agencies"],
+  insight: `A day-job data scientist at Google running a revenue-generating AI consultancy on the side, with one of the most diverse AI-tooling stacks in the cohort — strong technical credibility plus delivery.`,
+  building: `DataCliniq, an AI consultancy turning data into shipped, scalable products. A notably broad modern AI-coding toolkit (Claude, Codex, OpenCode, Cursor) indicates hands-on build/agentic work, not advisory-only.`,
+  bg: `Data scientist listing Google as employer; active in the data-science community (DeepLearning.AI, writing under her name). Runs DataCliniq ('From Data to Products, Built to Scale'), apparently with Gavriel Hannuna.`,
+  collab: [
+    `Gavriel Hannuna (QuantHealth / DataCliniq) — Apparent DataCliniq partner.`,
+    `Daniel Benzaquen (Sisense) & Michael Salaverry (Quris) — Applied-AI / data engineering.`,
+    `Daniel Raccah & Isaac Horowitz — AI-services operators.`
+  ]
+},
+{
+  id: 46, d1: false, name: "Sigal Sax", project: "Lasso Security",
+  tagline: "Senior Software Engineer (GenAI/LLM security)",
+  photo: "photos/Sigal_Sax.jpg", website: "lasso.security", linkedin: "sigalsax",
+  stack: ["Claude", "Cursor"], revenue: "N/A",
+  seeking: "Connecting and sharing", showcasing: false,
+  cluster: ["AI Security & Governance"],
+  insight: `A hands-on senior engineer inside a leading Israeli LLM-security company (Lasso) with a CyberArk security pedigree — a strong technical + security signal for the room.`,
+  building: `Broad engineering across Lasso's GenAI-security product, building with Claude + Cursor; exploring side-builds given the meetup context.`,
+  bg: `Senior Software Engineer at Lasso Security, an Israeli GenAI-security startup protecting organizations using LLMs/agentic AI. Strong backend/full-stack background: previously a Node.js backend developer at Moon Active (Coin Master) and earlier roles at CyberArk. An engineer at Lasso, not the founder. Note: a Lasso colleague (martin miller) is also attending.`,
+  collab: [
+    `martin miller (Lasso) — Lasso colleague; both build on the side.`,
+    `Gil G (AI Gateway) — GenAI-security engineer meets governance founder.`,
+    `Liron Achdut & Tom Cohen — Security cluster.`
+  ]
+},
+{
+  id: 47, d1: false, name: "Alexander Mendelsohn", project: "Fido",
+  tagline: "Data Scientist (fintech); prolific Claude Code builder",
+  photo: "photos/Alexander_Mendelsohn.jpg", website: "fido.money", linkedin: "xanmendelsohn",
+  stack: ["Claude"], revenue: "N/A",
+  seeking: "Connecting and sharing latest trends; co-founders/collaborators", showcasing: false,
+  cluster: ["Fintech / Finance", "Co-founder Actively Seeking"],
+  insight: `A production fintech/ML data-science background (credit-risk models at scale) plus active Claude Code building and an explicit co-founder search — a builder ready to start something.`,
+  building: `Builds prolifically with Claude Code (personal/side projects) and is actively looking for co-founders/collaborators — a fintech data scientist exploring his own thing.`,
+  bg: `Tel Aviv Data Scientist at Fido (fido.money), an Israeli-founded African fintech doing instant ML-driven credit ($20M Series B; $500M+ credit distributed; 1M+ customers). Production credit-risk modeling at scale; an IC/data-science role.`,
+  collab: [
+    `Matan Harsat, Yaacov Albietz & Ofek Seroussi — Co-founder conversations.`,
+    `Coral Fussman, noam cohen & Filipp Shilnikov — Fintech peers.`,
+    `Marissa Posner — Fintech / crypto payments.`
+  ]
+},
+{
+  id: 48, d1: false, name: "Yaniv Azriel", project: "'Kalshi for adtech'",
+  tagline: "Prediction-market / forecasting for ad campaigns",
+  photo: "photos/Yaniv_Azriel.jpg", website: null, linkedin: "yanivazriel",
+  stack: ["OpenCode"], revenue: "Pre-Revenue",
+  seeking: "Connecting with founders/builders", showcasing: false,
+  cluster: ["Consumer / Indie Builders"],
+  insight: `An exceptionally strong low-level/HFT engineer (Barak Capital, ironSource, Samsung, HUJI) bringing real markets and adtech depth to a prediction-market idea — far more technically credible than the concept alone suggests.`,
+  building: `A prediction-market/forecasting layer for advertising — gamify and forecast how ad campaigns will perform ('Kalshi for adtech'). His adtech (ironSource) plus algo-trading/markets background is an unusually precise fit. Early-stage.`,
+  bg: `A deep systems and HFT engineer. Senior Software Developer at Barak Capital since 2017 (algo trading, HFT in Java and C). Long tenure as Team Leader at ironSource (polymorphic code, Win32 internals, full-stack C++/Linux, scaling to millions of agents). Earlier: Technical Lead at Samsung's Innovation Center. MSc and BSc (Math & CS, with distinction) from Hebrew University.`,
+  collab: [
+    `Marissa Posner (Ethereum) — Prediction-market / on-chain settlement mechanics.`,
+    `noam cohen (Spikeet) — Markets data and trading-systems peers.`,
+    `Doron Haberer & Isaac Horowitz — Adtech / marketing distribution.`
   ]
 }
 ];
