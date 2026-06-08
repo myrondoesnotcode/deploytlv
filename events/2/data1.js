@@ -45,7 +45,7 @@ window.D2.newAttendees = [
   bg: `Full-time solo founder with a developer background (active GitHub, incl. a self-hosted RAG chat project). Most signal comes from the shipped product; the RAG/document-chat work points to genuine hands-on LLM engineering.`,
   collab: [
     `Matan Harsat (Flare) — Both technical builders seeking co-founders.`,
-    `noam cohen (Spikeet) — Spikeet's financial data could power Yaacov's AI investment advisor. Direct product synergy.`,
+    `Noam Cohen (Spikeet) — Spikeet's financial data could power Yaacov's AI investment advisor. Direct product synergy.`,
     `Daniel Benzaquen (Glyph) — LLM-app builders; multimodal/UX exchange.`
   ]
 },
@@ -141,7 +141,7 @@ window.D2.newAttendees = [
   bg: `Uses an abbreviated name and a Railway preview URL — a very early, pre-launch project. Self-reports as a founder in IT Security building an AI governance gateway, implying a security/infra background. Lowest public verifiability in the cohort.`,
   collab: [
     `Ari Eliezrie (Radware LLM firewall, D#1) — CRITICAL: adjacent LLM-security/governance layers.`,
-    `martin miller (Lasso) — Direct GenAI-security peer.`,
+    `Martin Miller (Lasso) — Direct GenAI-security peer.`,
     `Liron Achdut & Tom Cohen — Security cluster.`
   ]
 },
@@ -156,8 +156,8 @@ window.D2.newAttendees = [
   building: `Builds AI agents for cybersecurity at IRONSCALES — agentic pipelines for SOC annotation, label validation, and active-learning data workflows (LangGraph / DSPy / Claude Code SDK). Attending to exchange knowledge rather than pitch a product.`,
   bg: `Senior AI Engineer on the Innovation Team at IRONSCALES (email/phishing security) since 2024; previously Senior AI Engineer at MobileODT (4+ yrs), Senior Data Scientist at Jungo Connectivity, and Data Scientist at Earnix. BA in Statistics & Economics, Hebrew University; ITC Data Science Fellow. Active in Israel's AI-security builder scene.`,
   collab: [
-    `Liron Achdut, Gil G, martin miller, Sigal Sax — AI-security cluster; deepest peer set in the room.`,
-    `Sigal Sax & martin miller (Lasso) — GenAI-security engineers comparing agent/guardrail pipelines.`,
+    `Liron Achdut, Gil G, Martin Miller, Sigal Sax — AI-security cluster; deepest peer set in the room.`,
+    `Sigal Sax & Martin Miller (Lasso) — GenAI-security engineers comparing agent/guardrail pipelines.`,
     `Ike Bodner — Defense/security ecosystem.`
   ]
 },
@@ -172,13 +172,13 @@ window.D2.newAttendees = [
   building: `ReactFirst AI is an AI platform for real-time narrative detection, threat monitoring, and crisis detection — accelerating strategic/communications response. Sits in the social-listening / reputation-and-crisis-intelligence space.`,
   bg: `Co-Founder & CTO of ReactFirst AI. Limited public footprint; the $5–10K/month revenue indicates a technical founder past zero-to-one with paying customers.`,
   collab: [
-    `noam cohen (Spikeet) — Data-platform peers.`,
+    `Noam Cohen (Spikeet) — Data-platform peers.`,
     `Han Rabinovitz (TheHan) — Crisis-comms / narrative buyers and positioning.`,
     `Marissa Posner — OSINT-adjacent technical exchange.`
   ]
 },
 {
-  id: 12, d1: false, name: "noam cohen", project: "Spikeet",
+  id: 12, d1: false, name: "Noam Cohen", project: "Spikeet",
   tagline: "Historical financial-market & alt-data platform",
   photo: "photos/Noam_Cohen.jpg", website: "spikeet.com", linkedin: "noam-cohen-00854862",
   stack: ["Claude"], revenue: "$5,000–$10,000/month",
@@ -270,7 +270,7 @@ window.D2.newAttendees = [
   collab: [
     `Jorge Rybar (Give10) & Lior Kupfer — Indie consumer-app builders.`,
     `Daniel Benzaquen (Glyph) — Both ship many small AI tools; dev-workflow exchange.`,
-    `martin miller (SurvAI) — Consumer-app/distribution exchange.`
+    `Martin Miller (SurvAI) — Consumer-app/distribution exchange.`
   ]
 },
 {
@@ -302,7 +302,7 @@ window.D2.newAttendees = [
   collab: [
     `Liron Achdut (OpenSentry) — Smart-contract security for agent payment rails.`,
     `Michael Heiser (web3 / LIT Ai, D#1) — Web3 peer.`,
-    `noam cohen (Spikeet) — Finance/data exchange.`
+    `Noam Cohen (Spikeet) — Finance/data exchange.`
   ]
 },
 {
@@ -397,7 +397,7 @@ window.D2.newAttendees = [
   bg: `Tel Aviv-based software engineer at Handshaik with a full-stack skill set (TS/JS, Java/Spring, Node/Express, Next.js, Python). Handshaik (founder Josh Port) is an AI-native, end-to-end platform for finding, nurturing, and winning deals — used by M&A advisors, PE, professional services, and B2B GTM teams; ISO 27001 certified.`,
   collab: [
     `Alon Bronfeld (Bronfelds Hub) — Both build AI-native deal/discovery platforms.`,
-    `noam cohen (Spikeet) & Yaacov Albietz — Fintech / investing peers.`,
+    `Noam Cohen (Spikeet) & Yaacov Albietz — Fintech / investing peers.`,
     `Founders needing senior full-stack capacity.`
   ]
 },
@@ -414,7 +414,7 @@ window.D2.newAttendees = [
   collab: [
     `Zohar Mosseri (ReactFirst) — Both work the layer of how brands are seen online; complementary, both revenue-generating.`,
     `Jorge Rybar & Samuel Green — Consumer builders who need AI-search visibility.`,
-    `Gil G / martin miller — Technical exchange.`
+    `Gil G / Martin Miller — Technical exchange.`
   ]
 },
 {
@@ -434,7 +434,7 @@ window.D2.newAttendees = [
   ]
 },
 {
-  id: 28, d1: false, name: "martin miller", project: "SurvAI · Lasso",
+  id: 28, d1: false, name: "Martin Miller", project: "SurvAI · Lasso",
   tagline: "Anonymous survey social network; GenAI security",
   photo: "photos/Martin_Miller.jpg", website: "survai-dun.vercel.app", linkedin: "genai-security",
   stack: ["Claude", "Cursor"], revenue: "Pre-Revenue",
@@ -605,7 +605,7 @@ window.D2.newAttendees = [
   bg: `Works at Unybrands, a venture-backed e-commerce aggregator ($300M raised; offices across the US, Europe, and Asia) that acquires and operates Amazon/DTC brands. His 'pricing automation' work fits its revenue-optimization functions.`,
   collab: [
     `Jeff Feiereisen (Boona) — E-commerce/DTC ops and pricing.`,
-    `noam cohen (Spikeet) — Pricing/market-data modeling.`,
+    `Noam Cohen (Spikeet) — Pricing/market-data modeling.`,
     `Doron Haberer (LovedByAI) — E-commerce visibility.`
   ]
 },
@@ -652,7 +652,7 @@ window.D2.newAttendees = [
   building: `Automating finance operations — building a 'financial department': P&L/cash-flow analytics, scalable data models, and automated reporting that connects operational data to financial outcomes. Strong FP&A + BI/data-engineering toolkit, now adding AI coding tools.`,
   bg: `Lead Data Analyst / FP&A at Filuet (since 2024, Tel Aviv, remote). Previously FP&A Manager at Rostelecom (Moscow), where he cut reporting time ~30% and built BI data models (SSAS tabular, SSIS, DAX over 20M+ row tables). Co-founded Zazim.tech (2023–24), a social network for housing in Israel. MA and BA from Saint Petersburg State University. Crypto enthusiast.`,
   collab: [
-    `Coral Fussman & noam cohen — Fintech / finance-data peers.`,
+    `Coral Fussman & Noam Cohen — Fintech / finance-data peers.`,
     `Amitay Manor & Ben Barak — Internal-ops / reporting automation.`,
     `Ilya Kogan & Alexander Mendelsohn — Finance / investment-analytics crossover.`
   ]
@@ -668,7 +668,7 @@ window.D2.newAttendees = [
   building: `A few projects across arts and tech; exploring an investment-analytics platform for alternative assets focused on music royalties and rights — a fusion of his classical-music background and finance training. Pre-launch.`,
   bg: `Completing a Global MBA at Tel Aviv University (VC & Entrepreneurial Finance). Previously founded Kolico, a London-based consultancy/marketing firm for classical musicians, arts organizations, and rare stringed-instrument investments; earlier worked at an investment-management firm on fundraising and capital deployment.`,
   collab: [
-    `noam cohen (Spikeet) — Royalties analytics needs market-data infrastructure.`,
+    `Noam Cohen (Spikeet) — Royalties analytics needs market-data infrastructure.`,
     `Marissa Posner (Ethereum) — Alternative-assets / on-chain royalties.`,
     `Amitay Manor (Aleph) & Coral Fussman — VC and fintech.`
   ]
@@ -730,9 +730,9 @@ window.D2.newAttendees = [
   cluster: ["AI Security & Governance"],
   insight: `A hands-on senior engineer inside a leading Israeli LLM-security company (Lasso) with a CyberArk security pedigree — a strong technical + security signal for the room.`,
   building: `Broad engineering across Lasso's GenAI-security product, building with Claude + Cursor; exploring side-builds given the meetup context.`,
-  bg: `Senior Software Engineer at Lasso Security, an Israeli GenAI-security startup protecting organizations using LLMs/agentic AI. Strong backend/full-stack background: previously a Node.js backend developer at Moon Active (Coin Master) and earlier roles at CyberArk. An engineer at Lasso, not the founder. Note: a Lasso colleague (martin miller) is also attending.`,
+  bg: `Senior Software Engineer at Lasso Security, an Israeli GenAI-security startup protecting organizations using LLMs/agentic AI. Strong backend/full-stack background: previously a Node.js backend developer at Moon Active (Coin Master) and earlier roles at CyberArk. An engineer at Lasso, not the founder. Note: a Lasso colleague (Martin Miller) is also attending.`,
   collab: [
-    `martin miller (Lasso) — Lasso colleague; both build on the side.`,
+    `Martin Miller (Lasso) — Lasso colleague; both build on the side.`,
     `Gil G (AI Gateway) — GenAI-security engineer meets governance founder.`,
     `Liron Achdut & Tom Cohen — Security cluster.`
   ]
@@ -749,7 +749,7 @@ window.D2.newAttendees = [
   bg: `Tel Aviv Data Scientist at Fido (fido.money), an Israeli-founded African fintech doing instant ML-driven credit ($20M Series B; $500M+ credit distributed; 1M+ customers). Production credit-risk modeling at scale; an IC/data-science role.`,
   collab: [
     `Matan Harsat, Yaacov Albietz & Ofek Seroussi — Co-founder conversations.`,
-    `Coral Fussman, noam cohen & Filipp Shilnikov — Fintech peers.`,
+    `Coral Fussman, Noam Cohen & Filipp Shilnikov — Fintech peers.`,
     `Marissa Posner — Fintech / crypto payments.`
   ]
 },
@@ -765,7 +765,7 @@ window.D2.newAttendees = [
   bg: `A deep systems and HFT engineer. Senior Software Developer at Barak Capital since 2017 (algo trading, HFT in Java and C). Long tenure as Team Leader at ironSource (polymorphic code, Win32 internals, full-stack C++/Linux, scaling to millions of agents). Earlier: Technical Lead at Samsung's Innovation Center. MSc and BSc (Math & CS, with distinction) from Hebrew University.`,
   collab: [
     `Marissa Posner (Ethereum) — Prediction-market / on-chain settlement mechanics.`,
-    `noam cohen (Spikeet) — Markets data and trading-systems peers.`,
+    `Noam Cohen (Spikeet) — Markets data and trading-systems peers.`,
     `Doron Haberer & Isaac Horowitz — Adtech / marketing distribution.`
   ]
 }
