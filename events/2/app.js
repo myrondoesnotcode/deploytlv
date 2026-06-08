@@ -17,14 +17,17 @@ const CLUSTERS = (window.D2.clusterDefs || []).map(d => ({
   members: ATTENDEES.filter(a => (a.cluster || []).includes(d.name)).map(a => a.name)
 })).filter(c => c.members.length > 0);
 
+const BREAKOUTS = window.D2.breakoutGroups || [];
+
 const byName = name => ATTENDEES.find(a => a.name === name);
 const byId = id => ATTENDEES.find(a => a.id === id);
 
 /* ── helpers ── */
+function revLabel(rev) {
+  return (rev === "Revenue" || (rev && rev.startsWith("$"))) ? "Revenue" : "Pre-Revenue";
+}
 function revStyle(rev) {
-  if (rev === "Revenue" || (rev && rev.startsWith("$"))) return { background: ACCENT, color: BLACK };
-  if (rev === "Pre-Revenue") return { background: "#EADFBC", color: "#8C8163" };
-  return { background: "#EFE7CB", color: FAINT };
+  return revLabel(rev) === "Revenue" ? { background: ACCENT, color: BLACK } : { background: "#EADFBC", color: "#8C8163" };
 }
 
 function Avatar({ a, size }) {
@@ -112,7 +115,7 @@ function App() {
     return ms && mc;
   });
 
-  const tabs = [["profiles", "Profiles"], ["matches", "Matchmaking"], ["clusters", "Skill Map"], ["forme", "Who To Meet"]];
+  const tabs = [["profiles", "Profiles"], ["matches", "Matchmaking"], ["clusters", "Skill Map"], ["breakouts", "Breakout"], ["forme", "Who To Meet"]];
 
   return (
     <div style={{ background: BG, minHeight: "100vh", fontFamily: MONO, color: INK }}>
@@ -189,15 +192,13 @@ function App() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
                       <span style={{ color: FAINT, fontSize: 11, fontWeight: 700 }}>#{String(a.id).padStart(2, "0")}</span>
-                      <Badge text={a.revenue} bg={revStyle(a.revenue).background} color={revStyle(a.revenue).color} />
+                      <Badge text={revLabel(a.revenue)} bg={revStyle(a.revenue).background} color={revStyle(a.revenue).color} />
                     </div>
                     <div className="barlow" style={{ fontSize: 19, fontWeight: 900, letterSpacing: 0, lineHeight: 1.05 }}>{a.name}</div>
                     <div className="barlow" style={{ fontSize: 12, color: GOLD, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginTop: 2 }}>{a.project}</div>
                   </div>
                 </div>
-                <div style={{ display: "flex", gap: 6, marginBottom: 8, flexWrap: "wrap" }}>
-                  {a.showcasing && <Badge text="★ Showcasing" bg={ACCENT} color={BLACK} />}
-                  {a.d1 && <Badge text="↩ Deploy #1" border={BORDER} color={MUTED} />}
+                <div style={{ display: "flex", gap: 6, marginBottom: 8, flexWrap: "wrap" }}>                  {a.d1 && <Badge text="↩ Deploy #1" border={BORDER} color={MUTED} />}
                 </div>
                 <div style={{ fontSize: 12, color: MUTED, lineHeight: 1.5, marginBottom: 6 }}>{a.tagline}</div>
                 <StackChips stack={a.stack} max={3} />
@@ -261,6 +262,36 @@ function App() {
       )}
 
       {/* WHO TO MEET */}
+      {tab === "breakouts" && (
+        <div style={{ padding: 16 }}>
+          <div style={{ marginBottom: 18 }}>
+            <div className="barlow" style={{ fontSize: 26, fontWeight: 900, textTransform: "uppercase", letterSpacing: -0.5 }}>Breakout Groups</div>
+            <div style={{ fontSize: 12, color: MUTED, marginTop: 4, letterSpacing: 1 }}>NINE SUGGESTED SESSIONS · CLICK A NAME TO VIEW PROFILE · D#1 = RETURNING ALUM</div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(330px,1fr))", gap: 12 }}>
+            {BREAKOUTS.map(g => (
+              <div key={g.id} className="d2-flat" style={{ padding: 16, borderTop: "3px solid " + (g.color || ACCENT) }}>
+                <div className="barlow" style={{ fontSize: 11, fontWeight: 800, color: GOLD, letterSpacing: 2, marginBottom: 2 }}>GROUP {g.id} · {g.members.length} PEOPLE</div>
+                <div className="barlow" style={{ fontSize: 19, fontWeight: 900, lineHeight: 1.05, marginBottom: 6 }}>{g.name}</div>
+                <div style={{ fontSize: 12, color: MUTED, lineHeight: 1.55, marginBottom: 10 }}>{g.focus}</div>
+                <div style={{ fontSize: 11, marginBottom: 10 }}><span className="barlow" style={{ color: GOLD, fontWeight: 800, letterSpacing: 1 }}>ANCHOR </span><span style={{ color: INK }}>{g.anchor}</span></div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {g.members.map(m => {
+                    const a = byName(m);
+                    return (
+                      <span key={m} onClick={() => a && setSelected(a)} className="barlow" style={{
+                        background: "#fff", border: "1px solid " + BORDER, color: INK,
+                        fontSize: 11, fontWeight: 700, padding: "3px 8px", letterSpacing: 0.5,
+                        cursor: a ? "pointer" : "default", whiteSpace: "nowrap"
+                      }}>{m}{a && a.d1 ? " ·D#1" : ""}</span>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {tab === "forme" && <ForMe myName={myName} setMyName={setMyName} myId={myId} setMyId={setMyId} setSelected={setSelected} />}
 
       {/* MODAL */}
@@ -365,7 +396,7 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
                       })}
                     </div>
                   </div>
-                  <span style={{ marginLeft: 10 }}><Badge text={a.revenue} bg={revStyle(a.revenue).background} color={revStyle(a.revenue).color} /></span>
+                  <span style={{ marginLeft: 10 }}><Badge text={revLabel(a.revenue)} bg={revStyle(a.revenue).background} color={revStyle(a.revenue).color} /></span>
                 </div>
               ))}
             </React.Fragment>
@@ -404,9 +435,7 @@ function Modal({ a, setSelected }) {
         <div style={{ fontSize: 13, color: INK, lineHeight: 1.6, marginBottom: 14 }}>{a.tagline}</div>
 
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          <Badge text={a.revenue} bg={revStyle(a.revenue).background} color={revStyle(a.revenue).color} />
-          {a.showcasing && <Badge text="★ Showcasing" bg={ACCENT} color={BLACK} />}
-          {a.d1 && <Badge text="↩ Deploy #1 alum" border={BORDER} color={MUTED} />}
+          <Badge text={revLabel(a.revenue)} bg={revStyle(a.revenue).background} color={revStyle(a.revenue).color} />          {a.d1 && <Badge text="↩ Deploy #1 alum" border={BORDER} color={MUTED} />}
           {a.linkedin && <a className="d2-link" href={"https://linkedin.com/in/" + a.linkedin} target="_blank" rel="noreferrer" style={{ color: MUTED, fontSize: 11, textDecoration: "none", border: "1px solid " + BORDER, padding: "3px 8px", letterSpacing: 1 }}>LINKEDIN ↗</a>}
           {websiteHref && <a className="d2-link" href={websiteHref} target="_blank" rel="noreferrer" style={{ color: MUTED, fontSize: 11, textDecoration: "none", border: "1px solid " + BORDER, padding: "3px 8px", letterSpacing: 1 }}>{a.website} ↗</a>}
         </div>
