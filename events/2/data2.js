@@ -230,6 +230,18 @@ window.D2.alumni = [
     `Doron Haberer (LovedByAI) — GEO so 'best Bitcoin analytics platform' surfaces Newhedge in AI search.`,
     `Amitay Manor (Aleph) — Warm path into a fund if Newhedge is raising.`
   ]
+},
+{
+  id: 72, d1: true, name: "Alan Mekibel", project: "Yallagan · Deploy TLV",
+  tagline: "Global Jewish events platform + Deploy TLV community manager",
+  photo: "../1/photos/Alan_Mekibel.jpg", website: null, linkedin: "amekibel",
+  stack: ["Codex", "Claude"], revenue: "Pre-Revenue",
+  seeking: "Meeting people", showcasing: false,
+  cluster: ["Community / VC Connectors", "Consumer / Indie Builders", "Creator / Media / Audio"],
+  insight: `An operator/connector with a proven global community platform generating real event volume (1,200+ events/year, 250+ orgs, 36 countries) — and the Community Manager for Deploy TLV itself. The community-distribution channel in the room.`,
+  building: null,
+  bg: `IE University (BBA Marketing) + Syracuse Whitman (BS Marketing & Entrepreneurship). Co-Founder & CEO, Yallagan (Mar 2022–present) — a global Jewish events platform with 250+ orgs in 36 countries, an iOS/Android app, 1,200+ events published in a year, plus two WJC seed grants and a Nevatim grant. Russian-speaking. Side project: heirloom-audio.vercel.app — AI oral-history preservation. Brother of David Mekibel.`,
+  collab: []
 }
 ];
 
@@ -338,7 +350,7 @@ window.D2.breakoutGroups = [
 { id: 5, color: "#9333EA", name: "Consumer, Creator & Media",
   focus: `Consumer AI, creator and media tooling, visual production, and distribution — turning AI output into audience.`,
   anchor: "Shimon Rosen / Myron Shneider",
-  members: ["Lior Kupfer", "Jorge Rybar", "Samuel Green", "Arielle Aboav", "Daniel Warren", "Matan Porat", "Shimon Rosen", "David Mekibel", "Ilan Oz", "Vlad Neyshtadt"] },
+  members: ["Lior Kupfer", "Jorge Rybar", "Samuel Green", "Arielle Aboav", "Daniel Warren", "Matan Porat", "Shimon Rosen", "David Mekibel", "Alan Mekibel", "Ilan Oz", "Vlad Neyshtadt"] },
 { id: 6, color: "#C026D3", name: "AI Services, Agencies, GTM & AI-Search",
   focus: `Delivering AI as a service — agency/studio models, AEO/GEO (getting cited by AI), GTM engineering, and content/narrative.`,
   anchor: "Isaac Horowitz (ZipLyne)",
