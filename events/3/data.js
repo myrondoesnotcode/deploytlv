@@ -2026,6 +2026,35 @@ window.D3 = {
    "d1": false,
    "d1label": "",
    "unverifiedNotes": ""
+  },
+  {
+   "id": 79,
+   "name": "Ilya Kogan",
+   "project": "Alt-assets analytics",
+   "tagline": "Investment analytics for music royalties / rights",
+   "photo": "photos/Ilya_Kogan.jpg",
+   "stack": [
+    "Claude",
+    "Codex"
+   ],
+   "revenue": "Pre-Revenue",
+   "linkedin": "linkedin.com/in/ilyakogan1199",
+   "website": "noteyetdeployed.io",
+   "seeking": "Meeting ambitious founders/operators/builders in AI",
+   "cluster": [
+    "Fintech / Finance"
+   ],
+   "insight": "An unusual domain edge — deep classical-music/arts-investment expertise (rare instruments, royalties) combined with formal VC/finance training, positioning him for a credible alternative-assets analytics play.",
+   "building": "A few projects across arts and tech; exploring an investment-analytics platform for alternative assets focused on music royalties and rights — a fusion of his classical-music background and finance training. Pre-launch.",
+   "bg": "Completing a Global MBA at Tel Aviv University (VC & Entrepreneurial Finance). Previously founded Kolico, a London-based consultancy/marketing firm for classical musicians, arts organizations, and rare stringed-instrument investments; earlier worked at an investment-management firm on fundraising and capital deployment.",
+   "collab": [
+    "Noam Cohen (Spikeet) — Royalties analytics needs market-data infrastructure.",
+    "Marissa Posner (Ethereum) — Alternative-assets / on-chain royalties.",
+    "Amitay Manor (Aleph) & Coral Fussman — VC and fintech."
+   ],
+   "d1": true,
+   "d1label": "Deploy #2",
+   "unverifiedNotes": ""
   }
  ],
  "clusterDefs": [
@@ -2044,7 +2073,8 @@ window.D3 = {
     "Shmuel tauby",
     "Yaniv Ohayon",
     "Jorge Rybar",
-    "Dor Sabban"
+    "Dor Sabban",
+    "Ilya Kogan"
    ]
   },
   {
