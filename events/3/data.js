@@ -1953,35 +1953,6 @@ window.D3 = {
    "unverifiedNotes": "Her LinkedIn lists her as Head of Growth at Blvck Paris; her application described her as a co-founder. The $40M Blvck revenue figure is her own application claim."
   },
   {
-   "id": 75,
-   "name": "Ilya Kogan",
-   "project": "Alt-assets analytics",
-   "tagline": "Investment analytics for music royalties / rights",
-   "photo": "photos/Ilya_Kogan.jpg",
-   "stack": [
-    "Claude",
-    "Codex"
-   ],
-   "revenue": "Pre-Revenue",
-   "linkedin": "linkedin.com/in/ilyakogan1199",
-   "website": "noteyetdeployed.io",
-   "seeking": "Meeting ambitious founders/operators/builders in AI",
-   "cluster": [
-    "Fintech / Finance"
-   ],
-   "insight": "An unusual domain edge — deep classical-music/arts-investment expertise (rare instruments, royalties) combined with formal VC/finance training, positioning him for a credible alternative-assets analytics play.",
-   "building": "A few projects across arts and tech; exploring an investment-analytics platform for alternative assets focused on music royalties and rights — a fusion of his classical-music background and finance training. Pre-launch.",
-   "bg": "Completing a Global MBA at Tel Aviv University (VC & Entrepreneurial Finance). Previously founded Kolico, a London-based consultancy/marketing firm for classical musicians, arts organizations, and rare stringed-instrument investments; earlier worked at an investment-management firm on fundraising and capital deployment.",
-   "collab": [
-    "Noam Cohen (Spikeet) — Royalties analytics needs market-data infrastructure.",
-    "Marissa Posner (Ethereum) — Alternative-assets / on-chain royalties.",
-    "Amitay Manor (Aleph) & Coral Fussman — VC and fintech."
-   ],
-   "d1": true,
-   "d1label": "Deploy #2",
-   "unverifiedNotes": ""
-  },
-  {
    "id": 76,
    "name": "Alma Kaman",
    "project": "Luxury Real Estate + AI",
@@ -2055,28 +2026,6 @@ window.D3 = {
    "d1": false,
    "d1label": "",
    "unverifiedNotes": ""
-  },
-  {
-   "id": 79,
-   "name": "Daniel Jezmir",
-   "project": "Longevity & Regenerative Medicine",
-   "tagline": "Building in Longevity & Regenerative medicine | Ex-Wix | Miami ↔ Tel Aviv",
-   "photo": "photos/Daniel_Jezmir.jpg",
-   "stack": [],
-   "revenue": "",
-   "linkedin": "linkedin.com/in/daniel-jezmir",
-   "website": "",
-   "seeking": "",
-   "cluster": [
-    "HealthTech / Clinical AI"
-   ],
-   "insight": "",
-   "building": "",
-   "bg": "",
-   "collab": [],
-   "d1": false,
-   "d1label": "",
-   "unverifiedNotes": ""
   }
  ],
  "clusterDefs": [
@@ -2095,7 +2044,6 @@ window.D3 = {
     "Shmuel tauby",
     "Yaniv Ohayon",
     "Jorge Rybar",
-    "Ilya Kogan",
     "Dor Sabban"
    ]
   },
@@ -2233,8 +2181,7 @@ window.D3 = {
     "Gavriel Hannuna",
     "Tyler Epstein",
     "Ilan Kahan",
-    "Alon Kaye",
-    "Daniel Jezmir"
+    "Alon Kaye"
    ]
   },
   {
