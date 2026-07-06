@@ -4,8 +4,8 @@ window.D3 = {
   {
    "id": 1,
    "name": "Alan Mekibel",
-   "project": "Yallagan · Deploy TLV",
-   "tagline": "Global Jewish events platform + Deploy TLV community manager",
+   "project": "Deploy TLV · Community Manager",
+   "tagline": "Deploy TLV Community Manager · Founder & CEO of Yallagan",
    "photo": "photos/Alan_Mekibel.jpg",
    "stack": [
     "Codex",
@@ -2054,6 +2054,31 @@ window.D3 = {
    ],
    "d1": true,
    "d1label": "Deploy #2",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 80,
+   "name": "Myron Shneider",
+   "project": "Deploy TLV",
+   "tagline": "Founder, Deploy TLV · Aleph VC · short-form media",
+   "photo": "photos/Myron_Shneider.jpg",
+   "stack": [
+    "Claude",
+    "Codex"
+   ],
+   "revenue": "Pre-Revenue",
+   "linkedin": "linkedin.com/in/mshneider",
+   "website": "clipmatic.ai",
+   "seeking": "Co-founders, being around other people building",
+   "cluster": [
+    "Community / VC Connectors"
+   ],
+   "insight": "Founded and runs Deploy TLV — the event everyone in this room is attending. AI Builder/Producer embedded at Aleph VC, viral content background (100M+ brand impressions at Doing Things Media), IDF combat veteran featured in the Jerusalem Post, and 20+ AI products shipped in the last year. He is not just a builder — he is the infrastructure.",
+   "building": "",
+   "bg": "Northeastern University, B.S. New Venture Management. Brand Partnerships at Doing Things Media (Mar 2022–Mar 2023) — McDonald's, iRobot, Duolingo, part of the 'Corn Kid' viral moment (100M+ impressions). Social Strategy at Flock Freight. IDF Combat Reserves (Oct 2023–May 2025, featured in Jerusalem Post). AI Builder/Producer at Aleph VC (May 2025–present), producer of 'Invested by Aleph' podcast with Michael Eisenberg. Also builds Parsha Map and Diaspora Map (Jewish-community consumer products).",
+   "collab": [],
+   "d1": true,
+   "d1label": "Deploy #1+2",
    "unverifiedNotes": ""
   }
  ],
