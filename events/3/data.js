@@ -834,31 +834,6 @@ window.D3 = {
    "unverifiedNotes": ""
   },
   {
-   "id": 31,
-   "name": "Dave Silverman",
-   "project": "Sales & GTM | FinTech, Payments, and Fraud",
-   "tagline": "Sales & GTM | FinTech, Payments, and Fraud",
-   "photo": "photos/Dave_Silverman.jpg",
-   "stack": [
-    "Claude Code"
-   ],
-   "revenue": "Pre-Revenue",
-   "linkedin": "https://www.linkedin.com/in/davidsilv/",
-   "website": "",
-   "seeking": "Meeting cofounder, learning deep applications along dayily optimizations ",
-   "cluster": [
-    "Fintech / Finance",
-    "Co-founder Actively Seeking"
-   ],
-   "insight": "",
-   "building": "",
-   "bg": "Currently at Chargeflow. Studied at International Space University.",
-   "collab": [],
-   "d1": false,
-   "d1label": "",
-   "unverifiedNotes": ""
-  },
-  {
    "id": 32,
    "name": "David Faerman",
    "project": "Day job Fintech",
@@ -1296,31 +1271,6 @@ window.D3 = {
    "unverifiedNotes": ""
   },
   {
-   "id": 49,
-   "name": "Joey Azizoff",
-   "project": "Zenmail",
-   "tagline": "Founder @ ZenMail | usezenmail.com - The best email client for Mac",
-   "photo": "photos/Joey_Azizoff.jpg",
-   "stack": [
-    "Codex",
-    "Opencode"
-   ],
-   "revenue": "Pre-Revenue",
-   "linkedin": "linkedin.com/in/joeyaz",
-   "website": "usezenmail.com",
-   "seeking": "Meeting builders like myself and exchanging ideas ",
-   "cluster": [
-    "Agentic Dev Tools"
-   ],
-   "insight": "",
-   "building": "Zenmail - the best email client for mac",
-   "bg": "Shipped: Zenmail - before that DealLens",
-   "collab": [],
-   "d1": false,
-   "d1label": "",
-   "unverifiedNotes": ""
-  },
-  {
    "id": 50,
    "name": "Johnathan Orlianski",
    "project": "Ledge Investing made legendary",
@@ -1470,28 +1420,6 @@ window.D3 = {
    "unverifiedNotes": ""
   },
   {
-   "id": 56,
-   "name": "Noam Konyn",
-   "project": "Strategic Consultant | Israel Operations",
-   "tagline": "Strategic Consultant | Israel Operations",
-   "photo": "photos/Noam_Konyn.jpg",
-   "stack": [],
-   "revenue": "",
-   "linkedin": "linkedin.com/in/noam-konyn-351326147",
-   "website": "",
-   "seeking": "",
-   "cluster": [
-    "Investors / Ecosystem"
-   ],
-   "insight": "",
-   "building": "",
-   "bg": "Currently at LongRiver Investments.",
-   "collab": [],
-   "d1": false,
-   "d1label": "",
-   "unverifiedNotes": ""
-  },
-  {
    "id": 57,
    "name": "Omer Munk",
    "project": "Cantaio",
@@ -1586,33 +1514,6 @@ window.D3 = {
    "insight": "",
    "building": "Nanoclaw",
    "bg": "Shipped: I made a job scout runtime CLI before it was cool :) Day job: In between plays, I'm fielding offers atm.",
-   "collab": [],
-   "d1": false,
-   "d1label": "",
-   "unverifiedNotes": ""
-  },
-  {
-   "id": 61,
-   "name": "Rotem Sade",
-   "project": "Lancellot",
-   "tagline": "Tech Savvy | Engineering Manager | CTO | Full-Stack & Mobile Development | Data Analyst",
-   "photo": "photos/Rotem_Sade.jpg",
-   "stack": [
-    "Claude Code",
-    "Codex",
-    "Cursor"
-   ],
-   "revenue": "$5,001-$10,000",
-   "linkedin": "linkedin.com/in/rotem-sade-8691786",
-   "website": "lancellot.com",
-   "seeking": "",
-   "cluster": [
-    "Fintech / Finance",
-    "Marketplace / Local Services"
-   ],
-   "insight": "",
-   "building": "Lancellot - US Lottery tickets purchase services",
-   "bg": "Currently at Lancellot. Studied at The Open University of Israel.",
    "collab": [],
    "d1": false,
    "d1label": "",
@@ -2080,6 +1981,333 @@ window.D3 = {
    "d1": true,
    "d1label": "Deploy #1+2",
    "unverifiedNotes": ""
+  },
+  {
+   "id": 81,
+   "name": "Yael Morris",
+   "project": "Decode Insights",
+   "tagline": "Founder & CEO @ Decode Insights | Buyer Intelligence",
+   "photo": null,
+   "stack": [
+    "Claude Code",
+    "Other"
+   ],
+   "revenue": "$25,000+",
+   "linkedin": "linkedin.com/in/yaelmorris",
+   "website": "decodeinsights.com",
+   "seeking": "meeting cool people building tech in TLV.",
+   "cluster": [
+    "Revenue Leaders"
+   ],
+   "insight": "",
+   "building": "Building Decode Insights, a buyer-intelligence platform.",
+   "bg": "Founder & CEO of Decode Insights ($25K+/mo). Shipped a data-intelligence platform.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 82,
+   "name": "Josh Peleg",
+   "project": "Rally (social screen-time app)",
+   "tagline": "VP M&A & BizDev @ Bluethrone | Building Rally",
+   "photo": null,
+   "stack": [
+    "Claude Code",
+    "Other"
+   ],
+   "revenue": "$1-$1,000",
+   "linkedin": "linkedin.com/in/joshpeleg",
+   "website": "bluethrone.io",
+   "seeking": "Meeting potential co-founders, sharing AI knowledge, good vibes",
+   "cluster": [
+    "Consumer / Indie Builders",
+    "Investors / Ecosystem"
+   ],
+   "insight": "",
+   "building": "Building Rally, a social screen-time app; investing in & acquiring consumer apps.",
+   "bg": "VP M&A & Business Development at Bluethrone ($20M deployed into consumer apps). Shipped Rally — a social screen-time app driving 250K+ TikTok views/week.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 83,
+   "name": "Zohara Naftaly",
+   "project": "Innovation @ Migdal",
+   "tagline": "Innovation @ Migdal",
+   "photo": null,
+   "stack": [
+    "Claude Code"
+   ],
+   "revenue": "Pre-Revenue",
+   "linkedin": "linkedin.com/in/zohara-naftaly-6a74b0295",
+   "website": "migdal.co.il",
+   "seeking": "",
+   "cluster": [
+    "Fintech / Finance"
+   ],
+   "insight": "",
+   "building": "Driving AI innovation at Migdal (insurance & finance).",
+   "bg": "Innovation at Migdal, one of Israel's largest insurance & finance groups.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 84,
+   "name": "Adam Malev",
+   "project": "Comediq",
+   "tagline": "Founder & CEO @ Comediq",
+   "photo": null,
+   "stack": [
+    "Claude Code"
+   ],
+   "revenue": "$1-$1,000",
+   "linkedin": "linkedin.com/in/adammalev",
+   "website": "comediq.us",
+   "seeking": "A place to cowork and meet other talented tech founders",
+   "cluster": [
+    "Consumer / Indie Builders"
+   ],
+   "insight": "",
+   "building": "Building Comediq.",
+   "bg": "Founder & CEO of Comediq. Previously shipped Ballotpolicies.com.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 85,
+   "name": "Gavriel Amati",
+   "project": "Indie AI projects",
+   "tagline": "Solo Founder | Indie AI Projects",
+   "photo": null,
+   "stack": [
+    "Codex",
+    "Other"
+   ],
+   "revenue": "Pre-Revenue",
+   "linkedin": "linkedin.com/in/gavrielamati",
+   "website": "vibe-audit-lab.base44.app",
+   "seeking": "Learning how to make revenue out of projects",
+   "cluster": [
+    "Consumer / Indie Builders"
+   ],
+   "insight": "",
+   "building": "Building indie AI projects (incl. a 'vibe audit' lab).",
+   "bg": "Solo founder shipping indie AI projects while studying cybersecurity.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 86,
+   "name": "Sam Hillel",
+   "project": "Mishnah Blast",
+   "tagline": "Founder @ Mishnah Blast | Daily AI Torah",
+   "photo": null,
+   "stack": [
+    "Claude Code"
+   ],
+   "revenue": "Pre-Revenue",
+   "linkedin": "linkedin.com/in/sam-hillel",
+   "website": "mishnahblast.com",
+   "seeking": "Giving people more Torah",
+   "cluster": [
+    "Media / Content / Audio",
+    "EdTech / Learning"
+   ],
+   "insight": "",
+   "building": "Building Mishnah Blast — a daily AI-powered Mishnah email.",
+   "bg": "At Artlist; building Mishnah Blast, a daily Mishnah email that uses AI to simplify daily Torah learning.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 87,
+   "name": "Noah Schlesinger",
+   "project": "Wix",
+   "tagline": "Software Engineer @ Wix",
+   "photo": null,
+   "stack": [
+    "Claude Code",
+    "Codex",
+    "Cursor"
+   ],
+   "revenue": "Pre-Revenue",
+   "linkedin": "linkedin.com/in/noah-schlesinger-dev",
+   "website": "wix.com",
+   "seeking": "",
+   "cluster": [
+    "Agentic Dev Tools"
+   ],
+   "insight": "",
+   "building": "Engineering at Wix; heavy agentic-coding user (Claude Code, Codex, Cursor).",
+   "bg": "Software engineer at Wix.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 88,
+   "name": "May Nimni",
+   "project": "AI meeting-prep tool",
+   "tagline": "Application Developer | Ex-Monday, now freelance",
+   "photo": null,
+   "stack": [
+    "Claude Code"
+   ],
+   "revenue": "",
+   "linkedin": "linkedin.com/in/may-nimni",
+   "website": "",
+   "seeking": "Learn to build efficiently and go-to-market strategies",
+   "cluster": [
+    "Consumer / Indie Builders"
+   ],
+   "insight": "",
+   "building": "Building AI tools solo; freelance after Monday.com.",
+   "bg": "Ex-Monday.com application developer, now freelance. Shipped a CSM meeting-prep tool aggregating 10 data sources (30→3 min prep).",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 89,
+   "name": "Sacha Benguigui",
+   "project": "Lynxium",
+   "tagline": "Founder @ Lynxium",
+   "photo": null,
+   "stack": [
+    "Claude Code",
+    "Codex",
+    "Opencode"
+   ],
+   "revenue": "$1,001-$5,000",
+   "linkedin": "linkedin.com/in/sachabngi",
+   "website": "lynxium.dev",
+   "seeking": "Meeting interesting people",
+   "cluster": [
+    "Consumer / Indie Builders"
+   ],
+   "insight": "",
+   "building": "Building Lynxium and a social app connecting Jewish people.",
+   "bg": "Founder of Lynxium ($1K–5K/mo). Shipped an app to create connection between Jewish people.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": ""
+  },
+  {
+   "id": 90,
+   "name": "Micky Aflalo",
+   "project": "Returning Deploy TLV attendee",
+   "tagline": "Returning Deploy TLV attendee",
+   "photo": null,
+   "stack": [],
+   "revenue": "",
+   "linkedin": "",
+   "website": "",
+   "seeking": "",
+   "cluster": [],
+   "insight": "",
+   "building": "",
+   "bg": "Returning Deploy TLV community member.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": "No application form on file; profile pending (attended a prior Deploy TLV)."
+  },
+  {
+   "id": 91,
+   "name": "Kira Goldring",
+   "project": "New Deploy TLV attendee",
+   "tagline": "New Deploy TLV attendee",
+   "photo": null,
+   "stack": [],
+   "revenue": "",
+   "linkedin": "",
+   "website": "",
+   "seeking": "",
+   "cluster": [],
+   "insight": "",
+   "building": "",
+   "bg": "",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": "No application form on file; profile pending."
+  },
+  {
+   "id": 92,
+   "name": "Avi Amoyal",
+   "project": "Returning Deploy TLV attendee",
+   "tagline": "Returning Deploy TLV attendee",
+   "photo": null,
+   "stack": [],
+   "revenue": "",
+   "linkedin": "",
+   "website": "",
+   "seeking": "",
+   "cluster": [],
+   "insight": "",
+   "building": "",
+   "bg": "Returning Deploy TLV community member.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": "No application form on file; profile pending (attended a prior Deploy TLV)."
+  },
+  {
+   "id": 93,
+   "name": "Matan Porat",
+   "project": "Returning Deploy TLV attendee",
+   "tagline": "Returning Deploy TLV attendee",
+   "photo": null,
+   "stack": [],
+   "revenue": "",
+   "linkedin": "",
+   "website": "",
+   "seeking": "",
+   "cluster": [],
+   "insight": "",
+   "building": "",
+   "bg": "Returning Deploy TLV community member.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": "No application form on file; profile pending (attended a prior Deploy TLV)."
+  },
+  {
+   "id": 94,
+   "name": "Daniel Jezmir",
+   "project": "Wix",
+   "tagline": "Partnerships @ Wix",
+   "photo": null,
+   "stack": [],
+   "revenue": "",
+   "linkedin": "linkedin.com/in/daniel-jezmir-bbb81555",
+   "website": "wix.com",
+   "seeking": "",
+   "cluster": [
+    "Revenue Leaders"
+   ],
+   "insight": "",
+   "building": "",
+   "bg": "Manager, Partnerships at Wix; previously Account Executive at Connecteam.",
+   "collab": [],
+   "d1": false,
+   "d1label": "",
+   "unverifiedNotes": "No application form on file; details from LinkedIn."
   }
  ],
  "clusterDefs": [
@@ -2090,16 +2318,15 @@ window.D3 = {
     "Alexander Mendelsohn",
     "Alon Shvartsman",
     "Filipp Shilnikov",
-    "Dave Silverman",
     "David Faerman",
     "Johnathan Orlianski",
     "Omer Munk",
-    "Rotem Sade",
     "Shmuel tauby",
     "Yaniv Ohayon",
     "Jorge Rybar",
     "Dor Sabban",
-    "Ilya Kogan"
+    "Ilya Kogan",
+    "Zohara Naftaly"
    ]
   },
   {
@@ -2119,13 +2346,13 @@ window.D3 = {
     "Ofek Seroussi",
     "Eyal Levi",
     "David Faerman",
-    "Joey Azizoff",
     "Stuart Izon",
     "Michael Perkins",
     "Nadav Rubinstein",
     "Ross Allen",
     "Irad Aharoni",
-    "Liel"
+    "Liel",
+    "Noah Schlesinger"
    ]
   },
   {
@@ -2181,7 +2408,12 @@ window.D3 = {
     "Nicolas mai",
     "Kovi FIne",
     "Nathan Grossman",
-    "Michael Perkins"
+    "Michael Perkins",
+    "Josh Peleg",
+    "Adam Malev",
+    "Gavriel Amati",
+    "May Nimni",
+    "Sacha Benguigui"
    ]
   },
   {
@@ -2195,7 +2427,9 @@ window.D3 = {
     "hadar kaish",
     "Gavriel Hannuna",
     "Omer Munk",
-    "Ethan Genende"
+    "Ethan Genende",
+    "Yael Morris",
+    "Daniel Jezmir"
    ]
   },
   {
@@ -2205,7 +2439,6 @@ window.D3 = {
     "Alexander Mendelsohn",
     "Menachem Berrebi",
     "Ofek Seroussi",
-    "Dave Silverman",
     "David Faerman",
     "David Shoen",
     "Elena katan",
@@ -2272,7 +2505,8 @@ window.D3 = {
     "Kovi FIne",
     "Ilan lekerman",
     "Jan van Brakel",
-    "Steffi Ohayon"
+    "Steffi Ohayon",
+    "Sam Hillel"
    ]
   },
   {
@@ -2282,9 +2516,9 @@ window.D3 = {
     "Alon Bronfeld",
     "Adam Angel",
     "Angelika Ginzburg Gurov",
-    "Noam Konyn",
     "Yaniv Ohayon",
-    "Han Rabinovitz"
+    "Han Rabinovitz",
+    "Josh Peleg"
    ]
   },
   {
@@ -2304,7 +2538,6 @@ window.D3 = {
     "David Shoen",
     "Erik Levin",
     "Ilan Kahan",
-    "Rotem Sade",
     "Ilan lekerman",
     "Jan van Brakel"
    ]
@@ -2316,7 +2549,8 @@ window.D3 = {
     "Nicolas mai",
     "Johnathan Orlianski",
     "Guillaume Bensoussan",
-    "Michael Perkins"
+    "Michael Perkins",
+    "Sam Hillel"
    ]
   }
  ],
@@ -2327,13 +2561,6 @@ window.D3 = {
    "b": "Artem Belyakov",
    "tag": "CO-FOUNDER",
    "why": "Menachem's AI-design-to-physical-product concept needs a technical partner, and he has the commercial/sales chops (Applitools, Unleash) to sell it; Artem brings elite CV/ML (Yandex SDA, $3M ARR) exactly suited to the vision-to-manufacture pipeline."
-  },
-  {
-   "rank": 2,
-   "a": "Alexander Mendelsohn",
-   "b": "Dave Silverman",
-   "tag": "CO-FOUNDER",
-   "why": "Both are explicitly co-founder hunting inside fintech: Alexander is a production credit-risk data scientist who builds with Claude Code, Dave is an enterprise-sales/GTM operator at Chargeflow — a clean technical + commercial pairing."
   },
   {
    "rank": 3,
@@ -2595,13 +2822,6 @@ window.D3 = {
    "why": "David experiments with agentic tooling (an MCP) and model fine-tuning at a fintech; Nadav builds agent-reliability/eval tooling — shared deep interest in making agents/MCPs robust in production."
   },
   {
-   "rank": 40,
-   "a": "Rotem Sade",
-   "b": "Omer Munk",
-   "tag": "TECHNICAL",
-   "why": "Both ship regulated, transaction-heavy consumer fintech — Rotem a mobile-veteran CTO building a US-lottery marketplace, Omer full-stack building AI mortgage negotiation — peers on compliance and payments plumbing."
-  },
-  {
    "rank": 41,
    "a": "Omer Geva",
    "b": "Samuel Green",
@@ -2659,10 +2879,8 @@ window.D3 = {
     "Omer Munk",
     "Alexander Mendelsohn",
     "Shmuel tauby",
-    "Rotem Sade",
     "Johnathan Orlianski",
     "Filipp Shilnikov",
-    "Dave Silverman",
     "Yaniv Ohayon"
    ]
   },
@@ -2761,7 +2979,6 @@ window.D3 = {
     "Jordan Ohana",
     "Alon Kaye",
     "Tyler Epstein",
-    "Joey Azizoff",
     "Ross Allen",
     "Liel"
    ]
@@ -2795,7 +3012,6 @@ window.D3 = {
     "Michael Heiser",
     "Adam Angel",
     "Alon Bronfeld",
-    "Noam Konyn",
     "Angelika Ginzburg Gurov",
     "Alan Mekibel",
     "Ethan Genende",
