@@ -1,0 +1,361 @@
+{
+  "_comment": "Curated Pulse feed. Hand-edited (with Claude's help) from build/source/_chat.txt. 'sharedBy' should match a canonical name from the people registry when possible so the card links to their profile; otherwise it renders as plain text. 'highlights' lists item ids pinned to the top of the Pulse tab. Types: launch | link | event | discussion | intro | ask | doc. Optional 'eventDate' (YYYY-MM-DD) marks events as upcoming/past. Re-curate after each chat re-export: run node build/parse-chat.mjs, review build/pulse-candidates.md, add items here, re-run.",
+  "highlights": [
+    "voiceclaw-realtime-update",
+    "kovi-ai-finance-webinar",
+    "beep-beep-tlv-launch",
+    "zaviv-waitlist",
+    "fable-countdown"
+  ],
+  "items": [
+    {
+      "id": "voiceclaw-realtime-update",
+      "date": "2026-07-07",
+      "type": "launch",
+      "title": "VoiceClaw Realtime — big update is out",
+      "blurb": "True realtime voice conversation that can direct OpenClaw or Hermes sessions (and your computer through them). Free, much faster now, with a free Mac Companion app on GitHub — running on GPT-Realtime-2.1-mini released just hours earlier.",
+      "url": "https://apps.apple.com/us/app/voiceclaw-realtime/id6769243723",
+      "sharedBy": "Ben Badejo"
+    },
+    {
+      "id": "kovi-ai-finance-webinar",
+      "date": "2026-07-02",
+      "type": "event",
+      "eventDate": "2026-07-08",
+      "title": "Free webinar: the finance side of AI",
+      "blurb": "Cost drivers, planning around ROI, and saving serious money without losing capability — AI spend explained for business and finance leaders (technical folks welcome too).",
+      "url": "https://luma.com/4zytsflh",
+      "sharedBy": "Kovi"
+    },
+    {
+      "id": "beep-beep-tlv-launch",
+      "date": "2026-07-06",
+      "type": "launch",
+      "title": "Beep Beep TLV hits the App Store",
+      "blurb": "The weekend project that alerts scooter riders before they hit a helmet-ticket camera — now live with Hebrew support and Waze-style reporting of where the helmet police hide.",
+      "url": "https://apps.apple.com/us/app/beep-beep-tlv/id6782289521",
+      "sharedBy": "Myron Shneider"
+    },
+    {
+      "id": "zaviv-waitlist",
+      "date": "2026-07-04",
+      "type": "launch",
+      "title": "Zaviv — a mobile agentic IDE, waitlist open",
+      "blurb": "Five months, ten hours a day: macOS build already App Store-approved, iOS TestFlight opening to external users, and an Apple Watch app that can prompt any coding agent. Waitlist is live.",
+      "url": "https://zaviv.com",
+      "sharedBy": "Avi Amoyal"
+    },
+    {
+      "id": "fable-countdown",
+      "date": "2026-07-06",
+      "type": "discussion",
+      "title": "The Fable 5 saga — final hours on subscription",
+      "blurb": "The group lived every twist: launch day, the ITAR shutdown, the comeback — and now Fable leaves subscription plans July 8, 8am Israel time. One member's benchmark: a full end-to-end React Native app cost ~$1,500 in Fable credits.",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "bulk-dog",
+      "date": "2026-07-07",
+      "type": "launch",
+      "title": "bulk.dog — AI images in bulk",
+      "blurb": "Generate hundreds of template-based AI images in one go, born from too much back-and-forth with Gemini for mock images. Free credits for ~100–300 images on signup.",
+      "url": "https://bulk.dog",
+      "sharedBy": "Hanan"
+    },
+    {
+      "id": "group-brain",
+      "date": "2026-07-07",
+      "type": "discussion",
+      "title": "\"Does anyone have an agent that summarizes this group?\"",
+      "blurb": "Someone finally asked for an AI that keeps track of all the tips flying through the chat. Several members already run daily WhatsApp summarizers — and this Pulse page is the community's own answer.",
+      "sharedBy": "Yaya"
+    },
+    {
+      "id": "alma-cv-project",
+      "date": "2026-07-07",
+      "type": "ask",
+      "title": "Funded project: computer vision for apartment measurements",
+      "blurb": "A PropTech team doing dozens–hundreds of manual measurements a day from building-permit plans (DWF/PDF/image) is funding a custom internal tool — looking for developers who can actually deliver, to the Israeli measuring standard.",
+      "sharedBy": "Alma Anastasia"
+    },
+    {
+      "id": "isaac-distribution-partner",
+      "date": "2026-07-06",
+      "type": "ask",
+      "title": "Distribution partner wanted for two live products",
+      "blurb": "\"Forget vibe coding — anyone into vibe marketing?\" Two shipped products (mentionwell.com and replymagic.ai) need someone to own growth, potentially as a partner.",
+      "url": "https://mentionwell.com",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "jacob-goatzone",
+      "date": "2026-07-06",
+      "type": "intro",
+      "title": "Jacob — GoatZone, football prediction on WHERE",
+      "blurb": "Free-to-play football prediction game where you predict where things happen on the pitch instead of who scores. Launched during the World Cup; real-money pool betting planned later this year. Looking for growth/product people.",
+      "sharedBy": "Jacob"
+    },
+    {
+      "id": "mike-perkins-intro",
+      "date": "2026-07-06",
+      "type": "intro",
+      "title": "Michael Perkins — chess bets to coding agents",
+      "blurb": "Made a big 2020 bet on live chess spectating + betting (an Israeli team now pursues the same idea at pawn-market.com). Now exploring Hebrew learning tools, dev tools, and mobile-first coding agents — looking for the right problem or partner.",
+      "sharedBy": "Mike"
+    },
+    {
+      "id": "web-vs-native",
+      "date": "2026-07-06",
+      "type": "discussion",
+      "title": "Web app vs native: the great debate",
+      "blurb": "\"Stop building web apps people won't use — learn React Native + Expo\" vs \"React Native is the source of all people jumping from buildings; Kotlin Multiplatform is the standard.\" No survivors, great arguments on both sides.",
+      "sharedBy": "Avi Amoyal"
+    },
+    {
+      "id": "whatsapp-api-pricing",
+      "date": "2026-07-05",
+      "type": "discussion",
+      "title": "WhatsApp API pricing shake-up",
+      "blurb": "Meta is changing API pricing — bad news if you sell agents on WhatsApp. The group compared Whapi ($35/mo flat, great docs) and WAHA (newly free, some disconnects). One member automated 98% of his father's 8-hour daily order workflow this way.",
+      "sharedBy": "Daniel Ilan R"
+    },
+    {
+      "id": "whatsapp-collector",
+      "date": "2026-07-05",
+      "type": "launch",
+      "title": "Open-source WhatsApp → AI collector",
+      "blurb": "Free tool that collects group messages via WhatsApp Web into JSON any agent can read — stays logged in, can't be banned, runs invisibly on a virtual monitor. (This Pulse page is built from exactly this kind of export.)",
+      "url": "https://github.com/bdjben/whatsapp-collector",
+      "sharedBy": "Ben Badejo"
+    },
+    {
+      "id": "hermex-ios",
+      "date": "2026-07-04",
+      "type": "link",
+      "title": "Hermex — Hermes agent as a native iOS app",
+      "blurb": "Use your Hermes agent from your phone like you'd use ChatGPT. Recommended if you already run a Hermes agent.",
+      "url": "https://apps.apple.com/us/app/hermex/id6767006319",
+      "sharedBy": "Moshe Schlussel"
+    },
+    {
+      "id": "grok-voice-agent-builder",
+      "date": "2026-07-03",
+      "type": "link",
+      "title": "Grok Voice Agent Builder",
+      "blurb": "x.ai's new voice agent builder — \"this looks awesome, anyone tried it yet?\" The follow-up thread compared it to Retell + ElevenLabs setups.",
+      "url": "https://x.ai/news/grok-voice-agent-builder",
+      "sharedBy": "Kovi"
+    },
+    {
+      "id": "isaac-agent-setup",
+      "date": "2026-07-03",
+      "type": "doc",
+      "title": "Isaac's full Claude/Codex agent setup (zip)",
+      "blurb": "After weeks of using Fable as an orchestrator with Opus/Codex sub-agents, Isaac shared his complete agent setup as a zip in the group — grab it from the chat.",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "ziplyne-prompter",
+      "date": "2026-07-01",
+      "type": "link",
+      "title": "Fable prompt optimizer",
+      "blurb": "All of Anthropic's Fable docs and cookbooks ingested into one tool that spits out a perfectly structured prompt — built because at Fable prices, you don't want to waste a single prompt.",
+      "url": "https://ziplyne-prompter.lovable.app/",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "deploy3-first-dollar",
+      "date": "2026-06-26",
+      "type": "event",
+      "eventDate": "2026-07-06",
+      "title": "DeployTLV #3: First Dollar",
+      "blurb": "Revenue-generating members shared how they made their first dollar (or shekel), plus the usual top-tier mingling.",
+      "url": "https://luma.com/o6zdkb55",
+      "sharedBy": "Myron Shneider"
+    },
+    {
+      "id": "beep-beep-testflight",
+      "date": "2026-06-20",
+      "type": "launch",
+      "title": "Scooter camera alerts — the weekend build",
+      "blurb": "\"Hate getting tickets for not wearing a helmet on a scooter?\" App tracks city ticket cameras and pings you within 100m. The group immediately demanded Waze-style police reporting — already built in.",
+      "url": "https://testflight.apple.com/join/YpsaDbu8",
+      "sharedBy": "Myron Shneider"
+    },
+    {
+      "id": "refero-styles",
+      "date": "2026-06-21",
+      "type": "link",
+      "title": "Refero — free design styles for your AI",
+      "blurb": "A free library of real product design styles to feed your coding agent so your app stops looking like every other AI-generated site.",
+      "url": "https://styles.refero.design/",
+      "sharedBy": "Omer"
+    },
+    {
+      "id": "payments-thread",
+      "date": "2026-06-21",
+      "type": "discussion",
+      "title": "Payments for indie digital products",
+      "blurb": "US or Israel entity? Lemon Squeezy? The thread's answers: Stripe Atlas in Delaware, or dodopayments.com — handles both Israeli and US payments and spares small businesses the foreign-VAT headache.",
+      "url": "https://dodopayments.com/",
+      "sharedBy": "Myron Shneider"
+    },
+    {
+      "id": "midjourney-medical",
+      "date": "2026-06-19",
+      "type": "link",
+      "title": "Midjourney is going into medical scanning",
+      "blurb": "The image-gen company's surprise pivot into medical imaging — \"really interesting stuff,\" and the group agreed it's a huge piece of news if they can operationalize it.",
+      "url": "https://x.com/midjourney/status/2067421950314688759",
+      "sharedBy": "Myron Shneider"
+    },
+    {
+      "id": "claude-fixed-loop",
+      "date": "2026-06-17",
+      "type": "discussion",
+      "title": "Escaping the \"Claude says fixed\" loop",
+      "blurb": "A bug survived 5 deploys of symptom-patching. Winning advice: revert all changes, start a fresh context, accept no code changes without proof — the fresh session found the real root cause in one shot.",
+      "sharedBy": "Bar"
+    },
+    {
+      "id": "cc-setups",
+      "date": "2026-06-16",
+      "type": "discussion",
+      "title": "What's in your Claude Code setup?",
+      "blurb": "The group's stack revealed: superpowers (\"changed my life\"), compound-engineering, OpenSpec, the exa MCP, Variant for UI mockups, and Vercel's open skills directory at skills.sh.",
+      "url": "https://github.com/obra/superpowers",
+      "sharedBy": "Bar"
+    },
+    {
+      "id": "coworking-nabi-yuna",
+      "date": "2026-06-15",
+      "type": "event",
+      "title": "DeployTLV coworking at Nabi Yuna",
+      "blurb": "\"No more building alone\" — recurring coworking sessions kicked off with 15 builders working side by side. Watch the group for the next one.",
+      "sharedBy": "Alan Israel"
+    },
+    {
+      "id": "threefingerswitcher",
+      "date": "2026-06-14",
+      "type": "launch",
+      "title": "Three-finger window switching for macOS",
+      "blurb": "Open-source Mac app bringing PC-style three-finger scrub navigation to macOS, plus clipboard history and local AI commands that analyze your screen in real time.",
+      "url": "https://github.com/amitayks/threefingerswitcher",
+      "sharedBy": "Amitay Keisar"
+    },
+    {
+      "id": "avi-agent-bounty",
+      "date": "2026-06-13",
+      "type": "ask",
+      "title": "Paid: agent-library builder for Zaviv",
+      "blurb": "Short-term bounty contract building a library of production-ready agents (orchestration, tool calling, memory, scheduling) users can activate with zero setup. Remote or a TLV café.",
+      "sharedBy": "Avi Amoyal"
+    },
+    {
+      "id": "variant-love",
+      "date": "2026-06-12",
+      "type": "link",
+      "title": "Variant — \"low key one of the best tools in the space\"",
+      "blurb": "Design-variation tool that had half the group raving: generate wildly different UI directions, then hand the winner to Claude to expand. Free tier gives 60 fast runs a month.",
+      "url": "https://variant.com/",
+      "sharedBy": "Menachem Berrebi"
+    },
+    {
+      "id": "baba-news",
+      "date": "2026-06-12",
+      "type": "launch",
+      "title": "Baba News — Israeli news translated in near real time",
+      "blurb": "All major Hebrew news sources translated, deduplicated, AI-summarized, and tagged by political lean — built in a week as a companion to the Baba translation app.",
+      "url": "https://www.itsbaba.com/news",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "codegrid",
+      "date": "2026-06-11",
+      "type": "launch",
+      "title": "Codegrid — tame your Claude/Codex terminal chaos",
+      "blurb": "Free, open-source dashboard for running multiple coding-agent sessions without drowning in terminal tabs. \"The interface looks fantastic.\"",
+      "url": "https://codegrid.app",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "bar-pairmee",
+      "date": "2026-06-11",
+      "type": "intro",
+      "title": "Bar is building PairMee",
+      "blurb": "A marketplace to match and split planned taxi rides — post your JFK-to-Manhattan route and save 50%+. Pre-launch MVP built solo with Claude Code; seeking honest feedback and a B2C/travel co-founder.",
+      "url": "https://pairmee.com",
+      "sharedBy": "Bar"
+    },
+    {
+      "id": "worldcup-calendar",
+      "date": "2026-06-11",
+      "type": "launch",
+      "title": "Day project: World Cup → your Google Calendar",
+      "blurb": "Pick your teams, get a custom World Cup schedule dropped straight into your calendar. Built in a day.",
+      "url": "https://worldcupgooglecalendar.com",
+      "sharedBy": "Jorge Rybar"
+    },
+    {
+      "id": "loop-engineering",
+      "date": "2026-06-10",
+      "type": "discussion",
+      "title": "Loops: revolutionary or rebranded cron jobs?",
+      "blurb": "The group's recurring fight. Real use cases surfaced — morning health checks on released features, a Hermes agent that turns Sentry errors into PRs every morning — plus Addy Osmani's loop-engineering article.",
+      "url": "https://x.com/addyosmani/status/2064127981161959567",
+      "sharedBy": "Myron Shneider"
+    },
+    {
+      "id": "boker-tov",
+      "date": "2026-06-10",
+      "type": "launch",
+      "title": "Boker Tov — prayers before doomscrolling",
+      "blurb": "Side project that blocks your other apps when you wake up until you finish morning prayers. Completely free, on the App Store.",
+      "url": "https://apps.apple.com/us/app/boker-tov-jewish-daily-siddur/id6760111547",
+      "sharedBy": "Moshe Schlussel"
+    },
+    {
+      "id": "witzper",
+      "date": "2026-06-09",
+      "type": "launch",
+      "title": "Witzper — open-source Wispr Flow alternative",
+      "blurb": "From the voice-dictation thread: a local-models dictation app that's \"faster than Wispr when it works.\" Needs bug fixes — PRs welcome. Also surfaced: Handy (free) and nvidia/parakeet on Hugging Face.",
+      "url": "https://github.com/ZipLyne-Agency/Witzper",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "baba-translator",
+      "date": "2026-06-09",
+      "type": "launch",
+      "title": "Baba — natural Hebrew translation with gender context",
+      "blurb": "100,000+ translations and thousands of monthly users; the only Hebrew translator giving natural output with gender context. In talks with N12/Keshet for a custom news pipeline.",
+      "url": "https://apps.apple.com/us/app/baba-hebrew-translator/id6740703683",
+      "sharedBy": "Isaac Horowitz"
+    },
+    {
+      "id": "multi-agent-review",
+      "date": "2026-06-03",
+      "type": "discussion",
+      "title": "Multi-agent code review workflows",
+      "blurb": "Claude and Codex reviewing each other's PRs, adversarial-reviewer skills with phase checkpoints, and whether a third agent adds signal or just noise — one of the group's deepest technical threads.",
+      "sharedBy": "Marissa Posner"
+    },
+    {
+      "id": "nanoclaw-stealth",
+      "date": "2026-05-20",
+      "type": "link",
+      "title": "NanoClaw out of stealth: turned down $20M buyout, raised $12M seed",
+      "blurb": "Shared by the member who'd joined the company days earlier — the Israel-based agent runtime the group had been recommending as the safer OpenClaw alternative.",
+      "url": "https://techcrunch.com/2026/05/20/nanoclaw-creator-turns-down-20m-buyout-offer-raises-12m-seed-instead/",
+      "sharedBy": "Menachem Berrebi"
+    },
+    {
+      "id": "agent-security",
+      "date": "2026-05-19",
+      "type": "discussion",
+      "title": "Running OpenClaw safely — the thread that started it all",
+      "blurb": "The group's first great thread: agents with their own WhatsApp accounts making Hebrew phone calls, and a reference-quality security writeup — Docker on an isolated VM, vaulted secrets, a permission bridge. \"Treat it like infrastructure.\"",
+      "sharedBy": "Menachem Cowen"
+    }
+  ]
+}

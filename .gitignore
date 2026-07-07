@@ -18,3 +18,8 @@ events/3/data.js
 # OS
 .DS_Store
 **/.DS_Store
+
+# Pipeline working files with raw chat handles / phone numbers — keep local
+build/pulse-candidates.md
+build/roster-gaps.md
+build/deploy3/li_data.txt
