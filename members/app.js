@@ -1,5 +1,15 @@
-/* Deploy TLV — Members Intelligence portal (brand-light theme) */
-const { useState, useMemo } = React;
+/* Deploy TLV — Members Intelligence portal (brand-light theme)
+   Gate: Supabase magic link (same login as the Deploy HQ app). Data: loaded
+   after sign-in from Supabase behind RLS — portal_docs (people snapshot, stack,
+   resources, pulse, meta, event-2 matchmaking) with live `profiles` edits
+   overlaid by slug, so app edits show here instantly. */
+const { useState, useEffect, useMemo } = React;
+
+/* ── supabase ── */
+const SUPABASE_URL = "https://uzloavbzhebsoizkxheb.supabase.co";
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6bG9hdmJ6aGVic29pemt4aGViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDEyNjAsImV4cCI6MjA5OTAxNzI2MH0.J0Aa8FYCVQYUddvDEbeN_0yNYweYs_nupsQu1MLLlnk";
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /* ── theme tokens ── */
 const BG = "#F4EDD7", BG_OFF = "#EBE3C8", CARD = "#FBF7E8";
@@ -8,23 +18,109 @@ const BORDER = "#DDD3B0", ACCENT = "#F5D400", GOLD = "#8A6D00", BLACK = "#0A0A0A
 const MONO = "'IBM Plex Mono','Courier New',monospace";
 const BARLOW = "'Barlow Condensed',Impact,sans-serif";
 
-/* ── data ── */
-const M = window.MEM || {};
-const PEOPLE = M.people || [];
-const STACK = M.stack || [];
-const RESOURCES = M.resources || [];
-const PULSE = M.pulse || { byDay: [], topContributors: [], growth: [] };
-const META = M.meta || {};
-const OWNER = window.MEM_TIER === "owner";
-
-// reuse event #2 relational data for matchmaking + cluster colors
-const D2 = window.D2 || {};
-const MATCHES = D2.matches || [];
-const TAG_COLORS = D2.tagColors || {};
-const CLUSTER_COLOR = {};
-(D2.clusterDefs || []).forEach(d => { CLUSTER_COLOR[d.name] = d.color; });
+/* ── data (module vars, filled by loadPortal() before <App/> renders) ── */
+let PEOPLE = [], STACK = [], RESOURCES = [];
+let PULSE = { byDay: [], topContributors: [], growth: [], feed: [] };
+let META = {};
+let OWNER = false; // memberships.member_no === 1
+let MATCHES = [], TAG_COLORS = {}, CLUSTER_COLOR = {};
 
 const personByName = name => PEOPLE.find(p => p.name === name);
+
+/* ── auth + data loading ── */
+// Fields members can edit in the app — live values win over the snapshot
+// (same merge the old sync-profiles workflow did in people.js).
+const APP_EDITABLE = ["project", "tagline", "seeking", "building", "bg", "linkedin", "website", "stack"];
+
+// Complete a magic-link landing. Handles every shape the email template can
+// produce: ?token_hash= (custom template), ?code= (PKCE), #access_token=
+// (implicit ConfirmationURL). Returns an error message or null.
+async function completeSignInFromUrl() {
+  const url = new URL(window.location.href);
+  const qs = url.searchParams;
+  const hash = new URLSearchParams(url.hash.replace(/^#/, ""));
+  const tokenHash = qs.get("token_hash") || hash.get("token_hash");
+  const code = qs.get("code");
+  const access = hash.get("access_token"), refresh = hash.get("refresh_token");
+  const landed = tokenHash || code || access || hash.get("error_description");
+  if (!landed) return null;
+  let msg = null;
+  if (tokenHash) {
+    const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type: "email" });
+    msg = error ? error.message : null;
+  } else if (code) {
+    const { error } = await sb.auth.exchangeCodeForSession(code);
+    msg = error ? error.message : null;
+  } else if (access && refresh) {
+    const { error } = await sb.auth.setSession({ access_token: access, refresh_token: refresh });
+    msg = error ? error.message : null;
+  } else {
+    msg = hash.get("error_description");
+  }
+  window.history.replaceState({}, "", url.pathname); // scrub tokens from URL/history
+  return msg;
+}
+
+function applyDocs(docs, liveRows) {
+  PEOPLE = docs.people || [];
+  STACK = docs.stack || [];
+  RESOURCES = docs.resources || [];
+  PULSE = docs.pulse || { byDay: [], topContributors: [], growth: [], feed: [] };
+  META = docs.meta || {};
+  const d2 = docs.d2 || {};
+  MATCHES = d2.matches || [];
+  TAG_COLORS = d2.tagColors || {};
+  CLUSTER_COLOR = {};
+  (d2.clusterDefs || []).forEach(d => { CLUSTER_COLOR[d.name] = d.color; });
+
+  // Overlay live app edits by slug; members not in the snapshot get a card too.
+  const bySlug = new Map(PEOPLE.filter(p => p.slug).map(p => [p.slug, p]));
+  (liveRows || []).forEach(row => {
+    const o = {};
+    APP_EDITABLE.forEach(f => {
+      const v = row[f];
+      if (v != null && v !== "" && (!Array.isArray(v) || v.length)) o[f] = v;
+    });
+    const p = bySlug.get(row.slug);
+    if (p) {
+      if (Object.keys(o).length) p.profile = { ...(p.profile || {}), ...o };
+    } else if (row.name) {
+      PEOPLE.push({ name: row.name, slug: row.slug, tiers: ["community"], photo: null, profile: o, chat: null });
+    }
+  });
+}
+
+// Returns {ok:true} or {ok:false, applicationStatus?, error?}.
+async function loadPortal() {
+  // Idempotent: materializes the profile + approved membership for recognized
+  // emails, so members who never opened the app can still get in here.
+  let claim = null;
+  try {
+    const { data } = await sb.functions.invoke("claim");
+    claim = data;
+  } catch (e) { /* older deploy without CORS — membership check below decides */ }
+
+  const { data: ms, error: mErr } = await sb.from("memberships").select("member_no,status");
+  if (mErr) return { ok: false, error: mErr.message };
+  const approved = (ms || []).filter(m => m.status === "approved");
+  if (!approved.length) return { ok: false, applicationStatus: claim && claim.applicationStatus };
+  OWNER = approved.some(m => m.member_no === 1);
+
+  const [docsRes, liveRes] = await Promise.all([
+    sb.from("portal_docs").select("key,data"),
+    sb.from("profiles").select("slug,name," + APP_EDITABLE.join(",")).not("slug", "is", null),
+  ]);
+  if (docsRes.error) return { ok: false, error: docsRes.error.message };
+  const docs = {};
+  (docsRes.data || []).forEach(r => { docs[r.key] = r.data; });
+  applyDocs(docs, liveRes.data);
+  return { ok: true };
+}
+
+async function signOut() {
+  await sb.auth.signOut();
+  window.location.reload();
+}
 
 /* ── helpers ── */
 function fmtDate(s) {
@@ -122,6 +218,10 @@ function App() {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {OWNER && <Badge text="● Owner View" bg={INK} color={ACCENT} />}
           <span style={{ color: MUTED, fontSize: 11, letterSpacing: 1 }}>{PEOPLE.length} MEMBERS · TLV</span>
+          <button onClick={signOut} className="barlow" style={{
+            background: "none", border: "1px solid " + BORDER, color: MUTED, fontSize: 10,
+            fontWeight: 700, letterSpacing: 1.5, padding: "4px 8px", cursor: "pointer", textTransform: "uppercase"
+          }}>Sign out</button>
         </div>
       </div>
 
@@ -602,4 +702,135 @@ function PersonModal({ p, setSelected }) {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+/* ── LOGIN GATE (magic link) ── */
+function GateShell({ children }) {
+  return (
+    <div id="gate">
+      <div id="gate-logo"><span>DE</span></div>
+      <h1>Members<span className="dot">.</span></h1>
+      <div id="gate-sub">Deploy TLV · Builders Only</div>
+      {children}
+    </div>
+  );
+}
+
+function LoginGate({ initialError }) {
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(initialError || "");
+  const [shake, setShake] = useState(0);
+
+  const fail = msg => { setError("// " + msg); setShake(s => s + 1); };
+
+  async function sendLink() {
+    const e = email.trim().toLowerCase();
+    if (!e || !e.includes("@")) return fail("ENTER YOUR EMAIL");
+    setBusy(true); setError("");
+    const { error: err } = await sb.auth.signInWithOtp({
+      email: e,
+      options: { emailRedirectTo: window.location.origin + window.location.pathname },
+    });
+    setBusy(false);
+    if (err) return fail(err.message.toUpperCase());
+    setSent(true);
+  }
+
+  async function verifyCode() {
+    const t = code.trim();
+    if (!t) return fail("PASTE THE CODE FROM THE EMAIL");
+    setBusy(true); setError("");
+    const { error: err } = await sb.auth.verifyOtp({ email: email.trim().toLowerCase(), token: t, type: "email" });
+    setBusy(false);
+    if (err) return fail("CODE DIDN'T MATCH. TRY AGAIN.");
+    window.location.reload(); // boot picks up the session and loads the portal
+  }
+
+  const onKey = fn => e => { if (e.key === "Enter") fn(); };
+
+  return (
+    <GateShell>
+      {!sent ? (
+        <div id="gate-form" key={shake} className={shake ? "shake" : ""}>
+          <input id="gate-input" type="email" placeholder="your email" autoComplete="email"
+            value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey(sendLink)} />
+          <button id="gate-btn" onClick={sendLink} disabled={busy}>{busy ? "SENDING…" : "SEND LOGIN LINK →"}</button>
+          <div id="gate-error">{error}</div>
+          <div id="gate-note">Members sign in with the same email they use in the Deploy HQ app. No password — a login link lands in your inbox.</div>
+        </div>
+      ) : (
+        <div id="gate-form" key={"s" + shake} className={shake ? "shake" : ""}>
+          <div id="gate-note" style={{ marginBottom: 8 }}>Link sent to <b>{email.trim().toLowerCase()}</b>. Tap it on this device — or paste the code from the email:</div>
+          <input id="gate-input" type="text" inputMode="numeric" placeholder="6-digit code" autoComplete="one-time-code"
+            value={code} onChange={e => setCode(e.target.value)} onKeyDown={onKey(verifyCode)} />
+          <button id="gate-btn" onClick={verifyCode} disabled={busy}>{busy ? "CHECKING…" : "VERIFY →"}</button>
+          <div id="gate-error">{error}</div>
+          <button id="gate-alt" onClick={() => { setSent(false); setCode(""); setError(""); }}>use a different email</button>
+        </div>
+      )}
+    </GateShell>
+  );
+}
+
+function DeniedGate({ applicationStatus, error }) {
+  const note = error
+    ? "Something broke loading the portal: " + error
+    : applicationStatus === "pending"
+      ? "You're signed in, and your application is pending review. You'll get access once it's approved."
+      : applicationStatus === "rejected"
+        ? "You're signed in, but this email doesn't have member access."
+        : "You're signed in, but this email isn't on the member list. If you joined under a different address, sign out and use the one from the Deploy events.";
+  return (
+    <GateShell>
+      <div id="gate-form">
+        <div id="gate-error">{error ? "// LOAD ERROR" : "// NOT ON THE LIST"}</div>
+        <div id="gate-note">{note}</div>
+        <button id="gate-btn" onClick={signOut} style={{ marginTop: 10 }}>SIGN OUT</button>
+      </div>
+    </GateShell>
+  );
+}
+
+function BootGate() {
+  return (
+    <GateShell>
+      <div id="gate-note">// LOADING…</div>
+    </GateShell>
+  );
+}
+
+/* ── root: boot state machine ── */
+function Root() {
+  const [phase, setPhase] = useState("boot"); // boot | login | denied | ready
+  const [gateErr, setGateErr] = useState(null);
+  const [denied, setDenied] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      localStorage.removeItem("deploytlv_members_unlocked"); // old password gate
+      // Local dev hook: inject window.__DEV_DATA__ (e.g. from the gitignored
+      // data files) to render the portal without Supabase. Localhost only.
+      if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && window.__DEV_DATA__) {
+        OWNER = !!window.__DEV_DATA__.owner;
+        applyDocs(window.__DEV_DATA__, window.__DEV_DATA__.liveProfiles);
+        setPhase("ready");
+        return;
+      }
+      const authErr = await completeSignInFromUrl();
+      if (authErr) { setGateErr(authErr.toUpperCase()); setPhase("login"); return; }
+      const { data } = await sb.auth.getSession();
+      if (!data.session) { setPhase("login"); return; }
+      const res = await loadPortal();
+      if (res.ok) setPhase("ready");
+      else { setDenied(res); setPhase("denied"); }
+    })();
+  }, []);
+
+  if (phase === "boot") return <BootGate />;
+  if (phase === "login") return <LoginGate initialError={gateErr} />;
+  if (phase === "denied") return <DeniedGate applicationStatus={denied.applicationStatus} error={denied.error} />;
+  return <App />;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Root />);
