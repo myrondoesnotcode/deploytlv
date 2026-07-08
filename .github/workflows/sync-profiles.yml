@@ -1,0 +1,32 @@
+name: Sync member profiles from Deploy HQ app
+on:
+  schedule:
+    - cron: '17 */6 * * *' # every 6 hours
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pull profile edits from the app
+        env:
+          PROFILE_SYNC_KEY: ${{ secrets.PROFILE_SYNC_KEY }}
+        run: node build/pull-app-profiles.mjs
+      - name: Commit and publish if anything changed
+        run: |
+          if git diff --quiet members/data/people.js build/profile-overrides.json; then
+            echo "no profile changes"
+            exit 0
+          fi
+          git config user.name "deploy-hq-sync[bot]"
+          git config user.email "noreply@deploytlv.com"
+          git add members/data/people.js build/profile-overrides.json
+          git commit -m "Auto-sync member profile edits from Deploy HQ app"
+          git push
