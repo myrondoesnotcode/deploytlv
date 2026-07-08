@@ -569,6 +569,7 @@ function PulseTab({ setSelected }) {
         {shown.length === 0 && <div style={{ fontSize: 12, color: FAINT, padding: 20 }}>Nothing here yet.</div>}
       </div>
 
+      {OWNER && <React.Fragment>
       <Label>The Numbers</Label>
       {busiest && <div style={{ fontSize: 11, color: MUTED, marginBottom: 10 }}>Busiest day: <b style={{ color: INK }}>{fmtDate(busiest.date)}</b> ({busiest.count} messages)</div>}
       <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height: 90, padding: "0 0 4px", marginBottom: 16, overflowX: "auto" }}>
@@ -604,6 +605,7 @@ function PulseTab({ setSelected }) {
           </div>
         </React.Fragment>
       )}
+      </React.Fragment>}
     </div>
   );
 }
