@@ -1,0 +1,3307 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tzippy — what's your WhatsApp group really like?</title>
+<meta name="description" content="Drop in a WhatsApp export and see what's really inside — who's closest, who ghosts, who's the group's main character, or (for work chats) who's building, shipping and hiring. Runs entirely in your browser — nothing is uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tzippy">
+<meta property="og:url" content="https://deploytlv.com/tzippy/">
+<meta property="og:title" content="Tzippy — what's your WhatsApp group really like?">
+<meta property="og:description" content="Who's closest, who ghosts, who's the group's main character — or who's building, shipping and hiring. Analyzed in your browser. Nothing uploaded. Try your own group free.">
+<meta property="og:image" content="https://deploytlv.com/tzippy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tzippy — see what your WhatsApp group is really like">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tzippy — what's your WhatsApp group really like?">
+<meta name="twitter:description" content="Who's closest, who ghosts, who's the main character — or who's building and shipping. In your browser, nothing uploaded.">
+<meta name="twitter:image" content="https://deploytlv.com/tzippy/og.png">
+<meta name="twitter:image:alt" content="Tzippy — see what your WhatsApp group is really like">
+<meta name="theme-color" content="#0f766e">
+
+<style>
+/* ===================================================================
+   DESIGN SYSTEM
+
+   The chrome is deliberately near-monochrome so the data carries all
+   the colour. Every hue on screen encodes something; nothing is
+   decorative. Primary actions are near-black on light / near-white on
+   dark, with a single teal reserved for focus, active state and live
+   indicators. Series colours come from a CVD-validated categorical
+   palette and are never used for interface furniture.
+   =================================================================== */
+:root{
+  color-scheme:light;
+
+  --bg:#fbfbfc;
+  --panel:#ffffff;
+  --inset:#f5f6f8;
+  --line:#e7e9ee;
+  --line-2:#d7dbe2;
+
+  --ink:#15171c;
+  --ink-2:#585f6d;
+  --ink-3:#888f9d;
+
+  --primary:#15171c;
+  --primary-ink:#ffffff;
+  --primary-hover:#2c2f37;
+  --brand:#0f766e;
+  --brand-soft:#e6f4f1;
+
+  /* GitHub-style contribution scale (teal), empty → busiest */
+  --gh0:#eceef1; --gh1:#bfe3d9; --gh2:#7fccb8; --gh3:#39a88c; --gh4:#0f766e;
+
+  --s1:#2a78d6; --s2:#008300; --s3:#e87ba4; --s4:#eda100;
+  --s5:#1baf7a; --s6:#eb6834; --s7:#4a3aa7; --s8:#e34948;
+
+  --h0:#eef0f3; --h1:#cde2fb; --h2:#b7d3f6; --h3:#9ec5f4; --h4:#86b6ef;
+  --h5:#6da7ec; --h6:#5598e7; --h7:#3987e5; --h8:#2a78d6; --h9:#1c5cab;
+  --h10:#104281;
+
+  --sans:-apple-system,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --r:6px; --r-sm:4px;
+  --sh-1:0 1px 2px rgba(21,23,28,.05);
+  --sh-2:0 1px 3px rgba(21,23,28,.06),0 4px 12px -4px rgba(21,23,28,.08);
+  --sh-3:0 8px 32px -8px rgba(21,23,28,.18);
+  --topbar:56px; --nav:224px;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --bg:#0b0c0f; --panel:#131519; --inset:#1a1d22;
+    --line:#22252b; --line-2:#30343c;
+    --ink:#f1f2f5; --ink-2:#a0a7b4; --ink-3:#6c7482;
+    --primary:#f1f2f5; --primary-ink:#15171c; --primary-hover:#d7dae0;
+    --brand:#2dd4bf; --brand-soft:#10312d;
+    --gh0:#20242b; --gh1:#123f37; --gh2:#1a6b5a; --gh3:#25a183; --gh4:#2dd4bf;
+    --s1:#3987e5; --s2:#008300; --s3:#d55181; --s4:#c98500;
+    --s5:#199e70; --s6:#d95926; --s7:#9085e9; --s8:#e66767;
+    --h0:#1e2126; --h1:#104281; --h2:#184f95; --h3:#1c5cab; --h4:#256abf;
+    --h5:#2a78d6; --h6:#3987e5; --h7:#5598e7; --h8:#6da7ec; --h9:#86b6ef;
+    --h10:#9ec5f4;
+    --sh-1:0 1px 2px rgba(0,0,0,.4);
+    --sh-2:0 1px 3px rgba(0,0,0,.5),0 4px 12px -4px rgba(0,0,0,.5);
+    --sh-3:0 8px 32px -8px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0b0c0f; --panel:#131519; --inset:#1a1d22;
+  --line:#22252b; --line-2:#30343c;
+  --ink:#f1f2f5; --ink-2:#a0a7b4; --ink-3:#6c7482;
+  --primary:#f1f2f5; --primary-ink:#15171c; --primary-hover:#d7dae0;
+  --brand:#2dd4bf; --brand-soft:#10312d;
+  --s1:#3987e5; --s2:#008300; --s3:#d55181; --s4:#c98500;
+  --s5:#199e70; --s6:#d95926; --s7:#9085e9; --s8:#e66767;
+  --h0:#1e2126; --h1:#104281; --h2:#184f95; --h3:#1c5cab; --h4:#256abf;
+  --h5:#2a78d6; --h6:#3987e5; --h7:#5598e7; --h8:#6da7ec; --h9:#86b6ef;
+  --h10:#9ec5f4;
+  --sh-1:0 1px 2px rgba(0,0,0,.4);
+  --sh-2:0 1px 3px rgba(0,0,0,.5),0 4px 12px -4px rgba(0,0,0,.5);
+  --sh-3:0 8px 32px -8px rgba(0,0,0,.7);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:400 14px/1.55 var(--sans);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;   /* no stray horizontal scroll; keeps the fixed modal viewport-bound */
+}
+h1,h2,h3,h4{margin:0; font-weight:600; letter-spacing:-.018em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brand); outline-offset:2px; border-radius:var(--r-sm)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--mono)}
+/* Components that set their own display must still honour [hidden]. */
+[hidden]{display:none!important}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  height:34px; padding:0 14px; border-radius:var(--r-sm); cursor:pointer;
+  font:500 13px/1 var(--sans); border:1px solid transparent; white-space:nowrap;
+  transition:background .13s ease,border-color .13s ease,color .13s ease;
+}
+.btn-primary{background:var(--primary); color:var(--primary-ink)}
+.btn-primary:hover{background:var(--primary-hover)}
+.btn-ghost{background:transparent; color:var(--ink-2); border-color:var(--line-2)}
+.btn-ghost:hover{background:var(--inset); color:var(--ink)}
+.btn-bare{background:transparent; color:var(--ink-2); border:0; padding:0 8px}
+.btn-bare:hover{color:var(--ink)}
+.btn-lg{height:40px; padding:0 20px; font-size:14px}
+.btn-wa{background:#25d366; color:#0a2b16}
+.btn-wa:hover{background:#1fbe5b}
+
+/* ---------- Product mark ---------- */
+.mark{display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:14px;
+      letter-spacing:-.02em; color:var(--ink); text-decoration:none}
+.mark svg{display:block; flex:none}
+
+/* =========== TOP BAR =========== */
+.topbar{
+  position:sticky; top:0; z-index:40; height:var(--topbar);
+  display:flex; align-items:center; gap:16px; padding:0 20px;
+  background:color-mix(in srgb,var(--panel) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .div{width:1px; height:20px; background:var(--line-2); flex:none}
+.topbar .ctx{display:flex; align-items:baseline; gap:9px; min-width:0}
+.topbar .ctx .nm{font-weight:600; font-size:13.5px; white-space:nowrap;
+                 overflow:hidden; text-overflow:ellipsis; max-width:32ch}
+.topbar .ctx .mt{font:400 12px/1 var(--mono); color:var(--ink-3); white-space:nowrap}
+.topbar .sp{flex:1}
+.topbar .acts{display:flex; align-items:center; gap:6px}
+@media (max-width:720px){
+  .topbar{padding:0 12px; gap:10px}
+  .topbar .ctx .mt{display:none}
+}
+@media (max-width:560px){
+  /* Keep the primary actions (Share, New analysis, theme) in reach on a phone;
+     GitHub still lives in the footer and on every share card. */
+  #gh{display:none}
+  .topbar .ctx .nm{max-width:16ch}
+  .topbar{gap:8px}
+  .topbar .acts{gap:4px}
+  .btn{height:32px; padding:0 11px}
+}
+
+/* =========== LANDING =========== */
+#intake{min-height:calc(100vh - var(--topbar))}
+.hero{
+  max-width:640px; margin:0 auto; padding:76px 24px 0; text-align:center;
+}
+.pill-tag{
+  display:inline-flex; align-items:center; gap:7px; height:26px; padding:0 11px;
+  border:1px solid var(--line-2); border-radius:999px; background:var(--panel);
+  font:500 11.5px/1 var(--sans); color:var(--ink-2); margin-bottom:22px;
+}
+.pill-tag i{width:6px; height:6px; border-radius:50%; background:var(--brand); flex:none}
+.hero h1{
+  font-size:clamp(32px,5vw,46px); line-height:1.07; letter-spacing:-.035em;
+  text-wrap:balance; margin-bottom:16px;
+}
+.hero .lede{
+  font-size:16px; line-height:1.6; color:var(--ink-2); max-width:47ch;
+  margin:0 auto; text-wrap:balance;
+}
+
+/* Dropzone */
+.dz-wrap{max-width:560px; margin:38px auto 0; padding:0 24px}
+#drop{
+  width:100%; display:flex; flex-direction:column; align-items:center; gap:5px;
+  padding:40px 28px; background:var(--panel); cursor:pointer;
+  border:1.5px dashed var(--line-2); border-radius:10px; color:var(--ink);
+  font:inherit; text-align:center;
+  transition:border-color .16s ease, background .16s ease, transform .16s ease;
+}
+#drop:hover{border-color:var(--ink-3); background:var(--inset)}
+#drop.hot{
+  border-color:var(--brand); border-style:solid; background:var(--brand-soft);
+  transform:scale(1.008);
+}
+#drop .ic{
+  width:38px; height:38px; border-radius:50%; display:grid; place-items:center;
+  background:var(--inset); color:var(--ink-2); margin-bottom:9px;
+  transition:background .16s ease,color .16s ease;
+}
+#drop.hot .ic{background:var(--brand); color:#fff}
+#drop .t1{font-weight:600; font-size:14.5px}
+#drop .t2{font-size:13px; color:var(--ink-2)}
+#drop .t3{font:400 11.5px/1 var(--mono); color:var(--ink-3); margin-top:7px}
+.dz-under{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:14px; font-size:12.5px; color:var(--ink-3); text-align:center;
+  flex-wrap:wrap;
+}
+.dz-under svg{flex:none; opacity:.8}
+.dz-alt{margin-top:16px; text-align:center}
+.linkbtn{
+  background:none; border:0; padding:0; cursor:pointer; color:var(--ink-2);
+  font:500 13px/1 var(--sans); text-decoration:underline;
+  text-underline-offset:3px; text-decoration-color:var(--line-2);
+}
+.linkbtn:hover{color:var(--ink); text-decoration-color:var(--ink-3)}
+#err{
+  max-width:560px; margin:18px auto 0; padding:12px 15px; background:var(--panel);
+  border:1px solid var(--line); border-left:3px solid var(--s8); border-radius:var(--r);
+  font-size:13px; color:var(--ink-2); text-align:left;
+}
+
+/* Top-bar tagline: names the product category so the tool is never ambiguous.
+   Hidden once a report loads, where the chat context takes the space. */
+.tagline{
+  font-size:12.5px; color:var(--ink-3); white-space:nowrap;
+  padding-left:11px; margin-left:3px; border-left:1px solid var(--line-2);
+}
+@media (max-width:720px){.tagline{display:none}}
+
+/* Feature strip */
+.feats{
+  max-width:1080px; margin:80px auto 0; padding:36px 24px 40px;
+  border-top:1px solid var(--line);
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px;
+}
+@media (max-width:860px){.feats{grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px}}
+@media (max-width:480px){.feats{grid-template-columns:1fr}}
+.feat h4{font-size:13.5px; margin-bottom:6px}
+.feat p{font-size:13px; line-height:1.6; color:var(--ink-2)}
+.feat .fi{
+  width:26px; height:26px; border-radius:var(--r-sm); background:var(--inset);
+  display:grid; place-items:center; color:var(--ink-2); margin-bottom:11px;
+}
+
+/* How-to strip */
+.howto{max-width:1080px; margin:0 auto; padding:0 24px}
+.howto-in{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  padding:22px 24px; box-shadow:var(--sh-1);
+}
+.howto-in h3{font-size:13.5px; margin-bottom:14px}
+.steps{list-style:none; margin:0 0 14px; padding:0; display:grid;
+       grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+@media (max-width:760px){.steps{grid-template-columns:1fr; gap:11px}}
+.steps li{display:flex; align-items:flex-start; gap:10px; font-size:13px;
+          color:var(--ink-2); line-height:1.55}
+.steps .n{
+  flex:none; width:19px; height:19px; border-radius:50%; background:var(--inset);
+  color:var(--ink-2); font:600 10.5px/19px var(--mono); text-align:center; margin-top:1px;
+}
+.steps b{color:var(--ink); font-weight:600}
+.steps code{
+  font:400 11.5px var(--mono); background:var(--inset); color:var(--ink-2);
+  padding:1px 5px; border-radius:3px;
+}
+.howto-note{
+  font-size:12.5px; line-height:1.6; color:var(--ink-3);
+  border-top:1px solid var(--line); padding-top:13px;
+}
+.howto-note b{color:var(--ink-2); font-weight:600}
+
+/* Footer */
+.foot{
+  max-width:1080px; margin:0 auto; padding:34px 24px 56px;
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+  font-size:12px; color:var(--ink-3);
+}
+.foot a{color:var(--ink-2); text-decoration:underline;
+        text-underline-offset:3px; text-decoration-color:var(--line-2)}
+.foot a:hover{color:var(--ink)}
+.foot-sep{color:var(--line-2)}
+@media (max-width:560px){.foot-sep{display:none} .foot{flex-direction:column; align-items:flex-start; gap:6px}}
+
+/* =========== PROGRESS =========== */
+#progress{display:none; min-height:calc(100vh - var(--topbar)); place-items:center; padding:24px}
+#progress.on{display:grid}
+.prog{width:100%; max-width:300px; text-align:center}
+.prog .sp{
+  width:26px; height:26px; margin:0 auto 20px; border-radius:50%;
+  border:2px solid var(--line-2); border-top-color:var(--brand);
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+#prog-step{font-size:13.5px; color:var(--ink-2); min-height:20px}
+.prog .track{height:2px; background:var(--line); margin-top:18px; border-radius:2px; overflow:hidden}
+.prog .fill{height:100%; width:0; background:var(--brand); transition:width .3s ease}
+
+/* =========== APP =========== */
+#app{display:none}
+#app.on{display:block}
+.shell{display:flex; align-items:flex-start}
+.sidenav{
+  position:sticky; top:var(--topbar); flex:none; width:var(--nav);
+  height:calc(100vh - var(--topbar)); overflow-y:auto;
+  padding:16px 12px; border-right:1px solid var(--line);
+}
+.sidenav a{
+  display:block; padding:7px 10px; border-radius:var(--r-sm); text-decoration:none;
+  color:var(--ink-2); font-size:13px; position:relative;
+}
+.sidenav a:hover{background:var(--inset); color:var(--ink)}
+.sidenav a.here{background:var(--inset); color:var(--ink); font-weight:600}
+.sidenav a.here::before{
+  content:""; position:absolute; left:-12px; top:7px; bottom:7px; width:2px;
+  background:var(--brand); border-radius:0 2px 2px 0;
+}
+.sidenav .grp{
+  font:500 10px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-3); padding:14px 10px 7px;
+}
+main{flex:1; min-width:0; padding:28px 32px 96px; max-width:1180px}
+@media (max-width:900px){
+  .shell{display:block}
+  .sidenav{
+    position:static; width:auto; height:auto; display:flex; gap:4px;
+    overflow-x:auto; border-right:0; border-bottom:1px solid var(--line);
+    padding:8px 12px;
+  }
+  .sidenav .grp{display:none}
+  .sidenav a{white-space:nowrap}
+  .sidenav a.here::before{display:none}
+  main{padding:20px 16px 72px}
+}
+
+section{margin-bottom:52px; scroll-margin-top:calc(var(--topbar) + 16px)}
+.sec-head{margin-bottom:18px}
+.sec-head h2{font-size:19px; letter-spacing:-.024em}
+.sec-head p{color:var(--ink-2); font-size:13.5px; margin-top:5px; max-width:68ch; line-height:1.6}
+.eyebrow{
+  display:block; font:500 10px/1 var(--mono); letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:9px;
+}
+
+/* ---------- Metrics ---------- */
+.tiles{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:14px;
+}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  padding:14px 16px; box-shadow:var(--sh-1);
+}
+.tile .v{font-size:24px; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1.15}
+.tile .l{font-size:12.5px; color:var(--ink-2); margin-top:3px}
+.tile .s{font:400 11px/1.4 var(--mono); color:var(--ink-3); margin-top:4px}
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  padding:18px; margin-bottom:14px; box-shadow:var(--sh-1);
+}
+.card-head{margin-bottom:15px}
+.card h3{font-size:13.5px}
+.card .sub{color:var(--ink-3); font-size:12.5px; margin-top:5px; line-height:1.55}
+.g2{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,348px),1fr)); gap:14px}
+.g2 .card{margin:0}
+
+/* ---------- Bars ---------- */
+.bars{display:flex; flex-direction:column; gap:7px}
+.bar{display:grid; grid-template-columns:minmax(80px,158px) 1fr; gap:13px; align-items:center}
+.bar .k{font-size:12.5px; text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.bar .k s{display:block; font:400 10.5px/1.35 var(--mono); color:var(--ink-3); text-decoration:none}
+.bar .t{display:flex; align-items:center; gap:9px; min-width:0}
+.bar .f{height:14px; border-radius:0 2px 2px 0; min-width:3px; transform-origin:left}
+.bar .v{font:400 11.5px/1 var(--mono); color:var(--ink-2); white-space:nowrap}
+
+/* ---------- Heatmap ---------- */
+.heat{display:grid; grid-template-columns:30px repeat(24,1fr); gap:2px; align-items:center}
+.heat .c{aspect-ratio:1; min-height:11px; background:var(--h0); border-radius:1.5px}
+.heat .d{font:400 10px/1 var(--mono); color:var(--ink-3); text-align:right; padding-right:6px}
+.heat .h{font:400 9px/1 var(--mono); color:var(--ink-3); text-align:center}
+.legend{display:flex; align-items:center; gap:3px; margin-top:13px;
+        font:400 10px/1 var(--mono); color:var(--ink-3)}
+.legend i{width:12px; height:12px; background:var(--h0); border-radius:1.5px}
+[data-l="0"]{background:var(--h0)!important}
+[data-l="1"]{background:var(--h1)!important}
+[data-l="2"]{background:var(--h2)!important}
+[data-l="3"]{background:var(--h3)!important}
+[data-l="4"]{background:var(--h4)!important}
+[data-l="5"]{background:var(--h5)!important}
+[data-l="6"]{background:var(--h6)!important}
+[data-l="7"]{background:var(--h7)!important}
+[data-l="8"]{background:var(--h8)!important}
+[data-l="9"]{background:var(--h9)!important}
+[data-l="10"]{background:var(--h10)!important}
+
+/* ---------- Timeline ---------- */
+.tl-wrap{position:relative}
+.tl{width:100%; height:210px; display:block; overflow:visible}
+.tl .area{fill:var(--s1); opacity:.12}
+.tl .roll{fill:none; stroke:var(--s1); stroke-width:1.75; stroke-linejoin:round}
+.tl .grid{stroke:var(--line); stroke-width:1}
+.tl .ax{fill:var(--ink-3); font:400 10px var(--mono)}
+.tl .cross{stroke:var(--line-2); stroke-width:1; stroke-dasharray:3 3}
+.tl .dot{fill:var(--s1); stroke:var(--panel); stroke-width:2.5}
+.tip{
+  position:absolute; pointer-events:none; z-index:6; background:var(--ink);
+  color:var(--bg); padding:7px 10px; border-radius:var(--r-sm);
+  font-size:12px; line-height:1.45; white-space:nowrap; box-shadow:var(--sh-3);
+}
+.tip b{font-size:13px; font-weight:600; font-variant-numeric:tabular-nums}
+.cap{font:400 11px/1.4 var(--mono); color:var(--ink-3); margin-top:10px}
+
+/* ---------- People ---------- */
+.folk{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,228px),1fr)); gap:10px}
+.person{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  padding:14px; display:flex; gap:11px; align-items:flex-start; box-shadow:var(--sh-1);
+}
+.av{
+  flex:none; width:32px; height:32px; border-radius:var(--r-sm); display:grid;
+  place-items:center; color:#fff; font-size:12px; font-weight:600; letter-spacing:.01em;
+}
+.person .nm{font-size:13px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.person .st{font:400 11px/1.65 var(--mono); color:var(--ink-3); margin-top:2px}
+.person .em{font-size:13px; margin-top:5px; letter-spacing:.05em}
+
+/* ---------- Tables ---------- */
+.scroll{max-height:500px; overflow:auto; border:1px solid var(--line); border-radius:var(--r)}
+table{width:100%; border-collapse:collapse; font-size:12.5px}
+th{
+  position:sticky; top:0; z-index:1; background:var(--panel); text-align:left;
+  font:500 10px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); padding:10px 12px; border-bottom:1px solid var(--line-2);
+  cursor:pointer; white-space:nowrap; user-select:none;
+}
+th:hover{color:var(--ink)}
+td{padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--inset)}
+td.n{font-variant-numeric:tabular-nums; white-space:nowrap}
+.when{font:400 11px var(--mono); color:var(--ink-3); white-space:nowrap}
+.dim{color:var(--ink-2)}
+.filter{
+  width:100%; height:36px; padding:0 12px; margin-bottom:11px; font:inherit; font-size:13px;
+  border:1px solid var(--line-2); border-radius:var(--r-sm);
+  background:var(--panel); color:var(--ink);
+}
+.filter::placeholder{color:var(--ink-3)}
+.filter:focus{outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-soft)}
+table a{color:var(--s1); text-decoration:none}
+table a:hover{text-decoration:underline}
+.pill{
+  display:inline-block; padding:2px 7px; border-radius:3px;
+  font:400 10.5px/1.6 var(--mono); background:var(--inset);
+  border:1px solid var(--line); color:var(--ink-2); white-space:nowrap;
+}
+
+/* ---------- Chips ---------- */
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{
+  display:inline-flex; align-items:center; gap:7px; padding:5px 10px;
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r-sm);
+  font-size:12.5px;
+}
+.chip.xl{font-size:17px; padding:4px 10px}
+.chip i{font:400 10.5px var(--mono); color:var(--ink-3); font-style:normal}
+
+/* ---------- Tabs & feed ---------- */
+.tabs{display:flex; gap:2px; flex-wrap:wrap; margin-bottom:16px;
+      background:var(--inset); padding:3px; border-radius:var(--r-sm); width:fit-content}
+.tab{
+  display:inline-flex; align-items:center; gap:7px; padding:6px 12px; cursor:pointer;
+  background:transparent; border:0; border-radius:3px; color:var(--ink-2);
+  font:500 12.5px/1 var(--sans); transition:background .12s ease,color .12s ease;
+}
+.tab i{font:400 10.5px var(--mono); font-style:normal; color:var(--ink-3)}
+.tab:hover{color:var(--ink)}
+.tab.on{background:var(--panel); color:var(--ink); box-shadow:var(--sh-1)}
+.tab.on i{color:var(--ink-2)}
+.panel{display:none}
+.panel.on{display:block}
+.feed{list-style:none; margin:0; padding:0; max-height:560px; overflow:auto}
+.feed li{padding:13px 2px; border-bottom:1px solid var(--line)}
+.feed li:last-child{border-bottom:0}
+.fh{display:flex; gap:10px; align-items:baseline; margin-bottom:5px}
+.fh strong{font-size:12.5px; font-weight:600}
+.feed p{font-size:13px; color:var(--ink-2); line-height:1.6;
+        white-space:pre-wrap; word-break:break-word}
+.fl{display:flex; flex-direction:column; gap:2px; margin-top:7px; font-size:12px}
+.fl a{color:var(--s1); text-decoration:none}
+.fl a:hover{text-decoration:underline}
+.empty{color:var(--ink-3); font-size:13px; padding:8px 0}
+.warn{
+  padding:13px 15px; background:var(--panel); border:1px solid var(--line);
+  border-left:3px solid var(--s4); border-radius:var(--r);
+  font-size:13px; color:var(--ink-2); margin-bottom:16px; line-height:1.55;
+}
+.warn b{color:var(--ink)}
+.warn ul{margin:6px 0 0; padding-left:18px}
+
+/* =========== SHARE MODAL =========== */
+.modal-back{
+  position:fixed; inset:0; z-index:100; display:none;
+  /* width pinned to the layout viewport (100vw), not window.innerWidth, so the
+     overlay + centred modal always match the visible area on mobile. */
+  width:100vw; max-width:100vw;
+  align-items:flex-start; justify-content:center; padding:5vh 16px 16px;
+  background:color-mix(in srgb,var(--ink) 42%,transparent);
+  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); overflow:auto;
+}
+.modal-back.on{display:flex}
+.modal{
+  width:100%; max-width:min(560px, calc(100vw - 32px)); background:var(--bg);
+  border:1px solid var(--line-2); border-radius:12px; box-shadow:var(--sh-3,0 24px 64px rgba(0,0,0,.28));
+  overflow:hidden; animation:pop .16s ease;
+}
+@keyframes pop{from{opacity:0; transform:translateY(8px) scale(.99)}to{opacity:1; transform:none}}
+.modal-head{
+  display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--line);
+}
+.modal-head h3{font-size:15px; font-weight:600; letter-spacing:-.01em; margin:0}
+.modal-head .sub{font-size:12.5px; color:var(--ink-2); margin:2px 0 0}
+.modal-head .x{
+  margin-left:auto; flex:none; width:30px; height:30px; border-radius:var(--r-sm);
+  border:0; background:transparent; color:var(--ink-3); cursor:pointer; font-size:19px; line-height:1;
+}
+.modal-head .x:hover{background:var(--inset); color:var(--ink)}
+.modal-body{padding:16px 18px; display:flex; flex-direction:column; gap:14px}
+.seg{display:flex; gap:3px; background:var(--inset); padding:3px; border-radius:var(--r-sm); width:100%}
+.seg-btn{flex:1 1 0; padding:8px 12px; cursor:pointer; background:transparent; border:0;
+  border-radius:3px; color:var(--ink-2); font:500 13px/1 var(--sans); transition:background .12s,color .12s}
+.seg-btn:hover{color:var(--ink)}
+.seg-btn.on{background:var(--panel); color:var(--ink); box-shadow:var(--sh-1)}
+.field select{width:100%; height:34px; padding:0 11px; border:1px solid var(--line-2);
+  border-radius:var(--r-sm); background:var(--panel); color:var(--ink); font:400 13px var(--sans); cursor:pointer}
+.field select:focus{outline:none; border-color:var(--brand)}
+
+/* Live preview of the card */
+.share-prev{
+  border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
+  background:var(--inset);
+}
+.share-prev canvas{display:block; width:100%; height:auto; max-height:60vh; object-fit:contain}
+.fmt-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:-2px}
+.fmt-label{font-size:12px; font-weight:600; color:var(--ink-2)}
+.fmt-seg{display:flex; gap:2px; background:var(--inset); padding:3px; border-radius:var(--r-sm)}
+.fmt-btn{padding:6px 11px; cursor:pointer; background:transparent; border:0; border-radius:3px;
+  color:var(--ink-2); font:500 12px/1 var(--sans); transition:background .12s,color .12s}
+.fmt-btn:hover{color:var(--ink)}
+.fmt-btn.on{background:var(--panel); color:var(--ink); box-shadow:var(--sh-1)}
+
+.share-opts{display:flex; flex-direction:column; gap:12px}
+.field label{display:block; font-size:12px; font-weight:600; color:var(--ink-2); margin-bottom:5px}
+.field input[type=text]{
+  width:100%; height:34px; padding:0 11px; border:1px solid var(--line-2); border-radius:var(--r-sm);
+  background:var(--panel); color:var(--ink); font:400 13px var(--sans);
+}
+.field input:focus{outline:none; border-color:var(--brand)}
+
+.switch{display:flex; align-items:flex-start; gap:11px; cursor:pointer; user-select:none}
+.switch input{position:absolute; opacity:0; width:0; height:0}
+.switch .track{
+  flex:none; margin-top:1px; width:38px; height:22px; border-radius:11px; background:var(--line-2);
+  position:relative; transition:background .15s ease;
+}
+.switch .track::after{
+  content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%;
+  background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .15s ease;
+}
+.switch input:checked+.track{background:var(--brand)}
+.switch input:checked+.track::after{transform:translateX(16px)}
+.switch input:focus-visible+.track{outline:2px solid var(--brand); outline-offset:2px}
+.switch .txt{font-size:13px; line-height:1.4}
+.switch .txt b{font-weight:600}
+.switch .txt span{display:block; color:var(--ink-3); font-size:12px; margin-top:1px}
+
+.priv-note{
+  display:flex; gap:9px; padding:10px 12px; border-radius:var(--r-sm);
+  background:var(--brand-soft); border:1px solid color-mix(in srgb,var(--brand) 22%,transparent);
+  font-size:12px; line-height:1.5; color:var(--ink-2);
+}
+.priv-note.warn-tone{
+  background:color-mix(in srgb,var(--s4) 12%,transparent);
+  border-color:color-mix(in srgb,var(--s4) 34%,transparent);
+}
+.priv-note svg{flex:none; margin-top:1px; color:var(--brand)}
+.priv-note.warn-tone svg{color:var(--s4)}
+
+.share-actions{display:flex; gap:9px; flex-wrap:wrap; padding-top:2px}
+.share-actions .btn{flex:1 1 auto; min-width:130px}
+
+.linkrow{display:flex; gap:8px; align-items:center}
+.linkrow input{
+  flex:1 1 auto; min-width:0; height:34px; padding:0 11px; border:1px solid var(--line);
+  border-radius:var(--r-sm); background:var(--inset); color:var(--ink-2);
+  font:400 12px var(--mono); text-overflow:ellipsis;
+}
+
+/* =========== SHARED CARD VIEW (opened from a link) =========== */
+#share-view{display:none; min-height:100vh; padding:44px 20px 64px}
+#share-view.on{display:block}
+.sv-wrap{max-width:660px; margin:0 auto}
+.sv-mark{display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:22px}
+.sv-card{
+  background:var(--panel); border:1px solid var(--line-2); border-radius:16px;
+  box-shadow:var(--sh-2,0 12px 40px rgba(0,0,0,.12)); overflow:hidden;
+}
+.sv-hero{padding:30px 30px 22px; border-bottom:1px solid var(--line)}
+.sv-eyebrow{font:600 11px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--brand)}
+.sv-title{font-size:26px; font-weight:600; letter-spacing:-.03em; margin:10px 0 6px; line-height:1.15; word-break:break-word}
+.sv-range{font-size:13px; color:var(--ink-2)}
+.sv-body{padding:24px 30px 28px}
+.sv-stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px 10px; margin-bottom:22px;
+}
+@media (max-width:560px){.sv-stats{grid-template-columns:repeat(2,1fr)}}
+.sv-stat .v{font-size:27px; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1}
+.sv-stat .l{font-size:12px; color:var(--ink-2); margin-top:5px}
+.sv-block{margin-top:20px}
+.sv-block h4{font:600 11px/1 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 11px}
+.sv-spark{width:100%; height:74px; display:block}
+.sv-contrib{display:block; max-width:100%; height:auto; margin:2px 0}
+.sv-contrib .ghm{font:600 9px var(--mono); fill:var(--ink-3); text-transform:uppercase; letter-spacing:.05em}
+.sv-legend{display:flex; align-items:center; gap:5px; margin-top:10px; font-size:11px; color:var(--ink-3)}
+.sv-legend i{width:11px; height:11px; border-radius:2px; display:inline-block}
+.sv-lead{display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--line)}
+.sv-lead:first-of-type{border-top:0}
+.sv-lead .rk{flex:none; width:20px; font:600 12px var(--mono); color:var(--ink-3)}
+.sv-lead .nm{flex:1 1 auto; min-width:0; font-size:13.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sv-lead .val{flex:none; font:600 13px var(--mono); color:var(--ink-2)}
+.sv-awards{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+@media (max-width:560px){.sv-awards{grid-template-columns:1fr}}
+.sv-award{display:flex; align-items:center; gap:11px; padding:11px 13px;
+  background:var(--inset); border:1px solid var(--line); border-radius:var(--r)}
+.sv-award .ic{flex:none; font-size:22px; line-height:1}
+.sv-award .tx{min-width:0}
+.sv-award .ti{font-size:13px; font-weight:600; letter-spacing:-.01em}
+.sv-award .wn{font-size:12px; color:var(--ink-2); margin-top:2px; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap}
+.sv-emoji{font-size:34px; letter-spacing:6px; line-height:1.2}
+.sv-noawards{font-size:13.5px; color:var(--ink-2); margin:0}
+.sv-foot{
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  padding:18px 30px; background:var(--inset); border-top:1px solid var(--line);
+}
+.sv-foot .made{font-size:12.5px; color:var(--ink-3)}
+.sv-foot .made b{color:var(--ink-2); font-weight:600}
+.sv-disclaim{text-align:center; font-size:11.5px; color:var(--ink-3); margin-top:20px; line-height:1.5}
+
+/* ===================================================================
+   LANDING REDESIGN  (all rules namespaced `lp-` so they never collide
+   with the report/app styles above — e.g. the app's own .heat/.hero/
+   .feats and the global [data-l] blue scale). The landing borrows the
+   report's own visual language: teal GitHub-contribution scale, mono
+   labels, tabular numerals.
+   =================================================================== */
+.lp-hero-wrap{position:relative; overflow:hidden; border-bottom:1px solid var(--line)}
+.lp-glow{position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(600px 420px at 78% 16%, color-mix(in srgb,var(--brand) 18%,transparent), transparent 70%),
+    radial-gradient(760px 520px at 10% 4%, color-mix(in srgb,var(--brand) 9%,transparent), transparent 72%);}
+.lp-hero{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:60px 24px 58px;
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr); gap:52px; align-items:center}
+.lp-cta{display:flex; flex-direction:column; align-items:flex-start}
+/* Let both hero columns shrink below their content's intrinsic width, so the
+   no-wrap preview title/tiles can't push the layout past a phone's viewport. */
+.lp-cta,.lp-preview{min-width:0}
+.lp-eyebrow{display:inline-flex; align-items:center; gap:8px; height:26px; padding:0 12px;
+  border:1px solid var(--line-2); border-radius:999px;
+  background:color-mix(in srgb,var(--panel) 70%,transparent);
+  font:500 10.5px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-2); margin-bottom:22px}
+.lp-eyebrow i{width:6px; height:6px; border-radius:50%; background:var(--brand); flex:none;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 26%,transparent)}
+.lp-h1{font-size:clamp(32px,4.4vw,50px); line-height:1.05; letter-spacing:-.038em;
+  text-wrap:balance; margin-bottom:16px}
+.lp-h1 .hl{background:linear-gradient(103deg,var(--gh3),var(--brand));
+  -webkit-background-clip:text; background-clip:text; color:transparent}
+.lp-lede{font-size:16px; line-height:1.6; color:var(--ink-2); max-width:50ch; text-wrap:balance}
+
+/* dropzone reused from #drop, restyled for the column + a teal glow/pulse */
+.lp-hero .dz-wrap{max-width:520px; width:100%; margin:28px 0 0; padding:0}
+.lp-hero .dz-under,.lp-hero .dz-alt{justify-content:flex-start; text-align:left}
+#drop .ic{background:var(--brand-soft); color:var(--brand); width:44px; height:44px; position:relative}
+#drop .ic::after{content:""; position:absolute; inset:0; border-radius:50%; background:var(--brand);
+  opacity:.16; animation:lp-pulse 2.4s ease-out infinite}
+@keyframes lp-pulse{0%{transform:scale(1); opacity:.3}70%{transform:scale(1.5); opacity:0}100%{opacity:0}}
+#drop:hover{border-color:var(--brand); background:var(--brand-soft);
+  box-shadow:0 14px 44px -16px color-mix(in srgb,var(--brand) 60%,transparent)}
+.lp-hero .linkbtn{color:var(--brand); font-weight:600;
+  text-decoration-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+.lp-hero .linkbtn:hover{color:var(--brand)}
+
+/* framed report preview — the signature element */
+.lp-preview{position:relative}
+.lp-preview::before{content:""; position:absolute; inset:-26px -18px; z-index:0; border-radius:24px;
+  background:radial-gradient(closest-side, color-mix(in srgb,var(--brand) 14%,transparent), transparent)}
+.lp-win{position:relative; z-index:1; background:var(--panel); border:1px solid var(--line-2);
+  border-radius:14px; box-shadow:var(--sh-3); overflow:hidden;
+  transform:perspective(1500px) rotateY(-4deg) rotateX(1.5deg); transform-origin:center left}
+.lp-winbar{display:flex; align-items:center; gap:7px; padding:11px 14px;
+  border-bottom:1px solid var(--line); background:var(--inset)}
+.lp-winbar i{width:10px; height:10px; border-radius:50%; background:var(--line-2); flex:none}
+.lp-winbar .u{margin-left:10px; min-width:0; font:400 11px/1 var(--mono); color:var(--ink-3);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.lp-winbody{padding:16px}
+.lp-ptiles{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px}
+.lp-ptile{background:var(--inset); border:1px solid var(--line); border-radius:var(--r); padding:9px 10px}
+.lp-ptile .v{font-size:19px; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1.1}
+.lp-ptile .l{font-size:10px; color:var(--ink-3); margin-top:2px}
+.lp-plabel{font:500 9px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:0 0 8px}
+.lp-heat{display:grid; grid-template-columns:20px repeat(18,1fr); gap:3px; align-items:center; margin-bottom:14px}
+.lp-heat .d{font:400 8px/1 var(--mono); color:var(--ink-3); text-align:right; padding-right:4px}
+.lp-heat .c{aspect-ratio:1; border-radius:2px; background:var(--gh0)}
+.lp-heat .c.l1{background:var(--gh1)} .lp-heat .c.l2{background:var(--gh2)}
+.lp-heat .c.l3{background:var(--gh3)} .lp-heat .c.l4{background:var(--gh4)}
+.lp-psplit{display:grid; grid-template-columns:1.2fr 1fr; gap:14px}
+.lp-pspark{width:100%; height:52px; display:block}
+.lp-plead{display:flex; align-items:center; gap:9px; padding:5px 0; border-top:1px solid var(--line)}
+.lp-plead:first-of-type{border-top:0}
+.lp-plead .rk{width:14px; font:600 10px/1 var(--mono); color:var(--ink-3)}
+.lp-pav{width:20px; height:20px; border-radius:5px; display:grid; place-items:center; color:#fff; font:600 9px/1 var(--sans); flex:none}
+.lp-plead .nm{flex:1; min-width:0; font-size:11.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.lp-plead .vl{font:600 10.5px/1 var(--mono); color:var(--ink-2)}
+@media (max-width:900px){
+  .lp-hero{grid-template-columns:1fr; gap:38px; padding:44px 22px 46px}
+  .lp-cta{align-items:center; text-align:center}
+  .lp-hero .dz-under,.lp-hero .dz-alt{justify-content:center; text-align:center}
+  .lp-hero .dz-wrap{margin-left:auto; margin-right:auto}
+  .lp-win{transform:none}
+}
+
+/* trust band */
+.lp-trust{border-bottom:1px solid var(--line); background:var(--inset)}
+.lp-trust-in{max-width:1120px; margin:0 auto; padding:15px 24px; display:flex; flex-wrap:wrap;
+  gap:10px 40px; align-items:center; justify-content:center}
+.lp-trust .it{display:flex; align-items:baseline; gap:9px}
+.lp-trust .n{font-size:19px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.lp-trust .n u{text-decoration:none; color:var(--brand)}
+.lp-trust .k{font:500 11px/1 var(--mono); letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
+.lp-trust .dot{width:4px; height:4px; border-radius:50%; background:var(--line-2); flex:none}
+@media (max-width:640px){.lp-trust .dot{display:none} .lp-trust-in{gap:12px 26px}}
+
+/* feature mini-previews */
+.lp-feats{max-width:1120px; margin:0 auto; padding:62px 24px 20px}
+.lp-feats-head{text-align:center; margin-bottom:32px; display:flex; flex-direction:column; align-items:center}
+.lp-feats-head h2{font-size:clamp(23px,3vw,29px); letter-spacing:-.03em; margin-top:14px}
+.lp-feats-head p{color:var(--ink-2); font-size:14.5px; margin:9px auto 0; max-width:56ch; line-height:1.6}
+.lp-fgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+@media (max-width:900px){.lp-fgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.lp-fgrid{grid-template-columns:1fr}}
+.lp-fcard{position:relative; overflow:hidden; background:var(--panel); border:1px solid var(--line);
+  border-radius:10px; padding:16px; box-shadow:var(--sh-1);
+  transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease}
+.lp-fcard::before{content:""; position:absolute; left:0; top:0; height:3px; width:100%; background:var(--accent,var(--brand))}
+.lp-fcard:hover{transform:translateY(-3px); box-shadow:var(--sh-2); border-color:var(--line-2)}
+.lp-fcard h4{font-size:14px; margin:14px 0 5px}
+.lp-fcard p{font-size:12.5px; line-height:1.55; color:var(--ink-2)}
+.lp-fviz{height:74px; border-radius:var(--r); background:var(--inset); border:1px solid var(--line);
+  padding:10px; display:flex; flex-direction:column; justify-content:center; gap:6px; overflow:hidden}
+.lp-mbar{display:grid; grid-template-columns:52px 1fr; gap:7px; align-items:center}
+.lp-mbar .mk{font:400 9px/1 var(--mono); color:var(--ink-3); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.lp-mbar .mf{height:9px; border-radius:0 2px 2px 0; background:var(--accent)}
+.lp-mchips{display:flex; flex-wrap:wrap; gap:5px; align-content:center}
+.lp-mchip{font:500 10px/1.4 var(--sans); padding:3px 8px; border-radius:999px;
+  background:color-mix(in srgb,var(--accent) 14%,transparent); color:var(--accent);
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.lp-mfeed{display:flex; flex-direction:column; gap:6px}
+.lp-mfeed .q{display:flex; gap:6px; align-items:flex-start; font-size:10.5px; color:var(--ink-2); line-height:1.3}
+.lp-mfeed .q b{color:var(--accent); font-weight:700}
+
+/* scroll reveal (only when motion is welcome; otherwise content is visible by default).
+   Scoped to .lp-fcard and its .in state so the reveal timing never clobbers the
+   card's snappy hover transition once it has appeared. */
+@media (prefers-reduced-motion:no-preference){
+  /* Gated on html.js so the cards are only hidden when JS is present to reveal
+     them — no script (or a script error) leaves them plainly visible. */
+  .js .lp-fcard.lp-reveal{opacity:0; transform:translateY(14px);
+    transition:transform .45s ease, box-shadow .16s ease, border-color .16s ease, opacity .45s ease}
+  .js .lp-fcard.lp-reveal.in{opacity:1; transform:none;
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease, opacity .45s ease}
+}
+
+/* how-to: WhatsApp-green pills so the steps match the app people are looking at */
+.wa{color:#0a2b16; background:#25d366; padding:1px 7px; border-radius:4px; font-weight:600; white-space:nowrap}
+
+/* lens banner — which view was picked, and a toggle to switch */
+.lens-note{display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  border-left:3px solid var(--primary)}
+.lens-note-txt{flex:1; min-width:220px}
+.lens-seg{display:inline-flex; flex:none}
+
+/* audience switcher — the landing's front-door toggle (builders / friends) */
+.aud-switch{display:inline-flex; gap:4px; padding:4px; margin:0 0 20px;
+  background:var(--surface-2,rgba(125,125,125,.10)); border:1px solid var(--line);
+  border-radius:999px}
+.aud-btn{appearance:none; border:0; background:transparent; cursor:pointer;
+  font:inherit; font-size:13.5px; font-weight:600; color:var(--muted,#71716b);
+  padding:7px 15px; border-radius:999px; white-space:nowrap; transition:.15s}
+.aud-btn:hover{color:var(--ink,inherit)}
+.aud-btn.on{background:var(--primary); color:var(--primary-ink,#fff);
+  box-shadow:0 1px 3px rgba(0,0,0,.12)}
+@media (max-width:520px){.aud-btn{font-size:12.5px; padding:7px 11px}}
+</style>
+
+
+<!-- ================= TOP BAR ================= -->
+<header class="topbar">
+  <a class="mark" href="./" id="brand">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <rect width="18" height="18" rx="4.5" fill="var(--primary)"/>
+      <rect x="4"    y="9.5" width="2.4" height="4.5" rx="1.2" fill="var(--primary-ink)"/>
+      <rect x="7.8"  y="6.5" width="2.4" height="7.5" rx="1.2" fill="var(--primary-ink)"/>
+      <rect x="11.6" y="4"   width="2.4" height="10"  rx="1.2" fill="var(--primary-ink)"/>
+    </svg>
+    Tzippy
+  </a>
+  <span class="tagline" id="tb-tag">WhatsApp analyzer</span>
+
+  <div class="div" id="tb-div" hidden></div>
+  <div class="ctx" id="tb-ctx" hidden>
+    <span class="nm" id="tb-name"></span>
+    <span class="mt" id="tb-meta"></span>
+  </div>
+
+  <span class="sp"></span>
+  <div class="acts">
+    <button class="btn btn-ghost" id="share" hidden>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="3.5" r="1.8"/><circle cx="4" cy="8" r="1.8"/><circle cx="12" cy="12.5" r="1.8"/>
+        <path d="M5.6 7.1l4.8-2.7M5.6 8.9l4.8 2.7"/>
+      </svg>
+      Share
+    </button>
+    <button class="btn btn-bare" id="reset" hidden>New analysis</button>
+    <a class="btn btn-bare" id="gh" href="https://github.com/myrondoesnotcode/whatsapp"
+       target="_blank" rel="noopener noreferrer">GitHub</a>
+    <button class="btn btn-ghost" id="theme">Dark</button>
+  </div>
+</header>
+
+
+<!-- ================= LANDING ================= -->
+<div id="intake">
+  <div class="lp-hero-wrap">
+    <div class="lp-glow" aria-hidden="true"></div>
+    <div class="lp-hero">
+      <div class="lp-cta">
+        <div class="aud-switch" role="tablist" aria-label="What kind of group?">
+          <button class="aud-btn on" id="aud-builders" role="tab" aria-selected="true">🚀 For builders &amp; teams</button>
+          <button class="aud-btn" id="aud-friends" role="tab" aria-selected="false">💬 For friend groups</button>
+        </div>
+        <span class="lp-eyebrow" id="lp-eyebrow"><i></i>Runs entirely in your browser</span>
+        <h1 class="lp-h1" id="lp-h1">Understand what's <span class="hl">really happening</span> in your WhatsApp groups.</h1>
+        <p class="lede lp-lede" id="lp-lede">
+          Export a group, drop the file in, and Tzippy reports the links being
+          shared, the tools people actually use, who's building what, and the
+          questions that never got answered.
+        </p>
+
+        <div class="dz-wrap">
+          <button id="drop" aria-describedby="dzhint">
+            <span class="ic" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                   stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13V3M10 3L6.5 6.5M10 3l3.5 3.5"/>
+                <path d="M3 12.5V15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2.5"/>
+              </svg>
+            </span>
+            <span class="t1">Drop your WhatsApp export here</span>
+            <span class="t2">or click to choose a file</span>
+            <span class="t3" id="dzhint">.txt or .zip</span>
+          </button>
+
+          <div class="dz-under">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="7" width="10" height="6.5" rx="1.5"/>
+              <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/>
+            </svg>
+            <span>Analyzed locally &mdash; your chat never leaves this device.</span>
+          </div>
+
+          <div class="dz-alt">
+            <button class="linkbtn" id="demo">Live demo: a builder community &rarr;</button>
+            <button class="linkbtn" id="demo-social">or a friends group chat &rarr;</button>
+          </div>
+
+          <div id="err" hidden></div>
+        </div>
+      </div>
+
+      <!-- Signature: a framed slice of a real report. Sample (invented) data.
+           Content is swapped per audience by setAudience() — this is the builder default. -->
+      <div class="lp-preview" id="lp-preview" aria-hidden="true">
+        <div class="lp-win">
+          <div class="lp-winbar">
+            <i></i><i></i><i></i>
+            <span class="u">tzippy &middot; Builders &amp; Founders &mdash; 43 people &middot; 18 weeks</span>
+          </div>
+          <div class="lp-winbody">
+            <div class="lp-ptiles">
+              <div class="lp-ptile"><div class="v">12,847</div><div class="l">Messages</div></div>
+              <div class="lp-ptile"><div class="v">386</div><div class="l">Links</div></div>
+              <div class="lp-ptile"><div class="v">57</div><div class="l">Tools</div></div>
+              <div class="lp-ptile"><div class="v">71</div><div class="l">Open Qs</div></div>
+            </div>
+            <p class="lp-plabel">Activity &mdash; busiest hours by day</p>
+            <div class="lp-heat">
+          <div class="d">M</div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="d"></div>
+          <div class="c l4"></div>
+          <div class="c l3"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l2"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="d">W</div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l2"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="d"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l4"></div>
+          <div class="c l4"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="d">F</div>
+          <div class="c l2"></div>
+          <div class="c l4"></div>
+          <div class="c l3"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l2"></div>
+          <div class="c l3"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="d"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="d"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l2"></div>
+          <div class="c l1"></div>
+          <div class="c l1"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+          <div class="c l0"></div>
+            </div>
+            <div class="lp-psplit">
+              <div>
+                <p class="lp-plabel">Messages over time</p>
+                <svg class="lp-pspark" viewBox="0 0 240 52" preserveAspectRatio="none">
+                  <defs><linearGradient id="lp-ga" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="var(--brand)" stop-opacity=".28"/>
+                    <stop offset="1" stop-color="var(--brand)" stop-opacity="0"/></linearGradient></defs>
+                  <path d="M0,42 L14,38 28,40 42,30 56,33 70,22 84,26 98,17 112,24 126,12 140,18 154,9 168,15 182,7 196,13 210,6 224,11 240,5 L240,52 L0,52 Z" fill="url(#lp-ga)"/>
+                  <path d="M0,42 L14,38 28,40 42,30 56,33 70,22 84,26 98,17 112,24 126,12 140,18 154,9 168,15 182,7 196,13 210,6 224,11 240,5" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <p class="lp-plabel">Most active</p>
+                <div class="lp-plead"><span class="rk">1</span><span class="lp-pav" style="background:var(--s1)">DA</span><span class="nm">Dana A.</span><span class="vl">1,204</span></div>
+                <div class="lp-plead"><span class="rk">2</span><span class="lp-pav" style="background:var(--s5)">RK</span><span class="nm">Roi K.</span><span class="vl">986</span></div>
+                <div class="lp-plead"><span class="rk">3</span><span class="lp-pav" style="background:var(--s4)">ML</span><span class="nm">Maya L.</span><span class="vl">742</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lp-trust">
+    <div class="lp-trust-in">
+      <div class="it"><span class="n"><span class="cv" data-to="100">100</span><u>%</u></span><span class="k">Local</span></div>
+      <span class="dot"></span>
+      <div class="it"><span class="n"><span class="cv" data-to="0">0</span></span><span class="k">Bytes uploaded</span></div>
+      <span class="dot"></span>
+      <div class="it"><span class="n">~<span class="cv" data-to="40">40</span><u>k</u></span><span class="k">Messages / run</span></div>
+      <span class="dot"></span>
+      <div class="it"><span class="n">&lt;<span class="cv" data-to="5">5</span><u>s</u></span><span class="k">To first insight</span></div>
+    </div>
+  </div>
+
+  <div class="lp-feats">
+    <div class="lp-feats-head">
+      <span class="lp-eyebrow"><i></i>What comes out</span>
+      <h2 id="feat-h2">Four reports, one dropped file.</h2>
+      <p id="feat-p">Every panel below is a real slice of the output &mdash; not a promise of one.</p>
+    </div>
+    <div class="lp-fgrid">
+      <div class="lp-fcard lp-reveal" style="--accent:var(--s1)">
+        <div class="lp-fviz" aria-hidden="true">
+          <div class="lp-mbar"><span class="mk">github.com</span><span class="mf" style="width:92%"></span></div>
+          <div class="lp-mbar"><span class="mk">x.com</span><span class="mf" style="width:64%"></span></div>
+          <div class="lp-mbar"><span class="mk">youtube</span><span class="mf" style="width:41%"></span></div>
+        </div>
+        <h4>Shared links</h4>
+        <p>Every URL, grouped by domain and type, with the conversation around it.</p>
+      </div>
+      <div class="lp-fcard lp-reveal" style="--accent:var(--s5)">
+        <div class="lp-fviz" aria-hidden="true">
+          <div class="lp-mbar"><span class="mk">Maya &#8644; Danny</span><span class="mf" style="width:88%"></span></div>
+          <div class="lp-mbar"><span class="mk">Tom</span><span class="mf" style="width:61%"></span></div>
+          <div class="lp-mbar"><span class="mk">Roni &#8594; Yael</span><span class="mf" style="width:44%"></span></div>
+        </div>
+        <h4>Tools &mdash; or group dynamics</h4>
+        <p>Work chats get tool adoption, ranked by people. Friends chats get who's closest, who chases whom, who wakes the chat up.</p>
+      </div>
+      <div class="lp-fcard lp-reveal" style="--accent:var(--s7)">
+        <div class="lp-fviz" aria-hidden="true">
+          <div class="lp-mchips">
+            <span class="lp-mchip">making plans</span><span class="lp-mchip">shipping</span>
+            <span class="lp-mchip">celebrating</span><span class="lp-mchip">hiring</span><span class="lp-mchip">cracking up</span>
+          </div>
+        </div>
+        <h4>Signals</h4>
+        <p>Building, shipping and hiring in a work chat; making plans, running late and celebrating in a friends group.</p>
+      </div>
+      <div class="lp-fcard lp-reveal" style="--accent:var(--s4)">
+        <div class="lp-fviz" aria-hidden="true">
+          <div class="lp-mfeed">
+            <div class="q"><b>Q</b><span>Anyone self-hosted Supabase on Fly?</span></div>
+            <div class="q"><b>Q</b><span>Best way to export 40k msgs?</span></div>
+            <div class="q"><b>Q</b><span>Who's using Bun in prod?</span></div>
+          </div>
+        </div>
+        <h4>Unanswered questions</h4>
+        <p>The gaps a busy group left open, surfaced instead of buried.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="howto">
+    <div class="howto-in">
+      <h3>Getting your export from WhatsApp</h3>
+      <ol class="steps">
+        <li><span class="n">1</span>Open the group in WhatsApp and tap the group name.</li>
+        <li><span class="n">2</span>Choose <span class="wa">Export Chat</span>, then <span class="wa">Without Media</span>.</li>
+        <li><span class="n">3</span>Save the <code>.txt</code> or <code>.zip</code> and drop it above.</li>
+      </ol>
+      <p class="howto-note">
+        Pick <b>Without Media</b>. WhatsApp caps exports at roughly 40,000
+        messages without media but only about 10,000 with it, counting back from
+        the most recent &mdash; so a with-media export can quietly drop most of
+        your history.
+      </p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span>Tzippy analyzes WhatsApp exports in your browser. Nothing is uploaded.</span>
+    <span class="foot-sep">&middot;</span>
+    <span>Not affiliated with or endorsed by WhatsApp or Meta.</span>
+    <span class="foot-sep">&middot;</span>
+    <a href="https://github.com/myrondoesnotcode/whatsapp" target="_blank" rel="noopener noreferrer">Source</a>
+  </footer>
+</div>
+
+<input type="file" id="file" accept=".txt,.zip,text/plain,application/zip" hidden>
+
+
+<!-- ================= PROGRESS ================= -->
+<div id="progress">
+  <div class="prog">
+    <div class="sp"></div>
+    <div id="prog-step">Reading file</div>
+    <div class="track"><div class="fill" id="prog-fill"></div></div>
+  </div>
+</div>
+
+
+<!-- ================= APP ================= -->
+<div id="app">
+  <div class="shell">
+    <nav class="sidenav" id="nav" aria-label="Report sections"></nav>
+    <main id="main"></main>
+  </div>
+</div>
+
+
+<!-- ================= SHARE VIEW (rendered from a link) ================= -->
+<div id="share-view">
+  <div class="sv-wrap">
+    <a class="mark sv-mark" href="./" id="sv-brand">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <rect width="18" height="18" rx="4.5" fill="var(--primary)"/>
+        <rect x="4"    y="9.5" width="2.4" height="4.5" rx="1.2" fill="var(--primary-ink)"/>
+        <rect x="7.8"  y="6.5" width="2.4" height="7.5" rx="1.2" fill="var(--primary-ink)"/>
+        <rect x="11.6" y="4"   width="2.4" height="10"  rx="1.2" fill="var(--primary-ink)"/>
+      </svg>
+      Tzippy
+    </a>
+    <div class="sv-card" id="sv-card"></div>
+    <p class="sv-disclaim">
+      These are aggregate numbers a member chose to share. The chat itself was never uploaded &mdash;
+      everything was counted in their browser, and this card carries only the figures you see.
+    </p>
+  </div>
+</div>
+
+
+<!-- ================= SHARE MODAL ================= -->
+<div class="modal-back" id="share-modal" role="dialog" aria-modal="true" aria-labelledby="sm-title">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="sm-title">Share your group's stats</h3>
+        <p class="sub">A link anyone can open, plus an image for social. Nothing is uploaded.</p>
+      </div>
+      <button class="x" id="sm-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="seg" role="tablist">
+        <button class="seg-btn on" id="sm-mode-group" role="tab">Group card</button>
+        <button class="seg-btn" id="sm-mode-person" role="tab">My personal card</button>
+      </div>
+
+      <div class="share-prev"><canvas id="sm-canvas" width="1200" height="630"></canvas></div>
+
+      <div class="fmt-row">
+        <span class="fmt-label">Image shape</span>
+        <div class="fmt-seg" role="tablist">
+          <button class="fmt-btn on" id="sm-fmt-wide" role="tab">Wide · web</button>
+          <button class="fmt-btn" id="sm-fmt-square" role="tab">Square · mobile</button>
+        </div>
+      </div>
+
+      <div class="share-opts">
+        <div class="field">
+          <label for="sm-name">Title on the card</label>
+          <input type="text" id="sm-name" maxlength="60" placeholder="e.g. deploy TLV">
+        </div>
+
+        <div class="field" id="sm-person-field" hidden>
+          <label for="sm-person">Whose stats?</label>
+          <select id="sm-person"></select>
+        </div>
+
+        <label class="switch" id="sm-names-row">
+          <input type="checkbox" id="sm-names">
+          <span class="track"></span>
+          <span class="txt"><b>Include names &amp; awards</b>
+            <span>Off by default. Adds a members leaderboard and fun awards (Top Yapper, Link Boss…) — great for sharing back into your own group.</span></span>
+        </label>
+
+        <div class="priv-note" id="sm-note">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="7" width="10" height="6.5" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
+          <span id="sm-note-txt">Aggregate figures only &mdash; no individual names. Safe to post publicly.</span>
+        </div>
+      </div>
+
+      <div class="share-actions">
+        <button class="btn btn-wa" id="sm-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.24.68-1.4 1.3-1.94 1.34-.5.05-1.13.07-1.82-.11a10.3 10.3 0 0 1-1.65-.61 8.03 8.03 0 0 1-3.08-2.72c-.23-.3-.9-1.2-.9-2.28 0-1.09.57-1.62.77-1.84a.8.8 0 0 1 .58-.27h.42c.13 0 .32-.05.5.38.18.44.62 1.52.67 1.63.05.11.08.24 0 .38-.35.7-.73.67-.53 1.01.75 1.29 1.5 1.74 2.64 2.31.2.1.3.08.42-.05.11-.13.48-.56.6-.75.13-.2.25-.16.42-.1.18.07 1.13.54 1.32.63.2.1.32.14.37.22.05.08.05.47-.19 1.15Z"/></svg>
+          Share to WhatsApp
+        </button>
+        <button class="btn btn-primary" id="sm-native" hidden>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="3.5" r="1.8"/><circle cx="4" cy="8" r="1.8"/><circle cx="12" cy="12.5" r="1.8"/>
+            <path d="M5.6 7.1l4.8-2.7M5.6 8.9l4.8 2.7"/></svg>
+          Share…
+        </button>
+      </div>
+
+      <div class="field">
+        <label for="sm-link">Or copy the link</label>
+        <div class="linkrow">
+          <input type="text" id="sm-link" readonly>
+          <button class="btn btn-ghost" id="sm-copy" style="flex:none">Copy</button>
+        </div>
+      </div>
+
+      <div class="share-actions">
+        <button class="btn btn-ghost" id="sm-img">Download image</button>
+        <button class="btn btn-ghost" id="sm-open">Preview the shared page</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+"use strict";
+/* ===============================================================
+   1. ZIP  \u2014 WhatsApp exports often arrive zipped. Parsed by hand
+   against the central directory, inflated with the native
+   DecompressionStream. No library, no CDN.
+   =============================================================== */
+async function readZip(buf){
+  const dv=new DataView(buf), u8=new Uint8Array(buf);
+  let eocd=-1;
+  for(let i=u8.length-22;i>=Math.max(0,u8.length-66000);i--){
+    if(dv.getUint32(i,true)===0x06054b50){eocd=i;break}
+  }
+  if(eocd<0) throw new Error("That .zip file looks damaged \u2014 try exporting again.");
+  const count=dv.getUint16(eocd+10,true);
+  let ptr=dv.getUint32(eocd+16,true);
+  const files=[];
+  for(let i=0;i<count;i++){
+    if(dv.getUint32(ptr,true)!==0x02014b50) break;
+    const method=dv.getUint16(ptr+10,true),
+          compSize=dv.getUint32(ptr+20,true),
+          nameLen=dv.getUint16(ptr+28,true),
+          extraLen=dv.getUint16(ptr+30,true),
+          cmtLen=dv.getUint16(ptr+32,true),
+          local=dv.getUint32(ptr+42,true),
+          name=new TextDecoder().decode(u8.subarray(ptr+46,ptr+46+nameLen));
+    files.push({name,method,compSize,local});
+    ptr+=46+nameLen+extraLen+cmtLen;
+  }
+  const txt=files.filter(f=>/\.txt$/i.test(f.name)&&!/^__MACOSX/.test(f.name));
+  if(!txt.length) throw new Error("No chat .txt file inside that zip. Make sure it's a WhatsApp export.");
+  const pick=txt.find(f=>/_chat\.txt$/i.test(f.name))||
+             txt.sort((a,b)=>b.compSize-a.compSize)[0];
+
+  const lnLen=dv.getUint16(pick.local+26,true), lxLen=dv.getUint16(pick.local+28,true);
+  const start=pick.local+30+lnLen+lxLen;
+  const data=u8.subarray(start,start+pick.compSize);
+  if(pick.method===0) return new TextDecoder("utf-8").decode(data);
+  if(pick.method!==8) throw new Error("That zip uses an unsupported compression method.");
+  const ds=new DecompressionStream("deflate-raw");
+  const out=new Blob([data]).stream().pipeThrough(ds);
+  return new TextDecoder("utf-8").decode(await new Response(out).arrayBuffer());
+}
+
+/* ===============================================================
+   2. PARSER \u2014 iOS and Android grammars, 12/24h clocks, DD/MM vs
+   MM/DD inferred from the corpus, multi-line folding.
+   =============================================================== */
+const INVIS=/[\u200E\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g;
+const IOS=/^\[(\d{1,4}[.\/-]\d{1,2}[.\/-]\d{1,4}),\s*(\d{1,2}:\d{2}(?::\d{2})?(?:\s*[APap]\.?[Mm]\.?)?)\]\s*([\s\S]*)$/;
+const AND=/^(\d{1,4}[.\/-]\d{1,2}[.\/-]\d{1,4}),\s*(\d{1,2}:\d{2}(?::\d{2})?(?:\s*[APap]\.?[Mm]\.?)?)\s+-\s+([\s\S]*)$/;
+const DPART=/^(\d{1,4})[.\/-](\d{1,2})[.\/-](\d{1,4})$/;
+const TPART=/^(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([APap])?\.?[Mm]?\.?$/;
+const MAXNAME=60;
+
+const MEDIA=[
+  [/\bimage omitted\b/i,"image"],[/\bvideo omitted\b/i,"video"],
+  [/\baudio omitted\b/i,"audio"],[/\bsticker omitted\b/i,"sticker"],
+  [/\bGIF omitted\b/i,"gif"],[/\bdocument omitted\b/i,"document"],
+  [/\bContact card omitted\b/i,"contact"],[/\bmedia omitted\b/i,"unknown"],
+  [/\.(jpe?g|png|heic)\b/i,"image"],[/\.(mp4|mov|3gp|avi)\b/i,"video"],
+  [/\.(opus|m4a|mp3|aac|ogg|wav)\b/i,"audio"],[/\.webp\b/i,"sticker"],
+  [/\.(pdf|docx?|xlsx?|pptx?|csv|zip)\b/i,"document"],[/\.vcf\b/i,"contact"],
+];
+const ATTACH=[/<attached:\s*([^>]+)>/i,/(\S+)\s*\((?:file|document) attached\)/i];
+const DELETED=/(this message was deleted|you deleted this message)/i;
+const EDITED=/<\s*this message was edited\s*>/i;
+const SYSPAT=[
+  /messages and calls are end-to-end encrypted/i,/\bcreated (this )?group\b/i,
+  /\bjoined using this group's invite link\b/i,/\bleft\b$/i,/\bremoved\b/i,
+  /\bchanged the subject\b/i,/\bchanged this group's (icon|description|settings)\b/i,
+  /\bchanged their phone number\b/i,/\bnow an admin\b/i,/\badded\b/i,
+  /\bturned (on|off) disappearing messages\b/i,/\bpinned a message\b/i,
+  /\bsecurity code changed\b/i,/\bmissed (voice|video) call\b/i,
+];
+
+function inferOrder(dates){
+  let a=false,b=false;
+  for(const d of dates){
+    const m=DPART.exec(d); if(!m) continue;
+    if(m[1].length===4) continue;
+    if(+m[1]>12) a=true;
+    if(+m[2]>12) b=true;
+  }
+  if(a&&!b) return "day";
+  if(b&&!a) return "month";
+  return "day";
+}
+function toDate(ds,ts,order){
+  const d=DPART.exec(ds), t=TPART.exec(ts.trim());
+  if(!d||!t) return null;
+  let y,mo,day;
+  if(d[1].length===4){y=+d[1];mo=+d[2];day=+d[3];}
+  else{
+    day=order==="day"?+d[1]:+d[2];
+    mo =order==="day"?+d[2]:+d[1];
+    y=+d[3]; if(y<100) y+=y<70?2000:1900;
+  }
+  let h=+t[1]; const mi=+t[2], s=+(t[3]||0), ap=t[4];
+  if(ap){const u=ap.toUpperCase(); if(u==="P"&&h!==12)h+=12; else if(u==="A"&&h===12)h=0;}
+  const dt=new Date(y,mo-1,day,h,mi,s);
+  return isNaN(dt)?null:dt;
+}
+function classify(body){
+  if(DELETED.test(body)) return {kind:"deleted"};
+  let att=null;
+  for(const re of ATTACH){const m=re.exec(body); if(m){att=m[1].trim();break}}
+  const placeholder=att!==null||/\bomitted\b/i.test(body);
+  if(!placeholder) return {kind:"text"};
+  const probe=att||body;
+  for(const [re,type] of MEDIA) if(re.test(probe)) return {kind:"media",media:type};
+  return {kind:"media",media:"unknown"};
+}
+function splitSender(rest){
+  const i=rest.indexOf(": ");
+  if(i<0){
+    if(rest.endsWith(":")&&rest.length-1<=MAXNAME&&rest.length>1)
+      return [rest.slice(0,-1).trim(),""];
+    return [null,rest];
+  }
+  const name=rest.slice(0,i).trim();
+  if(!name||name.length>MAXNAME||name.includes("\n")) return [null,rest];
+  return [name,rest.slice(i+2)];
+}
+
+function parseChat(raw,sourceName){
+  raw=raw.replace(INVIS,"").replace(/\r\n?/g,"\n");
+  const lines=raw.split("\n"), heads=new Map(), dates=[];
+  for(let i=0;i<lines.length;i++){
+    const m=IOS.exec(lines[i])||AND.exec(lines[i]);
+    if(m){heads.set(i,m); dates.push(m[1]);}
+  }
+  if(!heads.size)
+    throw new Error("No WhatsApp messages found in that file. It should be a chat export \u2014 open WhatsApp, tap the group name, choose Export Chat.");
+
+  const order=inferOrder(dates), messages=[], warnings=[];
+  let cur=null, buf=[], skipped=0;
+
+  const flush=()=>{
+    if(!cur) return;
+    if(buf.length) cur.text=(cur.text+"\n"+buf.join("\n")).replace(/^\n+|\n+$/g,"");
+    if(cur.kind==="text"){const c=classify(cur.text); cur.kind=c.kind; cur.media=c.media||null;}
+    messages.push(cur); cur=null; buf=[];
+  };
+
+  for(let i=0;i<lines.length;i++){
+    const m=heads.get(i);
+    if(!m){ if(cur) buf.push(lines[i]); else if(lines[i].trim()) skipped++; continue; }
+    flush();
+    const ts=toDate(m[1],m[2],order);
+    if(!ts){skipped++; continue}
+    const rest=m[3];
+    const [sender,bodyRaw]=splitSender(rest);
+    if(sender===null||(bodyRaw===""&&SYSPAT.some(p=>p.test(rest)))){
+      cur={ts,sender:null,text:rest,kind:"system",media:null,edited:false};
+      continue;
+    }
+    let body=bodyRaw;
+    const edited=EDITED.test(body);
+    if(edited) body=body.replace(EDITED,"").trim();
+    const c=classify(body);
+    cur={ts,sender,text:body,kind:c.kind,media:c.media||null,edited};
+  }
+  flush();
+
+  if(skipped) warnings.push(skipped+" line(s) couldn't be read and were skipped. A handful is normal; a large number means the export format is unusual.");
+  const anyDayOver12=dates.some(d=>{const m=DPART.exec(d);return m&&m[1].length!==4&&+m[1]>12});
+  if(order==="day"&&!anyDayOver12)
+    warnings.push("Every date here has a day of 12 or lower, so day-first vs month-first can't be told apart from the file. Reading them as DD/MM. If dates look wrong, that's why.");
+
+  messages.sort((a,b)=>a.ts-b.ts);
+  const people=messages.filter(m=>m.sender&&m.kind!=="system");
+  if(!people.length) throw new Error("That export has no messages from participants in it.");
+  const tally=new Map();
+  for(const m of people) tally.set(m.sender,(tally.get(m.sender)||0)+1);
+  const participants=[...tally.entries()].sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
+  return {messages,people,participants,warnings,sourceName,order};
+}
+
+/* ===============================================================
+   3. VOCABULARY \u2014 curated tools. Names that are ordinary English
+   words are left out on purpose: a false hit poisons a number you
+   would otherwise be able to trust.
+   =============================================================== */
+const VOCAB={
+"AI models & labs":{
+ "Claude":["claude","anthropic"],"ChatGPT / OpenAI":["chatgpt","openai","gpt-?[45]\\S*","gpt"],
+ "Gemini":["gemini","deepmind"],"Llama":["llama\\s?\\d*"],"Mistral":["mistral"],
+ "DeepSeek":["deepseek"],"Grok":["grok"],"Perplexity":["perplexity"],
+ "Midjourney":["midjourney"],"Stable Diffusion":["stable ?diffusion"],
+ "ElevenLabs":["eleven\\s?labs"],"Hugging Face":["hugging\\s?face"],"Cohere":["cohere"]},
+"AI dev tools":{
+ "Cursor":["cursor"],"Claude Code":["claude code"],"GitHub Copilot":["copilot"],
+ "LangChain":["langchain"],"LlamaIndex":["llama\\s?index"],"Ollama":["ollama"],
+ "Replicate":["replicate"],"Pinecone":["pinecone"],"Weaviate":["weaviate"],
+ "Chroma":["chromadb","chroma db"],"RAG":["rag","retrieval[- ]augmented"],
+ "MCP":["mcp","model context protocol"],"n8n":["n8n"],"Zapier":["zapier"],
+ "Windsurf":["windsurf"],"Bolt":["bolt\\.new","bolt"],"Lovable":["lovable"],
+ "v0":["v0\\.dev","v0"],"LangSmith":["langsmith"]},
+"Dev environment":{
+ "VS Code":["vs ?code","visual studio code"],"JetBrains":["jetbrains","intellij","pycharm","webstorm"],
+ "Xcode":["xcode"],"Vim / Neovim":["neovim","nvim","vim"],"Docker":["docker"],
+ "Kubernetes":["kubernetes","k8s"],"Git":["git"],"GitHub":["github"],"GitLab":["gitlab"]},
+"Frameworks & languages":{
+ "React":["react(?:\\.js)?","react native"],"Next.js":["next\\.?js"],"Vue":["vue(?:\\.js)?"],
+ "Svelte":["svelte(?:kit)?"],"Angular":["angular"],"Node.js":["node\\.?js","node"],
+ "Deno":["deno"],"Bun":["bun"],"Python":["python"],"TypeScript":["typescript","ts"],
+ "JavaScript":["javascript","js"],"Golang":["golang"],"Rust":["rust"],
+ "Swift":["swiftui","swift"],"Kotlin":["kotlin"],"Django":["django"],
+ "FastAPI":["fastapi"],"Flask":["flask"],"Rails":["rails","ruby on rails"],
+ "Tailwind":["tailwind"],"Flutter":["flutter"]},
+"Infra & cloud":{
+ "AWS":["aws","amazon web services","ec2","s3","lambda"],"Google Cloud":["gcp","google cloud"],
+ "Azure":["azure"],"Vercel":["vercel"],"Netlify":["netlify"],"Cloudflare":["cloudflare"],
+ "Railway":["railway"],"Fly.io":["fly\\.io"],"Supabase":["supabase"],
+ "Firebase":["firebase"],"Heroku":["heroku"],"Modal":["modal labs","modal\\.com"]},
+"Data & storage":{
+ "PostgreSQL":["postgres(?:ql)?"],"MySQL":["mysql"],"MongoDB":["mongo(?:db)?"],
+ "Redis":["redis"],"SQLite":["sqlite"],"Snowflake":["snowflake"],"BigQuery":["bigquery"],
+ "DuckDB":["duckdb"],"Prisma":["prisma"],"Elasticsearch":["elasticsearch"]},
+"Design & product":{
+ "Figma":["figma"],"Framer":["framer"],"Canva":["canva"],"Webflow":["webflow"]},
+"Work & productivity":{
+ "Notion":["notion"],"Linear":["linear\\.app"],"Slack":["slack"],"Jira":["jira"],
+ "Airtable":["airtable"],"Miro":["miro"],"Loom":["loom"],"Discord":["discord"],
+ "Telegram":["telegram"],"Zoom":["zoom"]},
+"Business & growth":{
+ "Stripe":["stripe"],"Shopify":["shopify"],"HubSpot":["hubspot"],"Mixpanel":["mixpanel"],
+ "Amplitude":["amplitude"],"PostHog":["posthog"],"Product Hunt":["product ?hunt"],
+ "Y Combinator":["y ?combinator","yc"]}};
+
+const TOOLS=[];
+for(const [cat,entries] of Object.entries(VOCAB))
+  for(const [name,pats] of Object.entries(entries))
+    TOOLS.push({name,cat,re:new RegExp("(?<![\\w-])(?:"+pats.join("|")+")(?![\\w-])","i")});
+
+const SIG_BUSINESS=[
+ ["Building",/\b(?:i'?m|i am|we'?re|we are)\s+(?:currently\s+)?building\b|\bstarted (?:building|working on)\b|\bbeen working on\b|\bworking on (?:a|an|my|our)\b|\bside project\b|\bbuilding (?:a|an|my|our)\b/i],
+ ["Shipped / launched",/\bjust (?:launched|shipped|released|published)\b|\b(?:we|i) (?:just )?(?:launched|shipped|released)\b|\bwent live\b|\bnow (?:live|available|public)\b|\bv?\d+\.\d+ is (?:out|live)\b|\bopen ?sourc(?:ed|ing)\b|\blaunch(?:ing|ed) (?:today|tomorrow|this week)\b/i],
+ ["Seeking feedback",/\b(?:would love|looking for|any) feedback\b|\bwhat do you (?:think|guys think)\b|\bthoughts\?|\bbeta (?:testers?|users?)\b|\btry it out\b|\bwaitlist\b|\broast\b/i],
+ ["Hiring",/\b(?:we'?re|we are|i'?m|currently) hiring\b|\blooking (?:for|to hire) (?:a|an|some)?\s*(?:senior|junior|full[- ]?stack|backend|frontend|founding)?\s*(?:engineer|developer|designer|dev|pm|cto|intern)\b|\bjoin (?:our|the) team\b|\bopen (?:role|position)s?\b|\bjob (?:opening|post)\b/i],
+ ["Asking for help",/\bdoes anyone (?:know|have|use)\b|\banyone (?:know|have|used|tried|using)\b|\blooking for (?:recommendations?|advice|suggestions?)\b|\bany (?:recommendations?|suggestions?|tips)\b|\bcan (?:someone|anyone) (?:help|explain)\b|\bhow do (?:i|you|we)\b|\bstuck (?:on|with)\b/i],
+ ["Events & meetups",/\bmeetup\b|\bhackathon\b|\b(?:demo|pitch) (?:day|night)\b|\bconference\b|\bworkshop\b|\bwe'?re hosting\b|\brsvp\b|\bsign ?up (?:here|link)\b/i],
+];
+const SIG_SOCIAL=[
+ ["Making plans",/\bwho'?s (?:in|coming|down|up for|around|free)\b|\b(?:you|u|anyone|everyone|y'?all) (?:free|around|coming|in|down)\b|\blet'?s (?:do|go|grab|meet|get|plan|hang|catch)\b|\bwanna (?:go|grab|meet|hang|come)\b|\b(?:dinner|lunch|brunch|drinks|coffee|party|trip|movie|game night)\b|\b(?:this|next|the) (?:weekend|weeknd|friday|saturday|sunday|week)\b|\bwhat time\b|\bshould we\b|\bbook (?:a table|tickets|it)\b/i],
+ ["Running late / logistics",/\b(?:on my way|omw|otw)\b|\brunning (?:a bit )?late\b|\b(?:be|almost|nearly) there\b|\bwhere (?:are|r) (?:you|u|we|everyone)\b|\b(?:5|10|15|20|two|five|ten) (?:min|mins|minutes) (?:away|out|late)\b|\bsave (?:me )?a (?:seat|spot|plate)\b|\bstuck in traffic\b|\bjust (?:parked|arrived|landed|left)\b/i],
+ ["Celebrations",/\bhappy (?:birthday|anniversary|new year)\b|\bcongrat(?:s|ulations)\b|\bmazal?\s?tov\b|\bso (?:happy|proud|excited) for (?:you|u|him|her|them)\b|\bwell done\b|\byou did it\b|\bwe won\b|🎉|🥳|🎂|🍾/i],
+ ["Love & appreciation",/\b(?:love|luv) (?:you|u|ya|yall|y'?all)\b|\bmiss (?:you|u|ya|everyone)\b|\byou'?re the best\b|\b(?:thank you|thanks) so much\b|\b(?:appreciate|grateful for) (?:you|it|this|that)\b|\bbest (?:friends?|group|people)\b|❤️|🥰|😍|🫶/i],
+ ["Cracking up",/\b(?:l+o+l+|lmf?ao+|rofl|haha(?:ha)+|hahah)\b|😂|🤣|😭|\bi'?m (?:dead|dying|crying|weak|screaming)\b|\bcan'?t (?:stop laughing|breathe)\b|\bso funny\b/i],
+ ["Asking for help / advice",/\bdoes anyone (?:know|have)\b|\banyone (?:know|have|tried|been to|used)\b|\bany (?:recommendations?|recs|tips|advice|ideas)\b|\bshould i\b|\bcan (?:someone|anyone|you) help\b|\bwhat (?:should|do) (?:i|we) (?:do|get)\b/i],
+];
+
+const STOP=new Set(("the a an and or but if then than so as at by for from in into of on to with without about after before over under up down out off this that these those there here it its is am are was were be been being have has had having do does did doing will would should could can may might must shall not no nor only own same too very just now also any all both each few more most other some such who whom what which when where why how i me my myself we our ours you your yours he him his she her they them their theirs im ive id ill youre youve dont doesnt didnt cant wont isnt arent thats whats lets hes shes theyre weve wed ok okay yes yeah yep nope hi hey hello thanks thank please sorry sure get got going went know think see like want need make made take one two good great nice cool really much many lol haha omitted media image video audio sticker message deleted attached document gif www http https com org net").split(" "));
+
+const DISCOVER_STOP=new Set([...STOP,
+  ...("monday tuesday wednesday thursday friday saturday sunday january february march april may june july august september october november december tel aviv israel israeli deploy tlv guys everyone anyone someone folks team group chat today tomorrow yesterday tonight week month year day check let").split(" "),
+  // Generic tech vocabulary and chat shorthand. These recur constantly and are
+  // never the answer to "what tool is the group discussing". Without them the
+  // discovery panel fills up with SDK / API / CORS instead of real product names.
+  ...("api sdk cli gui ide url uri http https json xml csv pdf sql html css ssh vpn dns cdn orm jwt oauth crud rest grpc ci cd mvp poc ui ux qa dev prod staging repo pr dm rsvp cors ocr stt tts asr llm nlp gpu cpu ram ssd os io db kpi roi saas paas iaas b2b b2c eta eod imo tbh iirc afaik fyi asap aka btw idk lmk nvm tldr wip faq nda kyc gdpr").split(" ")]);
+
+/* ===============================================================
+   4. EXTRACT
+   =============================================================== */
+const URLRE=/\b(?:https?:\/\/|www\.)[^\s<>"'\]\)]+/gi;
+const KINDS_BUSINESS=[["github.com","Code"],["gitlab.com","Code"],["npmjs.com","Code"],["pypi.org","Code"],
+ ["huggingface.co","Models & datasets"],["arxiv.org","Research"],["scholar.google","Research"],
+ ["youtube.com","Video"],["youtu.be","Video"],["vimeo.com","Video"],["loom.com","Video"],
+ ["twitter.com","Social"],["x.com","Social"],["linkedin.com","Social"],["reddit.com","Social"],
+ ["news.ycombinator.com","Social"],["producthunt.com","Product launches"],["medium.com","Articles"],
+ ["substack.com","Articles"],["dev.to","Articles"],["notion.so","Docs"],["notion.site","Docs"],
+ ["docs.google.com","Docs"],["figma.com","Design"],["lu.ma","Events"],["eventbrite","Events"],
+ ["meetup.com","Events"],["calendly.com","Scheduling"],["chat.whatsapp.com","Group invites"]];
+const KINDS_SOCIAL=[["youtube.com","Video"],["youtu.be","Video"],["vimeo.com","Video"],["tiktok.com","Video"],
+ ["instagram.com","Social"],["facebook.com","Social"],["twitter.com","Social"],["x.com","Social"],
+ ["reddit.com","Social"],["snapchat.com","Social"],["threads.net","Social"],
+ ["open.spotify.com","Music"],["spotify.com","Music"],["music.apple.com","Music"],["soundcloud.com","Music"],
+ ["maps.google","Places"],["maps.app.goo.gl","Places"],["goo.gl/maps","Places"],["google.com/maps","Places"],["waze.com","Places"],
+ ["airbnb.com","Travel"],["booking.com","Travel"],["tripadvisor","Travel"],
+ ["amazon.","Shopping"],["aliexpress","Shopping"],["ebay.","Shopping"],
+ ["lu.ma","Events"],["eventbrite","Events"],["meetup.com","Events"],["calendly.com","Scheduling"],
+ ["news.ycombinator.com","Articles"],["medium.com","Articles"],["substack.com","Articles"],
+ ["docs.google.com","Docs"],["notion.so","Docs"],["chat.whatsapp.com","Group invites"]];
+
+/* ===============================================================
+   LENSES — the one place that knows a chat's *domain*. The mechanical
+   core (parsing, timing, who-replies-to-whom, vocabulary) is identical
+   for a builder community and a group of friends; only the interpretive
+   layer — signals, link buckets, which panels show — swaps.
+   =============================================================== */
+const SECTIONS_BUSINESS=[
+ {id:"overview", label:"Overview",            grp:"Summary"},
+ {id:"shared",   label:"Shared links",        grp:"Content"},
+ {id:"tools",    label:"Tools & tech",        grp:"Content"},
+ {id:"signals",  label:"Signals",             grp:"Content"},
+ {id:"people",   label:"People",              grp:"Participation"},
+ {id:"rhythm",   label:"Rhythm",              grp:"Participation"},
+ {id:"health",   label:"Conversation health", grp:"Participation"},
+ {id:"language", label:"Language",            grp:"Participation"},
+];
+const SECTIONS_SOCIAL=[
+ {id:"overview",  label:"Overview",       grp:"Summary"},
+ {id:"people",    label:"People",         grp:"Participation"},
+ {id:"dynamics",  label:"Group dynamics", grp:"Participation"},
+ {id:"signals",   label:"Plans & life",   grp:"Content"},
+ {id:"rhythm",    label:"Rhythm",         grp:"Participation"},
+ {id:"shared",    label:"Shared",         grp:"Content"},
+ {id:"health",    label:"Moments",        grp:"Participation"},
+ {id:"language",  label:"Inside jokes",   grp:"Participation"},
+];
+const LENSES={
+  business:{
+    key:"business", name:"Builder community", trackTools:true,
+    signals:SIG_BUSINESS, linkKinds:KINDS_BUSINESS, sections:SECTIONS_BUSINESS,
+    copy:{
+      signals:{eyebrow:"Signals", h:"Who's building, shipping, hiring, asking",
+        p:"Matched on how people phrase things — read these as leads worth following, not a complete census."},
+      shared:{eyebrow:"What's shared", h:"Every link that passed through",
+        p:"Grouped by what it is and who sent it. The full list is searchable at the bottom."},
+      health:{eyebrow:"Conversation", h:"What landed, and what didn't",
+        p:"The unanswered questions are usually the most useful list here — they're the gaps the group left open."},
+      language:{eyebrow:"Language", h:"How the group talks",
+        p:"Common words and stock phrases, with filler stripped out."},
+    },
+  },
+  social:{
+    key:"social", name:"Friends & group chat", trackTools:false,
+    signals:SIG_SOCIAL, linkKinds:KINDS_SOCIAL, sections:SECTIONS_SOCIAL,
+    copy:{
+      signals:{eyebrow:"Plans & life", h:"How the group makes plans, shows up, laughs",
+        p:"Making plans, running late, celebrating, showing love, cracking up — matched on phrasing, so read it as flavour, not a census."},
+      shared:{eyebrow:"What's shared", h:"Every link that passed through",
+        p:"Videos, music, places, socials — grouped by what it is and who sent it. The full list is searchable at the bottom."},
+      health:{eyebrow:"Moments", h:"Who got the room going — and who got left on read",
+        p:"The messages that lit the chat up, and the questions nobody ever answered."},
+      language:{eyebrow:"Inside jokes", h:"The group's own vocabulary",
+        p:"Recurring phrases, favourite words, and the emoji everyone leans on."},
+    },
+  },
+};
+const TECH_BUCKETS=new Set(["Code","Research","Models & datasets","Product launches","Docs","Articles"]);
+
+// Active lens + the mutable globals the extract/render functions read.
+let LENS=LENSES.business;
+let SIGDEF=LENS.signals, KINDS=LENS.linkKinds, SECTIONS=LENS.sections;
+function applyLens(key){
+  LENS=LENSES[key]||LENSES.business;
+  SIGDEF=LENS.signals; KINDS=LENS.linkKinds; SECTIONS=LENS.sections;
+}
+
+// Pick a lens from the shape of the export — cheap, explainable evidence only.
+function detectLens(chat,links,tools){
+  const nTools=tools.length, mentions=tools.reduce((s,t)=>s+t.n,0);
+  const tech=links.filter(l=>TECH_BUCKETS.has(l.kind)).length;
+  const techRatio=links.length?tech/links.length:0;
+  const ppl=chat.participants.length;
+  let score=0; const why=[];
+  if(nTools>=6){score+=2; why.push(nTools+" distinct tools/tech discussed")}
+  else if(nTools>=3){score+=1; why.push(nTools+" tools/tech mentioned")}
+  if(mentions>=40) score+=1;
+  if(links.length>=8&&techRatio>=0.30){score+=2; why.push(Math.round(techRatio*100)+"% of links are code/research/product")}
+  else if(links.length>=8&&techRatio>=0.15){score+=1; why.push(Math.round(techRatio*100)+"% of links are technical")}
+  if(ppl>=20){score+=1; why.push(ppl+" participants")}
+  if(score>=3) return {key:"business", reason:"Read as a builder community — "+(why.join("; ")||"professional signals present")+"."};
+  const s=[];
+  if(nTools<3) s.push("little tool/tech talk");
+  if(techRatio<0.15) s.push("few technical links");
+  if(ppl<20) s.push(ppl+" people");
+  return {key:"social", reason:"Read as a friends / group chat — "+(s.join("; ")||"no strong professional signals")+"."};
+}
+
+function cleanUrl(u){
+  u=u.replace(/[.,;:!?'"\u2026]+$/,"");
+  if(u.endsWith(")")&&(u.split("(").length-1)<(u.split(")").length-1)) u=u.slice(0,-1);
+  return u;
+}
+function domainOf(u){
+  try{const h=new URL(/^https?:/i.test(u)?u:"http://"+u).hostname.toLowerCase();
+      return h.startsWith("www.")?h.slice(4):h}catch(e){return ""}
+}
+function kindOf(d){for(const [f,k] of KINDS) if(d.includes(f)) return k; return "Other"}
+
+function extractLinks(chat){
+  const out=[];
+  for(const m of chat.people){
+    const found=m.text.match(URLRE); if(!found) continue;
+    for(const raw of found){
+      const url=cleanUrl(raw), dom=domainOf(url);
+      if(!dom||url.length<8) continue;
+      const rm=/github\.com\/([\w.-]+)\/([\w.-]+)/i.exec(url);
+      let repo=null;
+      if(rm&&!["blob","tree","issues","pull"].includes(rm[2].toLowerCase()))
+        repo=rm[1]+"/"+rm[2].replace(/\.git$/,"");
+      out.push({url,dom,kind:kindOf(dom),sender:m.sender,ts:m.ts,repo,
+                ctx:(m.text.replace(URLRE,"").trim()||"(link only)").slice(0,220)});
+    }
+  }
+  return out;
+}
+function extractTools(chat){
+  const map=new Map();
+  for(const m of chat.people){
+    if(m.kind!=="text"||!m.text) continue;
+    for(const t of TOOLS){
+      if(!t.re.test(m.text)) continue;
+      let e=map.get(t.name);
+      if(!e){e={name:t.name,cat:t.cat,n:0,people:new Set(),samples:[]};map.set(t.name,e)}
+      e.n++; e.people.add(m.sender);
+      if(e.samples.length<4&&m.text.length<300) e.samples.push(m.text);
+    }
+  }
+  return [...map.values()].sort((a,b)=>b.n-a.n);
+}
+function discoverTools(chat){
+  const known=new Set(TOOLS.map(t=>t.name.toLowerCase()));
+  // Also block the individual words of multi-word tool names. Without this,
+  // "Hugging Face" and "Product Hunt" leak in as four separate "discoveries"
+  // because neither half matches the full-name pattern on its own.
+  for(const t of TOOLS)
+    for(const w of t.name.toLowerCase().split(/[^a-z0-9.]+/))
+      if(w.length>2) known.add(w);
+  const names=new Set(chat.participants.map(p=>p.toLowerCase()));
+  for(const p of chat.participants) for(const w of p.split(/\s+/)) names.add(w.toLowerCase());
+  const cnt=new Map(), who=new Map();
+  const CAP=/\b([A-Z][a-zA-Z0-9]{2,}(?:\.[a-z]{2,4})?)\b/g;
+  for(const m of chat.people){
+    if(m.kind!=="text") continue;
+    let mm;
+    CAP.lastIndex=0;
+    while((mm=CAP.exec(m.text))){
+      if(mm.index===0||".!?\n".includes(m.text[mm.index-1])) continue;
+      const tok=mm[1], low=tok.toLowerCase();
+      if(DISCOVER_STOP.has(low)||known.has(low)||names.has(low)) continue;
+      if(TOOLS.some(t=>t.re.test(tok))) continue;
+      cnt.set(tok,(cnt.get(tok)||0)+1);
+      if(!who.has(tok)) who.set(tok,new Set());
+      who.get(tok).add(m.sender);
+    }
+  }
+  return [...cnt.entries()].filter(([t,n])=>n>=4&&who.get(t).size>=2)
+         .sort((a,b)=>b[1]-a[1]).slice(0,36);
+}
+function extractSignals(chat){
+  const out={};
+  for(const [label] of SIGDEF) out[label]=[];
+  for(const m of chat.people){
+    if(m.kind!=="text"||m.text.length<12) continue;
+    for(const [label,re] of SIGDEF){
+      if(re.test(m.text))
+        out[label].push({sender:m.sender,ts:m.ts,text:m.text.slice(0,600),
+                         links:(m.text.match(URLRE)||[]).map(cleanUrl)});
+    }
+  }
+  for(const k in out) out[k].sort((a,b)=>b.ts-a.ts);
+  return out;
+}
+function extractQuestions(chat){
+  const P=chat.people, out=[];
+  for(let i=0;i<P.length;i++){
+    const m=P[i];
+    if(m.kind!=="text"||!m.text.includes("?")||m.text.length<8) continue;
+    let ans=null;
+    for(let j=i+1;j<P.length;j++){
+      if(P[j].sender===m.sender) continue;
+      const gap=(P[j].ts-m.ts)/60000;
+      if(gap>60) break;
+      ans=Math.round(gap*10)/10; break;
+    }
+    out.push({sender:m.sender,ts:m.ts,text:m.text.slice(0,400),ans});
+  }
+  return out;
+}
+
+/* ===============================================================
+   4b. SOCIAL DYNAMICS  — relationship-graph analytics for the
+   friends lens. All exact (from adjacency + timing) except
+   "laughs & love", which is a labelled proxy.
+   =============================================================== */
+const REVIVE_MS=8*3600000, LATE_HOURS=new Set([0,1,2,3,4]), MIN_MSGS=20, STREAK=3;
+const LOVE_LAUGH=/\bl+o+l+\b|\blmf?ao+\b|\brofl\b|\bha(?:ha)+h?\b|\bso funny\b|\bmiss (?:you|u)\b|\blove (?:you|u|ya)\b|\byou'?re the best\b|😂|🤣|😭|❤️|🥰|😍|🫶|👏|🔥|💯|🙌/i;
+
+function socialInsights(chat,questions,topN=12){
+  const P=chat.people;
+  // (responder,target) -> how often responder spoke right after target, within 15m
+  const rc=new Map();
+  for(let i=1;i<P.length;i++){
+    if(P[i].sender!==P[i-1].sender && P[i].ts-P[i-1].ts<=REPLY_MS){
+      const k=P[i].sender+" "+P[i-1].sender;
+      rc.set(k,(rc.get(k)||0)+1);
+    }
+  }
+  const cnt=(a,b)=>rc.get(a+" "+b)||0;
+  const seen=new Set(), pairs=[];
+  for(const k of rc.keys()){
+    const [a,b]=k.split(" "); if(a===b) continue;
+    const key=[a,b].sort().join(" "); if(seen.has(key)) continue;
+    seen.add(key); const [x,y]=key.split(" ");
+    pairs.push([x,y,cnt(x,y),cnt(y,x)]);
+  }
+  const reciprocity=pairs.filter(([,,ab,ba])=>Math.min(ab,ba)>=2)
+    .map(([a,b,ab,ba])=>[a,b,ab+ba]).sort((p,q)=>q[2]-p[2]).slice(0,topN);
+  const oneSided=[];
+  for(const [a,b,ab,ba] of pairs){
+    if(ab>=5&&ba<=ab*0.4) oneSided.push([a,b,ab,ba]);
+    else if(ba>=5&&ab<=ba*0.4) oneSided.push([b,a,ba,ab]);
+  }
+  oneSided.sort((p,q)=>(q[2]-q[3])-(p[2]-p[3]));
+
+  const revive=new Map();
+  for(let i=1;i<P.length;i++)
+    if(P[i].ts-P[i-1].ts>=REVIVE_MS) revive.set(P[i].sender,(revive.get(P[i].sender)||0)+1);
+
+  const late=new Map(), tot=new Map();
+  for(const m of P){
+    tot.set(m.sender,(tot.get(m.sender)||0)+1);
+    if(LATE_HOURS.has(m.ts.getHours())) late.set(m.sender,(late.get(m.sender)||0)+1);
+  }
+  const nightOwls=[...tot.keys()].filter(n=>tot.get(n)>=MIN_MSGS&&late.get(n))
+    .map(n=>[n,Math.round(1000*late.get(n)/tot.get(n))/10]).sort((a,b)=>b[1]-a[1]).slice(0,topN);
+
+  const mono=new Map(); let rs=null, rl=0;
+  const flush=()=>{ if(rs!==null&&rl>=STREAK) mono.set(rs,(mono.get(rs)||0)+rl) };
+  for(const m of P){ if(m.sender===rs) rl++; else {flush(); rs=m.sender; rl=1;} }
+  flush();
+
+  const love=new Map();
+  for(let i=1;i<P.length;i++){
+    const a=P[i-1], b=P[i];
+    if(b.sender!==a.sender && b.ts-a.ts<=REPLY_MS && b.kind==="text" && LOVE_LAUGH.test(b.text))
+      love.set(a.sender,(love.get(a.sender)||0)+1);
+  }
+  const unans=new Map();
+  for(const q of questions) if(q.ans===null) unans.set(q.sender,(unans.get(q.sender)||0)+1);
+
+  const top=m=>[...m.entries()].sort((a,b)=>b[1]-a[1]).slice(0,topN);
+  return {reciprocity, oneSided:oneSided.slice(0,topN), revivers:top(revive),
+          nightOwls, monologuers:top(mono), getsLove:top(love), unanswered:top(unans)};
+}
+
+/* ===============================================================
+   5. STATS
+   =============================================================== */
+const REPLY_MS=15*60000, CONV_MS=3*3600000;
+const WORDRE=/[\w']+/g, EMOJIRE=/\p{Extended_Pictographic}/gu;
+const dayKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+
+function computeStats(chat,links){
+  const P=chat.people, perDay=new Map();
+  for(const m of P){const k=dayKey(m.ts); perDay.set(k,(perDay.get(k)||0)+1)}
+  const days=[...perDay.keys()].sort();
+  const first=P[0].ts, last=P[P.length-1].ts;
+  let words=0,media=0,questions=0,deleted=0;
+  for(const m of P){
+    if(m.kind==="media"){media++;continue}
+    if(m.kind==="deleted"){deleted++;continue}
+    words+=(m.text.match(WORDRE)||[]).length;
+    if(m.text.includes("?")) questions++;
+  }
+  let busiest=["",0];
+  for(const [k,v] of perDay) if(v>busiest[1]) busiest=[k,v];
+
+  const overview={
+    total:P.length, participants:chat.participants.length, words, media, questions, deleted,
+    links:links.length, first, last,
+    span:Math.max(1,Math.round((last-first)/86400000)+1),
+    activeDays:perDay.size, busiest,
+    perActive:Math.round(P.length/Math.max(perDay.size,1)*10)/10,
+  };
+
+  // Per-person
+  const pm=new Map();
+  for(const m of P){
+    let p=pm.get(m.sender);
+    if(!p){p={name:m.sender,msgs:0,words:0,media:0,links:0,questions:0,emoji:0,
+              days:new Set(),started:0,gotReplies:0,emojiTally:new Map(),first:m.ts,last:m.ts};
+           pm.set(m.sender,p)}
+    p.msgs++; p.days.add(dayKey(m.ts)); p.last=m.ts;
+    if(m.kind==="media"){p.media++;continue}
+    if(m.kind==="deleted") continue;
+    p.words+=(m.text.match(WORDRE)||[]).length;
+    p.links+=(m.text.match(URLRE)||[]).length;
+    if(m.text.includes("?")) p.questions++;
+    for(const ch of (m.text.match(EMOJIRE)||[])){
+      p.emoji++; p.emojiTally.set(ch,(p.emojiTally.get(ch)||0)+1);
+    }
+  }
+  let prev=null;
+  for(const m of P){
+    if(!prev||m.ts-prev.ts>=CONV_MS) pm.get(m.sender).started++;
+    else if(m.sender!==prev.sender&&m.ts-prev.ts<=REPLY_MS) pm.get(prev.sender).gotReplies++;
+    prev=m;
+  }
+  const people=[...pm.values()].sort((a,b)=>b.msgs-a.msgs);
+  for(const p of people){
+    p.avgWords=p.msgs?Math.round(p.words/p.msgs*10)/10:0;
+    p.sig=[...p.emojiTally.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>e[0]).join("");
+  }
+
+  // Timeline, filling gap days with zero so quiet stretches read as quiet.
+  const tl=[];
+  if(days.length){
+    const cur=new Date(days[0]+"T00:00:00"), end=new Date(days[days.length-1]+"T00:00:00");
+    while(cur<=end){const k=dayKey(cur); tl.push([k,perDay.get(k)||0]); cur.setDate(cur.getDate()+1)}
+  }
+  const monthly=new Map();
+  for(const m of P){
+    const k=m.ts.getFullYear()+"-"+String(m.ts.getMonth()+1).padStart(2,"0");
+    monthly.set(k,(monthly.get(k)||0)+1);
+  }
+  const heat=Array.from({length:7},()=>new Array(24).fill(0));
+  for(const m of P) heat[(m.ts.getDay()+6)%7][m.ts.getHours()]++;
+
+  const gaps=[];
+  for(let i=1;i<P.length;i++)
+    if(P[i].sender!==P[i-1].sender&&P[i].ts-P[i-1].ts<=REPLY_MS)
+      gaps.push((P[i].ts-P[i-1].ts)/60000);
+  gaps.sort((a,b)=>a-b);
+  const reply=gaps.length?{
+    median:Math.round(gaps[gaps.length>>1]*10)/10,
+    q1:Math.round(gaps[gaps.length>>2]*10)/10,
+    q3:Math.round(gaps[Math.floor(gaps.length*3/4)]*10)/10,
+    n:gaps.length}:null;
+
+  // Which messages got the room talking
+  const peaks=[];
+  for(let i=0;i<P.length;i++){
+    const m=P[i];
+    if(m.kind!=="text"||m.text.length<15) continue;
+    const who=new Set();
+    for(let j=i+1;j<P.length;j++){
+      if(P[j].ts-m.ts>600000) break;
+      if(P[j].sender!==m.sender) who.add(P[j].sender);
+    }
+    if(who.size>=2) peaks.push([m,who.size]);
+  }
+  peaks.sort((a,b)=>b[1]-a[1]);
+
+  return {overview,people,tl,monthly:[...monthly.entries()].sort(),heat,reply,
+          peaks:peaks.slice(0,15)};
+}
+function textStats(chat){
+  const w=new Map(), e=new Map(), ph=new Map();
+  const WRE=/[a-zA-Z][a-zA-Z'-]{1,}/g;
+  for(const m of chat.people){
+    if(m.kind!=="text") continue;
+    const body=m.text.replace(URLRE," ").toLowerCase();
+    const words=(body.match(WRE)||[]).map(x=>x.replace(/^['-]+|['-]+$/g,""));
+    for(const x of words) if(x.length>2&&!STOP.has(x)) w.set(x,(w.get(x)||0)+1);
+    const usable=words.filter(x=>x.length>2);
+    for(let i=0;i<usable.length-1;i++){
+      const g=usable[i]+" "+usable[i+1];
+      if(STOP.has(usable[i])&&STOP.has(usable[i+1])) continue;
+      ph.set(g,(ph.get(g)||0)+1);
+    }
+    for(const ch of (m.text.match(EMOJIRE)||[])) e.set(ch,(e.get(ch)||0)+1);
+  }
+  const top=(m,n)=>[...m.entries()].sort((a,b)=>b[1]-a[1]).slice(0,n);
+  return {words:top(w,26),emoji:top(e,30),
+          phrases:top(ph,60).filter(p=>p[1]>=3).slice(0,26)};
+}
+
+/* ===============================================================
+   6. RENDER HELPERS
+   =============================================================== */
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nf=n=>n.toLocaleString();
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtD=d=>d.getDate()+" "+MON[d.getMonth()]+" "+d.getFullYear();
+const fmtDT=d=>fmtD(d)+", "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+const fmtKey=k=>{const [y,m,d]=k.split("-"); return +d+" "+MON[+m-1]+" "+y};
+
+function tiles(list){
+  return '<div class="tiles">'+list.map(t=>
+    '<div class="tile"><div class="v">'+esc(t[0])+'</div><div class="l">'+esc(t[1])+'</div>'+
+    (t[2]?'<div class="s">'+esc(t[2])+'</div>':'')+'</div>').join("")+'</div>';
+}
+function bars(items,slot,subs,suf){
+  if(!items||!items.length) return '<p class="empty">Nothing found.</p>';
+  suf=suf||"";
+  const peak=Math.max(...items.map(i=>i[1]))||1;
+  return '<div class="bars">'+items.map((it,i)=>{
+    const w=Math.max(100*it[1]/peak,1.2);
+    return '<div class="bar"><div class="k" title="'+esc(it[0])+'">'+esc(it[0])+
+      (subs&&subs[i]?'<s>'+esc(subs[i])+'</s>':'')+'</div>'+
+      '<div class="t"><div class="f" style="width:'+w.toFixed(2)+'%;background:var(--s'+(slot+1)+
+      ');animation-delay:'+(i*22)+'ms"></div><span class="v">'+nf(it[1])+esc(suf)+'</span></div></div>';
+  }).join("")+'</div>';
+}
+function card(title,body,sub){
+  return '<div class="card"><div class="card-head"><h3>'+esc(title)+'</h3>'+
+    (sub?'<p class="sub">'+esc(sub)+'</p>':'')+'</div>'+body+'</div>';
+}
+function tableOf(heads,rows){
+  if(!rows.length) return '<p class="empty">Nothing found.</p>';
+  return '<table><thead><tr>'+heads.map(h=>'<th>'+esc(h)+'</th>').join("")+
+    '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join("")+'</tr>').join("")+
+    '</tbody></table>';
+}
+function heatmap(grid){
+  const D=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  let peak=0; for(const r of grid) for(const v of r) if(v>peak) peak=v;
+  peak=peak||1;
+  let h="";
+  grid.forEach((row,di)=>{
+    h+='<div class="d">'+D[di]+'</div>';
+    row.forEach((v,hr)=>{
+      const l=v===0?0:Math.min(10,1+Math.floor(9*v/peak));
+      h+='<div class="c" data-l="'+l+'" title="'+D[di]+" "+String(hr).padStart(2,"0")+
+         ':00 \u2014 '+v+' messages"></div>';
+    });
+  });
+  h+='<div class="d"></div>';
+  for(let i=0;i<24;i++) h+='<div class="h">'+(i%3===0?i:"")+'</div>';
+  let leg='<div class="legend"><span>Quiet</span>';
+  for(let i=0;i<11;i++) leg+='<i data-l="'+i+'"></i>';
+  leg+='<span>Busy</span></div>';
+  return '<div class="heat">'+h+'</div>'+leg;
+}
+function timeline(tl){
+  if(tl.length<2) return '<p class="empty">Not enough days to chart.</p>';
+  const W=1000,H=230,PL=46,PB=28,PT=12;
+  const vals=tl.map(t=>t[1]), peak=Math.max(...vals)||1;
+  const pw=W-PL-10, phh=H-PB-PT, step=pw/(tl.length-1);
+  const X=i=>PL+i*step, Y=v=>PT+phh*(1-v/peak);
+  let area="M"+PL+","+Y(0);
+  vals.forEach((v,i)=>{area+=" L"+X(i).toFixed(1)+","+Y(v).toFixed(1)});
+  area+=" L"+X(vals.length-1).toFixed(1)+","+Y(0)+" Z";
+  const roll=[];
+  for(let i=0;i<vals.length;i++){
+    const c=vals.slice(Math.max(0,i-6),i+1);
+    roll.push(c.reduce((a,b)=>a+b,0)/c.length);
+  }
+  let rp="M"+roll.map((v,i)=>X(i).toFixed(1)+","+Y(v).toFixed(1)).join(" L");
+  let g="";
+  [0,.5,1].forEach(f=>{
+    const v=peak*f;
+    g+='<line class="grid" x1="'+PL+'" x2="'+(W-10)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'"/>'+
+       '<text class="ax" x="'+(PL-9)+'" y="'+(Y(v)+3.5).toFixed(1)+'" text-anchor="end">'+Math.round(v)+'</text>';
+  });
+  let lab="";
+  [[0,"start"],[tl.length>>1,"middle"],[tl.length-1,"end"]].forEach(([i,a])=>{
+    lab+='<text class="ax" x="'+X(i).toFixed(1)+'" y="'+(H-7)+'" text-anchor="'+a+'">'+fmtKey(tl[i][0])+'</text>';
+  });
+  return '<div class="tl-wrap"><svg class="tl" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" '+
+    'role="img" aria-label="Messages per day over the life of the group">'+g+
+    '<path class="area" d="'+area+'"/><path class="roll" d="'+rp+'"/>'+lab+
+    '<line class="cross" y1="'+PT+'" y2="'+(PT+phh)+'" style="opacity:0"/>'+
+    '<circle class="dot" r="4.5" style="opacity:0"/></svg>'+
+    '<div class="tip" hidden></div>'+
+    '<div class="cap">Shaded: messages per day \u00B7 Line: 7-day average</div></div>';
+}
+const AVCOL=["--s1","--s2","--s3","--s4","--s5","--s6","--s7","--s8"];
+function initials(n){
+  const p=n.trim().split(/\s+/);
+  return ((p[0]||"")[0]||"?").toUpperCase()+(p.length>1?(p[p.length-1][0]||"").toUpperCase():"");
+}
+
+/* ===============================================================
+   7. SECTIONS
+   =============================================================== */
+// SECTIONS is lens-driven (see LENSES above), reassigned by applyLens().
+function sec(id,title,blurb,body){
+  return '<section id="'+id+'"><div class="sec-head"><span class="eyebrow">'+esc(title)+
+    '</span><h2>'+esc(blurb.h)+'</h2><p>'+esc(blurb.p)+'</p></div>'+body+'</section>';
+}
+
+function dynamicsSection(soc){
+  const cards=[];
+  if(soc.reciprocity.length) cards.push(card("Closest back-and-forths",
+    bars(soc.reciprocity.map(([a,b,t])=>[a+"  \u21C4  "+b,t]),1),
+    "Pairs who reply to each other most \u2014 two-way traffic, both directions alive."));
+  if(soc.oneSided.length) cards.push(card("One-sided chasing",
+    bars(soc.oneSided.map(([c,t,ab])=>[c+"  \u2192  "+t,ab]),5,soc.oneSided.map(([,,,ba])=>"only "+ba+" back")),
+    "Reaches out far more than they get back. Left name chases the right."));
+  if(soc.revivers.length) cards.push(card("Who wakes the chat up",
+    bars(soc.revivers,0),"First to break the silence after 8+ hours of quiet."));
+  if(soc.nightOwls.length) cards.push(card("Night owls",
+    bars(soc.nightOwls,6,null,"%"),"Share of each person's messages sent between midnight and 5am."));
+  if(soc.monologuers.length) cards.push(card("Talks in monologues",
+    bars(soc.monologuers,3),"Messages sent in a run of 3+ in a row, with no one chiming in between."));
+  if(soc.getsLove.length) cards.push(card("Gets the most laughs & love",
+    bars(soc.getsLove,2),"Laughter or \u2764\uFE0F in the message right after theirs \u2014 a proxy for reactions, not an exact count."));
+  if(soc.unanswered.length) cards.push(card("Whose questions go unanswered",
+    bars(soc.unanswered,7),"Questions that got no reply from anyone within an hour, by who asked."));
+  if(!cards.length) return '<p class="empty">Not enough back-and-forth to read the room yet.</p>';
+  let out="";
+  for(let i=0;i<cards.length;i+=2) out+='<div class="g2">'+cards.slice(i,i+2).join("")+'</div>';
+  return out;
+}
+
+function render(D){
+  const {chat,links,tools,discovered,signals,questions,S,T}=D;
+  const O=S.overview, total=O.total;
+  const pct=(a,b)=>b?Math.round(1000*a/b)/10:0;
+  const CP=LENS.copy, parts={};
+
+  /* -- Overview (with lens banner + toggle) -- */
+  let banner="";
+  if(D.lensReason){
+    const btn=(k,lbl)=>'<button class="seg-btn'+(D.lensKey===k?" on":"")+'" onclick="switchLens(\''+k+'\')">'+lbl+'</button>';
+    banner='<div class="warn lens-note"><div class="lens-note-txt"><b>'+esc(LENS.name)+' view.</b> '+
+      esc(D.lensReason)+'</div><div class="seg lens-seg">'+btn("business","Builder")+btn("social","Friends")+'</div></div>';
+  }
+  let warn="";
+  if(chat.warnings.length)
+    warn='<div class="warn"><b>Worth knowing about this file</b><ul>'+
+      chat.warnings.map(w=>'<li>'+esc(w)+'</li>').join("")+'</ul></div>';
+  parts.overview=sec("overview","Overview",
+    {h:"The group at a glance",p:"Everything below is counted directly from the export \u2014 these numbers are exact."},
+    banner+warn+
+    tiles([[nf(total),"messages",nf(O.words)+" words"],
+           [nf(O.participants),"people",""],
+           [nf(O.span),"days covered",nf(O.activeDays)+" with activity"],
+           [nf(O.links),"links shared",""],
+           [nf(O.media),"media & files",""],
+           [nf(O.questions),"questions asked",""],
+           [String(O.perActive),"per active day",""],
+           [nf(O.busiest[1]),"busiest day",fmtKey(O.busiest[0])]])+
+    card("Message volume over time",timeline(S.tl)));
+
+  /* -- What's shared -- */
+  const domC=new Map(),kindC=new Map(),repoC=new Map(),shareC=new Map();
+  for(const l of links){
+    domC.set(l.dom,(domC.get(l.dom)||0)+1);
+    kindC.set(l.kind,(kindC.get(l.kind)||0)+1);
+    shareC.set(l.sender,(shareC.get(l.sender)||0)+1);
+    if(l.repo) repoC.set(l.repo,(repoC.get(l.repo)||0)+1);
+  }
+  const srt=m=>[...m.entries()].sort((a,b)=>b[1]-a[1]);
+  const linkRows=[...links].sort((a,b)=>b.ts-a.ts).map(l=>[
+    '<span class="when">'+fmtD(l.ts)+'</span>',esc(l.sender),
+    '<span class="pill">'+esc(l.kind)+'</span>',
+    '<a href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer">'+esc(l.url.slice(0,84))+'</a>',
+    '<span class="dim">'+esc(l.ctx.slice(0,120))+'</span>']);
+  // The GitHub-repos card only makes sense when there are repos (builder chats).
+  const repoCard=repoC.size?card("GitHub repos",bars(srt(repoC).slice(0,18),1),"Repos linked in the chat, by times shared."):"";
+  const shareCard=card("Who shares links",bars(srt(shareC).slice(0,14),4));
+  parts.shared=sec("shared",CP.shared.eyebrow,{h:CP.shared.h,p:CP.shared.p},
+    '<div class="g2">'+card("By type",bars(srt(kindC),2))+
+    card("Top domains",bars(srt(domC).slice(0,18),0))+'</div>'+
+    (repoCard?'<div class="g2">'+repoCard+shareCard+'</div>':shareCard)+
+    card("All "+nf(links.length)+" links",
+      '<input class="filter" data-t="link-tbl" type="search" placeholder="Filter by domain, person, or keyword">'+
+      '<div class="scroll" id="link-tbl">'+
+      tableOf(["Date","Shared by","Type","Link","Said alongside"],linkRows)+'</div>'));
+
+  /* -- Tools (builder lens only) -- */
+  if(LENS.trackTools){
+    const byCat=new Map();
+    for(const t of tools){ if(!byCat.has(t.cat)) byCat.set(t.cat,[]); byCat.get(t.cat).push(t) }
+    const catCards=[...byCat.entries()]
+      .sort((a,b)=>b[1].reduce((s,t)=>s+t.n,0)-a[1].reduce((s,t)=>s+t.n,0))
+      .map(([cat,list],i)=>card(cat,
+        bars(list.slice(0,12).map(t=>[t.name,t.n]),i%8,
+             list.slice(0,12).map(t=>t.people.size+" people")))).join("");
+    const disc=discovered.length?card("Possibly tools we don't track yet",
+        '<div class="chips">'+discovered.map(([t,n])=>
+          '<span class="chip">'+esc(t)+'<i>'+n+'</i></span>').join("")+'</div>',
+        "Recurring capitalised words used by two or more people that aren't in the built-in list. Expect noise \u2014 names and typos get through."):"";
+    parts.tools=sec("tools","Tools & tech",
+      {h:"What the group is actually using",p:"The second number is how many different people mentioned it \u2014 that's what separates a real trend from one person's enthusiasm."},
+      card("Most discussed overall",
+        bars(tools.slice(0,22).map(t=>[t.name,t.n]),0,
+             tools.slice(0,22).map(t=>t.people.size+" people \u00B7 "+t.cat)))+
+      '<div class="g2">'+catCards+'</div>'+disc);
+  }
+
+  /* -- Group dynamics (friends lens only) -- */
+  if(D.social)
+    parts.dynamics=sec("dynamics","Group dynamics",
+      {h:"How the group actually relates",p:"Who's close to whom, who chases whom, who wakes the chat up \u2014 and who gets left on read. All exact, from who-replies-to-whom and timing."},
+      dynamicsSection(D.social));
+
+  /* -- Signals -- */
+  let tabs="",panels="";
+  SIGDEF.forEach(([label],i)=>{
+    const list=signals[label]||[];
+    tabs+='<button class="tab'+(i?"":" on")+'" data-p="sig'+i+'">'+esc(label)+'<i>'+list.length+'</i></button>';
+    const body=list.length?'<ul class="feed">'+list.slice(0,100).map(s=>
+      '<li><div class="fh"><strong>'+esc(s.sender)+'</strong><span class="when">'+fmtDT(s.ts)+
+      '</span></div><p>'+esc(s.text)+'</p>'+
+      (s.links.length?'<div class="fl">'+s.links.map(u=>
+        '<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(u.slice(0,74))+'</a>').join("")+'</div>':'')+
+      '</li>').join("")+'</ul>':'<p class="empty">No messages matched this one.</p>';
+    panels+='<div class="panel'+(i?"":" on")+'" id="sig'+i+'">'+body+'</div>';
+  });
+  parts.signals=sec("signals",CP.signals.eyebrow,{h:CP.signals.h,p:CP.signals.p},
+    card("",'<div class="tabs">'+tabs+'</div>'+panels));
+
+  /* -- People -- */
+  const folk='<div class="folk">'+S.people.map((p,i)=>
+    '<div class="person"><div class="av" style="background:var('+AVCOL[i%8]+')">'+esc(initials(p.name))+'</div>'+
+    '<div style="min-width:0"><div class="nm" title="'+esc(p.name)+'">'+esc(p.name)+'</div>'+
+    '<div class="st">'+nf(p.msgs)+' msgs \u00B7 '+pct(p.msgs,total)+'%<br>'+
+    p.avgWords+' words avg \u00B7 '+nf(p.days.size)+' days</div>'+
+    (p.sig?'<div class="em">'+esc(p.sig)+'</div>':'')+'</div></div>').join("")+'</div>';
+  const pRows=S.people.map(p=>[
+    "<strong>"+esc(p.name)+"</strong>",
+    '<span class="n">'+nf(p.msgs)+'</span>','<span class="n">'+pct(p.msgs,total)+'%</span>',
+    '<span class="n">'+p.avgWords+'</span>','<span class="n">'+nf(p.links)+'</span>',
+    '<span class="n">'+nf(p.media)+'</span>','<span class="n">'+nf(p.questions)+'</span>',
+    '<span class="n">'+nf(p.days.size)+'</span>','<span class="n">'+nf(p.started)+'</span>',
+    '<span class="n">'+nf(p.gotReplies)+'</span>']);
+  parts.people=sec("people","People",
+    {h:"Who shows up, and how",p:"\u201CStarted\u201D counts first messages after three hours of silence. \u201CReplies got\u201D counts messages someone else answered within fifteen minutes."},
+    folk+
+    '<div class="g2">'+
+    card("Who starts conversations",bars(S.people.slice().sort((a,b)=>b.started-a.started).slice(0,10).map(p=>[p.name,p.started]),1))+
+    card("Who gets replied to",bars(S.people.slice().sort((a,b)=>b.gotReplies-a.gotReplies).slice(0,10).map(p=>[p.name,p.gotReplies]),4))+
+    '</div>'+
+    card("Everyone, sortable",'<div class="scroll">'+tableOf(
+      ["Person","Msgs","Share","Avg words","Links","Media","Questions","Days","Started","Replies got"],pRows)+'</div>',
+      "Click any column heading to sort by it."));
+
+  /* -- Rhythm -- */
+  const monLab=S.monthly.map(([k,v])=>{const [y,m]=k.split("-"); return [MON[+m-1]+" "+y,v]});
+  const rep=S.reply?tiles([[S.reply.median+"m","median reply gap",""],
+                           [S.reply.q1+"m","fastest quarter",""],
+                           [S.reply.q3+"m","slowest quarter",""],
+                           [nf(S.reply.n),"replies measured",""]])
+                   :'<p class="empty">Not enough back-and-forth to measure.</p>';
+  parts.rhythm=sec("rhythm","Rhythm",
+    {h:"When the group is awake",p:"Hour by weekday, and how quickly people answer each other."},
+    card("Activity by hour and day",heatmap(S.heat),"Darker means more messages in that hour.")+
+    '<div class="g2">'+card("Volume by month",bars(monLab,0))+
+    card("Reply speed",rep,"Time between one person's message and the next person's, within fifteen minutes.")+'</div>');
+
+  /* -- Conversation health / Moments -- */
+  const unans=questions.filter(q=>q.ans===null), ans=questions.filter(q=>q.ans!==null);
+  const peakRows=S.peaks.map(([m,n])=>[
+    '<span class="when">'+fmtD(m.ts)+'</span>',esc(m.sender),
+    '<span class="dim">'+esc(m.text.slice(0,190))+'</span>','<span class="n"><strong>'+n+'</strong></span>']);
+  const unansRows=unans.slice().sort((a,b)=>b.ts-a.ts).slice(0,80).map(q=>[
+    '<span class="when">'+fmtD(q.ts)+'</span>',esc(q.sender),
+    '<span class="dim">'+esc(q.text.slice(0,190))+'</span>']);
+  parts.health=sec("health",CP.health.eyebrow,{h:CP.health.h,p:CP.health.p},
+    tiles([[nf(questions.length),"questions asked",""],
+           [nf(ans.length),"answered within the hour",""],
+           [nf(unans.length),"never answered",""],
+           [pct(ans.length,questions.length)+"%","answer rate",""]])+
+    card("Messages that got the room talking",
+      '<div class="scroll">'+tableOf(["Date","From","Message","People who replied"],peakRows)+'</div>',
+      "Counted by how many different people posted within ten minutes afterwards.")+
+    card("Questions nobody answered",
+      '<input class="filter" data-t="unans-tbl" type="search" placeholder="Filter unanswered questions">'+
+      '<div class="scroll" id="unans-tbl">'+tableOf(["Date","Asked by","Question"],unansRows)+'</div>',
+      "No reply from anyone else within sixty minutes."));
+
+  /* -- Language / Inside jokes -- */
+  parts.language=sec("language",CP.language.eyebrow,{h:CP.language.h,p:CP.language.p},
+    '<div class="g2">'+card("Words",bars(T.words,6))+card("Phrases",bars(T.phrases,5))+'</div>'+
+    card("Emoji",'<div class="chips">'+T.emoji.map(([c,n])=>
+      '<span class="chip xl">'+esc(c)+'<i>'+n+'</i></span>').join("")+'</div>'));
+
+  // Emit only this lens's panels, in its order.
+  return LENS.sections.map(s=>parts[s.id]||"").join("");
+}
+
+/* ===============================================================
+   8. INTERACTIONS
+   =============================================================== */
+function wireUp(D){
+  // Tabs
+  document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+    const box=t.parentElement, scope=box.parentElement;
+    box.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+    t.classList.add("on");
+    scope.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+    const tgt=document.getElementById(t.dataset.p);
+    if(tgt) tgt.classList.add("on");
+  }));
+
+  // Filters
+  document.querySelectorAll(".filter").forEach(inp=>inp.addEventListener("input",()=>{
+    const q=inp.value.toLowerCase().trim(), host=document.getElementById(inp.dataset.t);
+    if(!host) return;
+    host.querySelectorAll("tbody tr").forEach(r=>{
+      r.style.display=!q||r.textContent.toLowerCase().includes(q)?"":"none";
+    });
+  }));
+
+  // Sortable headers
+  document.querySelectorAll("table").forEach(tb=>{
+    tb.querySelectorAll("th").forEach((th,col)=>{
+      let asc=false;
+      th.addEventListener("click",()=>{
+        asc=!asc;
+        const body=tb.tBodies[0], rows=[...body.rows];
+        rows.sort((a,b)=>{
+          const x=a.cells[col].textContent.trim(), y=b.cells[col].textContent.trim();
+          const nx=parseFloat(x.replace(/[^0-9.\-]/g,"")), ny=parseFloat(y.replace(/[^0-9.\-]/g,""));
+          const both=!isNaN(nx)&&!isNaN(ny);
+          const c=both?nx-ny:x.localeCompare(y);
+          return asc?c:-c;
+        });
+        rows.forEach(r=>body.appendChild(r));
+      });
+    });
+  });
+
+  // Timeline crosshair
+  const wrap=document.querySelector(".tl-wrap");
+  if(wrap&&D){
+    const svg=wrap.querySelector(".tl"), tip=wrap.querySelector(".tip"),
+          cross=svg.querySelector(".cross"), dot=svg.querySelector(".dot"),
+          tl=D.S.tl, W=1000,H=230,PL=46,PB=28,PT=12;
+    const pw=W-PL-10, phh=H-PB-PT, peak=Math.max(...tl.map(t=>t[1]))||1;
+    const step=pw/Math.max(tl.length-1,1);
+    const move=ev=>{
+      const box=svg.getBoundingClientRect();
+      let i=Math.round(((ev.clientX-box.left)/box.width*W-PL)/step);
+      i=Math.max(0,Math.min(tl.length-1,i));
+      const x=PL+i*step, y=PT+phh*(1-tl[i][1]/peak);
+      cross.setAttribute("x1",x); cross.setAttribute("x2",x); cross.style.opacity=1;
+      dot.setAttribute("cx",x); dot.setAttribute("cy",y); dot.style.opacity=1;
+      tip.hidden=false;
+      tip.innerHTML="<b>"+nf(tl[i][1])+"</b> messages<br>"+fmtKey(tl[i][0]);
+      const px=x/W*box.width;
+      tip.style.left=Math.min(Math.max(px-tip.offsetWidth/2,0),box.width-tip.offsetWidth)+"px";
+      tip.style.top=Math.max(y/H*box.height-tip.offsetHeight-12,0)+"px";
+    };
+    svg.addEventListener("mousemove",move);
+    svg.addEventListener("mouseleave",()=>{
+      cross.style.opacity=0; dot.style.opacity=0; tip.hidden=true;
+    });
+    svg.addEventListener("touchmove",ev=>{if(ev.touches[0]) move(ev.touches[0])},{passive:true});
+  }
+
+  // Scroll spy
+  const links=[...document.querySelectorAll("#nav a")];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      links.forEach(a=>a.classList.toggle("here",a.getAttribute("href")==="#"+e.target.id));
+    });
+  },{rootMargin:"-15% 0px -75% 0px"});
+  document.querySelectorAll("section").forEach(s=>obs.observe(s));
+}
+
+/* ===============================================================
+   9. APP
+   =============================================================== */
+const $=s=>document.querySelector(s);
+const intake=$("#intake"), progress=$("#progress"), app=$("#app");
+const errBox=$("#err"), fileInput=$("#file"), dropBtn=$("#drop");
+
+function showErr(msg){
+  errBox.hidden=false;
+  errBox.textContent=msg;
+}
+async function step(label,pct){
+  $("#prog-step").textContent=label;
+  $("#prog-fill").style.width=pct+"%";
+  await new Promise(r=>setTimeout(r,16));  // let the browser paint
+}
+
+async function run(text,name,pinned){
+  intake.style.display="none";
+  progress.classList.add("on");
+  try{
+    await step("Reading messages",14);
+    const chat=parseChat(text,name);
+    CURRENT={chat,name,pinned:pinned||null};
+    await step("Reading the room",44);
+    let key,reason;
+    if(pinned){ key=pinned; reason="Showing the "+LENSES[pinned].name+" view."; }
+    else{
+      // Detection uses the builder taxonomy so the tech-link ratio is meaningful.
+      applyLens("business");
+      const det=detectLens(chat,extractLinks(chat),extractTools(chat));
+      key=det.key; reason=det.reason;
+    }
+    await buildReport(key,reason);
+    progress.classList.remove("on");
+    app.classList.add("on");
+    window.scrollTo(0,0);
+  }catch(e){
+    progress.classList.remove("on");
+    intake.style.display="";
+    showErr(e.message||"Something went wrong reading that file.");
+  }
+}
+
+// Build (or rebuild) the on-screen report for a given lens, reusing the parsed
+// chat in CURRENT \u2014 so switching lenses never re-reads the file.
+async function buildReport(lensKey,reason){
+  applyLens(lensKey);
+  const {chat,name}=CURRENT;
+  await step("Building the report",90);
+  const links=extractLinks(chat);                 // link buckets depend on the lens
+  const tools=LENS.trackTools?extractTools(chat):[];
+  const discovered=LENS.trackTools?discoverTools(chat):[];
+  const signals=extractSignals(chat);
+  const questions=extractQuestions(chat);
+  const S=computeStats(chat,links);
+  const T=textStats(chat);
+  const social=LENS.key==="social"?socialInsights(chat,questions):null;
+  const D={chat,links,tools,discovered,signals,questions,S,T,social,lensKey,lensReason:reason};
+  CURRENT.D=D; CURRENT.lensKey=lensKey; CURRENT.lensReason=reason;
+
+  $("#share").hidden=false;
+  $("#tb-name").textContent=name;
+  $("#tb-meta").textContent=nf(S.overview.total)+" messages \u00B7 "+
+    S.overview.participants+" people \u00B7 "+fmtD(S.overview.first)+
+    " \u2013 "+fmtD(S.overview.last);
+  $("#tb-ctx").hidden=false; $("#tb-div").hidden=false;
+  $("#reset").hidden=false; $("#tb-tag").hidden=true;
+  let lastGrp=null;
+  $("#nav").innerHTML=SECTIONS.map((s,i)=>{
+    const head = s.grp!==lastGrp ? '<div class="grp">'+esc(s.grp)+'</div>' : '';
+    lastGrp=s.grp;
+    return head+'<a href="#'+s.id+'"'+(i?'':' class="here"')+'>'+esc(s.label)+'</a>';
+  }).join("");
+  $("#main").innerHTML=render(D);
+  wireUp(D);
+}
+
+// Flip the lens on the report already on screen, without touching the file.
+function switchLens(key){
+  if(!CURRENT||!CURRENT.chat||CURRENT.lensKey===key) return;
+  CURRENT.pinned=key;
+  buildReport(key,"Showing the "+LENSES[key].name+" view.").then(()=>window.scrollTo(0,0));
+}
+window.switchLens=switchLens;
+
+async function handleFile(f){
+  errBox.hidden=true;
+  if(!f) return;
+  const isZip=/\.zip$/i.test(f.name)||f.type==="application/zip";
+  const name=f.name.replace(/\.(txt|zip)$/i,"").replace(/^WhatsApp Chat (?:with|- )?/i,"").trim()||"Chat";
+  try{
+    const text=isZip?await readZip(await f.arrayBuffer()):await f.text();
+    await run(text,name);
+  }catch(e){ showErr(e.message||"Couldn't read that file.") }
+}
+
+// Drag & drop over the whole page, not just the circle.
+["dragenter","dragover"].forEach(ev=>document.addEventListener(ev,e=>{
+  e.preventDefault(); dropBtn.classList.add("hot");
+}));
+["dragleave","drop"].forEach(ev=>document.addEventListener(ev,e=>{
+  e.preventDefault();
+  if(ev==="drop"||!e.relatedTarget) dropBtn.classList.remove("hot");
+}));
+document.addEventListener("drop",e=>{
+  e.preventDefault(); dropBtn.classList.remove("hot");
+  const f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];
+  if(f) handleFile(f);
+});
+dropBtn.addEventListener("click",()=>fileInput.click());
+
+fileInput.addEventListener("change",e=>handleFile(e.target.files[0]));
+
+$("#reset").addEventListener("click",()=>{
+  app.classList.remove("on"); intake.style.display="";
+  $("#tb-ctx").hidden=true; $("#tb-div").hidden=true;
+  $("#reset").hidden=true; $("#share").hidden=true; $("#tb-tag").hidden=false;
+  CURRENT=null;
+  errBox.hidden=true; fileInput.value=""; window.scrollTo(0,0);
+});
+
+// Theme
+const rootEl=document.documentElement, themeBtn=$("#theme");
+function isDark(){
+  const t=rootEl.getAttribute("data-theme");
+  return t==="dark"||(!t&&matchMedia("(prefers-color-scheme:dark)").matches);
+}
+function syncTheme(){ themeBtn.textContent=isDark()?"Light":"Dark" }
+themeBtn.addEventListener("click",()=>{
+  rootEl.setAttribute("data-theme",isDark()?"light":"dark"); syncTheme();
+});
+syncTheme();
+
+/* ===============================================================
+   10. SAMPLE DATA \u2014 generated, so the page carries no real chat.
+   =============================================================== */
+/* ---- Landing audience: builders (default front door) vs friend groups ----
+   Same page, same analyzer — only the hero copy, preview, feature framing and
+   demo emphasis swap. Addressable via ?for=friends so you can link straight to
+   the friends pitch. The report's own lens still auto-detects independently. */
+const BUILDER_PREVIEW=$("#lp-preview").innerHTML;   // cache the default markup
+const FRIENDS_PREVIEW=
+ '<div class="lp-win"><div class="lp-winbar"><i></i><i></i><i></i>'+
+ '<span class="u">tzippy · The group chat — 6 people · 32 weeks</span></div>'+
+ '<div class="lp-winbody"><div class="lp-ptiles">'+
+ '<div class="lp-ptile"><div class="v">18,204</div><div class="l">Messages</div></div>'+
+ '<div class="lp-ptile"><div class="v">512</div><div class="l">Photos</div></div>'+
+ '<div class="lp-ptile"><div class="v">140</div><div class="l">Plans made</div></div>'+
+ '<div class="lp-ptile"><div class="v">2am</div><div class="l">Night-owl peak</div></div>'+
+ '</div><p class="lp-plabel">Closest back-and-forths</p>'+
+ '<div class="lp-mbar"><span class="mk">Maya ⇄ Danny</span><span class="mf" style="width:92%"></span></div>'+
+ '<div class="lp-mbar"><span class="mk">Roni ⇄ Tom</span><span class="mf" style="width:74%"></span></div>'+
+ '<div class="lp-mbar"><span class="mk">Noa → Yael</span><span class="mf" style="width:48%"></span></div>'+
+ '</div></div>';
+
+const LANDING={
+  builders:{
+    h1:'Understand what your <span class="hl">community</span> is really building.',
+    lede:'Drop in a builder or founder group export and Tzippy surfaces the links being shared, the tools people actually use, who’s shipping and hiring, and the questions nobody answered.',
+    primary:{lens:'business', label:'Live demo: a builder community &rarr;'},
+    secondary:{lens:'social', label:'or a friends group chat &rarr;'},
+    feat:{h:'Built for builder communities.', p:'Links, tools, and builder signals — every panel below is a real slice of the output, not a promise of one.'},
+    preview:BUILDER_PREVIEW,
+  },
+  friends:{
+    h1:'See who your <span class="hl">group chat</span> really revolves around.',
+    lede:'Drop in a friends group export and Tzippy shows who’s closest to whom, who wakes the chat up, who ghosts, who’s the group’s main character — plus your inside jokes and the emoji everyone overuses.',
+    primary:{lens:'social', label:'Live demo: a friends group &rarr;'},
+    secondary:{lens:'business', label:'or a work community &rarr;'},
+    feat:{h:'Built for group chats.', p:'Group dynamics, plans, inside jokes — every panel below is a real slice of the output, not a promise of one.'},
+    preview:FRIENDS_PREVIEW,
+  },
+};
+let AUDIENCE="builders";
+function sampleFor(lens){ return lens==="social"?makeSocialSample():makeSample(); }
+function sampleName(lens){ return lens==="social"?"The group chat (demo)":"Builders & Founders (demo)"; }
+
+function setAudience(mode,updateUrl){
+  const A=LANDING[mode]||LANDING.builders; AUDIENCE=mode;
+  $("#lp-h1").innerHTML=A.h1;
+  $("#lp-lede").textContent=A.lede;
+  $("#lp-preview").innerHTML=A.preview;
+  $("#feat-h2").textContent=A.feat.h;
+  $("#feat-p").textContent=A.feat.p;
+  const pri=$("#demo"), sec=$("#demo-social");
+  pri.innerHTML=A.primary.label; pri.dataset.lens=A.primary.lens;
+  sec.innerHTML=A.secondary.label; sec.dataset.lens=A.secondary.lens;
+  $("#aud-builders").classList.toggle("on",mode==="builders");
+  $("#aud-builders").setAttribute("aria-selected",mode==="builders");
+  $("#aud-friends").classList.toggle("on",mode==="friends");
+  $("#aud-friends").setAttribute("aria-selected",mode==="friends");
+  if(updateUrl){
+    const u=new URL(location.href);
+    if(mode==="friends") u.searchParams.set("for","friends"); else u.searchParams.delete("for");
+    history.replaceState(null,"",u);
+  }
+}
+$("#aud-builders").addEventListener("click",()=>setAudience("builders",true));
+$("#aud-friends").addEventListener("click",()=>setAudience("friends",true));
+
+$("#demo").addEventListener("click",()=>{const l=$("#demo").dataset.lens||"business"; run(sampleFor(l),sampleName(l));});
+$("#demo-social").addEventListener("click",()=>{const l=$("#demo-social").dataset.lens||"social"; run(sampleFor(l),sampleName(l));});
+
+// Deep-link: ?for=friends (or #friends) opens the friends front door.
+(function(){
+  const p=new URLSearchParams(location.search).get("for");
+  const h=location.hash.replace("#","");
+  setAudience((p==="friends"||h==="friends")?"friends":"builders",false);
+})();
+
+function makeSample(){
+  let seed=20260720;
+  const rnd=()=>{seed=(seed*1664525+1013904223)&0x7fffffff; return seed/0x7fffffff};
+  const pick=a=>a[Math.floor(rnd()*a.length)];
+  const NAMES=["Yael Bar-On","Tomer Levi","Noa Friedman","Amit Shechter","Dana Katz",
+    "Ori Mizrahi","Maya Golan","Eitan Rosen","Shira Peled","Guy Almog","Roni Adler","Tal Weiss"];
+  const TOOLNM=["Claude","Cursor","Supabase","Vercel","LangChain","Ollama","Next.js","Postgres",
+    "Figma","Notion","Stripe","Railway","Pinecone","n8n","Docker","Python","TypeScript","Modal"];
+  const LINK=["https://github.com/anthropics/anthropic-sdk-python","https://github.com/ollama/ollama",
+    "https://arxiv.org/abs/2501.09876","https://news.ycombinator.com/item?id=42891234",
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ","https://x.com/karpathy/status/1789234567890",
+    "https://www.producthunt.com/posts/example","https://huggingface.co/meta-llama/Llama-3-70B",
+    "https://lu.ma/deploy-tlv-october","https://www.figma.com/file/abc123/design-system",
+    "https://medium.com/@builder/scaling-rag-8a3f","https://github.com/supabase/supabase"];
+  const CHAT=["yeah agreed","this is great","thanks for sharing \uD83D\uDE4F","+1","makes sense","interesting",
+    "will look later","\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25","same here","good point","worth a shot","love this","exactly",
+    "ok this is genuinely useful","saving this","congrats!! \uD83C\uDF89","welcome aboard \uD83D\uDC4B","ship it","\uD83D\uDCAF"];
+  const TMPL=["we moved our pipeline to {t} last month, way fewer headaches",
+    "anyone using {t} in production? curious about cost at scale",
+    "{t} just shipped a big update, worth a look",
+    "we evaluated {t} vs {u} and went with {t}",
+    "struggling with {t} rate limits, anyone hit this?",
+    "switched from {u} to {t} and haven't looked back",
+    "{t} + {u} together is a surprisingly good combo"];
+  const BUILD=["I'm building a tool that turns meeting notes into tickets automatically",
+    "we're building an agent that watches our error logs and opens PRs",
+    "been working on a RAG system over our internal docs for six weeks",
+    "started building a Hebrew-first voice assistant, STT is the hard part",
+    "working on a side project that tracks dependencies for security issues"];
+  const SHIP=["just shipped v2 of our API \uD83D\uDE80 3x faster, half the cost",
+    "we launched on Product Hunt this morning! {l}","just released our open source SDK {l}",
+    "we open sourced our eval harness {l}","v1.4 is out, finally added streaming"];
+  const HIRE=["we're hiring a senior backend engineer in Tel Aviv, remote friendly. DM me",
+    "looking for a founding engineer, equity heavy","we have an open role for a full-stack developer {l}"];
+  const FEED=["would love feedback on the landing page before we go live {l}",
+    "looking for beta testers, anyone interested? {l}",
+    "what do you think of this approach? feels over-engineered to me",
+    "roast my architecture please {l}","any feedback on pricing? thinking $29/mo to start"];
+  const HELP=["does anyone know a good way to handle rate limiting across workers?",
+    "anyone have experience with Postgres pooling at scale?",
+    "looking for recommendations on a vector DB","how do you all handle secrets in CI?",
+    "any recommendations for OCR that handles Hebrew?","stuck on a CORS issue, anyone free?"];
+  const EVENT=["reminder: deploy TLV meetup Thursday 18:30, sign up {l}",
+    "we're hosting a hackathon next month, RSVP {l}","demo night confirmed for the 14th \uD83C\uDFA4"];
+  const Q=["what's everyone using for observability?","thoughts on moving off {t}?",
+    "which model are you defaulting to?","anyone tried the new {t} release?",
+    "is it just me or has {t} gotten slower?"];
+
+  const fill=s=>s.replace("{t}",pick(TOOLNM)).replace("{u}",pick(TOOLNM)).replace("{l}",pick(LINK));
+  const out=["\u200E[03/09/2025, 09:12:03] \u200EMessages and calls are end-to-end encrypted."];
+  let d=new Date(2025,8,3,9,20);
+  for(let i=0;i<2600;i++){
+    d=new Date(d.getTime()+(rnd()<0.17?(4+rnd()*26)*3600000:(1+rnd()*42)*60000));
+    if(d.getHours()<7&&rnd()<0.8) d=new Date(d.getTime()+(7+rnd()*5)*3600000);
+    const who=NAMES[Math.floor(Math.pow(rnd(),1.7)*NAMES.length)];
+    const r=rnd();
+    let body;
+    if(r<0.29) body=pick(CHAT);
+    else if(r<0.45) body=fill(pick(TMPL));
+    else if(r<0.57) body=fill(pick(Q));
+    else if(r<0.69) body=pick(["","check this out ","worth a read ","relevant to earlier "])+pick(LINK);
+    else if(r<0.75) body=fill(pick(HELP));
+    else if(r<0.80) body=pick(BUILD);
+    else if(r<0.84) body=fill(pick(SHIP));
+    else if(r<0.87) body=fill(pick(FEED));
+    else if(r<0.895) body=fill(pick(HIRE));
+    else if(r<0.915) body=fill(pick(EVENT));
+    else if(r<0.94) body="\u200E<attached: 000"+i+"-PHOTO-2025-11-04.jpg>";
+    else if(r<0.955) body="\u200E<attached: 000"+i+"-DOCUMENT-2025-11-04.pdf>";
+    else if(r<0.965) body="This message was deleted";
+    else body=pick(CHAT)+" "+pick(["\uD83D\uDC4D","\uD83D\uDE4C","\uD83D\uDE80","\u2764\uFE0F","\uD83D\uDE02","\u2728"]);
+    const p=n=>String(n).padStart(2,"0");
+    out.push("\u200E["+p(d.getDate())+"/"+p(d.getMonth()+1)+"/"+d.getFullYear()+", "+
+      p(d.getHours())+":"+p(d.getMinutes())+":"+p(d.getSeconds())+"] "+who+": "+body);
+  }
+  return out.join("\n");
+}
+
+function makeSocialSample(){
+  let seed=771144;
+  const rnd=()=>{seed=(seed*1664525+1013904223)&0x7fffffff; return seed/0x7fffffff};
+  const pick=a=>a[Math.floor(rnd()*a.length)];
+  const NAMES=["Maya","Danny","Roni","Yael","Tom","Noa"];
+  const LINK=["https://www.instagram.com/p/Cabc123/","https://youtu.be/dQw4w9WgXcQ",
+    "https://open.spotify.com/playlist/37i9dQ","https://maps.app.goo.gl/xyz123",
+    "https://www.tiktok.com/@user/video/7123","https://www.airbnb.com/rooms/123456"];
+  const PLAN=["who's free this weekend? thinking dinner saturday","let's do game night friday, who's down?",
+    "wanna grab brunch sunday?","should we book a table for 6?","what time are we meeting?",
+    "anyone up for drinks tonight?","movie later? {l}"];
+  const LATE=["omw!","running late sorry, 10 mins away","where are you all??","save me a seat",
+    "just parked","stuck in traffic ugh","almost there"];
+  const CELEB=["happy birthday Yael!! 🎉🎂","congrats Roni!! so proud of you 🥳",
+    "mazal tov!!","we won!! 🍾","you did it!!"];
+  const LOVE=["love you guys ❤️","miss you all","you're the best 🫶","thank you so much 🥰",
+    "best group ever","appreciate you 🙌"];
+  const LAUGH=["lmaooo","hahahaha","i'm dead 💀","so funny 😂😂","can't stop laughing",
+    "😭😭😭","stoppp lmao"];
+  const HELP=["does anyone know a good brunch spot?","any recommendations for a birthday gift?",
+    "should i wear the blue one or black?","anyone been to that new place?","what should i cook tonight?"];
+  const CHAT=["yesss","haha same","aww","omg","true","for sure","i'm in","can't wait","😍","exactly",
+    "sounds good","see you there","🔥","noooo","yasss","done","🙌","okay perfect","agreed"];
+  const fill=s=>s.replace("{l}",pick(LINK));
+  const out=["‎[03/01/2025, 09:12:03] ‎Messages and calls are end-to-end encrypted."];
+  let d=new Date(2025,0,3,9,20);
+  for(let i=0;i<2400;i++){
+    d=new Date(d.getTime()+(rnd()<0.16?(4+rnd()*24)*3600000:(1+rnd()*40)*60000));
+    // Tom is the night owl; nudge some of his messages into the small hours.
+    const who=pick(NAMES);
+    if(who==="Tom"&&rnd()<0.25) d=new Date(d.getFullYear(),d.getMonth(),d.getDate(),1,Math.floor(rnd()*59));
+    const r=rnd();
+    let body;
+    if(r<0.30) body=pick(CHAT);
+    else if(r<0.44) body=pick(LAUGH);
+    else if(r<0.56) body=fill(pick(PLAN));
+    else if(r<0.65) body=pick(LATE);
+    else if(r<0.72) body=fill(pick(HELP));
+    else if(r<0.78) body=pick(LOVE);
+    else if(r<0.83) body=pick(CELEB);
+    else if(r<0.90) body=pick(["","look at this ","omg this ",""])+pick(LINK);
+    else if(r<0.945) body="‎<attached: 000"+i+"-PHOTO-2025-02-14.jpg>";
+    else if(r<0.965) body="This message was deleted";
+    else body=pick(CHAT)+" "+pick(["😂","❤️","🙌","🥰","🔥","😍"]);
+    // Danny double-texts.
+    const p=n=>String(n).padStart(2,"0");
+    const stamp=()=>"‎["+p(d.getDate())+"/"+p(d.getMonth()+1)+"/"+d.getFullYear()+", "+
+      p(d.getHours())+":"+p(d.getMinutes())+":"+p(d.getSeconds())+"] "+who+": ";
+    out.push(stamp()+body);
+    if(who==="Danny"&&rnd()<0.30){ d=new Date(d.getTime()+60000); out.push(stamp()+"wait also"); }
+  }
+  return out.join("\n");
+}
+
+/* ===============================================================
+   11. SHARE  — pack aggregate metrics into a link, no upload.
+
+   The whole card lives inside the URL: numbers are JSON → deflated
+   → base64url → the #card= fragment. A fragment never leaves the
+   browser (it isn't sent to any server), so a shared link keeps the
+   same "nothing is uploaded" property as the analysis itself, and one
+   link works for any number of people at once.
+   =============================================================== */
+let CURRENT=null;          // {D,name} of the report currently on screen
+let SHARE_CARD=null;       // last-built card object (for the download button)
+
+const b64u={
+  enc(bytes){let s=""; for(const b of bytes) s+=String.fromCharCode(b);
+    return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");},
+  dec(str){str=str.replace(/-/g,"+").replace(/_/g,"/"); while(str.length%4) str+="=";
+    const s=atob(str),out=new Uint8Array(s.length);
+    for(let i=0;i<s.length;i++) out[i]=s.charCodeAt(i); return out;}
+};
+async function deflateRaw(bytes){
+  if(typeof CompressionStream==="undefined") return null;
+  const cs=new CompressionStream("deflate-raw");
+  const w=cs.writable.getWriter(); w.write(bytes); w.close();
+  return new Uint8Array(await new Response(cs.readable).arrayBuffer());
+}
+async function inflateRaw(bytes){
+  const ds=new DecompressionStream("deflate-raw");
+  const w=ds.writable.getWriter(); w.write(bytes); w.close();
+  return new Uint8Array(await new Response(ds.readable).arrayBuffer());
+}
+async function packCard(card){
+  const raw=new TextEncoder().encode(JSON.stringify(card));
+  const packed=await deflateRaw(raw);
+  return packed?("1"+b64u.enc(packed)):("0"+b64u.enc(raw));
+}
+async function unpackCard(token){
+  const body=b64u.dec(token.slice(1));
+  const raw=token[0]==="1"?await inflateRaw(body):body;
+  return JSON.parse(new TextDecoder().decode(raw));
+}
+
+// Sum a series down to at most `max` buckets so the sparkline stays small.
+// GitHub-style calendar payload from a gap-filled daily series [[dayKey,count],…].
+// Capped to the most recent ~53 weeks so the link stays small.
+const CAL_CAP=371;
+function calFromDaily(pairs){
+  const keep=pairs.slice(-CAL_CAP);
+  const cal=keep.map(t=>t[1]);
+  const cs=keep.length?keep[0][0]:"";
+  let wd0=0;
+  if(cs){ const [y,m,d]=cs.split("-").map(Number); wd0=(new Date(y,m-1,d).getDay()+6)%7; }
+  return {cal, wd0, cs};   // cs = first shown day (for month labels), wd0 0=Mon..6=Sun
+}
+function personDaily(D,name){
+  const byDay=new Map();
+  for(const msg of D.chat.people) if(msg.sender===name) byDay.set(dayKey(msg.ts),(byDay.get(dayKey(msg.ts))||0)+1);
+  return D.S.tl.map(t=>[t[0], byDay.get(t[0])||0]);
+}
+
+// Build the compact, privacy-checked payload from a full report.
+function buildCard(D,opts){
+  const S=D.S,O=S.overview;
+  const domC=new Map();
+  for(const lk of D.links) domC.set(lk.dom,(domC.get(lk.dom)||0)+1);
+  const cal=calFromDaily(S.tl);
+  const card={
+    v:1,
+    t:(opts.title||"").trim().slice(0,60),
+    n:[O.total,O.participants,O.span,O.activeDays,O.links,O.media,O.questions,O.perActive],
+    f:O.first.getTime(), l:O.last.getTime(),
+    b:[O.busiest[0],O.busiest[1]],
+    cal:cal.cal, wd0:cal.wd0, cs:cal.cs,
+    tools:D.tools.slice(0,6).map(t=>[t.name,t.n]),
+    dom:[...domC.entries()].sort((a,b)=>b[1]-a[1]).slice(0,5),
+    sig:SIGDEF.map(([label])=>[label,(D.signals[label]||[]).length]).filter(s=>s[1]>0)
+  };
+  // Names are opt-in per card. Off = nothing that identifies a person.
+  if(opts.names){
+    card.p=S.people.slice(0,5).map(p=>[p.name,p.msgs,Math.round(1000*p.msgs/O.total)/10]);
+    card.a=computeAwards(S.people);
+  }
+  return card;
+}
+
+// Superlative "awards" — the tag-bait. Each goes to whoever tops a stat.
+// Names-gated (they identify a person), so they ride the names toggle.
+const AWARD_DEFS=[
+  ["🏆","Top Yapper",     p=>p.msgs,      v=>nf(v)+" messages"],
+  ["🔗","Link Boss",      p=>p.links,     v=>nf(v)+" links shared"],
+  ["🎬","Conversation Starter",p=>p.started,v=>nf(v)+" started"],
+  ["🧲","Crowd Favorite", p=>p.gotReplies,v=>nf(v)+" replies drawn"],
+  ["❓","Chief Questioner",p=>p.questions, v=>nf(v)+" questions"],
+  ["📝","The Essayist",   p=>p.avgWords,  v=>v+" words/msg"],
+  ["📅","Never Misses",   p=>p.days.size, v=>nf(v)+" active days"],
+  ["📎","Media Mogul",    p=>p.media,     v=>nf(v)+" media & files"]
+];
+function computeAwards(people){
+  if(!people.length) return [];
+  const out=[];
+  for(const [icon,title,val,fmt] of AWARD_DEFS){
+    let best=null;
+    for(const p of people){ const v=val(p); if(v>0&&(!best||v>best.v)) best={p,v}; }
+    if(best) out.push([icon,title,best.p.name,fmt(best.v)]);
+  }
+  return out;
+}
+
+// A single member's own stats — inherently named (it's "my" card).
+function buildPersonCard(D,idx,title){
+  const S=D.S,O=S.overview,p=S.people[Math.max(0,Math.min(idx,S.people.length-1))]||S.people[0];
+  const mine=computeAwards(S.people).filter(a=>a[2]===p.name).map(a=>[a[0],a[1],a[3]]);
+  const cal=calFromDaily(personDaily(D,p.name));   // the member's OWN activity graph
+  return {
+    v:1, k:"p", t:(title||"").trim().slice(0,60), who:p.name,
+    n:[p.msgs, Math.round(1000*p.msgs/O.total)/10, S.people.indexOf(p)+1, S.people.length,
+       p.days.size, p.links, p.questions, p.media, p.avgWords, p.started, p.gotReplies],
+    em:p.sig||"",
+    aw:mine,
+    cal:cal.cal, wd0:cal.wd0, cs:cal.cs,
+    f:O.first.getTime(), l:O.last.getTime()
+  };
+}
+
+/* ---- GitHub-style contribution graph (shared by page + image) ---- */
+const GH_VARS=["--gh0","--gh1","--gh2","--gh3","--gh4"];
+const GH_HEX=["#eceef1","#bfe3d9","#7fccb8","#39a88c","#0f766e"];
+function contribCells(cal,wd0){
+  const peak=Math.max(1,...cal),cells=[];
+  let col=0,row=wd0,maxCol=0;
+  for(let i=0;i<cal.length;i++){
+    const c=cal[i],level=c===0?0:Math.min(4,1+Math.floor((c/peak)*3.999));
+    cells.push({col,row,level}); maxCol=col;
+    row++; if(row===7){row=0;col++;}
+  }
+  return {cells,cols:maxCol+1,peak};
+}
+// Columns where a new month begins → [{col,label}]
+function contribMonths(cs,cal,wd0){
+  if(!cs) return [];
+  const [y,m,d]=cs.split("-").map(Number),start=new Date(y,m-1,d);
+  const out=[]; let last=-1;
+  for(let i=0;i<cal.length;i++){
+    const dt=new Date(start); dt.setDate(start.getDate()+i);
+    if(dt.getMonth()!==last && dt.getDate()<=7){ out.push({col:Math.floor((wd0+i)/7),label:MON[dt.getMonth()]}); last=dt.getMonth(); }
+  }
+  return out;
+}
+function contribSVG(cal,wd0,cs){
+  if(!cal||!cal.length) return "";
+  const {cells,cols}=contribCells(cal,wd0);
+  const cell=13,gap=3,size=cell+gap,top=16;
+  const W=cols*size-gap,H=top+7*size-gap;
+  let r="";
+  for(const l of contribMonths(cs,cal,wd0)) r+='<text class="ghm" x="'+(l.col*size)+'" y="10">'+l.label+'</text>';
+  for(const c of cells)
+    r+='<rect x="'+(c.col*size)+'" y="'+(top+c.row*size)+'" width="'+cell+'" height="'+cell+'" rx="2.5" fill="var('+GH_VARS[c.level]+')"/>';
+  return '<svg class="sv-contrib" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" '+
+    'preserveAspectRatio="xMinYMid meet" role="img" aria-label="Daily message activity">'+r+'</svg>';
+}
+function contribLegend(){
+  return '<div class="sv-legend"><span>Less</span>'+
+    GH_VARS.map(v=>'<i style="background:var('+v+')"></i>').join("")+'<span>More</span></div>';
+}
+function contribBlock(card,heading){
+  if(!card.cal||!card.cal.length) return "";
+  return '<div class="sv-block"><h4>'+heading+'</h4>'+contribSVG(card.cal,card.wd0,card.cs)+contribLegend()+'</div>';
+}
+function renderCardView(card){
+  if(card.k==="p") return renderPersonView(card);
+  const n=card.n,first=new Date(card.f),last=new Date(card.l);
+  const stat=(v,l)=>'<div class="sv-stat"><div class="v">'+esc(v)+'</div><div class="l">'+esc(l)+'</div></div>';
+  const stats=stat(nf(n[0]),"messages")+stat(nf(n[1]),"people")+
+    stat(nf(n[2]),"days")+stat(nf(n[4]),"links shared")+
+    stat(nf(n[5]),"media & files")+stat(nf(n[6]),"questions")+
+    stat(nf(n[3]),"active days")+stat(String(n[7]),"msgs / active day");
+  const chips=(list,fmt)=>'<div class="chips">'+list.map(fmt).join("")+'</div>';
+  const graph=contribBlock(card,"Daily activity");
+  const tools=card.tools&&card.tools.length?'<div class="sv-block"><h4>Most-used tools</h4>'+
+    chips(card.tools,t=>'<span class="chip">'+esc(t[0])+'<i>'+nf(t[1])+'</i></span>')+'</div>':"";
+  const dom=card.dom&&card.dom.length?'<div class="sv-block"><h4>Top domains shared</h4>'+
+    chips(card.dom,d=>'<span class="chip">'+esc(d[0])+'<i>'+nf(d[1])+'</i></span>')+'</div>':"";
+  const awards=card.a&&card.a.length?'<div class="sv-block"><h4>Group awards 🏆</h4><div class="sv-awards">'+
+    card.a.map(a=>'<div class="sv-award"><span class="ic">'+a[0]+'</span>'+
+      '<div class="tx"><div class="ti">'+esc(a[1])+'</div>'+
+      '<div class="wn">'+esc(a[2])+' · '+esc(a[3])+'</div></div></div>').join("")+'</div></div>':"";
+  const lead=card.p&&card.p.length?'<div class="sv-block"><h4>Most active members</h4>'+
+    card.p.map((p,i)=>'<div class="sv-lead"><span class="rk">'+(i+1)+'</span>'+
+      '<span class="nm">'+esc(p[0])+'</span><span class="val">'+nf(p[1])+' msgs · '+p[2]+'%</span></div>')
+      .join("")+'</div>':"";
+  return '<div class="sv-hero"><div class="sv-eyebrow">WhatsApp group report</div>'+
+    '<div class="sv-title">'+esc(card.t||"A WhatsApp group")+'</div>'+
+    '<div class="sv-range">'+fmtD(first)+' – '+fmtD(last)+
+    ' · busiest day '+nf(card.b[1])+' messages</div></div>'+
+    '<div class="sv-body"><div class="sv-stats">'+stats+'</div>'+graph+awards+tools+dom+lead+'</div>'+
+    '<div class="sv-foot"><span class="made">Made with <b>Tzippy</b> — analyzed in-browser, '+
+    'nothing uploaded</span><a class="btn btn-primary" href="./" id="sv-cta">Analyze your own chat →</a></div>';
+}
+function renderPersonView(card){
+  const n=card.n;
+  const stat=(v,l)=>'<div class="sv-stat"><div class="v">'+esc(v)+'</div><div class="l">'+esc(l)+'</div></div>';
+  const stats=stat(nf(n[0]),"messages")+stat(n[1]+"%","of the group")+
+    stat("#"+n[2],"of "+n[3]+" members")+stat(nf(n[4]),"active days")+
+    stat(nf(n[5]),"links shared")+stat(nf(n[6]),"questions asked")+
+    stat(nf(n[9]),"chats started")+stat(nf(n[8]),"words / message");
+  const emoji=card.em?'<div class="sv-block"><h4>Emoji signature</h4>'+
+    '<div class="sv-emoji">'+esc(card.em)+'</div></div>':"";
+  const awards=card.aw&&card.aw.length?'<div class="sv-block"><h4>Awards held 🏆</h4><div class="sv-awards">'+
+    card.aw.map(a=>'<div class="sv-award"><span class="ic">'+a[0]+'</span>'+
+      '<div class="tx"><div class="ti">'+esc(a[1])+'</div>'+
+      '<div class="wn">'+esc(a[2])+'</div></div></div>').join("")+'</div></div>':
+    '<div class="sv-block"><p class="sv-noawards">No top-spot awards this time — plenty of room to climb 📈</p></div>';
+  const graph=contribBlock(card,"Your activity");
+  const inGroup=card.t?(" in "+esc(card.t)):"";
+  return '<div class="sv-hero"><div class="sv-eyebrow">My WhatsApp stats'+inGroup+'</div>'+
+    '<div class="sv-title">'+esc(card.who)+'</div>'+
+    '<div class="sv-range">'+fmtD(new Date(card.f))+' – '+fmtD(new Date(card.l))+'</div></div>'+
+    '<div class="sv-body"><div class="sv-stats">'+stats+'</div>'+graph+emoji+awards+'</div>'+
+    '<div class="sv-foot"><span class="made">Made with <b>Tzippy</b> — analyzed in-browser, '+
+    'nothing uploaded</span><a class="btn btn-primary" href="./" id="sv-cta">Analyze your own chat →</a></div>';
+}
+
+/* ---- Share image (1200×630, drawn on a canvas) ---- */
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+function fitText(ctx,text,px,weight,family,maxW,minPx){
+  let size=px;
+  while(size>minPx){ ctx.font=weight+" "+size+"px "+family; if(ctx.measureText(text).width<=maxW) break; size-=2; }
+  if(ctx.measureText(text).width>maxW){
+    let t=text; while(t.length>1&&ctx.measureText(t+"…").width>maxW) t=t.slice(0,-1);
+    text=t+"…";
+  }
+  return text;
+}
+// Shared image palette / fonts / chrome so group + person cards match.
+const IMG={INK:"#15171c",INK2:"#585f6d",INK3:"#8a91a0",BRAND:"#0f766e",LINE:"#e7e9ee",SOFT:"#e6f4f1",
+  SANS:'-apple-system,"Segoe UI",system-ui,"Helvetica Neue",sans-serif',
+  MONO:'"SF Mono",ui-monospace,Menlo,Consolas,monospace', PAD:64};
+function imgWordmark(ctx){
+  const {INK,SANS,PAD}=IMG;
+  ctx.fillStyle=INK; roundRect(ctx,PAD,52,34,34,8); ctx.fill();
+  ctx.fillStyle="#fff";
+  ctx.fillRect(PAD+8,52+18,4.5,9); ctx.fillRect(PAD+15,52+12,4.5,15); ctx.fillRect(PAD+22,52+8,4.5,19);
+  ctx.fillStyle=INK; ctx.textBaseline="middle"; ctx.font="600 25px "+SANS;
+  ctx.fillText("Tzippy",PAD+48,52+19); ctx.textBaseline="alphabetic";
+}
+function imgFrame(ctx,W,H){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle=IMG.LINE; ctx.lineWidth=2; ctx.strokeRect(1,1,W-2,H-2);
+  ctx.fillStyle=IMG.BRAND; ctx.fillRect(0,0,8,H);
+  imgWordmark(ctx);
+}
+function imgBillboard(ctx,W,H){
+  const {INK,BRAND,LINE,SANS,MONO,PAD}=IMG, y=H-24, div=H-52;
+  ctx.strokeStyle=LINE; ctx.lineWidth=1; ctx.beginPath();
+  ctx.moveTo(PAD,div); ctx.lineTo(W-PAD,div); ctx.stroke();
+  ctx.fillStyle=INK; ctx.font="600 21px "+SANS; ctx.textBaseline="middle";
+  ctx.fillText("Analyze your WhatsApp group — free →",PAD,y);
+  ctx.fillStyle=BRAND; ctx.font="700 21px "+MONO;
+  const site=siteLabel(), sW=ctx.measureText(site).width;
+  ctx.fillText(site,W-PAD-sW,y); ctx.textBaseline="alphabetic";
+}
+// A row of stat columns. cells:[[value,label],...]
+function imgStatRow(ctx,cells,x0,y,colW,numPx,labelPx){
+  cells.forEach((c,i)=>{const x=x0+i*colW;
+    ctx.fillStyle=IMG.INK; ctx.font="700 "+numPx+"px "+IMG.SANS;
+    ctx.fillText(fitText(ctx,c[0],numPx,"700",IMG.SANS,colW-14,numPx*0.5),x,y);
+    ctx.fillStyle=IMG.INK2; ctx.font="500 "+labelPx+"px "+IMG.SANS; ctx.fillText(c[1],x,y+labelPx+13);
+  });
+}
+// GitHub-style contribution calendar on the canvas, fit into box (x,y,w,h).
+function drawContrib(ctx,card,x,y,w,h,opts){
+  if(!card.cal||!card.cal.length) return;
+  opts=opts||{};
+  const {cells,cols}=contribCells(card.cal,card.wd0);
+  const labelH=opts.labels===false?0:24, maxCell=opts.maxCell||22;
+  const size=Math.min(maxCell, w/cols, (h-labelH)/7);
+  const gap=size*0.16, cell=size-gap, gridW=cols*size-gap;
+  const ox=x+(w-gridW)/2, oy=y+labelH;
+  if(labelH){
+    ctx.fillStyle=IMG.INK3; ctx.font="600 "+Math.max(12,size*0.6)+"px "+IMG.MONO; ctx.textBaseline="alphabetic";
+    for(const l of contribMonths(card.cs,card.cal,card.wd0)) ctx.fillText(l.label.toUpperCase(),ox+l.col*size,oy-8);
+  }
+  for(const c of cells){
+    ctx.fillStyle=GH_HEX[c.level];
+    roundRect(ctx,ox+c.col*size,oy+c.row*size,cell,cell,Math.max(2,cell*0.22)); ctx.fill();
+  }
+}
+// Award cards in a 2-col grid. items:[[icon,title,winner(,val)],...]
+function imgAwardGrid(ctx,items,x,y,totalW,max){
+  const gap=16,colW=(totalW-gap)/2,rowH=92;
+  items.slice(0,max).forEach((a,i)=>{
+    const cx=x+(i%2)*(colW+gap), cy=y+Math.floor(i/2)*(rowH+gap);
+    ctx.fillStyle="#f5f6f8"; roundRect(ctx,cx,cy,colW,rowH,14); ctx.fill();
+    ctx.strokeStyle=IMG.LINE; ctx.lineWidth=1; roundRect(ctx,cx,cy,colW,rowH,14); ctx.stroke();
+    ctx.textBaseline="middle";
+    ctx.font="34px "+IMG.SANS; ctx.fillStyle=IMG.INK; ctx.fillText(a[0],cx+20,cy+rowH/2);
+    ctx.font="600 23px "+IMG.SANS; ctx.fillStyle=IMG.INK;
+    ctx.fillText(fitText(ctx,a[1],23,"600",IMG.SANS,colW-96,15),cx+70,cy+rowH/2-13);
+    const sub=a[3]?(a[2]+" · "+a[3]):a[2];
+    ctx.font="500 18px "+IMG.SANS; ctx.fillStyle=IMG.INK2;
+    ctx.fillText(fitText(ctx,sub,18,"500",IMG.SANS,colW-96,12),cx+70,cy+rowH/2+15);
+  });
+  ctx.textBaseline="alphabetic";
+}
+
+/* ---- Group card layouts ---- */
+function groupWide(ctx,card,W,H){
+  const {INK,INK2,BRAND,SANS,MONO,PAD}=IMG;
+  ctx.fillStyle=BRAND; ctx.font="700 16px "+MONO; ctx.fillText("WHATSAPP GROUP REPORT",PAD,150);
+  ctx.fillStyle=INK; ctx.font="700 58px "+SANS;
+  ctx.fillText(fitText(ctx,card.t||"A WhatsApp group",58,"700",SANS,W-PAD*2,30),PAD,208);
+  ctx.fillStyle=INK2; ctx.font="400 20px "+SANS;
+  ctx.fillText(fmtD(new Date(card.f))+"  –  "+fmtD(new Date(card.l))+"   ·   busiest day "+nf(card.b[1])+" messages",PAD,246);
+  const n=card.n;
+  imgStatRow(ctx,[[nf(n[0]),"messages"],[nf(n[1]),"people"],[nf(n[2]),"days"],[nf(n[4]),"links"]],PAD,352,(W-PAD*2)/4,62,18);
+  ctx.fillStyle=INK2; ctx.font="700 15px "+MONO; ctx.textBaseline="alphabetic"; ctx.fillText("DAILY ACTIVITY",PAD,410);
+  drawContrib(ctx,card,PAD,420,W-PAD*2,138,{maxCell:20});
+}
+function groupSquare(ctx,card,W,H){
+  const {INK,INK2,BRAND,SANS,MONO,PAD}=IMG;
+  ctx.fillStyle=BRAND; ctx.font="700 18px "+MONO; ctx.fillText("WHATSAPP GROUP REPORT",PAD,168);
+  ctx.fillStyle=INK; ctx.font="700 72px "+SANS;
+  ctx.fillText(fitText(ctx,card.t||"A WhatsApp group",72,"700",SANS,W-PAD*2,34),PAD,246);
+  ctx.fillStyle=INK2; ctx.font="400 22px "+SANS;
+  ctx.fillText(fmtD(new Date(card.f))+"  –  "+fmtD(new Date(card.l)),PAD,292);
+  const n=card.n,colW=(W-PAD*2)/4;
+  imgStatRow(ctx,[[nf(n[0]),"messages"],[nf(n[1]),"people"],[nf(n[2]),"days"],[nf(n[4]),"links"]],PAD,404,colW,66,18);
+  imgStatRow(ctx,[[nf(n[5]),"media"],[nf(n[6]),"questions"],[nf(n[3]),"active days"],[String(n[7]),"per active day"]],PAD,520,colW,46,17);
+  ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.textBaseline="alphabetic"; ctx.fillText("DAILY ACTIVITY",PAD,588);
+  drawContrib(ctx,card,PAD,600,W-PAD*2,150,{maxCell:24});
+  if(card.a&&card.a.length){
+    ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.fillText("GROUP AWARDS  🏆",PAD,792);
+    imgAwardGrid(ctx,card.a,PAD,810,W-PAD*2,4);
+  }else{
+    let y=790;
+    if(card.tools&&card.tools.length){ ctx.fillStyle=INK2; ctx.font="500 22px "+SANS;
+      ctx.fillText(fitText(ctx,"Top tools: "+card.tools.slice(0,4).map(t=>t[0]).join(",  "),22,"500",SANS,W-PAD*2,22),PAD,y); y+=44; }
+    if(card.dom&&card.dom.length){ ctx.fillStyle=INK2; ctx.font="500 22px "+SANS;
+      ctx.fillText(fitText(ctx,"Top domains: "+card.dom.slice(0,4).map(d=>d[0]).join(",  "),22,"500",SANS,W-PAD*2,22),PAD,y); }
+  }
+}
+
+/* ---- Person card layouts ---- */
+function personHeader(ctx,card,W,titlePx,eyebrowY,titleY){
+  const {INK,BRAND,SANS,MONO,PAD}=IMG;
+  ctx.fillStyle=BRAND; ctx.font="700 16px "+MONO;
+  ctx.fillText(("MY WHATSAPP STATS"+(card.t?(" · "+card.t):"")).toUpperCase(),PAD,eyebrowY);
+  ctx.fillStyle=INK; ctx.font="700 "+titlePx+"px "+SANS;
+  ctx.fillText(fitText(ctx,card.who||"Me",titlePx,"700",SANS,W-PAD*2-220,30),PAD,titleY);
+  if(card.em){ ctx.font="46px "+SANS; ctx.textAlign="right"; ctx.fillText(card.em.slice(0,6),W-PAD,titleY-2); ctx.textAlign="left"; }
+}
+function personWide(ctx,card,W,H){
+  const {INK2,MONO,SANS,PAD}=IMG,n=card.n,colW=(W-PAD*2)/4;
+  personHeader(ctx,card,W,58,150,204);
+  imgStatRow(ctx,[[nf(n[0]),"messages"],[n[1]+"%","of the group"],["#"+n[2],"of "+n[3]+" members"],[nf(n[4]),"active days"]],PAD,320,colW,52,17);
+  imgStatRow(ctx,[[nf(n[5]),"links shared"],[nf(n[6]),"questions"],[nf(n[9]),"chats started"],[String(n[8]),"words / msg"]],PAD,414,colW,38,15);
+  ctx.fillStyle=INK2; ctx.font="700 15px "+MONO; ctx.textBaseline="alphabetic"; ctx.fillText("YOUR ACTIVITY",PAD,470);
+  drawContrib(ctx,card,PAD,480,W-PAD*2,80,{maxCell:14,labels:false});
+}
+function personSquare(ctx,card,W,H){
+  const {INK,INK2,BRAND,SANS,MONO,PAD}=IMG,n=card.n,colW=(W-PAD*2)/4;
+  personHeader(ctx,card,W,72,168,250);
+  ctx.fillStyle=INK2; ctx.font="400 22px "+SANS;
+  ctx.fillText(fmtD(new Date(card.f))+"  –  "+fmtD(new Date(card.l)),PAD,296);
+  imgStatRow(ctx,[[nf(n[0]),"messages"],[n[1]+"%","of the group"],["#"+n[2],"of "+n[3]],[nf(n[4]),"active days"]],PAD,410,colW,60,18);
+  imgStatRow(ctx,[[nf(n[5]),"links"],[nf(n[6]),"questions"],[nf(n[9]),"chats started"],[String(n[8]),"words / msg"]],PAD,530,colW,46,17);
+  ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.textBaseline="alphabetic"; ctx.fillText("YOUR ACTIVITY",PAD,598);
+  drawContrib(ctx,card,PAD,610,W-PAD*2,140,{maxCell:24});
+  if(card.aw&&card.aw.length){
+    ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.fillText("AWARDS HELD  🏆",PAD,792);
+    imgAwardGrid(ctx,card.aw,PAD,810,W-PAD*2,4);
+  }else{
+    ctx.fillStyle=INK2; ctx.font="500 24px "+SANS;
+    ctx.fillText("Ranked #"+n[2]+" of "+n[3]+" — room to climb 📈",PAD,800);
+  }
+}
+function drawShareImage(cv,card){
+  const square=SHARE_FMT==="square";
+  const W=square?1080:1200, H=square?1080:630;
+  if(cv.width!==W) cv.width=W;
+  if(cv.height!==H) cv.height=H;
+  const ctx=cv.getContext("2d");
+  imgFrame(ctx,W,H);
+  if(card.k==="p"){ square?personSquare(ctx,card,W,H):personWide(ctx,card,W,H); }
+  else{ square?groupSquare(ctx,card,W,H):groupWide(ctx,card,W,H); }
+  imgBillboard(ctx,W,H);
+}
+function siteLabel(){
+  if(!location.host) return "tzippy";
+  return (location.host+location.pathname.replace(/index\.html$/,"").replace(/\/$/,"")) || location.host;
+}
+
+/* ---- Outbound share (WhatsApp / native sheet) ---- */
+function shareText(){
+  const c=SHARE_CARD; if(!c) return "See what's inside your WhatsApp group 👉";
+  if(c.k==="p"){
+    return "🏅 My WhatsApp stats"+(c.t?(" in “"+c.t+"”"):"")+": "+nf(c.n[0])+" messages, ranked #"+
+      c.n[2]+" of "+c.n[3]+(c.aw&&c.aw.length?(" · "+c.aw[0][1]+" "+c.aw[0][0]):"")+
+      ".\nSee where you rank 👉";
+  }
+  const t=c.t?('“'+c.t+'”'):"Our WhatsApp group";
+  return "👀 "+t+" by the numbers: "+nf(c.n[0])+" messages · "+c.n[1]+
+    " people · "+nf(c.n[4])+" links shared.\nSee what's inside yours 👉";
+}
+function canvasBlob(){ return new Promise(res=>$("#sm-canvas").toBlob(b=>res(b),"image/png")); }
+function linkReady(){ return $("#sm-link").dataset.ready==="1" ? $("#sm-link").value : ""; }
+
+/* ---- Modal wiring ---- */
+let SHARE_MODE="group";   // "group" | "person"
+let SHARE_SEQ=0;          // guards against out-of-order async packs
+// Square reads better when shared into WhatsApp/IG from a phone; wide is the
+// link-preview / desktop shape. Default to whatever suits the device.
+let SHARE_FMT=(matchMedia&&matchMedia("(max-width:640px), (pointer:coarse)").matches)?"square":"wide";
+
+async function refreshShare(){
+  if(!CURRENT) return;
+  const seq=++SHARE_SEQ;
+  $("#sm-link").dataset.ready="";   // invalidate until the new link is packed
+  const title=$("#sm-name").value;
+  const note=$("#sm-note"),txt=$("#sm-note-txt");
+  if(SHARE_MODE==="person"){
+    const idx=+($("#sm-person").value||0);
+    SHARE_CARD=buildPersonCard(CURRENT.D,idx,title);
+    note.classList.remove("warn-tone");
+    txt.textContent="Your own stats in this group. The card names only the member you pick — no one else.";
+  }else{
+    const names=$("#sm-names").checked;
+    SHARE_CARD=buildCard(CURRENT.D,{title,names});
+    if(names){
+      note.classList.add("warn-tone");
+      txt.textContent="This card will show real names and message counts. Only share where the group is comfortable being identified.";
+    }else{
+      note.classList.remove("warn-tone");
+      txt.textContent="Aggregate figures only — no individual names. Safe to post publicly.";
+    }
+  }
+  drawShareImage($("#sm-canvas"),SHARE_CARD);
+  try{
+    const token=await packCard(SHARE_CARD);
+    if(seq!==SHARE_SEQ) return;   // a newer refresh superseded this one
+    const link=location.href.split("#")[0]+"#card="+token;
+    $("#sm-link").value=link;
+    $("#sm-link").dataset.ready="1";
+  }catch(e){ if(seq===SHARE_SEQ) $("#sm-link").value="Couldn't build a link in this browser."; }
+}
+function setShareMode(mode){
+  SHARE_MODE=mode;
+  const person=mode==="person";
+  $("#sm-mode-group").classList.toggle("on",!person);
+  $("#sm-mode-person").classList.toggle("on",person);
+  $("#sm-person-field").hidden=!person;
+  $("#sm-names-row").hidden=person;   // personal cards are inherently named
+  $("#sm-title").textContent=person?"Share your personal stats":"Share your group's stats";
+  refreshShare();
+}
+function setShareFmt(fmt){
+  SHARE_FMT=fmt;
+  $("#sm-fmt-wide").classList.toggle("on",fmt==="wide");
+  $("#sm-fmt-square").classList.toggle("on",fmt==="square");
+  drawShareImage($("#sm-canvas"),SHARE_CARD||buildCard(CURRENT.D,{title:$("#sm-name").value,names:false}));
+}
+function openShareModal(){
+  if(!CURRENT) return;
+  const guess=(CURRENT.name||"").replace(/\s*\(demo data\)$/i,"").trim();
+  $("#sm-name").value=guess;
+  $("#sm-names").checked=false;
+  $("#sm-person").innerHTML=CURRENT.D.S.people.map((p,i)=>
+    '<option value="'+i+'">'+esc(p.name)+" · "+nf(p.msgs)+" msgs</option>").join("");
+  $("#sm-fmt-wide").classList.toggle("on",SHARE_FMT==="wide");
+  $("#sm-fmt-square").classList.toggle("on",SHARE_FMT==="square");
+  $("#share-modal").classList.add("on");
+  setShareMode("group");
+}
+function closeShareModal(){ $("#share-modal").classList.remove("on"); }
+
+$("#share").addEventListener("click",openShareModal);
+$("#sm-close").addEventListener("click",closeShareModal);
+$("#share-modal").addEventListener("click",e=>{ if(e.target===$("#share-modal")) closeShareModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeShareModal(); });
+$("#sm-name").addEventListener("input",refreshShare);
+$("#sm-names").addEventListener("change",refreshShare);
+$("#sm-person").addEventListener("change",refreshShare);
+$("#sm-mode-group").addEventListener("click",()=>setShareMode("group"));
+$("#sm-mode-person").addEventListener("click",()=>setShareMode("person"));
+$("#sm-fmt-wide").addEventListener("click",()=>setShareFmt("wide"));
+$("#sm-fmt-square").addEventListener("click",()=>setShareFmt("square"));
+
+// Native share sheet — only meaningful where the browser has one (mobile).
+if(navigator.share) $("#sm-native").hidden=false;
+
+$("#sm-wa").addEventListener("click",()=>{
+  const link=linkReady(); if(!link) return;
+  window.open("https://wa.me/?text="+encodeURIComponent(shareText()+" "+link),"_blank","noopener");
+});
+$("#sm-native").addEventListener("click",async()=>{
+  const link=linkReady(); if(!link) return;
+  const text=shareText()+" "+link;
+  try{
+    const blob=await canvasBlob();
+    const file=new File([blob],"tzippy-group-stats.png",{type:"image/png"});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],text});
+      return;
+    }
+  }catch(e){ if(e&&e.name==="AbortError") return; }
+  try{ await navigator.share({title:"Tzippy",text:shareText(),url:link}); }
+  catch(e){ /* user dismissed */ }
+});
+
+$("#sm-copy").addEventListener("click",async()=>{
+  const inp=$("#sm-link"),btn=$("#sm-copy");
+  if(inp.dataset.ready!=="1") return;
+  try{ await navigator.clipboard.writeText(inp.value); }
+  catch(e){ inp.focus(); inp.select(); try{document.execCommand("copy")}catch(_){} }
+  const was=btn.textContent; btn.textContent="Copied ✓";
+  setTimeout(()=>{btn.textContent=was;},1400);
+});
+$("#sm-img").addEventListener("click",()=>{
+  const btn=$("#sm-img");
+  $("#sm-canvas").toBlob(blob=>{
+    if(!blob) return;
+    const url=URL.createObjectURL(blob),a=document.createElement("a");
+    const raw=SHARE_CARD?(SHARE_CARD.k==="p"?SHARE_CARD.who:SHARE_CARD.t):"";
+    const base=(raw||"whatsapp").replace(/[^a-z0-9]+/gi,"-").replace(/^-|-$/g,"").toLowerCase()||"whatsapp";
+    a.href=url; a.download="tzippy-"+base+".png"; document.body.appendChild(a); a.click();
+    a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+    const was=btn.textContent; btn.textContent="Saved ✓"; setTimeout(()=>{btn.textContent=was;},1400);
+  },"image/png");
+});
+$("#sm-open").addEventListener("click",()=>{
+  const link=$("#sm-link").value;
+  if($("#sm-link").dataset.ready==="1") window.open(link,"_blank","noopener");
+});
+
+/* ---- Route: if the page is opened with a #card= link, show that card ---- */
+function restoreIntake(){
+  // Leave the shared-card view and return to the normal landing page.
+  document.getElementById("share-view").classList.remove("on");
+  if(!app.classList.contains("on")) intake.style.display="";
+  window.scrollTo(0,0);
+}
+async function routeShareLink(){
+  const m=location.hash.match(/^#card=(.+)$/);
+  if(!m){ if(document.getElementById("share-view").classList.contains("on")) restoreIntake(); return false; }
+  let card;
+  try{ card=await unpackCard(m[1]); if(!card||card.v!==1) throw 0; }
+  catch(e){ return false; }
+  $("#sv-card").innerHTML=renderCardView(card);
+  const home=location.pathname;
+  $("#sv-brand").setAttribute("href",home);
+  const cta=document.getElementById("sv-cta"); if(cta) cta.setAttribute("href",home);
+  // Take over the whole page: hide intake / any open report, and clear the toolbar.
+  intake.style.display="none";
+  progress.classList.remove("on");
+  app.classList.remove("on");
+  closeShareModal();
+  $("#tb-ctx").hidden=true; $("#tb-div").hidden=true;
+  $("#reset").hidden=true; $("#share").hidden=true; $("#tb-tag").hidden=false;
+  document.getElementById("share-view").classList.add("on");
+  window.scrollTo(0,0);
+  return true;
+}
+window.addEventListener("hashchange",routeShareLink);
+routeShareLink();
+
+/* ---- Landing polish: scroll-reveal for feature cards + count-up for the
+   trust band. Pure progressive enhancement — the final values are already
+   in the HTML, so nothing depends on this running. Reduced motion is
+   honoured (no counting, no fade). ---- */
+(function(){
+  const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const io="IntersectionObserver" in window;
+  // Only now do we let CSS hide the cards for the reveal — guarantees they are
+  // visible if this script never runs.
+  document.documentElement.classList.add("js");
+
+  const cards=[...document.querySelectorAll(".lp-fcard.lp-reveal")];
+  // Safety net: whatever happens with the observer, never leave a card hidden.
+  const failSafe=setTimeout(()=>cards.forEach(c=>c.classList.add("in")),1600);
+  if(reduce||!io){ clearTimeout(failSafe); cards.forEach(c=>c.classList.add("in")); }
+  else{
+    const ro=new IntersectionObserver((es,o)=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting) return;
+        const c=e.target; c.classList.add("in"); o.unobserve(c);
+        // Drop the stagger delay once revealed so hover stays snappy.
+        setTimeout(()=>{ c.style.transitionDelay=""; },600);
+      });
+    },{rootMargin:"0px 0px -8% 0px"});
+    cards.forEach((c,i)=>{ c.style.transitionDelay=(i*60)+"ms"; ro.observe(c); });
+  }
+
+  const nums=[...document.querySelectorAll(".lp-trust .cv[data-to]")];
+  const countUp=el=>{
+    const to=+el.dataset.to;
+    if(reduce||to===0){ el.textContent=to; return; }
+    const dur=900, t0=performance.now();
+    const step=now=>{
+      const p=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(to*e);
+      if(p<1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const band=document.querySelector(".lp-trust");
+  if(band&&io&&!reduce){
+    const bo=new IntersectionObserver((es,o)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ nums.forEach(countUp); o.disconnect(); } });
+    },{threshold:.4});
+    bo.observe(band);
+  }
+})();
+</script>
+
+<!-- Cloudflare Web Analytics — cookieless, no consent banner needed.
+     Replace CF_BEACON_TOKEN below with the token from your Cloudflare
+     Web Analytics site (dash.cloudflare.com → Analytics & Logs → Web Analytics). -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
+<!-- End Cloudflare Web Analytics -->
