@@ -1226,8 +1226,9 @@ table a:hover{text-decoration:underline}
     </div>
     <div class="modal-body">
       <div class="seg" role="tablist">
+        <button class="seg-btn" id="sm-mode-wrapped" role="tab">✨ Wrapped</button>
         <button class="seg-btn on" id="sm-mode-group" role="tab">Group card</button>
-        <button class="seg-btn" id="sm-mode-person" role="tab">My personal card</button>
+        <button class="seg-btn" id="sm-mode-person" role="tab">My card</button>
       </div>
 
       <div class="share-prev"><canvas id="sm-canvas" width="1200" height="630"></canvas></div>
@@ -2760,8 +2761,9 @@ function buildCard(D,opts){
   // Names are opt-in per card. Off = nothing that identifies a person.
   if(opts.names){
     card.p=S.people.slice(0,5).map(p=>[p.name,p.msgs,Math.round(1000*p.msgs/O.total)/10]);
-    card.a=computeAwards(S.people);
+    card.a=computeAwards(D);
   }
+  if(opts.wrapped) card.wrapped=1;
   return card;
 }
 
@@ -2777,13 +2779,27 @@ const AWARD_DEFS=[
   ["📅","Never Misses",   p=>p.days.size, v=>nf(v)+" active days"],
   ["📎","Media Mogul",    p=>p.media,     v=>nf(v)+" media & files"]
 ];
-function computeAwards(people){
+// Friends lens gets its own, chattier superlatives — the shareable ones — drawn
+// from the social dynamics (main character, night owl, most loved, ghost…).
+function computeAwards(D){
+  const people=(D&&D.S&&D.S.people)||[];
   if(!people.length) return [];
+  const topBy=fn=>{let b=null;for(const p of people){const v=fn(p);if(v>0&&(!b||v>b.v))b={p,v};}return b;};
+  if(LENS.key==="social"){
+    const s=D.social||{}, first=a=>a&&a.length?a[0]:null, out=[];
+    const mc=topBy(p=>p.msgs);           if(mc) out.push(["🎭","Main Character",mc.p.name,nf(mc.v)+" messages"]);
+    const no=first(s.nightOwls);         if(no) out.push(["🦉","Night Owl",no[0],no[1]+"% after midnight"]);
+    const gl=first(s.getsLove);          if(gl) out.push(["🥰","Most Loved",gl[0],nf(gl[1])+" laughs & ❤️ back"]);
+    const rv=first(s.revivers);          if(rv) out.push(["🔥","Chat Reviver",rv[0],nf(rv[1])+" wake-ups"]);
+    const mo=first(s.monologuers);       if(mo) out.push(["🗣️","Monologue Master",mo[0],nf(mo[1])+" on a roll"]);
+    const un=first(s.unanswered);        if(un) out.push(["👻","Left on Read",un[0],nf(un[1])+" ignored Qs"]);
+    const cs=topBy(p=>p.started);        if(cs) out.push(["🎬","Conversation Starter",cs.p.name,nf(cs.v)+" started"]);
+    const pap=topBy(p=>p.media);         if(pap) out.push(["📸","Paparazzi",pap.p.name,nf(pap.v)+" photos & clips"]);
+    return out;
+  }
   const out=[];
   for(const [icon,title,val,fmt] of AWARD_DEFS){
-    let best=null;
-    for(const p of people){ const v=val(p); if(v>0&&(!best||v>best.v)) best={p,v}; }
-    if(best) out.push([icon,title,best.p.name,fmt(best.v)]);
+    const b=topBy(val); if(b) out.push([icon,title,b.p.name,fmt(b.v)]);
   }
   return out;
 }
@@ -2791,7 +2807,7 @@ function computeAwards(people){
 // A single member's own stats — inherently named (it's "my" card).
 function buildPersonCard(D,idx,title){
   const S=D.S,O=S.overview,p=S.people[Math.max(0,Math.min(idx,S.people.length-1))]||S.people[0];
-  const mine=computeAwards(S.people).filter(a=>a[2]===p.name).map(a=>[a[0],a[1],a[3]]);
+  const mine=computeAwards(D).filter(a=>a[2]===p.name).map(a=>[a[0],a[1],a[3]]);
   const cal=calFromDaily(personDaily(D,p.name));   // the member's OWN activity graph
   return {
     v:1, k:"p", t:(title||"").trim().slice(0,60), who:p.name,
@@ -2993,7 +3009,7 @@ function imgAwardGrid(ctx,items,x,y,totalW,max){
 /* ---- Group card layouts ---- */
 function groupWide(ctx,card,W,H){
   const {INK,INK2,BRAND,SANS,MONO,PAD}=IMG;
-  ctx.fillStyle=BRAND; ctx.font="700 16px "+MONO; ctx.fillText("WHATSAPP GROUP REPORT",PAD,150);
+  ctx.fillStyle=BRAND; ctx.font="700 16px "+MONO; ctx.fillText(card.wrapped?"YOUR GROUP CHAT, WRAPPED ✨":"WHATSAPP GROUP REPORT",PAD,150);
   ctx.fillStyle=INK; ctx.font="700 58px "+SANS;
   ctx.fillText(fitText(ctx,card.t||"A WhatsApp group",58,"700",SANS,W-PAD*2,30),PAD,208);
   ctx.fillStyle=INK2; ctx.font="400 20px "+SANS;
@@ -3005,7 +3021,7 @@ function groupWide(ctx,card,W,H){
 }
 function groupSquare(ctx,card,W,H){
   const {INK,INK2,BRAND,SANS,MONO,PAD}=IMG;
-  ctx.fillStyle=BRAND; ctx.font="700 18px "+MONO; ctx.fillText("WHATSAPP GROUP REPORT",PAD,168);
+  ctx.fillStyle=BRAND; ctx.font="700 18px "+MONO; ctx.fillText(card.wrapped?"YOUR GROUP CHAT, WRAPPED ✨":"WHATSAPP GROUP REPORT",PAD,168);
   ctx.fillStyle=INK; ctx.font="700 72px "+SANS;
   ctx.fillText(fitText(ctx,card.t||"A WhatsApp group",72,"700",SANS,W-PAD*2,34),PAD,246);
   ctx.fillStyle=INK2; ctx.font="400 22px "+SANS;
@@ -3016,7 +3032,7 @@ function groupSquare(ctx,card,W,H){
   ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.textBaseline="alphabetic"; ctx.fillText("DAILY ACTIVITY",PAD,588);
   drawContrib(ctx,card,PAD,600,W-PAD*2,150,{maxCell:24});
   if(card.a&&card.a.length){
-    ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.fillText("GROUP AWARDS  🏆",PAD,792);
+    ctx.fillStyle=INK2; ctx.font="700 16px "+MONO; ctx.fillText(card.wrapped?"THE SUPERLATIVES  ✨":"GROUP AWARDS  🏆",PAD,792);
     imgAwardGrid(ctx,card.a,PAD,810,W-PAD*2,4);
   }else{
     let y=790;
@@ -3080,6 +3096,11 @@ function siteLabel(){
 /* ---- Outbound share (WhatsApp / native sheet) ---- */
 function shareText(){
   const c=SHARE_CARD; if(!c) return "See what's inside your WhatsApp group 👉";
+  if(c.wrapped&&c.a&&c.a.length){
+    const t=c.t?('“'+c.t+'” '):"Our group chat ";
+    const top=c.a.slice(0,3).map(a=>a[0]+" "+a[1]+": "+a[2]).join(" · ");
+    return "✨ "+t+"Wrapped ✨\n"+top+"\nGet your group chat wrapped 👉";
+  }
   if(c.k==="p"){
     return "🏅 My WhatsApp stats"+(c.t?(" in “"+c.t+"”"):"")+": "+nf(c.n[0])+" messages, ranked #"+
       c.n[2]+" of "+c.n[3]+(c.aw&&c.aw.length?(" · "+c.aw[0][1]+" "+c.aw[0][0]):"")+
@@ -3110,6 +3131,10 @@ async function refreshShare(){
     SHARE_CARD=buildPersonCard(CURRENT.D,idx,title);
     note.classList.remove("warn-tone");
     txt.textContent="Your own stats in this group. The card names only the member you pick — no one else.";
+  }else if(SHARE_MODE==="wrapped"){
+    SHARE_CARD=buildCard(CURRENT.D,{title,names:true,wrapped:true});
+    note.classList.add("warn-tone");
+    txt.textContent="Wrapped crowns the group's superlatives — real names and counts. Share where everyone's happy to be tagged.";
   }else{
     const names=$("#sm-names").checked;
     SHARE_CARD=buildCard(CURRENT.D,{title,names});
@@ -3132,12 +3157,18 @@ async function refreshShare(){
 }
 function setShareMode(mode){
   SHARE_MODE=mode;
-  const person=mode==="person";
-  $("#sm-mode-group").classList.toggle("on",!person);
+  const person=mode==="person", wrapped=mode==="wrapped", group=mode==="group";
+  $("#sm-mode-group").classList.toggle("on",group);
   $("#sm-mode-person").classList.toggle("on",person);
+  const wb=$("#sm-mode-wrapped"); if(wb) wb.classList.toggle("on",wrapped);
   $("#sm-person-field").hidden=!person;
-  $("#sm-names-row").hidden=person;   // personal cards are inherently named
-  $("#sm-title").textContent=person?"Share your personal stats":"Share your group's stats";
+  $("#sm-names-row").hidden=person||wrapped;   // personal & wrapped cards are inherently named
+  $("#sm-title").textContent=person?"Share your personal stats":
+    wrapped?"Your group chat, Wrapped ✨":"Share your group's stats";
+  if(wrapped){   // wrapped shines in the square / story format
+    SHARE_FMT="square";
+    $("#sm-fmt-wide").classList.remove("on"); $("#sm-fmt-square").classList.add("on");
+  }
   refreshShare();
 }
 function setShareFmt(fmt){
@@ -3169,6 +3200,7 @@ $("#sm-names").addEventListener("change",refreshShare);
 $("#sm-person").addEventListener("change",refreshShare);
 $("#sm-mode-group").addEventListener("click",()=>setShareMode("group"));
 $("#sm-mode-person").addEventListener("click",()=>setShareMode("person"));
+(function(){const w=$("#sm-mode-wrapped"); if(w) w.addEventListener("click",()=>setShareMode("wrapped"));})();
 $("#sm-fmt-wide").addEventListener("click",()=>setShareFmt("wide"));
 $("#sm-fmt-square").addEventListener("click",()=>setShareFmt("square"));
 
