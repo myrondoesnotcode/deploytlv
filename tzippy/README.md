@@ -103,12 +103,19 @@ Opened via the **Share** button → modal with **three modes**:
 shareable `#card=` links with a loop-back CTA, the Wrapped tag-bait, and a friends
 unfurl page. Every shared card carries `deploytlv.com/tzippy`.
 
-**Not built yet (the community bridge):**
-- An in-report **"Join Deploy TLV" CTA** (ungated) — *waiting on the join URL*.
-- A **link from the deploytlv.com homepage** to `/tzippy`.
+**Built (community bridge):** an ungated **"Join Deploy TLV" CTA** at the end of
+every report (`communityCTA()`) — lens-aware: a real "Apply to join →" for the
+builder audience, a lighter brand nod for friends. Links to the Fillout
+application, utm-tagged `utm_source=tzippy&utm_campaign={builders|friends}` for
+attribution, plus `@DeployTLV` on Instagram.
 
-So today the loop drives *tool virality + brand impressions*; the hand-off from
-"used the tool" → "joined the community" still needs those two pieces.
+**Still open:**
+- A **link from the deploytlv.com homepage** to `/tzippy` (cross-pollination).
+- Optional: put the community CTA on the shared `#card=` landing page too (reaches
+  viral *recipients*, not just people who ran the tool).
+
+Community application form: `https://forms.fillout.com/t/gQiowrhyNAus`.
+Instagram: `@DeployTLV`.
 
 ## Notes
 

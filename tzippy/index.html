@@ -819,6 +819,25 @@ table a:hover{text-decoration:underline}
 .aud-btn.on{background:var(--primary); color:var(--primary-ink,#fff);
   box-shadow:0 1px 3px rgba(0,0,0,.12)}
 @media (max-width:520px){.aud-btn{font-size:12.5px; padding:7px 11px}}
+
+/* Deploy TLV community CTA at the end of every report — the funnel bridge */
+.cta-deploy{margin:40px 0 8px; padding:26px 30px; border-radius:16px;
+  border:1px solid var(--line); border-left:4px solid var(--primary);
+  background:var(--surface); display:flex; align-items:center;
+  justify-content:space-between; gap:24px; flex-wrap:wrap}
+.cta-deploy .cta-eyebrow{display:inline-block; font-weight:700; font-size:12px;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--primary); margin-bottom:9px}
+.cta-deploy h2{margin:0 0 6px; font-size:22px; letter-spacing:-.01em}
+.cta-deploy p{margin:0; color:var(--muted,#71716b); max-width:54ch; line-height:1.5}
+.cta-actions{display:flex; flex-direction:column; align-items:flex-start; gap:9px; flex:none}
+.cta-btn{display:inline-block; background:var(--primary); color:var(--primary-ink,#fff);
+  font-weight:650; font-size:15px; padding:12px 24px; border-radius:999px;
+  text-decoration:none; white-space:nowrap}
+.cta-btn:hover{opacity:.92}
+.cta-ig{font-size:13px; color:var(--muted,#71716b); text-decoration:none; align-self:center}
+.cta-ig:hover{color:var(--primary)}
+@media (max-width:640px){.cta-deploy{padding:22px} .cta-actions{width:100%}
+  .cta-btn{width:100%; text-align:center} .cta-ig{align-self:flex-start}}
 </style>
 
 
@@ -2254,8 +2273,29 @@ function render(D){
     card("Emoji",'<div class="chips">'+T.emoji.map(([c,n])=>
       '<span class="chip xl">'+esc(c)+'<i>'+n+'</i></span>').join("")+'</div>'));
 
-  // Emit only this lens's panels, in its order.
-  return LENS.sections.map(s=>parts[s.id]||"").join("");
+  // Emit only this lens's panels, in its order, then the community CTA.
+  return LENS.sections.map(s=>parts[s.id]||"").join("") + communityCTA();
+}
+
+// Deploy TLV community CTA — appended to every report. Lens-aware: a real
+// "apply to join" for the builder audience (the ICP), a lighter brand nod for
+// friends. utm-tagged so applications from Tzippy are attributable.
+function communityCTA(){
+  const social=LENS.key==="social";
+  const url="https://forms.fillout.com/t/gQiowrhyNAus?utm_source=tzippy&utm_medium=tool&utm_campaign="+(social?"friends":"builders");
+  const ig="https://instagram.com/deploytlv";
+  const head=social?"Made by Deploy TLV":"You're clearly among builders.";
+  const sub=social
+    ? "Tel Aviv's home for people who build things — come say hi, or bring the group."
+    : "Deploy TLV is Tel Aviv's community for builders &amp; founders. This exact energy, in person.";
+  const btn=social?"Meet the community →":"Apply to join →";
+  return '<section class="cta-deploy">'+
+    '<div class="cta-txt"><span class="cta-eyebrow">Deploy TLV</span>'+
+    '<h2>'+head+'</h2><p>'+sub+'</p></div>'+
+    '<div class="cta-actions">'+
+    '<a class="cta-btn" href="'+url+'" target="_blank" rel="noopener noreferrer">'+btn+'</a>'+
+    '<a class="cta-ig" href="'+ig+'" target="_blank" rel="noopener noreferrer">@DeployTLV on Instagram</a>'+
+    '</div></section>';
 }
 
 /* ===============================================================
