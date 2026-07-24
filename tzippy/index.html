@@ -2904,6 +2904,15 @@ function contribBlock(card,heading){
   if(!card.cal||!card.cal.length) return "";
   return '<div class="sv-block"><h4>'+heading+'</h4>'+contribSVG(card.cal,card.wd0,card.cs)+contribLegend()+'</div>';
 }
+// Footer for the shared #card= landing page — the one surface seen by viral
+// *recipients* (people who got a shared card but haven't run the tool). Keeps the
+// "analyze your own" loop-back and adds a Deploy TLV brand link to the community.
+function sharedFoot(){
+  const dp="https://deploytlv.com/?utm_source=tzippy&utm_medium=shared_card&utm_campaign=shared";
+  return '<div class="sv-foot"><span class="made">Made with <b>Tzippy</b> by '+
+    '<a href="'+dp+'">Deploy TLV</a> — analyzed in-browser, nothing uploaded</span>'+
+    '<a class="btn btn-primary" href="./" id="sv-cta">Analyze your own chat →</a></div>';
+}
 function renderCardView(card){
   if(card.k==="p") return renderPersonView(card);
   const n=card.n,first=new Date(card.f),last=new Date(card.l);
@@ -2931,8 +2940,7 @@ function renderCardView(card){
     '<div class="sv-range">'+fmtD(first)+' – '+fmtD(last)+
     ' · busiest day '+nf(card.b[1])+' messages</div></div>'+
     '<div class="sv-body"><div class="sv-stats">'+stats+'</div>'+graph+awards+tools+dom+lead+'</div>'+
-    '<div class="sv-foot"><span class="made">Made with <b>Tzippy</b> — analyzed in-browser, '+
-    'nothing uploaded</span><a class="btn btn-primary" href="./" id="sv-cta">Analyze your own chat →</a></div>';
+    sharedFoot();
 }
 function renderPersonView(card){
   const n=card.n;
@@ -2954,8 +2962,7 @@ function renderPersonView(card){
     '<div class="sv-title">'+esc(card.who)+'</div>'+
     '<div class="sv-range">'+fmtD(new Date(card.f))+' – '+fmtD(new Date(card.l))+'</div></div>'+
     '<div class="sv-body"><div class="sv-stats">'+stats+'</div>'+graph+emoji+awards+'</div>'+
-    '<div class="sv-foot"><span class="made">Made with <b>Tzippy</b> — analyzed in-browser, '+
-    'nothing uploaded</span><a class="btn btn-primary" href="./" id="sv-cta">Analyze your own chat →</a></div>';
+    sharedFoot();
 }
 
 /* ---- Share image (1200×630, drawn on a canvas) ---- */

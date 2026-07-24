@@ -109,10 +109,16 @@ builder audience, a lighter brand nod for friends. Links to the Fillout
 application, utm-tagged `utm_source=tzippy&utm_campaign={builders|friends}` for
 attribution, plus `@DeployTLV` on Instagram.
 
-**Still open:**
-- A **link from the deploytlv.com homepage** to `/tzippy` (cross-pollination).
-- Optional: put the community CTA on the shared `#card=` landing page too (reaches
-  viral *recipients*, not just people who ran the tool).
+**Built (cross-pollination):**
+- The deploytlv.com homepage footer links to `/tzippy/` ("Group Chat Analyzer").
+- The shared `#card=` landing page footer (`sharedFoot()`) carries a "Made with
+  Tzippy by **Deploy TLV**" link → deploytlv.com — so viral *recipients* (not just
+  people who ran the tool) get a brand touch + path to the community.
+
+The funnel loop is now closed end-to-end: viral share → deploytlv.com/tzippy →
+run chat → in-report "Join Deploy TLV" CTA → application. **Nothing left open on
+the funnel itself** (future work is amplification: the bespoke Wrapped unfurl
+image, a launch push, campaigns).
 
 Community application form: `https://forms.fillout.com/t/gQiowrhyNAus`.
 Instagram: `@DeployTLV`.
