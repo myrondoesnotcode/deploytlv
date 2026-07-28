@@ -37,6 +37,7 @@ const EVENTS = {
   '1': { global: 'D1', raw: true, files: ['events/1/data.js'] },
   '2': { global: 'D2', files: ['events/2/data1.js', 'events/2/data2.js'] },
   '3': { global: 'D3', files: ['events/3/data.js'] },
+  '4': { global: 'D4', files: ['events/4/data.js'] },
 };
 
 function parseArgs(argv) {
