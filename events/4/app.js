@@ -117,7 +117,7 @@ function App() {
     return ms && mc;
   });
 
-  const tabs = [["profiles", "Profiles"], ["matches", "Matchmaking"], ["clusters", "Skill Map"], ["breakouts", "Breakout"], ["forme", "Who To Meet"]];
+  const tabs = [["profiles", "Profiles"], ["matches", "Matchmaking"], ["forme", "Who To Meet"], ["clusters", "Skill Map"], ["breakouts", "Breakout"]];
 
   return (
     <div style={{ background: BG, minHeight: "100vh", fontFamily: MONO, color: INK }}>
