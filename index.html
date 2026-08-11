@@ -8,12 +8,18 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://deploytlv.com" />
   <meta property="og:title" content="Deploy TLV — The Room Where TLV Builds" />
-  <meta property="og:description" content="Next up: Deploy #04 — Using AI to Hack Growth. Wed, Jul 29, Tel Aviv. Real stories on using AI to drive attention, growth, and revenue." />
+  <meta property="og:description" content="One of Israel's largest and fastest-growing English-speaking communities for people building with AI. Founders, engineers and makers shipping real things — in Tel Aviv." />
   <meta property="og:image" content="https://deploytlv.com/tlv-promenade.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Deploy TLV — The Room Where TLV Builds" />
-  <meta name="twitter:description" content="Next up: Deploy #04 — Using AI to Hack Growth. Wed, Jul 29, Tel Aviv." />
+  <meta name="twitter:description" content="One of Israel's largest and fastest-growing English-speaking communities for people building with AI. Tel Aviv." />
   <meta name="twitter:image" content="https://deploytlv.com/tlv-promenade.jpg" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F5D400" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -414,6 +420,8 @@
       grid-template-columns: 50% 50%;
       min-height: 520px;
       border-bottom: 1px solid var(--border);
+      /* clears the 60px sticky nav when jumped to from the nav CTA */
+      scroll-margin-top: 60px;
     }
     .comm-left {
       padding: 52px 48px;
@@ -459,6 +467,16 @@
       display: inline-block;
     }
     .text-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* the two community doors, stacked */
+    .comm-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      /* keeps the yellow event card off the second link when space is tight */
+      margin-bottom: 28px;
+    }
 
     /* yellow event card — now sits at the bottom of the left column */
     .comm-event {
@@ -591,8 +609,10 @@
     }
     .event-lock {
       font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-      color: #CCCCCC; width: 120px; flex-shrink: 0; text-align: right;
+      color: var(--muted); width: 120px; flex-shrink: 0; text-align: right;
     }
+    /* greyed-out (fully locked) rows keep the old faint treatment */
+    .event-locked .event-lock { color: #CCCCCC; }
 
     /* ─────────────────────────────────────────
        MEMBERS SECTION
@@ -945,13 +965,14 @@
   <nav>
     <div class="nav-logo">DEPLOY&nbsp;TLV<span class="underscore">_</span></div>
 
-    <a class="nav-announcement" href="https://luma.com/97mblg3g" target="_blank" rel="noopener">
+    <a class="nav-announcement" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
       <span class="pulse"></span>
-      Deploy #04 · Using AI to Hack Growth · Wed Jul 29 →
+      Deploy #05 · Date announcing soon · Get on the list →
     </a>
 
-    <a class="nav-cta" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
-      Join Community <span class="arrow">↗</span>
+    <!-- neutral on-page jump: the visitor picks founder vs corporate at #community -->
+    <a class="nav-cta" href="#community">
+      Join the Community <span class="arrow">↓</span>
     </a>
   </nav>
 
@@ -960,24 +981,24 @@
   ══════════════════════════════════════════ -->
   <section class="hero">
     <div class="hero-left">
-      <div class="hero-eyebrow">// Next up · Deploy #04 · Wed Jul 29</div>
+      <div class="hero-eyebrow">// Next up · Deploy #05 · Announcing soon</div>
       <h1 class="hero-h1">
         THE ROOM<br>
         WHERE TLV<br>
         BUILDS<span class="period">.</span>
       </h1>
       <p class="hero-desc">
-        A recurring gathering for founders, engineers, and makers
-        shipping real things with AI — startups, side projects,
-        agents, tools, experiments that became companies.
-        Small groups. Vetted. No panels.
+        One of Israel's largest and fastest-growing English-speaking
+        communities for people building with AI. A founder community and a
+        corporate community, weekly coworking sessions, and vetted events —
+        for founders, engineers, and makers shipping real things.
       </p>
       <div class="hero-btns">
-        <a class="btn-primary" href="https://luma.com/97mblg3g" target="_blank" rel="noopener">
-          Apply to Attend →
+        <a class="btn-primary" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
+          Join as a Founder →
         </a>
-        <a class="btn-outline" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
-          Join the Community
+        <a class="btn-outline" href="https://forms.fillout.com/t/8Du1eMXqzkus" target="_blank" rel="noopener">
+          Join from Work →
         </a>
       </div>
       <div class="hero-social">
@@ -1011,7 +1032,8 @@
   ══════════════════════════════════════════ -->
   <section class="reel-section">
     <div class="reel-video-wrap">
-      <video src="deploy1-reel.mp4?v=2" autoplay muted loop playsinline class="reel-video"></video>
+      <video data-src="deploy1-reel.mp4?v=2" poster="deploy1-poster.jpg" preload="none"
+             muted loop playsinline class="reel-video"></video>
       <div class="reel-overlay">
         <div class="reel-tag">// From the room</div>
         <div class="reel-heading">Deploy <span class="yellow">#01</span></div>
@@ -1043,7 +1065,8 @@
   ══════════════════════════════════════════ -->
   <section class="reel-section">
     <div class="reel-video-wrap">
-      <video src="deploy2-reel.mp4?v=3" autoplay muted loop playsinline class="reel-video"></video>
+      <video data-src="deploy2-reel.mp4?v=3" poster="deploy2-poster.jpg" preload="none"
+             muted loop playsinline class="reel-video"></video>
       <div class="reel-overlay">
         <div class="reel-tag">// From the room</div>
         <div class="reel-heading">Deploy <span class="yellow">#02</span></div>
@@ -1073,30 +1096,34 @@
   <!-- ═══════════════════════════════════════
        COMMUNITY + UPCOMING EVENT
   ══════════════════════════════════════════ -->
-  <section class="community-section">
+  <section class="community-section" id="community">
     <div class="comm-left">
       <div class="comm-left-top">
         <div class="section-eyebrow">// Community</div>
         <h2 class="section-h2">Building<br>Together</h2>
         <p class="section-body">
-          Vetted builders shipping real things with AI. We meet, we demo, we make
-          the intros that turn side projects into companies. No panels, no fluff.
+          Two rooms — a founder community and a corporate community — plus
+          weekly coworking sessions and vetted events. We meet, we demo, we
+          make the intros that turn side projects into companies.
+          No panels, no fluff.
         </p>
-        <a class="text-link" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join the Community →</a>
+        <div class="comm-links">
+          <a class="text-link" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join the Founder Community →</a>
+          <a class="text-link" href="https://forms.fillout.com/t/8Du1eMXqzkus" target="_blank" rel="noopener">Join the Corporate Community →</a>
+        </div>
       </div>
 
       <div class="comm-event">
         <div class="comm-event-body">
-          <div class="comm-event-eyebrow">// Upcoming Event</div>
-          <div class="comm-event-title">Deploy #04 — Using AI to Hack Growth</div>
+          <div class="comm-event-eyebrow">// Next Event</div>
+          <div class="comm-event-title">Deploy #05 — Announcing soon</div>
           <div class="comm-event-details">
-            <div class="comm-event-detail"><span class="detail-icon">📅</span> Wed, Jul 29</div>
-            <div class="comm-event-detail"><span class="detail-icon">🕗</span> 19:00–21:00</div>
+            <div class="comm-event-detail"><span class="detail-icon">📅</span> Date TBA</div>
             <div class="comm-event-detail"><span class="detail-icon">📍</span> Tel Aviv</div>
           </div>
         </div>
-        <a class="comm-event-cta" href="https://luma.com/97mblg3g" target="_blank" rel="noopener">
-          Apply to Attend →
+        <a class="comm-event-cta" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
+          Get notified first →
         </a>
       </div>
     </div>
@@ -1126,6 +1153,7 @@
         <div class="event-num">Event #02</div>
         <div class="event-name">Deploy TLV</div>
         <div class="event-meta">Jun 8 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; TLV</div>
+        <div class="event-lock">🔒 Members</div>
         <div class="event-cta">Portal →</div>
       </a>
 
@@ -1133,14 +1161,23 @@
         <div class="event-num">Event #03</div>
         <div class="event-name">Deploy TLV — First Dollar Stories</div>
         <div class="event-meta">Mon Jul 6 &nbsp;·&nbsp; 8–10 PM &nbsp;·&nbsp; TLV</div>
+        <div class="event-lock">🔒 Members</div>
         <div class="event-cta">Portal →</div>
       </a>
 
-      <a class="event-row event-active event-upcoming" href="https://luma.com/97mblg3g" target="_blank" rel="noopener">
+      <a class="event-row event-active" href="events/4/" target="_blank" rel="noopener">
         <div class="event-num">Event #04</div>
         <div class="event-name">Deploy TLV — Using AI to Hack Growth</div>
         <div class="event-meta">Wed Jul 29 &nbsp;·&nbsp; 7–9 PM &nbsp;·&nbsp; TLV</div>
-        <div class="event-cta">Apply →</div>
+        <div class="event-lock">🔒 Members</div>
+        <div class="event-cta">Portal →</div>
+      </a>
+
+      <a class="event-row event-active event-upcoming" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">
+        <div class="event-num">Event #05</div>
+        <div class="event-name">Deploy TLV — Announcing soon</div>
+        <div class="event-meta">Date TBA &nbsp;·&nbsp; TLV</div>
+        <div class="event-cta">Get notified →</div>
       </a>
 
     </div>
@@ -1151,7 +1188,7 @@
   ══════════════════════════════════════════ -->
   <section class="intel-section" id="attendee-intelligence">
     <div class="intel-head">
-      <div class="section-eyebrow" style="margin-bottom:0">// Deploy #02 · Attendee Intelligence</div>
+      <div class="section-eyebrow" style="margin-bottom:0">// Deploy #04 · Attendee Intelligence</div>
       <span class="intel-lock"><span class="pulse" style="width:6px;height:6px;background:var(--accent);border-radius:50%;"></span> Builders Only</span>
     </div>
 
@@ -1159,46 +1196,46 @@
       <div class="intel-main">
         <h2 class="section-h2">Who's In<br>The Room</h2>
         <p class="section-body">
-          Every Deploy #02 builder, mapped — profiles, skill clusters, and curated
+          Every Deploy #04 builder, mapped — profiles, skill clusters, and curated
           1-on-1 intros, so you walk in already knowing who to meet. A private
           briefing for the people in the room.
         </p>
-        <a class="btn-primary" href="events/2/">
+        <a class="btn-primary" href="events/4/">
           Enter the Portal →
         </a>
-        <div class="intel-passnote">🔒 Password protected · Deploy #02 builders only</div>
+        <div class="intel-passnote">🔒 Password protected · Deploy #04 builders only</div>
       </div>
 
       <div class="intel-stats">
         <div class="intel-stat">
-          <span class="intel-stat-val">72</span>
+          <span class="intel-stat-val">102</span>
           <span class="intel-stat-label">Builders in the room</span>
         </div>
         <div class="intel-stat">
-          <span class="intel-stat-val">43</span>
-          <span class="intel-stat-label">Curated 1:1 intros</span>
-        </div>
-        <div class="intel-stat">
-          <span class="intel-stat-val">22</span>
+          <span class="intel-stat-val">12</span>
           <span class="intel-stat-label">Skill clusters</span>
         </div>
         <div class="intel-stat">
           <span class="intel-stat-val">9</span>
           <span class="intel-stat-label">Breakout groups</span>
         </div>
+        <div class="intel-stat">
+          <span class="intel-stat-val">11</span>
+          <span class="intel-stat-label">Curated 1:1 intros</span>
+        </div>
       </div>
     </div>
 
     <div class="intel-tags">
       <span class="intel-tag-label">In the room:</span>
-      <span class="intel-tag">AI Security &amp; Governance</span>
-      <span class="intel-tag">Agentic Dev Tools</span>
-      <span class="intel-tag">Fintech / Finance</span>
+      <span class="intel-tag">Agents &amp; Automation</span>
+      <span class="intel-tag">Devtools, Infra &amp; ML</span>
+      <span class="intel-tag">Fintech &amp; Finance AI</span>
       <span class="intel-tag">Crypto / Web3</span>
-      <span class="intel-tag">Deep Tech / Clinical AI</span>
-      <span class="intel-tag">Defense / Dual-Use</span>
-      <span class="intel-tag">Creator / Media</span>
-      <span class="intel-tag intel-tag-more">+13 more</span>
+      <span class="intel-tag">Defense, Autonomy &amp; AI Security</span>
+      <span class="intel-tag">Healthtech &amp; Consumer Health AI</span>
+      <span class="intel-tag">Media, Content &amp; Creator AI</span>
+      <span class="intel-tag intel-tag-more">+5 more</span>
     </div>
   </section>
 
@@ -1324,10 +1361,13 @@
 
     <ul class="footer-links">
       <li><a href="#events">Events</a></li>
-      <li><a href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join</a></li>
+      <li><a href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join · Founders</a></li>
+      <li><a href="https://forms.fillout.com/t/8Du1eMXqzkus" target="_blank" rel="noopener">Join · Corporate</a></li>
       <li><a href="/tzippy/">Group Chat Analyzer</a></li>
       <li><a href="events/1/recap/">Deploy #01 Recap</a></li>
       <li><a href="events/2/" target="_blank" rel="noopener">Deploy #02 Portal</a></li>
+      <li><a href="events/3/" target="_blank" rel="noopener">Deploy #03 Portal</a></li>
+      <li><a href="events/4/" target="_blank" rel="noopener">Deploy #04 Portal</a></li>
     </ul>
 
     <div class="footer-socials">
@@ -1335,6 +1375,53 @@
       <a class="footer-social" href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════════
+       LAZY REELS
+       The two reels are ~30MB combined. They used to autoplay, which meant
+       every visitor downloaded all of it before seeing anything. Now each
+       shows a poster frame and only fetches + plays once scrolled into view.
+  ══════════════════════════════════════════ -->
+  <script>
+    (function () {
+      var reels = document.querySelectorAll('.reel-video[data-src]');
+      if (!reels.length) return;
+
+      // Respect reduced-motion: leave the poster frame in place, never fetch the video.
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // No IntersectionObserver (old browsers): just load them so nothing is blank.
+      if (!('IntersectionObserver' in window)) {
+        reels.forEach(function (v) { v.src = v.dataset.src; v.play().catch(function () {}); });
+        return;
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            if (!v.src) v.src = v.dataset.src;
+            v.play().catch(function () {}); // blocked autoplay just leaves the poster up
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px', threshold: 0.25 });
+
+      reels.forEach(function (v) { io.observe(v); });
+    })();
+  </script>
+
+  <!-- ═══════════════════════════════════════
+       ANALYTICS — NOT YET ACTIVE
+       Needs a free GoatCounter account (goatcounter.com, ~2 min, no cookie
+       banner required). Create the site, then replace YOURCODE below and
+       uncomment. Swap for Plausible/GA4 if you'd rather.
+  ══════════════════════════════════════════ -->
+  <!--
+  <script data-goatcounter="https://YOURCODE.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  -->
 
 </body>
 </html>
