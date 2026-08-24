@@ -384,6 +384,29 @@ a{color:inherit}
 }
 .howto-note b{color:var(--ink-2); font-weight:600}
 
+/* Instagram follow band — the landing-page ask, between how-to and the footer.
+   The report has its own communityCTA(); this is the equivalent for people who
+   scroll the landing page without ever running a chat through the tool. */
+.ig-cta{max-width:1080px; margin:34px auto 0; padding:0 24px}
+.ig-cta-in{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:var(--sh-1); padding:18px 22px;
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.ig-mark{
+  flex:none; width:40px; height:40px; border-radius:var(--r);
+  background:var(--brand); color:var(--brand-on); display:grid; place-items:center;
+}
+.ig-mark svg{width:22px; height:22px; display:block}
+.ig-txt{flex:1 1 240px; min-width:0}
+.ig-txt h3{font-size:17px; letter-spacing:.02em; margin:0 0 3px}
+.ig-txt p{margin:0; font-size:13px; line-height:1.55; color:var(--ink-2)}
+.ig-cta .btn{flex:none; text-decoration:none}
+@media (max-width:560px){
+  .ig-cta-in{padding:16px 18px}
+  .ig-cta .btn{width:100%}
+}
+
 /* Footer */
 .foot{
   max-width:1080px; margin:0 auto; padding:34px 24px 56px;
@@ -1283,6 +1306,27 @@ table a:hover{text-decoration:underline}
       </p>
     </div>
   </div>
+
+  <aside class="ig-cta">
+    <div class="ig-cta-in">
+      <span class="ig-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </span>
+      <div class="ig-txt">
+        <h3>Follow Deploy TLV</h3>
+        <p>Tel Aviv&rsquo;s community for people who build things &mdash; events, demos
+           and more tools like this one, first on Instagram.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" id="ig-follow"
+         href="https://www.instagram.com/deploytlv/"
+         target="_blank" rel="noopener noreferrer">Follow @DeployTLV</a>
+    </div>
+  </aside>
 
   <footer class="foot">
     <span>Tzippy analyzes WhatsApp exports in your browser. Nothing is uploaded.</span>
@@ -2697,6 +2741,7 @@ $("#aud-friends").addEventListener("click",()=>setAudience("friends",true));
 
 $("#demo").addEventListener("click",()=>{const l=$("#demo").dataset.lens||"business"; tzTrack("demo-primary-"+l); run(sampleFor(l),sampleName(l),null,"demo");});
 $("#demo-social").addEventListener("click",()=>{const l=$("#demo-social").dataset.lens||"social"; tzTrack("demo-secondary-"+l); run(sampleFor(l),sampleName(l),null,"demo");});
+(function(){const ig=$("#ig-follow"); if(ig) ig.addEventListener("click",()=>tzTrack("instagram-follow"));})();
 
 // Deep-link: ?for=friends (or #friends) opens the friends front door.
 (function(){
