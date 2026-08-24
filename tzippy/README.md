@@ -14,7 +14,9 @@ community tool / lead magnet.
 ## Architecture
 
 - **One self-contained file:** [`index.html`](index.html). Inline CSS + JS, no
-  build step, no dependencies, no network calls. Edit it directly.
+  build step, no dependencies. Edit it directly. The only network calls are
+  Google Fonts and the analytics beacon (below) — the analyzer itself makes
+  none.
 - **Hosting:** GitHub Pages serves the `deploytlv` repo from `main`/root (no
   Jekyll config). **Pushing to `main` auto-deploys** to deploytlv.com. Files here
   serve at `deploytlv.com/tzippy/…`. CDN caching means a new build can take 1–3
@@ -122,6 +124,79 @@ image, a launch push, campaigns).
 
 Community application form: `https://forms.fillout.com/t/gQiowrhyNAus`.
 Instagram: `@DeployTLV`.
+
+## Analytics
+
+**GoatCounter**, wired in `index.html`. Cookieless, no localStorage, no
+cross-site identifiers, IPs hashed and discarded — so **no consent banner is
+required** and the "nothing is uploaded" promise is untouched: *no data derived
+from the chat file is ever sent.* Not the text, not the names, not even a
+message count.
+
+**Status: LIVE** as of 2026-08-24. `GC_CODE = "deploytlv"` →
+dashboard at **https://deploytlv.goatcounter.com**. It is set in **two** places,
+and they must stay in sync so the whole domain lands in one dashboard with
+`/tzippy/` as a path:
+
+| File | Where | What it covers |
+|---|---|---|
+| `tzippy/index.html` | `var GC_CODE` in the `<head>` analytics block | Tzippy + the full funnel |
+| `index.html` (site root) | `var GC_CODE` near `</body>` | The deploytlv.com homepage |
+
+Setting `GC_CODE` back to `""` is the kill switch: no script loads at all and
+every `tzTrack()` call becomes a no-op.
+
+**Localhost is never counted** — GoatCounter refuses (`not counting because of:
+localhost`), so local dev traffic can't pollute the numbers.
+
+**Privacy mechanics.** `window.goatcounter.path` is pinned to
+`location.pathname + location.search`, so the `#card=` fragment (which encodes
+report figures) can never reach the server. Browsers don't send fragments
+anyway; pinning it makes the guarantee explicit rather than incidental.
+
+**Events.** `tzTrack(name)` fires each name **at most once per page load**, so
+counts read as *"share of sessions that reached this step"* — the funnel
+question — instead of being inflated by repeat clicks.
+
+| Event | Fires when |
+|---|---|
+| `land-{builders,friends}` | Which front door the visitor arrived at |
+| `audience-switch-{…}` | Hero audience toggle clicked |
+| `demo-primary-{lens}` / `demo-secondary-{lens}` | Sample-data buttons |
+| `upload-{txt,zip}` | A **real** export was chosen or dropped |
+| `analyze-start-{real,demo}` | Parsing began |
+| `report-{real,demo}-{lens}` | Report rendered — the activation event |
+| `lens-switch-{lens}` | Lens flipped on an open report |
+| `reset` | "Start over" — analyzed a second chat |
+| `error-file-read` / `error-analyze` | Upload failed — watch this one |
+| `share-open` | Share dialog opened |
+| `share-card-{group,person,wrapped}` · `share-fmt-{wide,square}` · `share-names-on` | Card choices |
+| `share-{whatsapp,native,copy-link,save-image,preview-link}` | An actual share |
+| `card-view-{group,person}` | **Inbound:** a shared card link was opened |
+| `card-cta` | A card recipient clicked through to try their own chat |
+
+**The two ratios that matter:**
+
+- **Activation** — `report-real-*` ÷ `land-*`. How many visitors get past the
+  landing page with a real chat. `demo-*` vs `upload-*` tells you whether the
+  sample data is a helpful on-ramp or a substitute for trying it.
+- **Virality** — `card-cta` ÷ `card-view-*`, and `card-view-*` ÷
+  `share-{whatsapp,copy-link}`. The first is how persuasive a shared card is;
+  the second is how many people each sharer actually reaches. Multiply them by
+  activation and you have the loop's real coefficient.
+
+**Ad blockers — undercount only, never a broken page.** `gc.zgo.at` is on some
+ad-block lists, so expect a 10–30% undercount. Ratios stay meaningful; absolute
+numbers are a floor, not a total.
+
+The **site itself is unaffected**. The tracker is a separate `<script>` appended
+to `<head>`; if that request is blocked, `window.goatcounter.count` is simply
+never defined, `tzTrack()` swallows the event, and the analyzer — which is
+inline in this file and makes no network calls — runs untouched. Verified by
+simulating a blocked script and driving the full funnel: demo report, lens
+switch, share modal, share link, card image, WhatsApp hand-off, and a real
+400-message export all worked, with no console errors beyond the blocked
+request itself.
 
 ## Notes
 

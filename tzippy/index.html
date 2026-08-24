@@ -18,6 +18,65 @@
 <meta name="twitter:image:alt" content="Tzippy — see what your WhatsApp group is really like">
 <meta name="theme-color" content="#F5D400">
 
+<!-- ===================================================================
+     ANALYTICS — GoatCounter
+
+     Cookieless, no localStorage, no cross-site identifiers, IP addresses
+     hashed and discarded — so no consent banner is required, and the
+     page's core promise is untouched: NOTHING derived from the chat file
+     is ever sent. Not the text, not the names, not the message counts.
+
+     `path` is pinned to pathname+search so the #card= fragment (which
+     encodes report figures) can never reach the server. Fragments are not
+     sent by browsers anyway; this makes that guarantee explicit.
+
+     TO SWITCH IT ON: create a free site at goatcounter.com (~2 min), then
+     put its code below. e.g. for tzippy.goatcounter.com → GC_CODE="tzippy".
+     While GC_CODE is empty, no script loads and every tzTrack() call is a
+     no-op, so the page stays exactly as fast as it is today.
+================================================================== -->
+<script>
+window.tzTrack = (function () {
+  var GC_CODE = "deploytlv";                      // ← your GoatCounter site code
+
+  var noop = function () {};
+  if (!GC_CODE) return noop;             // analytics off until a code is set
+
+  var queue = [], seen = Object.create(null);
+
+  // Settings for count.js. Read by the script when it loads.
+  window.goatcounter = {
+    path: function () { return location.pathname + location.search; }
+  };
+
+  var el = document.createElement("script");
+  el.async = true;
+  el.src = "https://gc.zgo.at/count.js";
+  el.setAttribute("data-goatcounter",
+                  "https://" + GC_CODE + ".goatcounter.com/count");
+  el.onload = function () { var q = queue; queue = []; q.forEach(fire); };
+  document.head.appendChild(el);
+
+  function fire(e) {
+    var gc = window.goatcounter;
+    if (gc && typeof gc.count === "function") {
+      gc.count({ path: e[0], title: e[1], event: true });
+    } else if (queue.length < 40) {
+      queue.push(e);                     // script not in yet (or blocked)
+    }
+  }
+
+  // Each event fires at most once per page load, so the numbers read as
+  // "share of sessions that reached this step" — which is the funnel
+  // question — rather than being inflated by repeat clicks.
+  return function (name, title) {
+    if (!name || seen[name]) return;
+    seen[name] = 1;
+    try { fire([name, title || name]); } catch (err) {}
+  };
+})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800;900&display=swap">
@@ -1227,6 +1286,8 @@ table a:hover{text-decoration:underline}
 
   <footer class="foot">
     <span>Tzippy analyzes WhatsApp exports in your browser. Nothing is uploaded.</span>
+    <span class="foot-sep">&middot;</span>
+    <span>Cookieless visit counts only &mdash; never anything from your chat.</span>
     <span class="foot-sep">&middot;</span>
     <span>Not affiliated with or endorsed by WhatsApp or Meta.</span>
     <span class="foot-sep">&middot;</span>
@@ -2440,7 +2501,11 @@ async function step(label,pct){
   await new Promise(r=>setTimeout(r,16));  // let the browser paint
 }
 
-async function run(text,name,pinned){
+// Analytics no-op fallback, so a missing/blocked tracker can never throw.
+window.tzTrack = window.tzTrack || function(){};
+
+async function run(text,name,pinned,src){
+  tzTrack("analyze-start-"+(src==="demo"?"demo":"real"));
   intake.style.display="none";
   progress.classList.add("on");
   try{
@@ -2460,10 +2525,12 @@ async function run(text,name,pinned){
     progress.classList.remove("on");
     app.classList.add("on");
     window.scrollTo(0,0);
+    tzTrack("report-"+(src==="demo"?"demo":"real")+"-"+CURRENT.lensKey);
   }catch(e){
     progress.classList.remove("on");
     intake.style.display="";
     showErr(e.message||"Something went wrong reading that file.");
+    tzTrack("error-analyze");
   }
 }
 
@@ -2504,6 +2571,7 @@ async function buildReport(lensKey,reason){
 // Flip the lens on the report already on screen, without touching the file.
 function switchLens(key){
   if(!CURRENT||!CURRENT.chat||CURRENT.lensKey===key) return;
+  tzTrack("lens-switch-"+key);
   CURRENT.pinned=key;
   buildReport(key,"Showing the "+LENSES[key].name+" view.").then(()=>window.scrollTo(0,0));
 }
@@ -2513,11 +2581,12 @@ async function handleFile(f){
   errBox.hidden=true;
   if(!f) return;
   const isZip=/\.zip$/i.test(f.name)||f.type==="application/zip";
+  tzTrack("upload-"+(isZip?"zip":"txt"));
   const name=f.name.replace(/\.(txt|zip)$/i,"").replace(/^WhatsApp Chat (?:with|- )?/i,"").trim()||"Chat";
   try{
     const text=isZip?await readZip(await f.arrayBuffer()):await f.text();
-    await run(text,name);
-  }catch(e){ showErr(e.message||"Couldn't read that file.") }
+    await run(text,name,null,"file");
+  }catch(e){ tzTrack("error-file-read"); showErr(e.message||"Couldn't read that file.") }
 }
 
 // Drag & drop over the whole page, not just the circle.
@@ -2538,6 +2607,7 @@ dropBtn.addEventListener("click",()=>fileInput.click());
 fileInput.addEventListener("change",e=>handleFile(e.target.files[0]));
 
 $("#reset").addEventListener("click",()=>{
+  tzTrack("reset");
   app.classList.remove("on"); intake.style.display="";
   $("#tb-ctx").hidden=true; $("#tb-div").hidden=true;
   $("#reset").hidden=true; $("#share").hidden=true; $("#tb-tag").hidden=false;
@@ -2616,6 +2686,7 @@ function setAudience(mode,updateUrl){
   $("#aud-friends").classList.toggle("on",mode==="friends");
   $("#aud-friends").setAttribute("aria-selected",mode==="friends");
   if(updateUrl){
+    tzTrack("audience-switch-"+mode);
     const u=new URL(location.href);
     if(mode==="friends") u.searchParams.set("for","friends"); else u.searchParams.delete("for");
     history.replaceState(null,"",u);
@@ -2624,14 +2695,16 @@ function setAudience(mode,updateUrl){
 $("#aud-builders").addEventListener("click",()=>setAudience("builders",true));
 $("#aud-friends").addEventListener("click",()=>setAudience("friends",true));
 
-$("#demo").addEventListener("click",()=>{const l=$("#demo").dataset.lens||"business"; run(sampleFor(l),sampleName(l));});
-$("#demo-social").addEventListener("click",()=>{const l=$("#demo-social").dataset.lens||"social"; run(sampleFor(l),sampleName(l));});
+$("#demo").addEventListener("click",()=>{const l=$("#demo").dataset.lens||"business"; tzTrack("demo-primary-"+l); run(sampleFor(l),sampleName(l),null,"demo");});
+$("#demo-social").addEventListener("click",()=>{const l=$("#demo-social").dataset.lens||"social"; tzTrack("demo-secondary-"+l); run(sampleFor(l),sampleName(l),null,"demo");});
 
 // Deep-link: ?for=friends (or #friends) opens the friends front door.
 (function(){
   const p=new URLSearchParams(location.search).get("for");
   const h=location.hash.replace("#","");
-  setAudience((p==="friends"||h==="friends")?"friends":"builders",false);
+  const mode=(p==="friends"||h==="friends")?"friends":"builders";
+  setAudience(mode,false);
+  tzTrack("land-"+mode);
 })();
 
 function makeSample(){
@@ -3304,28 +3377,32 @@ function openShareModal(){
 }
 function closeShareModal(){ $("#share-modal").classList.remove("on"); }
 
-$("#share").addEventListener("click",openShareModal);
+$("#share").addEventListener("click",()=>{ tzTrack("share-open"); openShareModal(); });
 $("#sm-close").addEventListener("click",closeShareModal);
 $("#share-modal").addEventListener("click",e=>{ if(e.target===$("#share-modal")) closeShareModal(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeShareModal(); });
 $("#sm-name").addEventListener("input",refreshShare);
-$("#sm-names").addEventListener("change",refreshShare);
+$("#sm-names").addEventListener("change",()=>{ if($("#sm-names").checked) tzTrack("share-names-on"); refreshShare(); });
 $("#sm-person").addEventListener("change",refreshShare);
-$("#sm-mode-group").addEventListener("click",()=>setShareMode("group"));
-$("#sm-mode-person").addEventListener("click",()=>setShareMode("person"));
-(function(){const w=$("#sm-mode-wrapped"); if(w) w.addEventListener("click",()=>setShareMode("wrapped"));})();
-$("#sm-fmt-wide").addEventListener("click",()=>setShareFmt("wide"));
-$("#sm-fmt-square").addEventListener("click",()=>setShareFmt("square"));
+// Tracked on the click, not inside setShareMode() — openShareModal() calls
+// that with "group" every time, which would drown the real choice signal.
+$("#sm-mode-group").addEventListener("click",()=>{ tzTrack("share-card-group"); setShareMode("group"); });
+$("#sm-mode-person").addEventListener("click",()=>{ tzTrack("share-card-person"); setShareMode("person"); });
+(function(){const w=$("#sm-mode-wrapped"); if(w) w.addEventListener("click",()=>{ tzTrack("share-card-wrapped"); setShareMode("wrapped"); });})();
+$("#sm-fmt-wide").addEventListener("click",()=>{ tzTrack("share-fmt-wide"); setShareFmt("wide"); });
+$("#sm-fmt-square").addEventListener("click",()=>{ tzTrack("share-fmt-square"); setShareFmt("square"); });
 
 // Native share sheet — only meaningful where the browser has one (mobile).
 if(navigator.share) $("#sm-native").hidden=false;
 
 $("#sm-wa").addEventListener("click",()=>{
   const link=linkReady(); if(!link) return;
+  tzTrack("share-whatsapp");
   window.open("https://wa.me/?text="+encodeURIComponent(shareText()+" "+link),"_blank","noopener");
 });
 $("#sm-native").addEventListener("click",async()=>{
   const link=linkReady(); if(!link) return;
+  tzTrack("share-native");
   const text=shareText()+" "+link;
   try{
     const blob=await canvasBlob();
@@ -3342,6 +3419,7 @@ $("#sm-native").addEventListener("click",async()=>{
 $("#sm-copy").addEventListener("click",async()=>{
   const inp=$("#sm-link"),btn=$("#sm-copy");
   if(inp.dataset.ready!=="1") return;
+  tzTrack("share-copy-link");
   try{ await navigator.clipboard.writeText(inp.value); }
   catch(e){ inp.focus(); inp.select(); try{document.execCommand("copy")}catch(_){} }
   const was=btn.textContent; btn.textContent="Copied ✓";
@@ -3349,6 +3427,7 @@ $("#sm-copy").addEventListener("click",async()=>{
 });
 $("#sm-img").addEventListener("click",()=>{
   const btn=$("#sm-img");
+  tzTrack("share-save-image");
   $("#sm-canvas").toBlob(blob=>{
     if(!blob) return;
     const url=URL.createObjectURL(blob),a=document.createElement("a");
@@ -3361,7 +3440,9 @@ $("#sm-img").addEventListener("click",()=>{
 });
 $("#sm-open").addEventListener("click",()=>{
   const link=$("#sm-link").value;
-  if($("#sm-link").dataset.ready==="1") window.open(link,"_blank","noopener");
+  if($("#sm-link").dataset.ready!=="1") return;
+  tzTrack("share-preview-link");
+  window.open(link,"_blank","noopener");
 });
 
 /* ---- Route: if the page is opened with a #card= link, show that card ---- */
@@ -3377,10 +3458,18 @@ async function routeShareLink(){
   let card;
   try{ card=await unpackCard(m[1]); if(!card||card.v!==1) throw 0; }
   catch(e){ return false; }
+  // The inbound half of the loop: a card link was opened by someone the
+  // sharer sent it to. Compare against card-cta to see how many go on to
+  // try their own chat — that ratio is the whole growth story.
+  tzTrack("card-view-"+(card.k==="p"?"person":"group"));
   $("#sv-card").innerHTML=renderCardView(card);
   const home=location.pathname;
   $("#sv-brand").setAttribute("href",home);
-  const cta=document.getElementById("sv-cta"); if(cta) cta.setAttribute("href",home);
+  const cta=document.getElementById("sv-cta");
+  if(cta){
+    cta.setAttribute("href",home);
+    cta.addEventListener("click",()=>tzTrack("card-cta"),{once:true});
+  }
   // Take over the whole page: hide intake / any open report, and clear the toolbar.
   intake.style.display="none";
   progress.classList.remove("on");
@@ -3444,9 +3533,6 @@ routeShareLink();
 })();
 </script>
 
-<!-- Cloudflare Web Analytics — cookieless, no consent banner needed.
-     Replace CF_BEACON_TOKEN below with the token from your Cloudflare
-     Web Analytics site (dash.cloudflare.com → Analytics & Logs → Web Analytics). -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
-<!-- End Cloudflare Web Analytics -->
+<!-- Analytics lives in <head> (GoatCounter). The old Cloudflare beacon
+     was removed: it shipped with a placeholder token, so it loaded a
+     third-party script on every visit and recorded nothing. -->
