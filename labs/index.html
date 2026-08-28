@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deploy Labs — Tools Built By Deploy TLV</title>
+<meta name="description" content="Deploy Labs — the tools we build for our own community. Attendee intelligence portals, WhatsApp community analysis, and the Deploy HQ members app.">
+<link rel="canonical" href="https://deploytlv.com/labs/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deploytlv.com/labs/">
+<meta property="og:site_name" content="Deploy TLV">
+<meta property="og:title" content="Deploy Labs — Tools Built By Deploy TLV">
+<meta property="og:description" content="We kept needing tools that didn't exist, so we started making them.">
+<meta property="og:image" content="https://deploytlv.com/tlv-promenade.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deploy Labs — Tools Built By Deploy TLV">
+<meta name="twitter:description" content="We kept needing tools that didn't exist, so we started making them.">
+<meta name="twitter:image" content="https://deploytlv.com/tlv-promenade.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#ff5a18">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3eedf;--paper2:#e9e1ce;--ink:#11100d;--orange:#ff5a18;--muted:#6e675c;--line:rgba(17,16,13,.24);--max:1440px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#d8d0c1;color:var(--ink);font-family:'IBM Plex Mono',monospace}
+a{color:inherit;text-decoration:none}img{display:block;width:100%}
+.site{max-width:var(--max);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 70px rgba(0,0,0,.13)}
+.nav{height:72px;padding:0 34px;display:flex;align-items:center;border-bottom:1px solid var(--ink);position:sticky;top:0;background:rgba(243,238,223,.94);backdrop-filter:blur(12px);z-index:50}
+.logo{font:700 20px 'Silkscreen';letter-spacing:-.06em}.logo b{color:var(--orange)}
+.links{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:10px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border:1.5px solid var(--ink);font:700 10px 'Silkscreen';background:transparent;box-shadow:3px 3px 0 var(--ink);transition:.12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:var(--orange)}.btn.orange{background:var(--orange)}
+.section{padding:78px 46px;border-bottom:1px solid var(--ink)}
+.section-id{font:700 8px 'Silkscreen';color:var(--orange)}
+.head{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:end}
+.head h1{font-family:'Archivo Black';font-size:clamp(46px,7vw,104px);line-height:.87;letter-spacing:-.055em;text-transform:uppercase;margin:16px 0 0}
+.head p{font-size:12px;line-height:1.75;color:var(--muted);margin:0}
+.cursor{display:inline-block;width:.55em;height:.11em;background:var(--orange);vertical-align:.08em;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.labs{border-top:1px solid var(--ink)}
+.lab{display:grid;grid-template-columns:132px 1.15fr 1fr 100px;gap:26px;padding:34px 0;border-bottom:1px solid var(--ink);align-items:start;transition:.15s}
+.lab:hover{background:var(--paper2);padding-left:12px}
+.lab code{font:700 8px 'Silkscreen';color:var(--orange)}
+.lab h2{font-family:'Archivo Black';font-size:clamp(26px,3vw,42px);line-height:.92;text-transform:uppercase;margin:0 0 10px;letter-spacing:-.04em}
+.lab p{font-size:11px;line-height:1.75;color:#433e37;margin:0;max-width:520px}
+.status{display:inline-flex;align-items:center;gap:7px;font:700 7px 'Silkscreen';border:1px solid var(--ink);padding:7px 9px;margin-top:14px;text-transform:uppercase}
+.status i{width:6px;height:6px;border-radius:50%;background:var(--orange);display:inline-block}
+.status.build i{background:var(--muted)}
+.lab-meta{border-top:1px solid var(--line)}
+.lab-meta span{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:8px;color:var(--muted);text-transform:uppercase}
+.lab-meta span b{font:600 8px 'IBM Plex Mono';color:var(--ink);text-align:right}
+.go{font-size:22px;text-align:right}
+.cta{padding:100px 46px;text-align:center;background:var(--orange)}
+.kicker{font:700 9px 'Silkscreen';text-transform:uppercase}
+.cta h2{font-family:'Archivo Black';font-size:clamp(42px,6.5vw,86px);line-height:.86;letter-spacing:-.055em;text-transform:uppercase;margin:16px auto 22px;max-width:900px}
+.cta p{max-width:520px;margin:0 auto 28px;font-size:12px;line-height:1.7}.cta .btn{background:var(--paper)}
+footer{padding:28px 34px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:8px;text-transform:uppercase}
+.footer-social{display:flex;gap:18px}.footer-social a:hover{color:var(--orange)}
+@media(max-width:900px){
+ .links a:not(.btn){display:none}.section{padding:62px 24px}
+ .head{grid-template-columns:1fr;gap:22px;align-items:start}
+ .lab{grid-template-columns:96px 1fr 44px;gap:18px}
+ .lab-meta{grid-column:2/-1;margin-top:6px}
+ .cta{padding:78px 24px}
+}
+@media(max-width:560px){
+ .nav{height:58px;padding:0 14px}.logo{font-size:16px}
+ .links .btn{min-height:34px;padding:0 10px;font-size:8px;box-shadow:2px 2px 0 var(--ink)}
+ .section{padding:50px 18px}.head h1{font-size:clamp(38px,12vw,52px)}.head p{font-size:10px}
+ .lab{grid-template-columns:1fr;gap:10px;padding:26px 0}
+ .lab h2{font-size:27px}.lab p{font-size:10px}.lab-meta{grid-column:auto}
+ .go{display:none}.cta{padding:64px 18px}footer{padding:22px 18px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.cursor{animation:none}}
+</style></head><body><div class="site">
+<nav class="nav"><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div class="links"><a href="/#cowork">Coworking</a><a href="/#events">Events</a><a href="/#builds">Builds</a><a class="btn orange" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join Deploy &rarr;</a></div></nav>
+
+<section class="section"><div class="head"><div><div class="section-id">06 / BUILT BY DEPLOY</div><h1>WE BUILD<br>THINGS TOO<span class="cursor"></span></h1></div><p>We kept needing tools that didn't exist — so we started making them. Everything here was built for our own community first, because we were the ones who needed it.</p></div></section>
+
+<section class="section"><div class="labs">
+
+<a class="lab" href="/events/4/"><code>LAB_001</code>
+<div><h2>Attendee<br>Intelligence</h2><div class="status"><i></i>Live / Gated</div></div>
+<div><p>Every Deploy event gets its own private portal. Who is in the room, what they are building, who you should find, and why — assembled from what people tell us when they register, then encrypted so only the people in that room can read it.</p>
+<div class="lab-meta"><span>Events shipped <b>#1 &rarr; #4</b></span><span>Access <b>Attendees only</b></span><span>Data <b>Encrypted at rest</b></span></div></div>
+<div class="go">&rarr;</div></a>
+
+<a class="lab" href="/tzippy/"><code>LAB_002</code>
+<div><h2>Tzippy</h2><div class="status"><i></i>Live / Open</div></div>
+<div><p>Point it at a WhatsApp group export and it hands you back the community: who actually talks to whom, what the group keeps returning to, who has gone quiet, and what you missed while you weren't reading. Built for our own group chat, then opened up.</p>
+<div class="lab-meta"><span>Input <b>WhatsApp export</b></span><span>Access <b>Open</b></span><span>Runs <b>In your browser</b></span></div></div>
+<div class="go">&rarr;</div></a>
+
+<div class="lab"><code>LAB_003</code>
+<div><h2>Deploy HQ</h2><div class="status build"><i></i>In build / TestFlight</div></div>
+<div><p>The members' intelligence system, as a native app. Dossiers on everyone in the community, event reports, a weekly pulse of what the room is working on, and a way to ask for an introduction to anyone in it. Currently in TestFlight, not yet open.</p>
+<div class="lab-meta"><span>Platform <b>iOS / Android</b></span><span>Status <b>Private beta</b></span><span>Access <b>Members, soon</b></span></div></div>
+<div class="go"></div></div>
+
+</div></section>
+
+<section class="cta"><div class="kicker">DEPLOY / JOIN</div><h2>BUILT FOR THE<br>ROOM FIRST<span class="cursor"></span></h2><p>All of it started as something we needed ourselves. The easiest way to end up in the tools is to end up in the room.</p><a class="btn" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank" rel="noopener">Join the community &rarr;</a></section>
+
+<footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div class="footer-social"><a href="/">Home</a><a href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/deploytlv" target="_blank" rel="noopener">LinkedIn</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">WhatsApp</a></div><div>TEL AVIV / 2026</div></footer>
+</div>
+<script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
+</body></html>
