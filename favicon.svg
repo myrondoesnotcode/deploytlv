@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#F5D400"/>
-  <!-- Condensed "D" drawn as paths so it renders identically without a webfont -->
-  <path d="M6 6 h8.2 c5.4 0 8.8 3.9 8.8 10 s-3.4 10 -8.8 10 H6 Z M11.2 10.4 v11.2 h2.6 c2.8 0 4.4 -2.1 4.4 -5.6 s-1.6 -5.6 -4.4 -5.6 Z" fill="#0A0A0A"/>
-  <!-- the underscore cursor from the DEPLOY TLV_ wordmark -->
-  <rect x="24" y="21.6" width="4" height="4.4" fill="#0A0A0A"/>
+  <rect width="32" height="32" fill="#ff5a18"/>
+  <g fill="#11100d" transform="translate(1.1 0)">
+    <!-- Condensed "D", drawn as paths so it renders without a webfont. Squashed to leave room for the rule. -->
+    <g transform="scale(1 0.8) translate(0 0.6)">
+      <path d="M6 6 h8.2 c5.4 0 8.8 3.9 8.8 10 s-3.4 10 -8.8 10 H6 Z M11.2 10.4 v11.2 h2.6 c2.8 0 4.4 -2.1 4.4 -5.6 s-1.6 -5.6 -4.4 -5.6 Z"/>
+    </g>
+    <!-- the underscore from the DEPLOY_TLV wordmark -->
+    <rect x="6" y="23.6" width="17.8" height="3.4"/>
+  </g>
 </svg>
