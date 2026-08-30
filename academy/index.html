@@ -1,506 +1,291 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI Workshop in Tel Aviv — Deploy Academy 001</title>
-<meta name="description" content="Tuesday 8 September, Tel Aviv. A two-hour hands-on workshop: build a real website or tool with AI, publish it, and leave with a live link. No coding experience or idea required.">
-<link rel="canonical" href="https://deploytlv.com/academy/">
+<meta name="description" content="Tuesday 8 September, Tel Aviv. Two hours, ten seats. Build something real with AI and leave with it live on the internet.">
 
+<link rel="canonical" href="https://deploytlv.com/academy/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://deploytlv.com/academy/">
 <meta property="og:site_name" content="Deploy TLV">
 <meta property="og:title" content="AI Workshop in Tel Aviv — Deploy Academy 001">
-<meta property="og:description" content="Tue 8 September, 18:00. Two hours, ten seats. Walk in with an idea, walk out with it live on the internet.">
+<meta property="og:description" content="Tue 8 September, 18:00. Two hours, ten seats. Walk in with an idea, walk out with it live.">
 <meta property="og:image" content="https://deploytlv.com/og.png">
-<meta property="og:image:alt" content="Deploy TLV — the room where TLV builds">
-<meta property="og:image:width" content="2400">
-<meta property="og:image:height" content="1260">
-<meta property="og:image:type" content="image/png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Workshop in Tel Aviv — Deploy Academy 001">
-<meta name="twitter:description" content="Tue 8 September, 18:00. Two hours, ten seats. Walk in with an idea, walk out with it live on the internet.">
-<meta name="twitter:image" content="https://deploytlv.com/og.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ff5a18">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Deploy Academy 001 — Build Something Real With AI","description":"A two-hour hands-on workshop in Tel Aviv. Build a real website or interactive tool with AI, publish it to a live URL, and leave knowing how to do it again. No coding experience and no idea required.","url":"https://deploytlv.com/academy/","inLanguage":"en","teaches":["Building a website with AI","Publishing to GitHub Pages","Turning an idea into a live URL"],"coursePrerequisites":"None. No coding experience required.","isAccessibleForFree":false,"provider":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"offers":{"@type":"Offer","price":"150","priceCurrency":"ILS","category":"Workshop seat","availability":"https://schema.org/LimitedAvailability","url":"https://deploytlv.com/academy/","validThrough":"2026-09-08T18:00+03:00"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"onsite","courseWorkload":"PT2H","name":"Deploy Academy 001","startDate":"2026-09-08T18:00+03:00","endDate":"2026-09-08T20:00+03:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","maximumAttendeeCapacity":10,"instructor":{"@type":"Person","name":"Myron Shneider","jobTitle":"Founder, Deploy TLV","url":"https://github.com/myrondoesnotcode","image":"https://deploytlv.com/assets/people/Myron_Shneider.jpg","sameAs":["https://github.com/myrondoesnotcode","https://www.linkedin.com/in/mshneider"]},"organizer":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"location":{"@type":"Place","name":"Tel Aviv","address":{"@type":"PostalAddress","addressLocality":"Tel Aviv","addressCountry":"IL"}}}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"I’ve never written a line of code. Is this for me?","acceptedAnswer":{"@type":"Answer","text":"That’s exactly who it’s for. The AI writes the code. What you learn is how to direct it and get the result online."}},{"@type":"Question","name":"I don’t have an idea. Should I wait for the next one?","acceptedAnswer":{"@type":"Answer","text":"No. Three starting points are ready on the day, and the first twenty minutes turn whichever you pick into something buildable."}},{"@type":"Question","name":"I’ve barely used AI tools. Is that a problem?","acceptedAnswer":{"@type":"Answer","text":"No. We start from the beginning, and ten people means someone can look at your screen the moment you’re stuck."}},{"@type":"Question","name":"What do I need to bring?","acceptedAnswer":{"@type":"Answer","text":"A laptop and its charger, Mac or Windows, set up using the steps we send beforehand."}},{"@type":"Question","name":"Do I need to set anything up in advance?","acceptedAnswer":{"@type":"Answer","text":"Two things: a free GitHub account, which is what your project publishes from, and a Claude Pro subscription. We’ll send the full setup steps a few days before, so nobody spends the workshop installing things."}},{"@type":"Question","name":"Is the ₪150 the only cost?","acceptedAnswer":{"@type":"Answer","text":"Almost. You’ll also need a Claude Pro subscription, which is $20 a month paid directly to Anthropic. It’s billed monthly, so you can cancel the day after the workshop if you don’t want to keep it. We say this up front rather than surprising you in the room."}},{"@type":"Question","name":"What language is it run in?","acceptedAnswer":{"@type":"Answer","text":"English."}},{"@type":"Question","name":"How does paying work?","acceptedAnswer":{"@type":"Answer","text":"Applying is free. Once your spot is confirmed we’ll reach out with the venue and payment details. The seat is locked when payment lands."}},{"@type":"Question","name":"What if I don’t finish in two hours?","acceptedAnswer":{"@type":"Answer","text":"You publish at the ninety-minute mark, not at the end, so there’s room to fix things. Whatever state it’s in, it goes live."}},{"@type":"Question","name":"What happens to my project afterwards?","acceptedAnswer":{"@type":"Answer","text":"It lives on GitHub Pages under your own account, on a URL that’s yours. Nothing is locked to us."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"I’ve never written a line of code. Is this for me?","acceptedAnswer":{"@type":"Answer","text":"That’s exactly who it’s for. The AI writes the code. What you learn is how to direct it and get the result online."}},{"@type":"Question","name":"I don’t have an idea. Should I wait for the next one?","acceptedAnswer":{"@type":"Answer","text":"No. Three starting points are ready on the day, and the first twenty minutes turn whichever you pick into something buildable."}},{"@type":"Question","name":"What if I can’t make it?","acceptedAnswer":{"@type":"Answer","text":"Tell us at least 48 hours before and we’ll refund the ₪150 in full, or roll it to the next Academy. Inside 48 hours we can’t refill a seat that small, so it stays booked."}},{"@type":"Question","name":"What if I don’t finish in two hours?","acceptedAnswer":{"@type":"Answer","text":"You publish at the ninety-minute mark, not at the end, so there’s room to fix things. Whatever state it’s in, it goes live."}},{"@type":"Question","name":"What happens to my project afterwards?","acceptedAnswer":{"@type":"Answer","text":"It lives on GitHub Pages under your own account, on a URL that’s yours. Nothing is locked to us."}},{"@type":"Question","name":"Is the ₪150 the only cost?","acceptedAnswer":{"@type":"Answer","text":"Almost. You’ll also need a Claude Pro subscription, which is $20 a month directly from Anthropic. It’s billed monthly, so you can cancel the day after the workshop if you don’t want to keep it. We’ll send you the setup steps before the day so nobody spends the two hours installing things."}},{"@type":"Question","name":"How does paying work?","acceptedAnswer":{"@type":"Answer","text":"Applying is free. Once your spot is confirmed we’ll reach out with the venue and payment details. The seat is locked when payment lands."}},{"@type":"Question","name":"What language is it run in?","acceptedAnswer":{"@type":"Answer","text":"English."}}]}</script>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-black-400.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/silkscreen-700.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/ibm-plex-mono-400.woff2">
 <style>
-/* Self-hosted fonts: same origin, preloaded, so glyphs are ready at first paint.
-   Metric-matched fallbacks mean a swap (if it happens at all) shifts no layout. */
 @font-face{font-family:'Archivo Black';src:url('/assets/fonts/archivo-black-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-500.woff2')format('woff2');font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-600.woff2')format('woff2');font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:'Silkscreen';src:url('/assets/fonts/silkscreen-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Silkscreen';src:url('/assets/fonts/silkscreen-700.woff2')format('woff2');font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'Archivo Fallback';src:local('Arial'),local('Helvetica');size-adjust:115.35%;ascent-override:76.12%;descent-override:18.21%;line-gap-override:0%}
-@font-face{font-family:'Plex Fallback';src:local('Menlo-Regular'),local('Menlo Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:99.66%;ascent-override:102.85%;descent-override:27.59%;line-gap-override:0%}
-@font-face{font-family:'Silkscreen Fallback';src:local('Menlo-Regular'),local('Menlo Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:145.34%;ascent-override:70.87%;descent-override:17.2%;line-gap-override:0%}
+@font-face{font-family:'Plex Fallback';src:local('Menlo-Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:99.66%;ascent-override:102.85%;descent-override:27.59%;line-gap-override:0%}
+@font-face{font-family:'Silkscreen Fallback';src:local('Menlo-Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:145.34%;ascent-override:70.87%;descent-override:17.2%;line-gap-override:0%}
 
-:root{--paper:#f3eedf;--paper2:#e9e1ce;--ink:#11100d;--orange:#ff5a18;--muted:#5c554a;--orange-deep:#ad3600;--line:rgba(17,16,13,.24);--max:1440px}
+:root{--paper:#f3eedf;--paper2:#e9e1ce;--ink:#11100d;--orange:#ff5a18;--orange-deep:#ad3600;--muted:#5c554a;--line:rgba(17,16,13,.24);--max:1440px}
 *{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}
 body{margin:0;overflow-x:clip;background:#d8d0c1;color:var(--ink);font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace}
-a{color:inherit;text-decoration:none}img,video{display:block;width:100%}
+a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .site{max-width:var(--max);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 70px rgba(0,0,0,.13)}
-
-/* --- shared chrome (identical to /, /labs) --- */
-.nav{height:72px;padding:0 34px;display:flex;align-items:center;border-bottom:1px solid var(--ink);position:sticky;top:0;background:rgba(243,238,223,.94);backdrop-filter:blur(12px);z-index:50}
+.nav{height:72px;padding:0 46px;display:flex;align-items:center;border-bottom:1px solid var(--ink)}
 .logo{font:700 20px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:-.06em}.logo b{color:var(--orange)}
-.links{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:10px;text-transform:uppercase}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border:1.5px solid var(--ink);font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:.05em;background:transparent;box-shadow:3px 3px 0 var(--ink);transition:.12s;text-align:center}
-.btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:var(--orange)}
-.btn.orange{background:var(--orange)}.btn.paper{background:var(--paper)}
-.btn.ghost{border-color:var(--line);box-shadow:none}.btn.ghost:hover{transform:none;box-shadow:none;background:transparent;color:var(--orange)}
-.section{padding:78px 46px;border-bottom:1px solid var(--ink)}
-.section-id,.kicker{font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);text-transform:uppercase}
-/* on ink the bright orange already clears 6:1 — restore it there */
-.ticket .kicker,.story .section-id,.community-copy .section-id,.out-card.dark .section-id{color:var(--orange)}
-.section-top{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;margin-bottom:38px}
-.section-top h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(40px,5.6vw,78px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase;margin:16px 0 0}
-.section-top p{font-size:13.5px;line-height:1.75;color:var(--muted);margin:8px 0 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid var(--ink);font:700 13px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:.06em;background:var(--orange);color:var(--ink);box-shadow:4px 4px 0 var(--ink);transition:.12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.nav .btn{margin-left:auto;min-height:42px;padding:0 16px;font-size:10px;box-shadow:3px 3px 0 var(--ink)}
 .nis{font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;font-style:normal}
-.cursor{display:inline-block;width:.55em;height:.11em;background:var(--orange);vertical-align:.08em;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.kicker{font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);text-transform:uppercase}
 
-/* --- hero --- */
-.hero{display:grid;grid-template-columns:1.26fr .74fr;border-bottom:1px solid var(--ink)}
-.hero-copy{padding:74px 46px 48px;display:flex;flex-direction:column;justify-content:center}
-.hero h1{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(52px,7vw,104px);line-height:.85;letter-spacing:-.055em;text-transform:uppercase;margin:18px 0 0}
+/* one screen, one job */
+.hero{padding:66px 46px 74px;border-bottom:1px solid var(--ink)}
+.hero h1{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(58px,9vw,132px);line-height:.83;letter-spacing:-.055em;text-transform:uppercase;margin:18px 0 0;max-width:15ch}
 .hero h1 em{font-style:normal;color:var(--orange)}
-.promise{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(19px,2.1vw,29px);line-height:1.1;letter-spacing:-.035em;text-transform:uppercase;margin:26px 0 0;max-width:640px}
-.promise u{text-decoration:none;box-shadow:inset 0 -.28em 0 rgba(255,90,24,.32)}
-.hero-copy>p{font-size:15px;line-height:1.8;max-width:520px;margin:20px 0 0;color:#433e37}
-.by-line{margin-top:22px;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase;line-height:1.9}
-.by-line b{color:var(--orange-deep)}
-.meta-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:24px 0 0}
-.meta-strip span{padding:14px 14px;margin:0;border-right:1px solid var(--line);font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
-.meta-strip span:first-child{padding-left:0}
-.meta-strip span:last-child{border-right:0;color:var(--orange-deep)}
-.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
-.hero-note{margin-top:18px;font-size:10.5px;color:var(--muted);text-transform:uppercase;line-height:1.8}
+.hero p{font-size:clamp(16px,1.7vw,22px);line-height:1.5;max-width:34ch;margin:24px 0 0}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0 0}
+.facts span{padding:16px 18px;margin:0;border-right:1px solid var(--line);font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
+.facts span:first-child{padding-left:0}
+.facts span:last-child{border-right:0;color:var(--orange-deep)}
+.hero .btn{margin-top:30px}
+.micro{margin-top:16px;font-size:12px;color:var(--muted)}
 
-/* --- ticket panel --- */
-.ticket{background:var(--ink);color:var(--paper);padding:44px 40px;display:flex;flex-direction:column}
-.ticket .kicker{color:var(--orange)}
-.ticket h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,3.4vw,46px);line-height:.9;letter-spacing:-.04em;text-transform:uppercase;margin:16px 0 18px}
-.ticket h2 em{font-style:normal;color:var(--orange)}
-.ticket>p{font-size:13px;line-height:1.8;color:#b9b1a3;margin:0;max-width:360px}
-.ticket-lines{border-top:1px solid #49443d;margin-top:28px}
-.ticket-lines span{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #3d3931;font-size:10px;color:#c4bcae;text-transform:uppercase}
-.ticket-lines span b{font:600 9.5px 'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;color:var(--paper);text-align:right;text-transform:none}
-.ticket-who{margin-top:auto;padding-top:26px;display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
-.ticket-who img{width:56px;height:56px;object-fit:cover;object-position:center top;border:1px solid rgba(243,238,223,.28)}
-.ticket-who b{display:block;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-transform:uppercase;margin-bottom:6px}
-.ticket-who strong{display:block;font-size:13px;color:var(--paper)}
-.ticket-who span{display:block;font-size:10.5px;color:#c4bcae;margin-top:3px;line-height:1.5}
-.ticket-price{padding-top:22px;display:flex;align-items:baseline;gap:12px}
-.ticket-price b{font:700 46px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
-.ticket-price span{font-size:8px;color:#9d968a;text-transform:uppercase}
-.ticket .btn{margin-top:20px;width:100%;background:var(--orange);color:var(--ink);border-color:var(--paper);box-shadow:3px 3px 0 var(--paper)}
-.ticket .btn:hover{box-shadow:1px 1px 0 var(--paper);background:var(--paper)}
+/* proof: pictures, not paragraphs */
+.proof{padding:86px 46px;border-bottom:1px solid var(--ink)}
+.proof h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,4.4vw,62px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 40px}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.shots a{border:1px solid var(--ink);overflow:hidden;background:var(--ink);transition:.15s}
+.shots a:hover{transform:translateY(-3px)}
+.shots img{aspect-ratio:16/10;height:100%;object-fit:cover}
 
+/* three beats */
+.beats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}
+.beat{padding:60px 46px}
+.beat:not(:last-child){border-right:1px solid var(--line)}
+.beat b{display:block;font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep)}
+.beat strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,3.6vw,52px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase;margin:16px 0 10px}
+.beat span{font-size:14px;line-height:1.6;color:var(--muted)}
 
-/* --- proof --- */
-.proof-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:start}
-.projects{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.project{border:1px solid var(--ink);background:var(--paper2);transition:.15s;display:block}
-.project:hover{background:var(--orange)}
-.chrome{height:30px;border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 11px;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
-.chrome i{color:var(--orange);font-style:normal;letter-spacing:2px}
-.shot{aspect-ratio:16/10;overflow:hidden;background:var(--ink);border-bottom:1px solid var(--ink);position:relative}
-.shot img{height:100%;object-fit:cover;object-position:center;transition:.25s}
-.project:hover .shot img{transform:scale(1.03)}
-.project-copy{padding:18px}
-.project-copy h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:.94;letter-spacing:-.04em;text-transform:uppercase;margin:0 0 9px}
-.project-copy p{font-size:12px;line-height:1.7;color:#433e37;margin:0}
-.project-foot{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-top:14px;padding-top:11px;border-top:1px solid var(--line);font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
-.project-foot em{font-style:normal;color:var(--orange-deep)}
-.project:hover .project-foot em{color:var(--ink)}
-.story{background:var(--ink);color:var(--paper);padding:34px 32px;display:flex;flex-direction:column;height:100%}
-.story .quote{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(28px,3.2vw,44px);line-height:.9;letter-spacing:-.045em;text-transform:uppercase;margin:14px 0 0}
-.story .quote em{font-style:normal;color:var(--orange)}
-.story p{font-size:13px;line-height:1.85;color:#b9b1a3;margin:22px 0 0;max-width:400px}
-.cred{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #49443d;margin-top:22px}
-.cred div{padding:16px 10px 0 0}
-.cred b{display:block;font:700 26px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
-.cred span{display:block;font-size:9px;color:#c4bcae;text-transform:uppercase;margin-top:7px}
-.cred-note{font-size:11px!important;color:#c4bcae!important;margin:14px 0 0!important}
-.story-portrait{flex:1 1 0;min-height:190px;height:0;aspect-ratio:auto;width:100%;object-fit:cover;object-position:center 42%;margin:22px 0 0;border:1px solid rgba(243,238,223,.22)}
-.story .pull{margin-top:24px;padding-top:22px;border-top:1px solid #49443d}
-.story .pull b{display:block;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);line-height:1.9;text-transform:uppercase}
-.story .who{margin-top:18px;padding-top:16px;border-top:1px solid #49443d}
-.story .who strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:20px;letter-spacing:-.03em;text-transform:uppercase}
-.story .who em{display:block;font-style:normal;font-size:11.5px;line-height:1.6;color:#b9b1a3;margin-top:8px}
-.story .who>span{display:block;font-size:11.5px;line-height:1.65;color:#c4bcae;margin-top:11px}
-.story .who a{display:block;margin-top:9px;font-size:10.5px;color:var(--orange);text-decoration:underline;text-underline-offset:3px}
+/* what you'll make — kills "I don't have an idea" in three lines */
+.make{padding:80px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
+.make h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(28px,4vw,54px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 36px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.opt{border:1px solid var(--ink);padding:26px;background:var(--paper)}
+.opt b{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
+.opt span{display:block;font-size:13px;line-height:1.6;color:var(--muted);margin-top:11px}
 
-/* --- band cta --- */
-.band{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;background:var(--orange);border:1px solid var(--ink);padding:26px 30px;margin-top:20px}
-.band strong{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(20px,2.6vw,32px);line-height:.94;letter-spacing:-.04em;text-transform:uppercase;display:block}
-.band p{font-size:10px;line-height:1.7;margin:8px 0 0;max-width:520px}
-.band .btn{background:var(--paper);white-space:nowrap}
+/* the community behind it */
+.community{display:grid;grid-template-columns:.92fr 1.08fr;background:var(--ink);color:var(--paper);border-bottom:1px solid var(--ink)}
+.community-copy{padding:58px 46px;display:flex;flex-direction:column;justify-content:center}
+.community-copy .kicker{color:var(--orange)}
+.community-copy h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,4.2vw,58px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 16px}
+.community-copy p{font-size:14px;line-height:1.7;color:#c4bcae;margin:0;max-width:44ch}
+.cstats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #3d3931;margin-top:28px}
+.cstats div{padding:20px 10px 0 0}
+.cstats b{display:block;font:700 24px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
+.cstats span{display:block;font-size:9px;text-transform:uppercase;color:#c4bcae;margin-top:8px;line-height:1.5}
+.community-copy a{display:inline-block;margin-top:26px;font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-decoration:underline;text-underline-offset:4px;text-transform:uppercase}
+.community-media{position:relative;background:#000;min-height:430px;overflow:hidden}
+.community-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.community-media .tag{position:absolute;left:16px;bottom:16px;z-index:2;background:var(--orange);color:var(--ink);padding:9px 11px;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
 
-/* --- community --- */
-.community{display:grid;grid-template-columns:.92fr 1.08fr;border:1px solid var(--ink)}
-.community-copy{background:var(--ink);color:var(--paper);padding:38px 34px;display:flex;flex-direction:column}
-.community-copy h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(32px,4vw,56px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 18px}
-.community-copy p{font-size:13px;line-height:1.85;color:#b9b1a3;margin:0;max-width:400px}
-.community-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #49443d;margin-top:auto;padding-top:0}
-.community-stats div{padding:22px 10px 0 0}
-.community-stats b{display:block;font:700 20px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
-.community-stats span{font-size:9px;color:#9d968a;text-transform:uppercase;display:block;margin-top:8px;line-height:1.6}
-.community-copy .btn{margin-top:26px;align-self:flex-start;border-color:var(--paper);color:var(--paper);box-shadow:3px 3px 0 var(--paper)}
-.community-copy .btn:hover{box-shadow:1px 1px 0 var(--paper);background:var(--orange);color:var(--ink);border-color:var(--ink)}
-.community-media{position:relative;background:var(--ink);overflow:hidden;min-height:420px}
-.community-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-.community-media .tag{position:absolute;left:16px;bottom:16px;z-index:2;background:var(--orange);padding:9px 11px;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
+/* answers for the people who want them; collapsed, so they cost nothing
+   to everyone who doesn't */
+.qa{padding:76px 46px;border-bottom:1px solid var(--ink)}
+.qa h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(28px,4vw,54px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 30px}
+.qa-list{border-top:1px solid var(--ink);max-width:900px}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{display:flex;justify-content:space-between;gap:24px;align-items:baseline;padding:20px 0;cursor:pointer;list-style:none;font-size:15px;line-height:1.55;transition:.12s}
+.qa summary::-webkit-details-marker{display:none}.qa summary::marker{content:''}
+.qa summary:hover,.qa details[open] summary{color:var(--orange-deep)}
+.qa summary i{font:700 14px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;font-style:normal;color:var(--orange-deep);flex:none}
+.qa details[open] summary i{transform:rotate(45deg);display:inline-block}
+.qa p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 22px;max-width:70ch}
 
-/* --- choose --- */
-.choose{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
-.choice{padding:32px 26px 34px;border-bottom:1px solid var(--ink);transition:.15s}
-.choice:not(:last-child){border-right:1px solid var(--line)}
-.choice:hover{background:var(--paper2)}
-.choice code{font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep)}
-.choice h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(24px,2.8vw,36px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase;margin:16px 0 11px}
-.choice p{font-size:12px;line-height:1.75;color:#433e37;margin:0}
+/* the three anxieties, answered without a FAQ */
+.reassure{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}
+.reassure div{padding:36px 46px}
+.reassure div:not(:last-child){border-right:1px solid #3d3931}
+.reassure b{display:block;font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-transform:uppercase;margin-bottom:10px}
+.reassure span{font-size:14px;line-height:1.6;color:#e2dbcd}
 
-/* --- timeline --- */
-.flow{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.step{padding:26px 20px 30px}
-.step:not(:last-child){border-right:1px solid var(--line)}
-.step code{font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep)}
-.step h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(19px,2vw,26px);line-height:.94;letter-spacing:-.04em;text-transform:uppercase;margin:14px 0 9px}
-.step p{font-size:11.5px;line-height:1.7;color:#433e37;margin:0}
+/* who */
+.who{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center;padding:64px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
+.who img{aspect-ratio:1/1;object-fit:cover;border:1px solid var(--ink)}
+.who strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(24px,2.6vw,38px);letter-spacing:-.04em;text-transform:uppercase}
+.who p{font-size:15px;line-height:1.65;margin:12px 0 0;max-width:44ch}
+.built{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:22px;max-width:460px}
+.built div{padding:16px 12px 0 0}
+.built b{display:block;font:700 24px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);letter-spacing:-.04em}
+.built span{display:block;font-size:9px;text-transform:uppercase;color:var(--muted);margin-top:7px}
 
-/* --- outcome --- */
-.out-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink)}
-.out-card{padding:36px 32px}
-.out-card:first-child{border-right:1px solid var(--ink)}
-.out-card h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(26px,3vw,40px);line-height:.9;letter-spacing:-.045em;text-transform:uppercase;margin:14px 0 22px}
-.out-card h3 em{font-style:normal;color:var(--orange)}
-.checks{border-top:1px solid var(--line)}
-.checks span{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.6}
-.checks span b{color:var(--orange-deep)}
-.out-card.dark{background:var(--ink);color:var(--paper)}
-.out-card.dark p{font-size:13px;line-height:1.85;color:#b9b1a3;margin:0 0 18px;max-width:400px}
-.out-card.dark .ten{font:700 44px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em;margin:22px 0}
-
-/* --- faq --- */
-.faq{border-top:1px solid var(--ink)}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{display:flex;justify-content:space-between;gap:24px;align-items:baseline;padding:20px 0;cursor:pointer;list-style:none;font-size:14px;line-height:1.6;transition:.12s}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::marker{content:''}
-.faq summary:hover{color:var(--orange-deep)}
-.faq summary b{font-weight:500}
-.faq summary i{font:700 13px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;font-style:normal;color:var(--orange-deep);flex:none}
-.faq details[open] summary{color:var(--orange-deep)}
-.faq details[open] summary i{transform:rotate(45deg);display:inline-block}
-.faq p{font-size:13px;line-height:1.9;color:#433e37;margin:0 0 22px;max-width:660px;padding-right:36px}
-.faq p a{text-decoration:underline;text-underline-offset:3px}
-.faq p a:hover{color:var(--orange-deep)}
-
-/* --- booking steps (inside the orange cta) --- */
-.reassure{max-width:540px;margin:20px auto 0;font-size:12px;line-height:1.75;color:rgba(17,16,13,.84)}
-.hero-note b{color:var(--ink);font-weight:500}
-.book{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:820px;margin:36px auto 0;border-top:1px solid rgba(17,16,13,.32);text-align:left}
-.book div{padding:20px 20px 0 0}
-.book div+div{padding-left:22px;border-left:1px solid rgba(17,16,13,.32)}
-.book b{display:block;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase;margin-bottom:9px}
-.book span{display:block;font-size:12px;line-height:1.7;color:rgba(17,16,13,.78)}
-
-/* --- final cta --- */
-.cta{padding:100px 46px;text-align:center;background:var(--orange)}
-.cta .kicker{color:var(--ink)}
-.cta h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(42px,6.5vw,86px);line-height:.86;letter-spacing:-.055em;text-transform:uppercase;margin:16px auto 22px;max-width:900px}
-.cta>p{max-width:520px;margin:0 auto 28px;font-size:12px;line-height:1.7}
-.cta .cta-meta{max-width:560px;margin:26px auto 0;font-size:9px;color:rgba(17,16,13,.7);text-transform:uppercase;line-height:1.9}
-footer{padding:28px 34px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:9px;text-transform:uppercase}
-.footer-social{display:flex;gap:18px;flex-wrap:wrap}.footer-social a:hover{color:var(--orange)}
-
-/* --- sticky mobile action --- */
-.sticky-pay{display:none}
+/* close */
+.close{padding:120px 46px;text-align:center;background:var(--orange)}
+.close h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(46px,8vw,110px);line-height:.85;letter-spacing:-.055em;text-transform:uppercase;margin:0 0 26px}
+.close .btn{background:var(--paper)}
+.close p{font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase;margin:26px 0 0}
+footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:9px;text-transform:uppercase}
+.sticky{display:none}
 
 @media(max-width:900px){
- .links a:not(.btn){display:none}
- .section{padding:62px 24px}
- .section-top{grid-template-columns:1fr;gap:20px}
- .hero{grid-template-columns:1fr}
- .hero-copy{padding:56px 24px 40px}
- .ticket{padding:36px 24px}
- .proof-grid,.community,.out-grid{grid-template-columns:1fr}
- .community-media{min-height:300px;border-top:1px solid var(--ink)}
- .out-card:first-child{border-right:0;border-bottom:1px solid var(--ink)}
- .choose{grid-template-columns:1fr}
- .choice:not(:last-child){border-right:0}
- .flow{grid-template-columns:1fr 1fr}
- .reassure{font-size:11.5px;max-width:460px}
- .book{grid-template-columns:1fr;max-width:460px}
- .book div+div{padding-left:0;border-left:0;border-top:1px solid rgba(17,16,13,.32)}
- .step{border-bottom:1px solid var(--line)}
- .step:nth-child(2n){border-right:0}
- .cta{padding:78px 24px}
+ .nav{padding:0 24px}.hero{padding:70px 24px 62px}.proof,.beat,.who,.close{padding-left:24px;padding-right:24px}
+ .shots{grid-template-columns:1fr 1fr}
+ .qa{padding:54px 24px}
+ .community{grid-template-columns:1fr}.community-copy{padding:44px 24px}.community-media{min-height:260px}
+ .make{padding:52px 24px}.opts{grid-template-columns:1fr}
+ .reassure{grid-template-columns:1fr}
+ .reassure div{padding:26px 24px}
+ .reassure div:not(:last-child){border-right:0;border-bottom:1px solid #3d3931}
+ .beats{grid-template-columns:1fr}
+ .beat{padding:34px 24px;border-right:0!important;border-bottom:1px solid var(--line)}
+ .who{grid-template-columns:1fr;gap:22px;padding:48px 24px}.who img{max-width:190px}
+ .close{padding:86px 24px}footer{padding:22px 24px}
 }
 @media(max-width:560px){
- body{padding-bottom:74px}
- .nav{height:58px;padding:0 14px}.logo{font-size:16px}
- .links .btn{min-height:34px;padding:0 10px;font-size:8px;box-shadow:2px 2px 0 var(--ink)}
- .section{padding:50px 18px}
- .hero-copy{padding:40px 18px 32px}
- .hero h1{font-size:clamp(40px,13vw,58px)}
- .promise{font-size:18px}
- .hero-copy>p{font-size:14px}
- .meta-strip{display:grid;grid-template-columns:1fr 1fr}
- .meta-strip span{padding:14px 12px;margin:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10.5px;letter-spacing:.04em}
- .meta-strip span:first-child{padding-left:12px}
- .meta-strip span:nth-child(2n){border-right:0}
- .meta-strip span:nth-child(n+3){border-bottom:0}
- .hero-actions{display:block}
- .hero-actions .btn{width:100%;font-size:12.5px;min-height:54px}
- .sticky-pay .btn{font-size:12.5px;min-height:52px}
- .hero-actions .btn+.btn{margin-top:10px}
- .ticket{padding:30px 18px}
- .section-top h2{font-size:38px}
- /* proof becomes a swipeable rail rather than a wall of cards */
- .projects{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;scroll-padding-left:18px;margin:0 -18px;padding:0 18px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
- .projects::-webkit-scrollbar{display:none}
- .project{flex:0 0 78vw;scroll-snap-align:start}
- .story{margin-top:16px;padding:26px 20px}
- .story-portrait{flex:none;min-height:0;height:auto;aspect-ratio:1/1;object-position:center center;margin-top:20px}
- .band{display:block;padding:20px}
- .band .btn{width:100%;margin-top:16px}
- .community-copy{padding:26px 20px}
- .community-media{min-height:230px}
- .choice{padding:24px 20px 26px}
- .flow{grid-template-columns:1fr}
- .step{border-right:0!important;padding:20px 18px 22px}
- .out-card{padding:26px 20px}
- .cta{padding:64px 18px}
- .faq summary{font-size:13px;padding:17px 0;gap:14px}
- .faq p{font-size:12px;padding-right:0;margin-bottom:18px}
- footer{padding:22px 18px}
- .sticky-pay{display:block;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);padding:10px 14px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--ink)}
- .sticky-pay .btn{width:100%;background:var(--orange);color:var(--ink);border-color:var(--paper);box-shadow:none}
+ body{padding-bottom:78px}
+ .nav{height:58px;padding:0 16px}.logo{font-size:16px}.nav .btn{min-height:34px;padding:0 10px;font-size:9px}
+ .hero{padding:46px 18px 44px}.hero h1{font-size:clamp(46px,15vw,68px)}.hero p{font-size:16px;margin-top:22px}
+ .facts{display:grid;grid-template-columns:1fr 1fr;margin-top:30px}
+ .facts span{padding:15px 12px;margin:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.04em}
+ .facts span:first-child{padding-left:12px}
+ .facts span:nth-child(2n){border-right:0}
+ .facts span:nth-child(n+3){border-bottom:0}
+ .facts span:last-child{padding-left:12px}
+ .hero .btn{width:100%;margin-top:30px;font-size:14px;min-height:56px}
+ .sticky .btn{font-size:14px;min-height:54px}
+ .qa{padding:46px 18px}.qa summary{font-size:14px;padding:17px 0;gap:14px}.qa p{font-size:13px}
+ .community-copy{padding:38px 18px}.community-media{min-height:210px}
+ .make{padding:44px 18px}.reassure div{padding:22px 18px}
+ .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
+ .beat{padding:28px 18px}.who{padding:40px 18px}.close{padding:64px 18px}
+ .close .btn{width:100%}
+ footer{padding:20px 18px}
+ .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+ .sticky .btn{width:100%;box-shadow:none;border-color:var(--paper)}
 }
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.cursor{animation:none}.project:hover .shot img{transform:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.shots a:hover{transform:none}}
 </style></head><body><div class="site">
 
-<nav class="nav"><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div class="links"><a href="/#cowork">Coworking</a><a href="/#events">Events</a><a href="/#builds">Builds</a><a class="btn orange" href="#apply">Reserve my seat &rarr;</a></div></nav>
+<nav class="nav"><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><a class="btn" href="#go">Reserve my seat &rarr;</a></nav>
 
 <section class="hero">
- <div class="hero-copy">
-  <div class="kicker">AI BUILD WORKSHOP / TEL AVIV / PILOT 001</div>
-  <h1>BUILD<br>SOMETHING<br><em>REAL WITH AI</em></h1>
-  <p class="promise"><u>No coding experience required.</u> No idea required.</p>
-  <p>Pick a starting point, build it with AI, and put it online before you leave. Two hours in Tel Aviv, ten people, help whenever you&rsquo;re stuck.</p>
-  <div class="meta-strip"><span>Tue 8 Sep</span><span>18:00&ndash;20:00</span><span>10 Seats</span><span><i class="nis">&#8362;</i>150</span></div>
-  <div class="hero-actions"><a class="btn orange" href="#apply">Reserve my seat &rarr;</a><a class="btn ghost" href="#proof">See what&rsquo;s possible &darr;</a></div>
-  
- </div>
- <aside class="ticket">
-  <div class="kicker">10-PERSON HANDS-ON PILOT</div>
-  <h2>You walk out<br><em>with it live.</em></h2>
-  <p>Not a lecture. Not a panel. You build.</p>
-  <div class="ticket-lines">
-   <span>Date<b>Tue 8 September</b></span>
-   <span>Time<b>18:00 &ndash; 20:00</b></span>
-   <span>Format<b>Hands-on build</b></span>
-   <span>Room size<b>10 people</b></span>
-   <span>You leave with<b>A live URL</b></span>
-  </div>
-  <div class="ticket-who">
-   <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider, founder of Deploy TLV" width="400" height="400" decoding="async">
-   <div><b>Taught by</b><strong>Myron Shneider</strong><span>Founder of Deploy TLV<br>Previously Aleph VC</span></div>
-  </div>
-  <div class="ticket-price"><b><i class="nis">&#8362;</i>150</b><span>One pilot seat<br>Payment locks it</span></div>
-  <a class="btn" href="#apply">Reserve my seat &rarr;</a>
- </aside>
+ <div class="kicker">AI WORKSHOP / TEL AVIV</div>
+ <h1>Build something <em>real</em> with AI</h1>
+ <p>No coding experience. No idea needed. You leave with it live on the internet.</p>
+ <div class="facts"><span>Tue 8 Sep</span><span>18:00&ndash;20:00</span><span>10 seats</span><span><i class="nis">&#8362;</i>150</span></div>
+ <a class="btn" href="#go">Reserve my seat &rarr;</a>
 </section>
 
-
-<section class="section" id="proof">
- <div class="section-top">
-  <div><div class="section-id">THE PROOF IS ALREADY ONLINE</div><h2>I DON&rsquo;T KNOW<br>HOW TO CODE.<br>I BUILT THESE<br>ANYWAY.</h2></div>
-  <p>No development background. An idea, AI, and a way to get it live. That last part is what nobody teaches &mdash; and it&rsquo;s the whole workshop.</p>
+<section class="proof">
+ <div class="kicker">Made by someone who doesn&rsquo;t code</div>
+ <h2>I don&rsquo;t code.<br>I built these anyway.</h2>
+ <div class="shots">
+  <a href="https://myrondoesnotcode.github.io/turboturf/" target="_blank" rel="noopener"><img src="shots/turboturf.jpg" alt="Turbo Turf Trimmer, a browser game" width="1000" height="625" loading="lazy" decoding="async"></a>
+  <a href="https://myrondoesnotcode.github.io/townbuilder/" target="_blank" rel="noopener"><img src="shots/townbuilder.jpg" alt="Village Builder, a hand-tracking game" width="1000" height="625" loading="lazy" decoding="async"></a>
+  <a href="https://myrondoesnotcode.github.io/unGPT/" target="_blank" rel="noopener"><img src="shots/unGPT.jpg" alt="unGPT, a text cleanup tool" width="1000" height="625" loading="lazy" decoding="async"></a>
+  <a href="https://myrondoesnotcode.github.io/timecalc/" target="_blank" rel="noopener"><img src="shots/timecalc.jpg" alt="World Time Bridge, a timezone tool" width="1000" height="625" loading="lazy" decoding="async"></a>
  </div>
- <div class="proof-grid">
-  <div class="projects">
-
-   <a class="project" href="https://myrondoesnotcode.github.io/turboturf/" target="_blank" rel="noopener">
-    <div class="chrome"><i aria-hidden="true">&#9679; &#9679; &#9679;</i></div>
-    <div class="shot"><img src="shots/turboturf.jpg" alt="Screenshot of Turbo Turf Trimmer, a retro browser game" width="1000" height="625" loading="lazy" decoding="async"></div>
-    <div class="project-copy"><h3>Turbo Turf<br>Trimmer</h3><p>A retro arcade game where you race the clock to mow a lawn.</p><div class="project-foot"><em>Open &rarr;</em></div></div>
-   </a>
-
-   <a class="project" href="https://myrondoesnotcode.github.io/townbuilder/" target="_blank" rel="noopener">
-    <div class="chrome"><i aria-hidden="true">&#9679; &#9679; &#9679;</i></div>
-    <div class="shot"><img src="shots/townbuilder.jpg" alt="Screenshot of Village Builder, a hand-tracking game for kids" width="1000" height="625" loading="lazy" decoding="async"></div>
-    <div class="project-copy"><h3>Village<br>Builder</h3><p>A kids&rsquo; game where hand movements control what gets built on screen. Just a browser tab.</p><div class="project-foot"><em>Open &rarr;</em></div></div>
-   </a>
-
-   <a class="project" href="https://myrondoesnotcode.github.io/unGPT/" target="_blank" rel="noopener">
-    <div class="chrome"><i aria-hidden="true">&#9679; &#9679; &#9679;</i></div>
-    <div class="shot"><img src="shots/unGPT.jpg" alt="Screenshot of unGPT, a text cleanup utility" width="1000" height="625" loading="lazy" decoding="async"></div>
-    <div class="project-copy"><h3>unGPT</h3><p>Strips the em dashes out of AI-written text. One annoying problem, one tiny tool.</p><div class="project-foot"><em>Open &rarr;</em></div></div>
-   </a>
-
-   <a class="project" href="https://myrondoesnotcode.github.io/timecalc/" target="_blank" rel="noopener">
-    <div class="chrome"><i aria-hidden="true">&#9679; &#9679; &#9679;</i></div>
-    <div class="shot"><img src="shots/timecalc.jpg" alt="Screenshot of World Time Bridge, a timezone comparison tool" width="1000" height="625" loading="lazy" decoding="async"></div>
-    <div class="project-copy"><h3>World Time<br>Bridge</h3><p>Works out what time it is for whoever you&rsquo;re calling.</p><div class="project-foot"><em>Open &rarr;</em></div></div>
-   </a>
-
-  </div>
-  <aside class="story">
-   <div class="section-id">WHY THIS EXISTS</div>
-   <p class="quote">&ldquo;I don&rsquo;t code.<br><em>I still build.</em>&rdquo;</p>
-   <p>AI removed the part that used to stop me. Once I understood how to get from an idea to files, to GitHub, to a live URL, I stopped waiting for somebody else to build things.</p>
-   <p>Academy is two hours of that workflow, by shipping something of your own.</p>
-   <!-- Figures from the GitHub API for myrondoesnotcode, checked 2026-08-30:
-        28 public repos, 25 with Pages enabled, account opened 2025-08-19.
-        Stated low rather than high so they stay true as the count grows. -->
-   <div class="cred">
-    <div><b>25</b><span>Live sites</span></div>
-    <div><b>28</b><span>Public repos</span></div>
-    <div><b>12</b><span>Months</span></div>
-   </div>
-   <p class="cred-note">All public, all built the same way yours will be.</p>
-   <img class="story-portrait" src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider, founder of Deploy TLV" width="400" height="400" loading="lazy" decoding="async">
-   <div class="pull"><b>The goal isn&rsquo;t to become<br>a developer. The goal<br>is to start building.</b>
-    <div class="who"><strong>Myron Shneider</strong>
-     <em>Founder of Deploy TLV &middot; previously AI Builder at Aleph VC</em>
-     <span>Runs the community this comes out of, and builds AI products daily. The workflow you&rsquo;ll learn is the one he actually uses.</span>
-     <a href="https://www.linkedin.com/in/mshneider" target="_blank" rel="noopener">linkedin.com/in/mshneider &rarr;</a>
-     <a href="https://github.com/myrondoesnotcode" target="_blank" rel="noopener">github.com/myrondoesnotcode &rarr;</a></div></div>
-  </aside>
- </div>
- <div class="band"><div><strong>Your first project can be next.</strong><p>Pick a starting point. Leave with a URL you can send to someone.</p></div><a class="btn" href="#apply">Reserve my seat &rarr;</a></div>
 </section>
 
-<section class="section">
- <div class="community">
-  <div class="community-copy">
-   <div class="section-id">BUILT BY THE COMMUNITY BEHIND DEPLOY</div>
-   <h2>THE ROOM<br>WHERE TLV<br>BUILDS.</h2>
-   <p>Academy comes out of Deploy TLV &mdash; one of Israel&rsquo;s largest English-speaking AI communities. Weekly coworking in Tel Aviv, live demos, and rooms built around making things.</p>
-   <div class="community-stats"><div><b>300+</b><span>Community members</span></div><div><b>WEEKLY</b><span>Coworking</span></div><div><b>04</b><span>Events run in TLV</span></div></div>
-   <a class="btn" href="/">See DeployTLV &rarr;</a>
-  </div>
-  <div class="community-media">
-   <video class="lazy-video" data-src="/assets/video/hero-web.mp4" poster="/deploy1-poster.jpg" muted loop playsinline preload="none" aria-label="A Deploy TLV event in Tel Aviv"></video>
-   <div class="tag">Deploy / Tel Aviv / IRL</div>
+<section class="make">
+ <div class="kicker">You build one of these &mdash; choose on the day</div>
+ <h2>Pick one thing<br>to build</h2>
+ <div class="opts">
+  <div class="opt"><b>Either &mdash; a personal site</b><span>A portfolio, homepage or profile that looks like you.</span></div>
+  <div class="opt"><b>Or &mdash; a startup page</b><span>An idea, turned into a real landing page.</span></div>
+  <div class="opt"><b>Or &mdash; an interactive tool</b><span>A calculator, quiz, generator or mini app.</span></div>
+ </div>
+</section>
+
+<div class="beats">
+ <div class="beat"><b>01</b><strong>Pick</strong><span>Choose a project, or take one of ours.</span></div>
+ <div class="beat"><b>02</b><strong>Build</strong><span>AI writes it. You steer.</span></div>
+ <div class="beat"><b>03</b><strong>Publish</strong><span>It goes live. You leave with the link.</span></div>
+</div>
+
+<section class="who">
+ <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
+ <div>
+  <strong>Myron Shneider</strong>
+  <p>Founder of Deploy TLV. Not a developer &mdash; everything below was built the same way yours will be. He&rsquo;ll be next to you the whole time.</p>
+  <div class="built">
+   <div><b>25</b><span>Live sites</span></div>
+   <div><b>28</b><span>Public repos</span></div>
+   <div><b>12</b><span>Months</span></div>
   </div>
  </div>
 </section>
 
-<section class="section" id="build">
- <div class="section-top">
-  <div><div class="section-id">NO IDEA YET? START HERE</div><h2>CHOOSE WHAT<br>YOU WANT<br>TO BUILD.</h2></div>
-  <p>No plan needed. Pick one on the day, or bring your own idea.</p>
- </div>
- <div class="choose">
-  <article class="choice"><code>01_</code><h3>Personal<br>Site</h3><p>A portfolio, homepage or profile &mdash; a place on the internet that looks like you.</p></article>
-  <article class="choice"><code>02_</code><h3>Startup<br>Page</h3><p>Turn an idea into a real landing page people can respond to.</p></article>
-  <article class="choice"><code>03_</code><h3>Interactive<br>Tool</h3><p>A calculator, quiz, generator or mini app people can actually use.</p></article>
- </div>
-</section>
-
-<section class="section">
- <div class="section-top">
-  <div><div class="section-id">HERE&rsquo;S WHAT ACTUALLY HAPPENS</div><h2>IDEA &rarr;<br>LIVE LINK.</h2></div>
-  <p>The clock below is the real running order.</p>
- </div>
- <div class="flow">
-  <div class="step"><code>00:00</code><h3>Pick</h3><p>Choose your project and get it to a buildable first version.</p></div>
-  <div class="step"><code>00:20</code><h3>Build</h3><p>Use AI to turn it into a working website or tool.</p></div>
-  <div class="step"><code>01:00</code><h3>Make it yours</h3><p>Change the copy, layout and visuals until it feels like yours.</p></div>
-  <div class="step"><code>01:30</code><h3>Ship</h3><p>Put it on GitHub Pages and get a public URL.</p></div>
-  <div class="step"><code>01:50</code><h3>Share</h3><p>Open it on your phone. Send it to somebody.</p></div>
- </div>
- <div class="band"><div><strong>Two hours from now, it can be live.</strong><p>Ten seats in the pilot. Payment locks yours.</p></div><a class="btn" href="#apply">Reserve my seat &rarr;</a></div>
-</section>
-
-<section class="section">
- <div class="out-grid">
-  <div class="out-card">
-   <div class="section-id">THE TAKEAWAY</div>
-   <h3>You leave<br>with</h3>
-   <div class="checks">
-    <span><b>&#10003;</b>A real project, live on the internet</span>
-    <span><b>&#10003;</b>A public link you can share</span>
-    <span><b>&#10003;</b>The AI + GitHub workflow that got it there</span>
-    <span><b>&#10003;</b>The ability to build the next one alone</span>
-   </div>
+<section class="community">
+ <div class="community-copy">
+  <div class="kicker">The community behind it</div>
+  <h2>The room where<br>TLV builds.</h2>
+  <p>Deploy TLV is one of Israel&rsquo;s largest English-speaking AI communities. Weekly coworking, live demos, and rooms built around making things.</p>
+  <div class="cstats">
+   <div><b>300+</b><span>Members</span></div>
+   <div><b>04</b><span>Events run</span></div>
+   <div><b>Weekly</b><span>Coworking</span></div>
   </div>
-  <div class="out-card dark">
-   <div class="section-id">ROOM SIZE</div>
-   <h3>Why only <em>10?</em></h3>
-   <p>Small on purpose, so nobody disappears into the back row and everyone gets their project over the line.</p>
-   <div class="ten">10 SEATS</div>
-  </div>
+  <a href="/">See Deploy TLV &rarr;</a>
+ </div>
+ <div class="community-media">
+  <video class="lazy-video" data-src="/assets/video/hero-web.mp4" poster="/deploy1-poster.jpg" muted loop playsinline preload="none" aria-label="A Deploy TLV event in Tel Aviv"></video>
+  <div class="tag">Deploy / Tel Aviv / IRL</div>
  </div>
 </section>
 
-<section class="section" id="faq">
- <div class="section-top">
-  <div><div class="section-id">BEFORE YOU BOOK</div><h2>THE THINGS<br>PEOPLE ASK.</h2></div>
-  <p>The questions that come up every time.</p>
- </div>
- <div class="faq">
+<section class="qa">
+ <div class="kicker">Before you book</div>
+ <h2>Questions</h2>
+ <div class="qa-list">
   <details><summary><b>I&rsquo;ve never written a line of code. Is this for me?</b><i>+</i></summary>
    <p>That&rsquo;s exactly who it&rsquo;s for. The AI writes the code. What you learn is how to direct it and get the result online.</p></details>
   <details><summary><b>I don&rsquo;t have an idea. Should I wait for the next one?</b><i>+</i></summary>
    <p>No. Three starting points are ready on the day, and the first twenty minutes turn whichever you pick into something buildable.</p></details>
-  <details><summary><b>I&rsquo;ve barely used AI tools. Is that a problem?</b><i>+</i></summary>
-   <p>No. We start from the beginning, and ten people means someone can look at your screen the moment you&rsquo;re stuck.</p></details>
-  <details><summary><b>What do I need to bring?</b><i>+</i></summary>
-   <p>A laptop and its charger, Mac or Windows, set up using the steps we send beforehand.</p></details>
-  <details><summary><b>Do I need to set anything up in advance?</b><i>+</i></summary>
-   <p>Two things: a free <a href="https://github.com/signup" target="_blank" rel="noopener">GitHub account</a>, which is what your project publishes from, and a <a href="https://claude.com/pricing" target="_blank" rel="noopener">Claude Pro subscription</a>. We&rsquo;ll send the full setup steps a few days before, so nobody spends the workshop installing things.</p></details>
-  <details><summary><b>Is the <i class="nis">&#8362;</i>150 the only cost?</b><i>+</i></summary>
-   <p>Almost. You&rsquo;ll also need a Claude Pro subscription, which is $20 a month paid directly to Anthropic. It&rsquo;s billed monthly, so you can cancel the day after the workshop if you don&rsquo;t want to keep it. We say this up front rather than surprising you in the room.</p></details>
-  <details><summary><b>What language is it run in?</b><i>+</i></summary>
-   <p>English.</p></details>
-  <details><summary><b>How does paying work?</b><i>+</i></summary>
-   <p>Applying is free. Once your spot is confirmed we&rsquo;ll reach out with the venue and payment details. The seat is locked when payment lands.</p></details>
+  <details><summary><b>What if I can&rsquo;t make it?</b><i>+</i></summary>
+   <p>Tell us at least 48 hours before and we&rsquo;ll refund the <i class="nis">&#8362;</i>150 in full, or roll it to the next Academy. Inside 48 hours we can&rsquo;t refill a seat that small, so it stays booked.</p></details>
   <details><summary><b>What if I don&rsquo;t finish in two hours?</b><i>+</i></summary>
    <p>You publish at the ninety-minute mark, not at the end, so there&rsquo;s room to fix things. Whatever state it&rsquo;s in, it goes live.</p></details>
   <details><summary><b>What happens to my project afterwards?</b><i>+</i></summary>
    <p>It lives on GitHub Pages under your own account, on a URL that&rsquo;s yours. Nothing is locked to us.</p></details>
+  <details><summary><b>Is the &#8362;150 the only cost?</b><i>+</i></summary>
+   <p>Almost. You&rsquo;ll also need a Claude Pro subscription, which is $20 a month directly from Anthropic. It&rsquo;s billed monthly, so you can cancel the day after the workshop if you don&rsquo;t want to keep it. We&rsquo;ll send you the setup steps before the day so nobody spends the two hours installing things.</p></details>
+  <details><summary><b>How does paying work?</b><i>+</i></summary>
+   <p>Applying is free. Once your spot is confirmed we&rsquo;ll reach out with the venue and payment details. The seat is locked when payment lands.</p></details>
+  <details><summary><b>What language is it run in?</b><i>+</i></summary>
+   <p>English.</p></details>
  </div>
 </section>
 
-<section class="cta" id="apply">
- <div class="kicker">DEPLOY ACADEMY / 001</div>
- <h2>STOP SAVING IT.<br>SHIP IT<span class="cursor"></span></h2>
- <p>Leave with something you made, live on the internet.</p>
- <a class="btn paper" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a>
- <p class="reassure">We&rsquo;ll reach out with the venue and payment details &mdash; payment locks the seat.</p>
- <div class="book">
-  <div><b>01 / Apply</b><span>Two minutes. Who you are and what you&rsquo;d like to build.</span></div>
-  <div><b>02 / We confirm</b><span>We reach out with the venue and payment details.</span></div>
-  <div><b>03 / Pay</b><span><i class="nis">&#8362;</i>150 locks your seat. Ten seats, then it&rsquo;s full.</span></div>
- </div>
-</section>
-
-<footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div class="footer-social"><a href="/">Home</a><a href="/labs">Labs</a><a href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/deploytlv" target="_blank" rel="noopener">LinkedIn</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">WhatsApp</a></div><div>TEL AVIV / 2026</div></footer>
+<div class="reassure">
+ <div><b>Bring</b><span>A laptop and its charger. Mac or Windows, any age.</span></div>
+ <div><b>One extra cost</b><span>You&rsquo;ll need Claude Pro, $20/month. Cancel straight after if you want. We send setup steps in advance.</span></div>
+ <div><b>Room</b><span>Ten people, so nobody sits stuck waiting for help.</span></div>
 </div>
 
-<div class="sticky-pay"><a class="btn" href="#apply">Reserve my seat &rarr;</a></div>
+<section class="close" id="go">
+ <h2>Stop saving it.<br>Ship it.</h2>
+ <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a>
+ <p>Tue 8 Sep &middot; 18:00&ndash;20:00 &middot; Tel Aviv &middot; 10 seats</p>
+</section>
 
+<footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
+</div>
+<div class="sticky"><a class="btn" href="#go">Reserve my seat &rarr;</a></div>
 <script>
 (function(){
- var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- if('IntersectionObserver' in window){
-  var videoObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){
-   var v=entry.target;
-   if(entry.isIntersecting){
-    if(!v.src&&v.dataset.src){v.src=v.dataset.src;v.load()}
-    if(!reduceMotion){var play=v.play();if(play&&play.catch)play.catch(function(){})}
-    videoObs.unobserve(v)
-   }})},{rootMargin:'320px 0px'});
-  document.querySelectorAll('video.lazy-video').forEach(function(v){videoObs.observe(v)});
- }
+ if(!('IntersectionObserver' in window))return;
+ var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var obs=new IntersectionObserver(function(es){es.forEach(function(e){
+  var v=e.target;
+  if(e.isIntersecting){
+   if(!v.src&&v.dataset.src){v.src=v.dataset.src;v.load()}
+   if(!reduce){var pl=v.play();if(pl&&pl.catch)pl.catch(function(){})}
+   obs.unobserve(v)
+  }})},{rootMargin:'320px 0px'});
+ document.querySelectorAll('video.lazy-video').forEach(function(v){obs.observe(v)});
 })();
 </script>
 <script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
