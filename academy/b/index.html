@@ -36,9 +36,10 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .site{max-width:var(--max);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 70px rgba(0,0,0,.13)}
 .nav{height:72px;padding:0 46px;display:flex;align-items:center;border-bottom:1px solid var(--ink)}
 .logo{font:700 20px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:-.06em}.logo b{color:var(--orange)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid var(--ink);font:700 12px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;background:var(--orange);color:var(--ink);box-shadow:4px 4px 0 var(--ink);transition:.12s}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid var(--ink);font:700 13px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:.06em;background:var(--orange);color:var(--ink);box-shadow:4px 4px 0 var(--ink);transition:.12s}
 .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
 .nav .btn{margin-left:auto;min-height:42px;padding:0 16px;font-size:10px;box-shadow:3px 3px 0 var(--ink)}
+.nis{font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;font-style:normal}
 .kicker{font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);text-transform:uppercase}
 
 /* one screen, one job */
@@ -131,8 +132,13 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  body{padding-bottom:78px}
  .nav{height:58px;padding:0 16px}.logo{font-size:16px}.nav .btn{min-height:34px;padding:0 10px;font-size:9px}
  .hero{padding:46px 18px 44px}.hero h1{font-size:clamp(46px,15vw,68px)}.hero p{font-size:16px;margin-top:22px}
- .facts{margin-top:32px}.facts span{padding:13px 13px 13px 0;margin-right:13px;font-size:9.5px}
- .hero .btn{width:100%;margin-top:30px}
+ .facts{display:grid;grid-template-columns:1fr 1fr;margin-top:30px}
+ .facts span{padding:15px 12px;margin:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.04em}
+ .facts span:nth-child(2n){border-right:0}
+ .facts span:nth-child(n+3){border-bottom:0}
+ .facts span:last-child{padding-left:12px}
+ .hero .btn{width:100%;margin-top:30px;font-size:14px;min-height:56px}
+ .sticky .btn{font-size:14px;min-height:54px}
  .qa{padding:46px 18px}.qa summary{font-size:14px;padding:17px 0;gap:14px}.qa p{font-size:13px}
  .make{padding:44px 18px}.reassure div{padding:22px 18px}
  .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
@@ -151,9 +157,8 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  <div class="kicker">AI WORKSHOP / TEL AVIV</div>
  <h1>Build something <em>real</em> with AI</h1>
  <p>No coding experience. No idea needed. You leave with it live on the internet.</p>
- <div class="facts"><span>Tue 8 Sep</span><span>18:00&ndash;20:00</span><span>2 hours</span><span>10 seats</span><span>&#8362;150</span></div>
- <a class="btn" href="#go">Reserve my seat &mdash; &#8362;150 &rarr;</a>
- <div class="micro">Nothing is charged when you apply.</div>
+ <div class="facts"><span>Tue 8 Sep</span><span>18:00&ndash;20:00</span><span>10 seats</span><span><i class="nis">&#8362;</i>150</span></div>
+ <a class="btn" href="#go">Reserve my seat &rarr;</a>
 </section>
 
 <section class="proof">
@@ -211,7 +216,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
   <details><summary><b>Is the &#8362;150 the only cost?</b><i>+</i></summary>
    <p>Almost. You&rsquo;ll also need a Claude Pro subscription, which is $20 a month directly from Anthropic. It&rsquo;s billed monthly, so you can cancel the day after the workshop if you don&rsquo;t want to keep it. We&rsquo;ll send you the setup steps before the day so nobody spends the two hours installing things.</p></details>
   <details><summary><b>How does paying work?</b><i>+</i></summary>
-   <p>Nothing is charged when you apply. Once your spot is confirmed we&rsquo;ll reach out with the venue and payment details. The seat is locked when payment lands.</p></details>
+   <p>Applying is free. Once your spot is confirmed we&rsquo;ll reach out with the venue and payment details. The seat is locked when payment lands.</p></details>
   <details><summary><b>What language is it run in?</b><i>+</i></summary>
    <p>English.</p></details>
  </div>
@@ -225,12 +230,12 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 
 <section class="close" id="go">
  <h2>Stop saving it.<br>Ship it.</h2>
- <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &mdash; &#8362;150 &rarr;</a>
- <p>Tue 8 Sep &middot; Tel Aviv &middot; 10 seats &middot; Nothing charged when you apply</p>
+ <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a>
+ <p>Tue 8 Sep &middot; 18:00&ndash;20:00 &middot; Tel Aviv &middot; 10 seats</p>
 </section>
 
 <footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
 </div>
-<div class="sticky"><a class="btn" href="#go">Reserve my seat &mdash; &#8362;150 &rarr;</a></div>
+<div class="sticky"><a class="btn" href="#go">Reserve my seat &rarr;</a></div>
 <script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
 </body></html>
