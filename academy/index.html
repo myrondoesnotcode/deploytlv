@@ -63,7 +63,7 @@ a{color:inherit;text-decoration:none}img,video{display:block;width:100%}
 .cursor{display:inline-block;width:.55em;height:.11em;background:var(--orange);vertical-align:.08em;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
 
 /* --- hero --- */
-.hero{display:grid;grid-template-columns:1.14fr .86fr;border-bottom:1px solid var(--ink)}
+.hero{display:grid;grid-template-columns:1.26fr .74fr;border-bottom:1px solid var(--ink)}
 .hero-copy{padding:74px 46px 48px;display:flex;flex-direction:column;justify-content:center}
 .hero h1{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(52px,7vw,104px);line-height:.85;letter-spacing:-.055em;text-transform:uppercase;margin:18px 0 0}
 .hero h1 em{font-style:normal;color:var(--orange)}
@@ -85,9 +85,14 @@ a{color:inherit;text-decoration:none}img,video{display:block;width:100%}
 .ticket h2 em{font-style:normal;color:var(--orange)}
 .ticket>p{font-size:13px;line-height:1.8;color:#b9b1a3;margin:0;max-width:360px}
 .ticket-lines{border-top:1px solid #49443d;margin-top:28px}
-.ticket-lines span{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #34312c;font-size:9.5px;color:#9d968a;text-transform:uppercase}
+.ticket-lines span{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #3d3931;font-size:10px;color:#c4bcae;text-transform:uppercase}
 .ticket-lines span b{font:600 9.5px 'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;color:var(--paper);text-align:right;text-transform:none}
-.ticket-price{margin-top:auto;padding-top:30px;display:flex;align-items:baseline;gap:12px}
+.ticket-who{margin-top:auto;padding-top:26px;display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+.ticket-who img{width:56px;height:56px;object-fit:cover;object-position:center top;border:1px solid rgba(243,238,223,.28)}
+.ticket-who b{display:block;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-transform:uppercase;margin-bottom:6px}
+.ticket-who strong{display:block;font-size:13px;color:var(--paper)}
+.ticket-who span{display:block;font-size:10.5px;color:#c4bcae;margin-top:3px;line-height:1.5}
+.ticket-price{padding-top:22px;display:flex;align-items:baseline;gap:12px}
 .ticket-price b{font:700 46px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
 .ticket-price span{font-size:8px;color:#9d968a;text-transform:uppercase}
 .ticket .btn{margin-top:20px;width:100%;background:var(--orange);color:var(--ink);border-color:var(--paper);box-shadow:3px 3px 0 var(--paper)}
@@ -288,8 +293,11 @@ footer{padding:28px 34px;display:flex;justify-content:space-between;gap:18px;fle
    <span>Time<b>18:00 &ndash; 20:00</b></span>
    <span>Format<b>Hands-on build</b></span>
    <span>Room size<b>10 people</b></span>
-   <span>Taught by<b>Myron Shneider</b></span>
    <span>You leave with<b>A live URL</b></span>
+  </div>
+  <div class="ticket-who">
+   <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider, founder of Deploy TLV" width="400" height="400" decoding="async">
+   <div><b>Taught by</b><strong>Myron Shneider</strong><span>Founder of Deploy TLV &middot; ex-Aleph</span></div>
   </div>
   <div class="ticket-price"><b><i class="nis">&#8362;</i>150</b><span>One pilot seat<br>Payment locks it</span></div>
   <a class="btn" href="#apply">Reserve my seat &rarr;</a>
