@@ -68,11 +68,30 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .beat strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,3.6vw,52px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase;margin:16px 0 10px}
 .beat span{font-size:14px;line-height:1.6;color:var(--muted)}
 
+/* what you'll make — kills "I don't have an idea" in three lines */
+.make{padding:80px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
+.make h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(28px,4vw,54px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 36px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.opt{border:1px solid var(--ink);padding:26px;background:var(--paper)}
+.opt b{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
+.opt span{display:block;font-size:13px;line-height:1.6;color:var(--muted);margin-top:11px}
+
+/* the three anxieties, answered without a FAQ */
+.reassure{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}
+.reassure div{padding:36px 46px}
+.reassure div:not(:last-child){border-right:1px solid #3d3931}
+.reassure b{display:block;font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-transform:uppercase;margin-bottom:10px}
+.reassure span{font-size:14px;line-height:1.6;color:#e2dbcd}
+
 /* who */
 .who{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center;padding:64px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
 .who img{aspect-ratio:1/1;object-fit:cover;border:1px solid var(--ink)}
 .who strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(24px,2.6vw,38px);letter-spacing:-.04em;text-transform:uppercase}
 .who p{font-size:15px;line-height:1.65;margin:12px 0 0;max-width:44ch}
+.built{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:22px;max-width:460px}
+.built div{padding:16px 12px 0 0}
+.built b{display:block;font:700 24px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);letter-spacing:-.04em}
+.built span{display:block;font-size:9px;text-transform:uppercase;color:var(--muted);margin-top:7px}
 
 /* close */
 .close{padding:120px 46px;text-align:center;background:var(--orange)}
@@ -85,6 +104,10 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 @media(max-width:900px){
  .nav{padding:0 24px}.hero{padding:70px 24px 62px}.proof,.beat,.who,.close{padding-left:24px;padding-right:24px}
  .shots{grid-template-columns:1fr 1fr}
+ .make{padding:52px 24px}.opts{grid-template-columns:1fr}
+ .reassure{grid-template-columns:1fr}
+ .reassure div{padding:26px 24px}
+ .reassure div:not(:last-child){border-right:0;border-bottom:1px solid #3d3931}
  .beats{grid-template-columns:1fr}
  .beat{padding:34px 24px;border-right:0!important;border-bottom:1px solid var(--line)}
  .who{grid-template-columns:1fr;gap:22px;padding:48px 24px}.who img{max-width:190px}
@@ -96,6 +119,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .hero{padding:46px 18px 44px}.hero h1{font-size:clamp(46px,15vw,68px)}.hero p{font-size:16px;margin-top:22px}
  .facts{margin-top:32px}.facts span{padding:13px 13px 13px 0;margin-right:13px;font-size:9.5px}
  .hero .btn{width:100%;margin-top:30px}
+ .make{padding:44px 18px}.reassure div{padding:22px 18px}
  .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
  .beat{padding:28px 18px}.who{padding:40px 18px}.close{padding:64px 18px}
  .close .btn{width:100%}
@@ -128,6 +152,16 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  </div>
 </section>
 
+<section class="make">
+ <div class="kicker">No idea? Pick one on the day</div>
+ <h2>What you&rsquo;ll make</h2>
+ <div class="opts">
+  <div class="opt"><b>Personal site</b><span>A portfolio, homepage or profile that looks like you.</span></div>
+  <div class="opt"><b>Startup page</b><span>An idea, turned into a real landing page.</span></div>
+  <div class="opt"><b>Interactive tool</b><span>A calculator, quiz, generator or mini app.</span></div>
+ </div>
+</section>
+
 <div class="beats">
  <div class="beat"><b>01</b><strong>Pick</strong><span>Choose a project, or take one of ours.</span></div>
  <div class="beat"><b>02</b><strong>Build</strong><span>AI writes it. You steer.</span></div>
@@ -138,14 +172,25 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
  <div>
   <strong>Myron Shneider</strong>
-  <p>Founder of Deploy TLV. Twenty-five live sites in the last year, none of them written by hand. He&rsquo;ll be next to you the whole time.</p>
+  <p>Founder of Deploy TLV. Not a developer &mdash; everything below was built the same way yours will be. He&rsquo;ll be next to you the whole time.</p>
+  <div class="built">
+   <div><b>25</b><span>Live sites</span></div>
+   <div><b>28</b><span>Public repos</span></div>
+   <div><b>04</b><span>Deploy events run</span></div>
+  </div>
  </div>
 </section>
+
+<div class="reassure">
+ <div><b>Bring</b><span>A laptop and its charger. Mac or Windows, any age.</span></div>
+ <div><b>Cost</b><span>A free Claude or ChatGPT account is enough. Nothing to install.</span></div>
+ <div><b>Room</b><span>Ten people, so nobody sits stuck waiting for help.</span></div>
+</div>
 
 <section class="close" id="go">
  <h2>Stop saving it.<br>Ship it.</h2>
  <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &mdash; &#8362;150 &rarr;</a>
- <p>Tue 8 Sep &middot; Tel Aviv &middot; 10 seats</p>
+ <p>Tue 8 Sep &middot; Tel Aviv &middot; 10 seats &middot; Nothing charged when you apply</p>
 </section>
 
 <footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
