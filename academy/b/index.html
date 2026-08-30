@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Workshop in Tel Aviv — Deploy Academy 001</title>
+<meta name="description" content="Tuesday 8 September, Tel Aviv. Two hours, ten seats. Build something real with AI and leave with it live on the internet.">
+
+<!-- A/B variant of /academy/. Deliberately noindex + canonical to the original:
+     two near-identical pages targeting the same terms would cannibalise each
+     other in search. If this version wins, move it to /academy/ and drop these. -->
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://deploytlv.com/academy/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deploytlv.com/academy/b/">
+<meta property="og:site_name" content="Deploy TLV">
+<meta property="og:title" content="AI Workshop in Tel Aviv — Deploy Academy 001">
+<meta property="og:description" content="Tue 8 September, 18:00. Two hours, ten seats. Walk in with an idea, walk out with it live.">
+<meta property="og:image" content="https://deploytlv.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#ff5a18">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-black-400.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/silkscreen-700.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/ibm-plex-mono-400.woff2">
+<style>
+@font-face{font-family:'Archivo Black';src:url('/assets/fonts/archivo-black-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-500.woff2')format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Silkscreen';src:url('/assets/fonts/silkscreen-700.woff2')format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Archivo Fallback';src:local('Arial'),local('Helvetica');size-adjust:115.35%;ascent-override:76.12%;descent-override:18.21%;line-gap-override:0%}
+@font-face{font-family:'Plex Fallback';src:local('Menlo-Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:99.66%;ascent-override:102.85%;descent-override:27.59%;line-gap-override:0%}
+@font-face{font-family:'Silkscreen Fallback';src:local('Menlo-Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:145.34%;ascent-override:70.87%;descent-override:17.2%;line-gap-override:0%}
+
+:root{--paper:#f3eedf;--paper2:#e9e1ce;--ink:#11100d;--orange:#ff5a18;--orange-deep:#ad3600;--muted:#5c554a;--line:rgba(17,16,13,.24);--max:1440px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#d8d0c1;color:var(--ink);font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace}
+a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
+.site{max-width:var(--max);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 70px rgba(0,0,0,.13)}
+.nav{height:72px;padding:0 46px;display:flex;align-items:center;border-bottom:1px solid var(--ink)}
+.logo{font:700 20px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:-.06em}.logo b{color:var(--orange)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid var(--ink);font:700 12px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;background:var(--orange);color:var(--ink);box-shadow:4px 4px 0 var(--ink);transition:.12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.nav .btn{margin-left:auto;min-height:42px;padding:0 16px;font-size:10px;box-shadow:3px 3px 0 var(--ink)}
+.kicker{font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);text-transform:uppercase}
+
+/* one screen, one job */
+.hero{padding:110px 46px 96px;border-bottom:1px solid var(--ink)}
+.hero h1{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(58px,10.5vw,158px);line-height:.83;letter-spacing:-.055em;text-transform:uppercase;margin:22px 0 0;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{font-size:clamp(16px,1.7vw,22px);line-height:1.5;max-width:30ch;margin:30px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:44px 0 0;max-width:860px}
+.facts span{padding:18px 22px 18px 0;margin-right:22px;border-right:1px solid var(--line);font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
+.facts span:last-child{border-right:0;margin-right:0;padding-right:0;color:var(--orange-deep)}
+.hero .btn{margin-top:38px}
+.micro{margin-top:16px;font-size:12px;color:var(--muted)}
+
+/* proof: pictures, not paragraphs */
+.proof{padding:86px 46px;border-bottom:1px solid var(--ink)}
+.proof h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,4.4vw,62px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 40px}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.shots a{border:1px solid var(--ink);overflow:hidden;background:var(--ink);transition:.15s}
+.shots a:hover{transform:translateY(-3px)}
+.shots img{aspect-ratio:16/10;height:100%;object-fit:cover}
+
+/* three beats */
+.beats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}
+.beat{padding:60px 46px}
+.beat:not(:last-child){border-right:1px solid var(--line)}
+.beat b{display:block;font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep)}
+.beat strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,3.6vw,52px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase;margin:16px 0 10px}
+.beat span{font-size:14px;line-height:1.6;color:var(--muted)}
+
+/* who */
+.who{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center;padding:64px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
+.who img{aspect-ratio:1/1;object-fit:cover;border:1px solid var(--ink)}
+.who strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(24px,2.6vw,38px);letter-spacing:-.04em;text-transform:uppercase}
+.who p{font-size:15px;line-height:1.65;margin:12px 0 0;max-width:44ch}
+
+/* close */
+.close{padding:120px 46px;text-align:center;background:var(--orange)}
+.close h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(46px,8vw,110px);line-height:.85;letter-spacing:-.055em;text-transform:uppercase;margin:0 0 26px}
+.close .btn{background:var(--paper)}
+.close p{font:700 11px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase;margin:26px 0 0}
+footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:9px;text-transform:uppercase}
+.sticky{display:none}
+
+@media(max-width:900px){
+ .nav{padding:0 24px}.hero{padding:70px 24px 62px}.proof,.beat,.who,.close{padding-left:24px;padding-right:24px}
+ .shots{grid-template-columns:1fr 1fr}
+ .beats{grid-template-columns:1fr}
+ .beat{padding:34px 24px;border-right:0!important;border-bottom:1px solid var(--line)}
+ .who{grid-template-columns:1fr;gap:22px;padding:48px 24px}.who img{max-width:190px}
+ .close{padding:86px 24px}footer{padding:22px 24px}
+}
+@media(max-width:560px){
+ body{padding-bottom:78px}
+ .nav{height:58px;padding:0 16px}.logo{font-size:16px}.nav .btn{min-height:34px;padding:0 10px;font-size:9px}
+ .hero{padding:46px 18px 44px}.hero h1{font-size:clamp(46px,15vw,68px)}.hero p{font-size:16px;margin-top:22px}
+ .facts{margin-top:32px}.facts span{padding:13px 13px 13px 0;margin-right:13px;font-size:9.5px}
+ .hero .btn{width:100%;margin-top:30px}
+ .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
+ .beat{padding:28px 18px}.who{padding:40px 18px}.close{padding:64px 18px}
+ .close .btn{width:100%}
+ footer{padding:20px 18px}
+ .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+ .sticky .btn{width:100%;box-shadow:none;border-color:var(--paper)}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.shots a:hover{transform:none}}
+</style></head><body><div class="site">
+
+<nav class="nav"><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><a class="btn" href="#go">Reserve my seat &rarr;</a></nav>
+
+<section class="hero">
+ <div class="kicker">AI WORKSHOP / TEL AVIV</div>
+ <h1>Build something <em>real</em> with AI</h1>
+ <p>No coding experience. No idea needed. You leave with it live on the internet.</p>
+ <div class="facts"><span>Tue 8 Sep</span><span>18:00&ndash;20:00</span><span>2 hours</span><span>10 seats</span><span>&#8362;150</span></div>
+ <a class="btn" href="#go">Reserve my seat &mdash; &#8362;150 &rarr;</a>
+ <div class="micro">Nothing is charged when you apply.</div>
+</section>
+
+<section class="proof">
+ <div class="kicker">Made by someone who doesn&rsquo;t code</div>
+ <h2>I don&rsquo;t code.<br>I built these anyway.</h2>
+ <div class="shots">
+  <a href="https://myrondoesnotcode.github.io/turboturf/" target="_blank" rel="noopener"><img src="../shots/turboturf.jpg" alt="Turbo Turf Trimmer, a browser game" width="1000" height="625" loading="lazy" decoding="async"></a>
+  <a href="https://myrondoesnotcode.github.io/townbuilder/" target="_blank" rel="noopener"><img src="../shots/townbuilder.jpg" alt="Village Builder, a hand-tracking game" width="1000" height="625" loading="lazy" decoding="async"></a>
+  <a href="https://myrondoesnotcode.github.io/unGPT/" target="_blank" rel="noopener"><img src="../shots/unGPT.jpg" alt="unGPT, a text cleanup tool" width="1000" height="625" loading="lazy" decoding="async"></a>
+  <a href="https://myrondoesnotcode.github.io/timecalc/" target="_blank" rel="noopener"><img src="../shots/timecalc.jpg" alt="World Time Bridge, a timezone tool" width="1000" height="625" loading="lazy" decoding="async"></a>
+ </div>
+</section>
+
+<div class="beats">
+ <div class="beat"><b>01</b><strong>Pick</strong><span>Choose a project, or take one of ours.</span></div>
+ <div class="beat"><b>02</b><strong>Build</strong><span>AI writes it. You steer.</span></div>
+ <div class="beat"><b>03</b><strong>Publish</strong><span>It goes live. You leave with the link.</span></div>
+</div>
+
+<section class="who">
+ <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
+ <div>
+  <strong>Myron Shneider</strong>
+  <p>Founder of Deploy TLV. Twenty-five live sites in the last year, none of them written by hand. He&rsquo;ll be next to you the whole time.</p>
+ </div>
+</section>
+
+<section class="close" id="go">
+ <h2>Stop saving it.<br>Ship it.</h2>
+ <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &mdash; &#8362;150 &rarr;</a>
+ <p>Tue 8 Sep &middot; Tel Aviv &middot; 10 seats</p>
+</section>
+
+<footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
+</div>
+<div class="sticky"><a class="btn" href="#go">Reserve my seat &mdash; &#8362;150 &rarr;</a></div>
+<script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
+</body></html>
