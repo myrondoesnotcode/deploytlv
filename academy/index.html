@@ -130,14 +130,15 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .reassure span{font-size:14px;line-height:1.6;color:#e2dbcd}
 
 /* who */
-.who{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center;padding:64px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
+.who{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(250px,310px);gap:46px;align-items:center;padding:60px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
 .who img{aspect-ratio:1/1;object-fit:cover;border:1px solid var(--ink)}
 .who strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(24px,2.6vw,38px);letter-spacing:-.04em;text-transform:uppercase}
-.who p{font-size:15px;line-height:1.65;margin:12px 0 0;max-width:44ch}
-.built{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:22px;max-width:460px}
-.built div{padding:16px 12px 0 0}
-.built b{display:block;font:700 24px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);letter-spacing:-.04em}
-.built span{display:block;font-size:9px;text-transform:uppercase;color:var(--muted);margin-top:7px}
+.who p{font-size:15px;line-height:1.65;margin:12px 0 0;max-width:52ch}
+.built{display:block}
+.built div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.built div:first-child{border-top:1px solid var(--line)}
+.built b{font:700 26px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange-deep);letter-spacing:-.04em}
+.built span{font-size:9.5px;text-transform:uppercase;color:var(--muted);text-align:right}
 
 /* close */
 .close{padding:120px 46px;text-align:center;background:var(--orange)}
@@ -158,7 +159,12 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .reassure div:not(:last-child){border-right:0;border-bottom:1px solid #3d3931}
  .beats{grid-template-columns:1fr}
  .beat{padding:34px 24px;border-right:0!important;border-bottom:1px solid var(--line)}
- .who{grid-template-columns:1fr;gap:22px;padding:48px 24px}.who img{max-width:190px}
+ .who{grid-template-columns:1fr;gap:22px;padding:48px 24px}
+ .built{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);max-width:460px}
+ .built div{display:block;padding:15px 12px 0 0;border-bottom:0}
+ .built div:first-child{border-top:0}
+ .built b{display:block;font-size:24px}
+ .built span{display:block;margin-top:7px;text-align:left}.who img{max-width:190px}
  .close{padding:86px 24px}footer{padding:22px 24px}
 }
 @media(max-width:560px){
@@ -213,9 +219,9 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  <div class="kicker">You build one of these &mdash; choose on the day</div>
  <h2>Pick one thing<br>to build</h2>
  <div class="opts">
-  <div class="opt"><b>Either &mdash; a personal site</b><span>A portfolio, homepage or profile that looks like you.</span></div>
-  <div class="opt"><b>Or &mdash; a startup page</b><span>An idea, turned into a real landing page.</span></div>
-  <div class="opt"><b>Or &mdash; an interactive tool</b><span>A calculator, quiz, generator or mini app.</span></div>
+  <div class="opt"><b>Personal site</b><span>A portfolio, homepage or profile that looks like you.</span></div>
+  <div class="opt"><b>Startup page</b><span>An idea, turned into a real landing page.</span></div>
+  <div class="opt"><b>Interactive tool</b><span>A calculator, quiz, generator or mini app.</span></div>
  </div>
 </section>
 
@@ -229,12 +235,12 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
  <div>
   <strong>Myron Shneider</strong>
-  <p>Founder of Deploy TLV. Not a developer &mdash; everything below was built the same way yours will be. He&rsquo;ll be next to you the whole time.</p>
-  <div class="built">
-   <div><b>25</b><span>Live sites</span></div>
-   <div><b>28</b><span>Public repos</span></div>
-   <div><b>12</b><span>Months</span></div>
-  </div>
+  <p>Founder of Deploy TLV. Not a developer &mdash; everything on this page was built the same way yours will be. He&rsquo;ll be next to you the whole time.</p>
+ </div>
+ <div class="built">
+  <div><b>25</b><span>Live sites</span></div>
+  <div><b>28</b><span>Public repos</span></div>
+  <div><b>12</b><span>Months</span></div>
  </div>
 </section>
 
