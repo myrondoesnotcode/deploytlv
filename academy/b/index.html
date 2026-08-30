@@ -30,8 +30,8 @@
 @font-face{font-family:'Silkscreen Fallback';src:local('Menlo-Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:145.34%;ascent-override:70.87%;descent-override:17.2%;line-gap-override:0%}
 
 :root{--paper:#f3eedf;--paper2:#e9e1ce;--ink:#11100d;--orange:#ff5a18;--orange-deep:#ad3600;--muted:#5c554a;--line:rgba(17,16,13,.24);--max:1440px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:#d8d0c1;color:var(--ink);font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;overflow-x:clip;background:#d8d0c1;color:var(--ink);font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace}
 a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .site{max-width:var(--max);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 70px rgba(0,0,0,.13)}
 .nav{height:72px;padding:0 46px;display:flex;align-items:center;border-bottom:1px solid var(--ink)}
