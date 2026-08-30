@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Working files, not pages.
+Disallow: /build/
+Disallow: /docs/
+
+# The gated portals, the members app, the mockup and the archived design are
+# excluded with <meta name="robots" content="noindex"> on the pages themselves —
+# deliberately NOT blocked here, because a blocked page can't be crawled and so
+# the noindex would never be read.
+
+Sitemap: https://deploytlv.com/sitemap.xml
