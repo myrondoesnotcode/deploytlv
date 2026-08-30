@@ -76,6 +76,19 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .opt b{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
 .opt span{display:block;font-size:13px;line-height:1.6;color:var(--muted);margin-top:11px}
 
+/* answers for the people who want them; collapsed, so they cost nothing
+   to everyone who doesn't */
+.qa{padding:76px 46px;border-bottom:1px solid var(--ink)}
+.qa h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(28px,4vw,54px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 30px}
+.qa-list{border-top:1px solid var(--ink);max-width:900px}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{display:flex;justify-content:space-between;gap:24px;align-items:baseline;padding:20px 0;cursor:pointer;list-style:none;font-size:15px;line-height:1.55;transition:.12s}
+.qa summary::-webkit-details-marker{display:none}.qa summary::marker{content:''}
+.qa summary:hover,.qa details[open] summary{color:var(--orange-deep)}
+.qa summary i{font:700 14px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;font-style:normal;color:var(--orange-deep);flex:none}
+.qa details[open] summary i{transform:rotate(45deg);display:inline-block}
+.qa p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 22px;max-width:70ch}
+
 /* the three anxieties, answered without a FAQ */
 .reassure{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}
 .reassure div{padding:36px 46px}
@@ -104,6 +117,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 @media(max-width:900px){
  .nav{padding:0 24px}.hero{padding:70px 24px 62px}.proof,.beat,.who,.close{padding-left:24px;padding-right:24px}
  .shots{grid-template-columns:1fr 1fr}
+ .qa{padding:54px 24px}
  .make{padding:52px 24px}.opts{grid-template-columns:1fr}
  .reassure{grid-template-columns:1fr}
  .reassure div{padding:26px 24px}
@@ -119,6 +133,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .hero{padding:46px 18px 44px}.hero h1{font-size:clamp(46px,15vw,68px)}.hero p{font-size:16px;margin-top:22px}
  .facts{margin-top:32px}.facts span{padding:13px 13px 13px 0;margin-right:13px;font-size:9.5px}
  .hero .btn{width:100%;margin-top:30px}
+ .qa{padding:46px 18px}.qa summary{font-size:14px;padding:17px 0;gap:14px}.qa p{font-size:13px}
  .make{padding:44px 18px}.reassure div{padding:22px 18px}
  .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
  .beat{padding:28px 18px}.who{padding:40px 18px}.close{padding:64px 18px}
@@ -178,6 +193,25 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
    <div><b>28</b><span>Public repos</span></div>
    <div><b>04</b><span>Deploy events run</span></div>
   </div>
+ </div>
+</section>
+
+<section class="qa">
+ <div class="kicker">Before you book</div>
+ <h2>Questions</h2>
+ <div class="qa-list">
+  <details><summary><b>I&rsquo;ve never written a line of code. Is this for me?</b><i>+</i></summary>
+   <p>That&rsquo;s exactly who it&rsquo;s for. The AI writes the code. What you learn is how to direct it and get the result online.</p></details>
+  <details><summary><b>I don&rsquo;t have an idea. Should I wait for the next one?</b><i>+</i></summary>
+   <p>No. Three starting points are ready on the day, and the first twenty minutes turn whichever you pick into something buildable.</p></details>
+  <details><summary><b>What if I don&rsquo;t finish in two hours?</b><i>+</i></summary>
+   <p>You publish at the ninety-minute mark, not at the end, so there&rsquo;s room to fix things. Whatever state it&rsquo;s in, it goes live.</p></details>
+  <details><summary><b>What happens to my project afterwards?</b><i>+</i></summary>
+   <p>It lives on GitHub Pages under your own account, on a URL that&rsquo;s yours. Nothing is locked to us.</p></details>
+  <details><summary><b>How does paying work?</b><i>+</i></summary>
+   <p>Nothing is charged when you apply. Once your spot is confirmed we&rsquo;ll reach out with the venue and payment details. The seat is locked when payment lands.</p></details>
+  <details><summary><b>What language is it run in?</b><i>+</i></summary>
+   <p>English.</p></details>
  </div>
 </section>
 
