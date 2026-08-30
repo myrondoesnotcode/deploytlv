@@ -77,6 +77,21 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .opt b{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
 .opt span{display:block;font-size:13px;line-height:1.6;color:var(--muted);margin-top:11px}
 
+/* the community behind it */
+.community{display:grid;grid-template-columns:.92fr 1.08fr;background:var(--ink);color:var(--paper);border-bottom:1px solid var(--ink)}
+.community-copy{padding:58px 46px;display:flex;flex-direction:column;justify-content:center}
+.community-copy .kicker{color:var(--orange)}
+.community-copy h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(30px,4.2vw,58px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 16px}
+.community-copy p{font-size:14px;line-height:1.7;color:#c4bcae;margin:0;max-width:44ch}
+.cstats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #3d3931;margin-top:28px}
+.cstats div{padding:20px 10px 0 0}
+.cstats b{display:block;font:700 24px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
+.cstats span{display:block;font-size:9px;text-transform:uppercase;color:#c4bcae;margin-top:8px;line-height:1.5}
+.community-copy a{display:inline-block;margin-top:26px;font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-decoration:underline;text-underline-offset:4px;text-transform:uppercase}
+.community-media{position:relative;background:#000;min-height:430px;overflow:hidden}
+.community-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.community-media .tag{position:absolute;left:16px;bottom:16px;z-index:2;background:var(--orange);color:var(--ink);padding:9px 11px;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase}
+
 /* answers for the people who want them; collapsed, so they cost nothing
    to everyone who doesn't */
 .qa{padding:76px 46px;border-bottom:1px solid var(--ink)}
@@ -119,6 +134,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .nav{padding:0 24px}.hero{padding:70px 24px 62px}.proof,.beat,.who,.close{padding-left:24px;padding-right:24px}
  .shots{grid-template-columns:1fr 1fr}
  .qa{padding:54px 24px}
+ .community{grid-template-columns:1fr}.community-copy{padding:44px 24px}.community-media{min-height:260px}
  .make{padding:52px 24px}.opts{grid-template-columns:1fr}
  .reassure{grid-template-columns:1fr}
  .reassure div{padding:26px 24px}
@@ -140,6 +156,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .hero .btn{width:100%;margin-top:30px;font-size:14px;min-height:56px}
  .sticky .btn{font-size:14px;min-height:54px}
  .qa{padding:46px 18px}.qa summary{font-size:14px;padding:17px 0;gap:14px}.qa p{font-size:13px}
+ .community-copy{padding:38px 18px}.community-media{min-height:210px}
  .make{padding:44px 18px}.reassure div{padding:22px 18px}
  .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
  .beat{padding:28px 18px}.who{padding:40px 18px}.close{padding:64px 18px}
@@ -196,8 +213,26 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
   <div class="built">
    <div><b>25</b><span>Live sites</span></div>
    <div><b>28</b><span>Public repos</span></div>
-   <div><b>04</b><span>Deploy events run</span></div>
+   <div><b>12</b><span>Months</span></div>
   </div>
+ </div>
+</section>
+
+<section class="community">
+ <div class="community-copy">
+  <div class="kicker">The community behind it</div>
+  <h2>The room where<br>TLV builds.</h2>
+  <p>Deploy TLV is one of Israel&rsquo;s largest English-speaking AI communities. Weekly coworking, live demos, and rooms built around making things.</p>
+  <div class="cstats">
+   <div><b>300+</b><span>Members</span></div>
+   <div><b>04</b><span>Events run</span></div>
+   <div><b>Weekly</b><span>Coworking</span></div>
+  </div>
+  <a href="/">See Deploy TLV &rarr;</a>
+ </div>
+ <div class="community-media">
+  <video class="lazy-video" data-src="/assets/video/hero-web.mp4" poster="/deploy1-poster.jpg" muted loop playsinline preload="none" aria-label="A Deploy TLV event in Tel Aviv"></video>
+  <div class="tag">Deploy / Tel Aviv / IRL</div>
  </div>
 </section>
 
@@ -237,5 +272,19 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 <footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
 </div>
 <div class="sticky"><a class="btn" href="#go">Reserve my seat &rarr;</a></div>
+<script>
+(function(){
+ if(!('IntersectionObserver' in window))return;
+ var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var obs=new IntersectionObserver(function(es){es.forEach(function(e){
+  var v=e.target;
+  if(e.isIntersecting){
+   if(!v.src&&v.dataset.src){v.src=v.dataset.src;v.load()}
+   if(!reduce){var pl=v.play();if(pl&&pl.catch)pl.catch(function(){})}
+   obs.unobserve(v)
+  }})},{rootMargin:'320px 0px'});
+ document.querySelectorAll('video.lazy-video').forEach(function(v){obs.observe(v)});
+})();
+</script>
 <script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
 </body></html>
