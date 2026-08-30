@@ -119,10 +119,15 @@ a{color:inherit;text-decoration:none}img,video{display:block;width:100%}
 .story .quote{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(28px,3.2vw,44px);line-height:.9;letter-spacing:-.045em;text-transform:uppercase;margin:14px 0 0}
 .story .quote em{font-style:normal;color:var(--orange)}
 .story p{font-size:13px;line-height:1.85;color:#b9b1a3;margin:22px 0 0;max-width:400px}
-.story .pull{margin-top:auto;padding-top:28px;border-top:1px solid #49443d}
+.cred{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #49443d;margin-top:22px}
+.cred div{padding:16px 10px 0 0}
+.cred b{display:block;font:700 26px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:-.04em}
+.cred span{display:block;font-size:9px;color:#c4bcae;text-transform:uppercase;margin-top:7px}
+.cred-note{font-size:11px!important;color:#c4bcae!important;margin:14px 0 0!important}
+.story-portrait{flex:1 1 0;min-height:190px;height:0;aspect-ratio:auto;width:100%;object-fit:cover;object-position:center 42%;margin:22px 0 0;border:1px solid rgba(243,238,223,.22)}
+.story .pull{margin-top:24px;padding-top:22px;border-top:1px solid #49443d}
 .story .pull b{display:block;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);line-height:1.9;text-transform:uppercase}
-.story .who{margin-top:20px;padding-top:17px;border-top:1px solid #49443d;display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:start}
-.story .who img{width:84px;height:84px;object-fit:cover;object-position:center top;border:1px solid rgba(243,238,223,.28)}
+.story .who{margin-top:18px;padding-top:16px;border-top:1px solid #49443d}
 .story .who strong{display:block;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:20px;letter-spacing:-.03em;text-transform:uppercase}
 .story .who em{display:block;font-style:normal;font-size:11.5px;line-height:1.6;color:#b9b1a3;margin-top:8px}
 .story .who a{display:inline-block;margin-top:11px;font-size:10.5px;color:var(--orange);text-decoration:underline;text-underline-offset:3px}
@@ -243,7 +248,7 @@ footer{padding:28px 34px;display:flex;justify-content:space-between;gap:18px;fle
  .hero h1{font-size:clamp(40px,13vw,58px)}
  .promise{font-size:18px}
  .hero-copy>p{font-size:14px}
- .meta-strip span{padding:10px 12px 10px 0;margin-right:12px;font-size:8.5px}
+ .meta-strip span{padding:10px 12px 10px 0;margin-right:12px;font-size:9px}
  .hero-actions{display:block}
  .hero-actions .btn{width:100%}
  .hero-actions .btn+.btn{margin-top:10px}
@@ -254,6 +259,7 @@ footer{padding:28px 34px;display:flex;justify-content:space-between;gap:18px;fle
  .projects::-webkit-scrollbar{display:none}
  .project{flex:0 0 78vw;scroll-snap-align:start}
  .story{margin-top:16px;padding:26px 20px}
+ .story-portrait{flex:none;min-height:0;height:auto;aspect-ratio:16/10;margin-top:20px}
  .band{display:block;padding:20px}
  .band .btn{width:100%;margin-top:16px}
  .community-copy{padding:26px 20px}
@@ -343,12 +349,19 @@ footer{padding:28px 34px;display:flex;justify-content:space-between;gap:18px;fle
    <p class="quote">&ldquo;I don&rsquo;t code.<br><em>I still build.</em>&rdquo;</p>
    <p>AI removed the part that used to stop me. Once I understood how to get from an idea to files, to GitHub, to a live URL, I stopped waiting for somebody else to build things.</p>
    <p>Academy is two hours of that workflow, by shipping something of your own.</p>
+   <!-- Figures from the GitHub API for myrondoesnotcode, checked 2026-08-30:
+        28 public repos, 25 with Pages enabled, account opened 2025-08-19.
+        Stated low rather than high so they stay true as the count grows. -->
+   <div class="cred">
+    <div><b>25</b><span>Live sites</span></div>
+    <div><b>28</b><span>Public repos</span></div>
+    <div><b>12</b><span>Months</span></div>
+   </div>
+   <p class="cred-note">All public, all built the same way yours will be.</p>
+   <img class="story-portrait" src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider, founder of Deploy TLV" width="400" height="400" loading="lazy" decoding="async">
    <div class="pull"><b>The goal isn&rsquo;t to become<br>a developer. The goal<br>is to start building.</b>
-    <div class="who">
-     <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider, founder of Deploy TLV" width="400" height="400" loading="lazy" decoding="async">
-     <div><strong>Myron Shneider</strong><em>Founder of Deploy TLV &middot; previously Aleph</em>
-      <a href="https://github.com/myrondoesnotcode" target="_blank" rel="noopener">github.com/myrondoesnotcode &rarr;</a></div>
-    </div></div>
+    <div class="who"><strong>Myron Shneider</strong><em>Founder of Deploy TLV &middot; previously Aleph</em>
+     <a href="https://github.com/myrondoesnotcode" target="_blank" rel="noopener">github.com/myrondoesnotcode &rarr;</a></div></div>
   </aside>
  </div>
  <div class="band"><div><strong>Your first project can be next.</strong><p>Pick a starting point. Leave with a URL you can send to someone.</p></div><a class="btn" href="#apply">Reserve my seat &mdash; <i class="nis">&#8362;</i>150 &rarr;</a></div>
