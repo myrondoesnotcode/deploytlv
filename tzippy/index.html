@@ -232,6 +232,7 @@ a{color:inherit}
 .btn-bare{background:transparent; color:var(--ink-2); border:0; padding:0 8px}
 .btn-bare:hover{color:var(--ink)}
 .btn-lg{height:40px; padding:0 22px; font-size:15px}
+.btn:disabled{opacity:.45; cursor:not-allowed}
 .btn-wa{background:#25d366; color:#0a2b16}
 .btn-wa:hover{background:#1fbe5b}
 
@@ -265,6 +266,7 @@ a{color:inherit}
   /* Keep the primary actions (Share, New analysis, theme) in reach on a phone;
      GitHub still lives in the footer and on every share card. */
   #gh{display:none}
+  #export .btn-lbl{display:none}
   .topbar .ctx .nm{max-width:16ch}
   .topbar{gap:8px}
   .topbar .acts{gap:4px}
@@ -562,6 +564,17 @@ section{margin-bottom:52px; scroll-margin-top:calc(var(--topbar) + 16px)}
 .person .nm{font-size:13px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .person .st{font:400 11px/1.65 var(--mono); color:var(--ink-3); margin-top:2px}
 .person .em{font-size:13px; margin-top:5px; letter-spacing:.05em}
+/* Long member grids open on demand — 300 cards shouldn't bury the rest
+   of the report under a screenful of scrolling. */
+.folk .hid{display:none}
+.folk.all .hid{display:flex}
+.more-row{display:flex; justify-content:center; margin-top:12px}
+.more-btn{
+  height:34px; padding:0 16px; border-radius:var(--r-sm); cursor:pointer;
+  background:var(--panel); border:1px solid var(--line-2); color:var(--ink-2);
+  font:500 12.5px/1 var(--sans); transition:background .13s ease,color .13s ease;
+}
+.more-btn:hover{background:var(--inset); color:var(--ink)}
 
 /* ---------- Tables ---------- */
 .scroll{max-height:500px; overflow:auto; border:1px solid var(--line); border-radius:var(--r)}
@@ -734,6 +747,29 @@ table a:hover{text-decoration:underline}
   border-radius:var(--r-sm); background:var(--inset); color:var(--ink-2);
   font:400 12px var(--mono); text-overflow:ellipsis;
 }
+
+/* ---------- Save-the-report modal ---------- */
+.exp-adv{border:1px solid var(--line); border-radius:var(--r-sm); background:var(--panel)}
+.exp-adv>summary{
+  cursor:pointer; padding:10px 12px; font-size:12.5px; font-weight:600;
+  color:var(--ink-2); list-style:none;
+}
+.exp-adv>summary::-webkit-details-marker{display:none}
+.exp-adv>summary::before{content:"\25B8\00A0"; color:var(--ink-3)}
+.exp-adv[open]>summary::before{content:"\25BE\00A0"}
+.exp-adv>summary:hover{color:var(--ink)}
+.exp-inner{padding:0 12px 13px; display:flex; flex-direction:column; gap:13px}
+.exp-legend{font-size:12px; font-weight:600; color:var(--ink-2); margin-bottom:6px}
+.exp-secs{display:grid; grid-template-columns:repeat(auto-fill,minmax(146px,1fr)); gap:2px}
+.exp-check{display:flex; align-items:center; gap:8px; font-size:12.5px; cursor:pointer; padding:4px 2px}
+.exp-check input{accent-color:var(--brand-ink); width:15px; height:15px; flex:none; cursor:pointer}
+.exp-mini{display:flex; gap:12px; margin-bottom:7px}
+.exp-mini button{
+  background:none; border:0; padding:0; cursor:pointer; color:var(--ink-3);
+  font:500 11.5px/1 var(--sans); text-decoration:underline;
+}
+.exp-mini button:hover{color:var(--ink)}
+.exp-size{font:400 11px/1.5 var(--mono); color:var(--ink-3); margin:0}
 
 /* =========== SHARED CARD VIEW (opened from a link) =========== */
 #share-view{display:none; min-height:100vh; padding:44px 20px 64px}
@@ -988,6 +1024,13 @@ table a:hover{text-decoration:underline}
 
   <span class="sp"></span>
   <div class="acts">
+    <button class="btn btn-ghost" id="export" hidden>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8 2v8M4.8 6.8L8 10l3.2-3.2M2.5 12.5h11"/>
+      </svg>
+      <span class="btn-lbl">Save report</span>
+    </button>
     <button class="btn btn-ghost" id="share" hidden>
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1462,6 +1505,68 @@ table a:hover{text-decoration:underline}
         <button class="btn btn-ghost" id="sm-img">Download image</button>
         <button class="btn btn-ghost" id="sm-open">Preview the shared page</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SAVE-THE-REPORT MODAL ================= -->
+<div class="modal-back" id="export-modal" role="dialog" aria-modal="true" aria-labelledby="ex-title">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="ex-title">Save the full report</h3>
+        <p class="sub">One self-contained HTML file &mdash; opens in any browser, works offline, send it to anyone.</p>
+      </div>
+      <button class="x" id="ex-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="field">
+        <label for="ex-name">Title on the saved report</label>
+        <input type="text" id="ex-name" maxlength="60" placeholder="e.g. deploy TLV">
+      </div>
+
+      <details class="exp-adv" id="ex-adv">
+        <summary>Choose what to include</summary>
+        <div class="exp-inner">
+          <div>
+            <div class="exp-legend">Sections</div>
+            <div class="exp-mini">
+              <button type="button" id="ex-all">Select all</button>
+              <button type="button" id="ex-none">Select none</button>
+            </div>
+            <div class="exp-secs" id="ex-secs"></div>
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" id="ex-anon">
+            <span class="track"></span>
+            <span class="txt"><b>Hide real names</b>
+              <span>Everyone becomes &ldquo;Member 1&rdquo;, &ldquo;Member 2&rdquo;&hellip; in rank order. Every count, chart and ranking stays exactly as it is.</span></span>
+          </label>
+
+          <label class="switch">
+            <input type="checkbox" id="ex-notext">
+            <span class="track"></span>
+            <span class="txt"><b>Leave out message text</b>
+              <span>Keeps the numbers and charts, drops every quoted message, link context and unanswered question.</span></span>
+          </label>
+        </div>
+      </details>
+
+      <div class="priv-note" id="ex-note">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="7" width="10" height="6.5" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
+        <span id="ex-note-txt"></span>
+      </div>
+
+      <div class="share-actions">
+        <button class="btn btn-primary" id="ex-save">Download the report</button>
+        <button class="btn btn-ghost" id="ex-send" hidden>Send&hellip;</button>
+        <button class="btn btn-ghost" id="ex-preview">Open a preview</button>
+      </div>
+      <p class="exp-size" id="ex-size"></p>
     </div>
   </div>
 </div>
@@ -2225,6 +2330,27 @@ function initials(n){
   return ((p[0]||"")[0]||"?").toUpperCase()+(p.length>1?(p[p.length-1][0]||"").toUpperCase():"");
 }
 
+/* ---------------------------------------------------------------
+   Export options. render() is shared by the live report and the
+   saved copy; while a file is being built EXPORT_OPTS holds the
+   redactions the user asked for, and is null the rest of the time
+   so the on-screen report is never touched.
+   {sections:Set<id>, anon:Map<realName,alias>|null, hideText:bool}
+   --------------------------------------------------------------- */
+let EXPORT_OPTS=null;
+// Real name in, whatever this copy is allowed to show out. Unknown names
+// fall back to a placeholder rather than leaking through the map.
+function nmOf(n){
+  if(!EXPORT_OPTS||!EXPORT_OPTS.anon) return n;
+  return EXPORT_OPTS.anon.get(n)||"Member ?";
+}
+// [name,count] pairs, mapped in place for the bar charts.
+function anonPairs(list){
+  return (EXPORT_OPTS&&EXPORT_OPTS.anon)?list.map(([k,v])=>[nmOf(k),v]):list;
+}
+function hideTxt(){ return !!(EXPORT_OPTS&&EXPORT_OPTS.hideText) }
+function keepSec(id){ return !EXPORT_OPTS||EXPORT_OPTS.sections.has(id) }
+
 /* ===============================================================
    7. SECTIONS
    =============================================================== */
@@ -2237,21 +2363,21 @@ function sec(id,title,blurb,body){
 function dynamicsSection(soc){
   const cards=[];
   if(soc.reciprocity.length) cards.push(card("Closest back-and-forths",
-    bars(soc.reciprocity.map(([a,b,t])=>[a+"  \u21C4  "+b,t]),1),
+    bars(soc.reciprocity.map(([a,b,t])=>[nmOf(a)+"  \u21C4  "+nmOf(b),t]),1),
     "Pairs who reply to each other most \u2014 two-way traffic, both directions alive."));
   if(soc.oneSided.length) cards.push(card("One-sided chasing",
-    bars(soc.oneSided.map(([c,t,ab])=>[c+"  \u2192  "+t,ab]),5,soc.oneSided.map(([,,,ba])=>"only "+ba+" back")),
+    bars(soc.oneSided.map(([c,t,ab])=>[nmOf(c)+"  \u2192  "+nmOf(t),ab]),5,soc.oneSided.map(([,,,ba])=>"only "+ba+" back")),
     "Reaches out far more than they get back. Left name chases the right."));
   if(soc.revivers.length) cards.push(card("Who wakes the chat up",
-    bars(soc.revivers,0),"First to break the silence after 8+ hours of quiet."));
+    bars(anonPairs(soc.revivers),0),"First to break the silence after 8+ hours of quiet."));
   if(soc.nightOwls.length) cards.push(card("Night owls",
-    bars(soc.nightOwls,6,null,"%"),"Share of each person's messages sent between midnight and 5am."));
+    bars(anonPairs(soc.nightOwls),6,null,"%"),"Share of each person's messages sent between midnight and 5am."));
   if(soc.monologuers.length) cards.push(card("Talks in monologues",
-    bars(soc.monologuers,3),"Messages sent in a run of 3+ in a row, with no one chiming in between."));
+    bars(anonPairs(soc.monologuers),3),"Messages sent in a run of 3+ in a row, with no one chiming in between."));
   if(soc.getsLove.length) cards.push(card("Gets the most laughs & love",
-    bars(soc.getsLove,2),"Laughter or \u2764\uFE0F in the message right after theirs \u2014 a proxy for reactions, not an exact count."));
+    bars(anonPairs(soc.getsLove),2),"Laughter or \u2764\uFE0F in the message right after theirs \u2014 a proxy for reactions, not an exact count."));
   if(soc.unanswered.length) cards.push(card("Whose questions go unanswered",
-    bars(soc.unanswered,7),"Questions that got no reply from anyone within an hour, by who asked."));
+    bars(anonPairs(soc.unanswered),7),"Questions that got no reply from anyone within an hour, by who asked."));
   if(!cards.length) return '<p class="empty">Not enough back-and-forth to read the room yet.</p>';
   let out="";
   for(let i=0;i<cards.length;i+=2) out+='<div class="g2">'+cards.slice(i,i+2).join("")+'</div>';
@@ -2268,8 +2394,11 @@ function render(D){
   let banner="";
   if(D.lensReason){
     const btn=(k,lbl)=>'<button class="seg-btn'+(D.lensKey===k?" on":"")+'" onclick="switchLens(\''+k+'\')">'+lbl+'</button>';
+    // The lens toggle re-runs the analysis, which a saved copy can't do \u2014 it
+    // carries no chat. Saved copies get the note without the switch.
+    const seg=EXPORT_OPTS?'':'<div class="seg lens-seg">'+btn("business","Builder")+btn("social","Friends")+'</div>';
     banner='<div class="warn lens-note"><div class="lens-note-txt"><b>'+esc(LENS.name)+' view.</b> '+
-      esc(D.lensReason)+'</div><div class="seg lens-seg">'+btn("business","Builder")+btn("social","Friends")+'</div></div>';
+      esc(D.lensReason)+'</div>'+seg+'</div>';
   }
   let warn="";
   if(chat.warnings.length)
@@ -2297,14 +2426,20 @@ function render(D){
     if(l.repo) repoC.set(l.repo,(repoC.get(l.repo)||0)+1);
   }
   const srt=m=>[...m.entries()].sort((a,b)=>b[1]-a[1]);
-  const linkRows=[...links].sort((a,b)=>b.ts-a.ts).map(l=>[
-    '<span class="when">'+fmtD(l.ts)+'</span>',esc(l.sender),
-    '<span class="pill">'+esc(l.kind)+'</span>',
-    '<a href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer">'+esc(l.url.slice(0,84))+'</a>',
-    '<span class="dim">'+esc(l.ctx.slice(0,120))+'</span>']);
+  // The "Said alongside" column is the only message text in this table, so a
+  // no-text copy drops the column outright rather than printing empty cells.
+  const linkHeads=["Date","Shared by","Type","Link"];
+  if(!hideTxt()) linkHeads.push("Said alongside");
+  const linkRows=[...links].sort((a,b)=>b.ts-a.ts).map(l=>{
+    const row=['<span class="when">'+fmtD(l.ts)+'</span>',esc(nmOf(l.sender)),
+      '<span class="pill">'+esc(l.kind)+'</span>',
+      '<a href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer">'+esc(l.url.slice(0,84))+'</a>'];
+    if(!hideTxt()) row.push('<span class="dim">'+esc(l.ctx.slice(0,120))+'</span>');
+    return row;
+  });
   // The GitHub-repos card only makes sense when there are repos (builder chats).
   const repoCard=repoC.size?card("GitHub repos",bars(srt(repoC).slice(0,18),1),"Repos linked in the chat, by times shared."):"";
-  const shareCard=card("Who shares links",bars(srt(shareC).slice(0,14),4));
+  const shareCard=card("Who shares links",bars(anonPairs(srt(shareC).slice(0,14)),4));
   parts.shared=sec("shared",CP.shared.eyebrow,{h:CP.shared.h,p:CP.shared.p},
     '<div class="g2">'+card("By type",bars(srt(kindC),2))+
     card("Top domains",bars(srt(domC).slice(0,18),0))+'</div>'+
@@ -2312,7 +2447,7 @@ function render(D){
     card("All "+nf(links.length)+" links",
       '<input class="filter" data-t="link-tbl" type="search" placeholder="Filter by domain, person, or keyword">'+
       '<div class="scroll" id="link-tbl">'+
-      tableOf(["Date","Shared by","Type","Link","Said alongside"],linkRows)+'</div>'));
+      tableOf(linkHeads,linkRows)+'</div>'));
 
   /* -- Tools (builder lens only) -- */
   if(LENS.trackTools){
@@ -2346,26 +2481,44 @@ function render(D){
   SIGDEF.forEach(([label],i)=>{
     const list=signals[label]||[];
     tabs+='<button class="tab'+(i?"":" on")+'" data-p="sig'+i+'">'+esc(label)+'<i>'+list.length+'</i></button>';
-    const body=list.length?'<ul class="feed">'+list.slice(0,100).map(s=>
-      '<li><div class="fh"><strong>'+esc(s.sender)+'</strong><span class="when">'+fmtDT(s.ts)+
+    // A no-text copy keeps the tab counts \u2014 a feed of redacted lines would
+    // be a hundred rows saying nothing.
+    const body=hideTxt()
+      ? '<p class="empty">'+(list.length?nf(list.length)+' message'+(list.length===1?'':'s')+
+          ' matched. The messages themselves were left out of this copy.'
+          :'No messages matched this one.')+'</p>'
+      : (list.length?'<ul class="feed">'+list.slice(0,100).map(s=>
+      '<li><div class="fh"><strong>'+esc(nmOf(s.sender))+'</strong><span class="when">'+fmtDT(s.ts)+
       '</span></div><p>'+esc(s.text)+'</p>'+
       (s.links.length?'<div class="fl">'+s.links.map(u=>
         '<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(u.slice(0,74))+'</a>').join("")+'</div>':'')+
-      '</li>').join("")+'</ul>':'<p class="empty">No messages matched this one.</p>';
+      '</li>').join("")+'</ul>':'<p class="empty">No messages matched this one.</p>');
     panels+='<div class="panel'+(i?"":" on")+'" id="sig'+i+'">'+body+'</div>';
   });
   parts.signals=sec("signals",CP.signals.eyebrow,{h:CP.signals.h,p:CP.signals.p},
     card("",'<div class="tabs">'+tabs+'</div>'+panels));
 
   /* -- People -- */
-  const folk='<div class="folk">'+S.people.map((p,i)=>
-    '<div class="person"><div class="av" style="background:var('+AVCOL[i%8]+')">'+esc(initials(p.name))+'</div>'+
-    '<div style="min-width:0"><div class="nm" title="'+esc(p.name)+'">'+esc(p.name)+'</div>'+
+  // Big groups: show the busiest FOLK_CAP up front and keep the rest one
+  // click away, so a 300-person chat doesn't bury every section below it.
+  const FOLK_CAP=24, extra=S.people.length-FOLK_CAP;
+  const folkCards=S.people.map((p,i)=>{
+    const shown=nmOf(p.name);
+    return '<div class="person'+(i>=FOLK_CAP?' hid':'')+'"><div class="av" style="background:var('+
+    AVCOL[i%8]+')">'+esc(initials(shown))+'</div>'+
+    '<div style="min-width:0"><div class="nm" title="'+esc(shown)+'">'+esc(shown)+'</div>'+
     '<div class="st">'+nf(p.msgs)+' msgs \u00B7 '+pct(p.msgs,total)+'%<br>'+
     p.avgWords+' words avg \u00B7 '+nf(p.days.size)+' days</div>'+
-    (p.sig?'<div class="em">'+esc(p.sig)+'</div>':'')+'</div></div>').join("")+'</div>';
+    (p.sig?'<div class="em">'+esc(p.sig)+'</div>':'')+'</div></div>';
+  }).join("");
+  const folkMore=extra>0
+    ? '<div class="more-row"><button class="more-btn" data-t="folk-grid" '+
+      'data-more="Show '+nf(extra)+' more \u2193" '+
+      'data-less="Show fewer \u2191">Show '+nf(extra)+' more \u2193</button></div>'
+    : '';
+  const folk='<div class="folk" id="folk-grid">'+folkCards+'</div>'+folkMore;
   const pRows=S.people.map(p=>[
-    "<strong>"+esc(p.name)+"</strong>",
+    "<strong>"+esc(nmOf(p.name))+"</strong>",
     '<span class="n">'+nf(p.msgs)+'</span>','<span class="n">'+pct(p.msgs,total)+'%</span>',
     '<span class="n">'+p.avgWords+'</span>','<span class="n">'+nf(p.links)+'</span>',
     '<span class="n">'+nf(p.media)+'</span>','<span class="n">'+nf(p.questions)+'</span>',
@@ -2375,10 +2528,12 @@ function render(D){
     {h:"Who shows up, and how",p:"\u201CStarted\u201D counts first messages after three hours of silence. \u201CReplies got\u201D counts messages someone else answered within fifteen minutes."},
     folk+
     '<div class="g2">'+
-    card("Who starts conversations",bars(S.people.slice().sort((a,b)=>b.started-a.started).slice(0,10).map(p=>[p.name,p.started]),1))+
-    card("Who gets replied to",bars(S.people.slice().sort((a,b)=>b.gotReplies-a.gotReplies).slice(0,10).map(p=>[p.name,p.gotReplies]),4))+
+    card("Who starts conversations",bars(S.people.slice().sort((a,b)=>b.started-a.started).slice(0,10).map(p=>[nmOf(p.name),p.started]),1))+
+    card("Who gets replied to",bars(S.people.slice().sort((a,b)=>b.gotReplies-a.gotReplies).slice(0,10).map(p=>[nmOf(p.name),p.gotReplies]),4))+
     '</div>'+
-    card("Everyone, sortable",'<div class="scroll">'+tableOf(
+    card("Everyone, sortable",
+      (S.people.length>12?'<input class="filter" data-t="ppl-tbl" type="search" placeholder="Find someone by name">':'')+
+      '<div class="scroll" id="ppl-tbl">'+tableOf(
       ["Person","Msgs","Share","Avg words","Links","Media","Questions","Days","Started","Replies got"],pRows)+'</div>',
       "Click any column heading to sort by it."));
 
@@ -2397,23 +2552,32 @@ function render(D){
 
   /* -- Conversation health / Moments -- */
   const unans=questions.filter(q=>q.ans===null), ans=questions.filter(q=>q.ans!==null);
-  const peakRows=S.peaks.map(([m,n])=>[
-    '<span class="when">'+fmtD(m.ts)+'</span>',esc(m.sender),
-    '<span class="dim">'+esc(m.text.slice(0,190))+'</span>','<span class="n"><strong>'+n+'</strong></span>']);
-  const unansRows=unans.slice().sort((a,b)=>b.ts-a.ts).slice(0,80).map(q=>[
-    '<span class="when">'+fmtD(q.ts)+'</span>',esc(q.sender),
-    '<span class="dim">'+esc(q.text.slice(0,190))+'</span>']);
+  // Both tables quote messages verbatim, so a no-text copy drops those columns.
+  const peakHeads=hideTxt()?["Date","From","People who replied"]
+                           :["Date","From","Message","People who replied"];
+  const peakRows=S.peaks.map(([m,n])=>{
+    const row=['<span class="when">'+fmtD(m.ts)+'</span>',esc(nmOf(m.sender))];
+    if(!hideTxt()) row.push('<span class="dim">'+esc(m.text.slice(0,190))+'</span>');
+    row.push('<span class="n"><strong>'+n+'</strong></span>');
+    return row;
+  });
+  const unansHeads=hideTxt()?["Date","Asked by"]:["Date","Asked by","Question"];
+  const unansRows=unans.slice().sort((a,b)=>b.ts-a.ts).slice(0,80).map(q=>{
+    const row=['<span class="when">'+fmtD(q.ts)+'</span>',esc(nmOf(q.sender))];
+    if(!hideTxt()) row.push('<span class="dim">'+esc(q.text.slice(0,190))+'</span>');
+    return row;
+  });
   parts.health=sec("health",CP.health.eyebrow,{h:CP.health.h,p:CP.health.p},
     tiles([[nf(questions.length),"questions asked",""],
            [nf(ans.length),"answered within the hour",""],
            [nf(unans.length),"never answered",""],
            [pct(ans.length,questions.length)+"%","answer rate",""]])+
     card("Messages that got the room talking",
-      '<div class="scroll">'+tableOf(["Date","From","Message","People who replied"],peakRows)+'</div>',
+      '<div class="scroll">'+tableOf(peakHeads,peakRows)+'</div>',
       "Counted by how many different people posted within ten minutes afterwards.")+
     card("Questions nobody answered",
       '<input class="filter" data-t="unans-tbl" type="search" placeholder="Filter unanswered questions">'+
-      '<div class="scroll" id="unans-tbl">'+tableOf(["Date","Asked by","Question"],unansRows)+'</div>',
+      '<div class="scroll" id="unans-tbl">'+tableOf(unansHeads,unansRows)+'</div>',
       "No reply from anyone else within sixty minutes."));
 
   /* -- Language / Inside jokes -- */
@@ -2422,8 +2586,9 @@ function render(D){
     card("Emoji",'<div class="chips">'+T.emoji.map(([c,n])=>
       '<span class="chip xl">'+esc(c)+'<i>'+n+'</i></span>').join("")+'</div>'));
 
-  // Emit only this lens's panels, in its order, then the community CTA.
-  return LENS.sections.map(s=>parts[s.id]||"").join("") + communityCTA();
+  // Emit only this lens's panels, in its order \u2014 minus anything a saved
+  // copy was told to leave out \u2014 then the community CTA.
+  return LENS.sections.filter(s=>keepSec(s.id)).map(s=>parts[s.id]||"").join("") + communityCTA();
 }
 
 // Deploy TLV community CTA — appended to every report. Lens-aware: a real
@@ -2450,7 +2615,11 @@ function communityCTA(){
 /* ===============================================================
    8. INTERACTIONS
    =============================================================== */
-function wireUp(D){
+// Wires up a rendered report: tabs, filters, sortable tables, the
+// show-more lists, the timeline crosshair and the scroll spy. Takes only the
+// daily series, everything else it reads off the DOM \u2014 so the saved copy
+// can carry this exact function and behave the same offline.
+function wireDoc(tl){
   // Tabs
   document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
     const box=t.parentElement, scope=box.parentElement;
@@ -2468,6 +2637,15 @@ function wireUp(D){
     host.querySelectorAll("tbody tr").forEach(r=>{
       r.style.display=!q||r.textContent.toLowerCase().includes(q)?"":"none";
     });
+  }));
+
+  // Show-more lists (the member grid on a big group)
+  document.querySelectorAll(".more-btn").forEach(b=>b.addEventListener("click",()=>{
+    const host=document.getElementById(b.dataset.t);
+    if(!host) return;
+    const open=host.classList.toggle("all");
+    b.textContent=open?b.dataset.less:b.dataset.more;
+    if(!open) host.scrollIntoView({block:"nearest"});
   }));
 
   // Sortable headers
@@ -2491,10 +2669,10 @@ function wireUp(D){
 
   // Timeline crosshair
   const wrap=document.querySelector(".tl-wrap");
-  if(wrap&&D){
+  if(wrap&&tl&&tl.length>1){
     const svg=wrap.querySelector(".tl"), tip=wrap.querySelector(".tip"),
           cross=svg.querySelector(".cross"), dot=svg.querySelector(".dot"),
-          tl=D.S.tl, W=1000,H=230,PL=46,PB=28,PT=12;
+          W=1000,H=230,PL=46,PB=28,PT=12;
     const pw=W-PL-10, phh=H-PB-PT, peak=Math.max(...tl.map(t=>t[1]))||1;
     const step=pw/Math.max(tl.length-1,1);
     const move=ev=>{
@@ -2595,7 +2773,7 @@ async function buildReport(lensKey,reason){
   const D={chat,links,tools,discovered,signals,questions,S,T,social,lensKey,lensReason:reason};
   CURRENT.D=D; CURRENT.lensKey=lensKey; CURRENT.lensReason=reason;
 
-  $("#share").hidden=false;
+  $("#share").hidden=false; $("#export").hidden=false;
   $("#tb-name").textContent=name;
   $("#tb-meta").textContent=nf(S.overview.total)+" messages \u00B7 "+
     S.overview.participants+" people \u00B7 "+fmtD(S.overview.first)+
@@ -2609,7 +2787,7 @@ async function buildReport(lensKey,reason){
     return head+'<a href="#'+s.id+'"'+(i?'':' class="here"')+'>'+esc(s.label)+'</a>';
   }).join("");
   $("#main").innerHTML=render(D);
-  wireUp(D);
+  wireDoc(D.S.tl);
 }
 
 // Flip the lens on the report already on screen, without touching the file.
@@ -2654,7 +2832,8 @@ $("#reset").addEventListener("click",()=>{
   tzTrack("reset");
   app.classList.remove("on"); intake.style.display="";
   $("#tb-ctx").hidden=true; $("#tb-div").hidden=true;
-  $("#reset").hidden=true; $("#share").hidden=true; $("#tb-tag").hidden=false;
+  $("#reset").hidden=true; $("#share").hidden=true; $("#export").hidden=true;
+  $("#tb-tag").hidden=false;
   CURRENT=null;
   errBox.hidden=true; fileInput.value=""; window.scrollTo(0,0);
 });
@@ -3425,7 +3604,10 @@ function closeShareModal(){ $("#share-modal").classList.remove("on"); }
 $("#share").addEventListener("click",()=>{ tzTrack("share-open"); openShareModal(); });
 $("#sm-close").addEventListener("click",closeShareModal);
 $("#share-modal").addEventListener("click",e=>{ if(e.target===$("#share-modal")) closeShareModal(); });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeShareModal(); });
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Escape") return;
+  closeShareModal(); closeExportModal();
+});
 $("#sm-name").addEventListener("input",refreshShare);
 $("#sm-names").addEventListener("change",()=>{ if($("#sm-names").checked) tzTrack("share-names-on"); refreshShare(); });
 $("#sm-person").addEventListener("change",refreshShare);
@@ -3490,6 +3672,268 @@ $("#sm-open").addEventListener("click",()=>{
   window.open(link,"_blank","noopener");
 });
 
+/* ===============================================================
+   10. SAVE THE FULL REPORT
+
+   The whole dashboard as one self-contained .html file: the page's
+   own stylesheet, the rendered sections, and wireDoc() serialised
+   straight out of this script so the saved copy keeps its tabs,
+   filters, sorting and crosshair with no server and no network.
+
+   The same render() builds both the live report and the file; while
+   a file is being built EXPORT_OPTS carries the redactions, and is
+   always cleared afterwards so the report on screen is untouched.
+   =============================================================== */
+
+const EXPORT_MARK =
+  '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">'+
+  '<rect width="18" height="18" rx="4.5" fill="var(--primary)"/>'+
+  '<rect x="4" y="9.5" width="2.4" height="4.5" rx="1.2" fill="var(--primary-ink)"/>'+
+  '<rect x="7.8" y="6.5" width="2.4" height="7.5" rx="1.2" fill="var(--primary-ink)"/>'+
+  '<rect x="11.6" y="4" width="2.4" height="10" rx="1.2" fill="var(--primary-ink)"/></svg>';
+
+// Appended to the page's stylesheet inside the saved file: print rules, and
+// the one override that shows #app without the app ever being "started".
+const EXPORT_CSS =
+  "\n/* ---------- saved copy ---------- */\n"+
+  "#app{display:block}\n"+
+  "@media print{\n"+
+  "  .topbar,.sidenav,.more-row,.filter{display:none!important}\n"+
+  "  .shell{display:block}\n"+
+  "  main{padding:0; max-width:none}\n"+
+  "  .scroll{max-height:none; overflow:visible}\n"+
+  "  .folk .hid{display:flex}\n"+
+  "  section,.card,.person,.tile{break-inside:avoid}\n"+
+  "  body{background:#fff}\n"+
+  "}\n";
+
+// Theme toggle + print button for the saved file. Deliberately ES5-plain:
+// this string is all the JavaScript that file gets beyond wireDoc().
+const EXPORT_JS =
+  'var root=document.documentElement,tb=document.getElementById("theme");\n'+
+  'function dk(){var t=root.getAttribute("data-theme");\n'+
+  '  return t==="dark"||(!t&&matchMedia("(prefers-color-scheme:dark)").matches)}\n'+
+  'function sync(){tb.textContent=dk()?"Light":"Dark"}\n'+
+  'sync();\n'+
+  'tb.addEventListener("click",function(){root.setAttribute("data-theme",dk()?"light":"dark");sync()});\n'+
+  'document.getElementById("print").addEventListener("click",function(){window.print()});\n'+
+  'if(location.hash==="#print") setTimeout(function(){window.print()},500);\n';
+
+// Rank order, so "Member 1" is always the busiest person in the group.
+function anonMap(D){ return new Map(D.S.people.map((p,i)=>[p.name,"Member "+(i+1)])) }
+
+function currentExportOpts(){
+  const ids=[...document.querySelectorAll("#ex-secs input:checked")].map(i=>i.value);
+  return {
+    title:$("#ex-name").value.trim(),
+    sections:new Set(ids),
+    anon:$("#ex-anon").checked?anonMap(CURRENT.D):null,
+    hideText:$("#ex-notext").checked
+  };
+}
+
+function exportFilename(opts){
+  const base=(opts.title||CURRENT.name||"whatsapp")
+    .replace(/[^a-z0-9]+/gi,"-").replace(/^-|-$/g,"").toLowerCase()||"whatsapp";
+  return "tzippy-"+base+"-report.html";
+}
+
+function buildExportHTML(opts){
+  const D=CURRENT.D, S=D.S, O=S.overview;
+  const title=opts.title||CURRENT.name||"WhatsApp group";
+  let body,nav;
+  EXPORT_OPTS=opts;
+  try{
+    body=render(D);
+    let lastGrp=null,i=0;
+    nav=SECTIONS.filter(sc=>opts.sections.has(sc.id)).map(sc=>{
+      const head=sc.grp!==lastGrp?'<div class="grp">'+esc(sc.grp)+'</div>':'';
+      lastGrp=sc.grp;
+      return head+'<a href="#'+sc.id+'"'+(i++?'':' class="here"')+'>'+esc(sc.label)+'</a>';
+    }).join("");
+  } finally {
+    EXPORT_OPTS=null;   // whatever happens, the live report stays un-redacted
+  }
+
+  const notes=[];
+  if(opts.anon) notes.push("Names are replaced with “Member 1”, “Member 2”… in order of how much each person posts. Every count, chart and ranking is unchanged.");
+  if(opts.hideText) notes.push("Quoted message text has been left out — the counts and charts are all still here.");
+  if(opts.sections.size<SECTIONS.length)
+    notes.push("Part of the report was left out — "+opts.sections.size+" of "+SECTIONS.length+" sections saved.");
+  const banner='<div class="warn"><b>Saved copy · '+esc(fmtD(new Date()))+'.</b> '+
+    'Counted from a WhatsApp export by Tzippy, inside a browser — the chat itself was never uploaded.'+
+    (notes.length?'<ul>'+notes.map(n=>'<li>'+esc(n)+'</li>').join("")+'</ul>':'')+'</div>';
+
+  const meta=nf(O.total)+" messages · "+O.participants+" people · "+
+             fmtD(O.first)+" – "+fmtD(O.last);
+  const home=location.href.split("#")[0].split("?")[0];
+  const styleEl=document.querySelector("style");
+  const css=(styleEl?styleEl.textContent:"")+EXPORT_CSS;
+
+  return '<!doctype html>\n<html lang="en">\n<head>\n'+
+    '<meta charset="utf-8">\n'+
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
+    '<title>'+esc(title)+' — Tzippy report</title>\n'+
+    '<meta name="robots" content="noindex">\n'+
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'+
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'+
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800;900&display=swap">\n'+
+    '<style>\n'+css+'\n</style>\n</head>\n<body>\n'+
+    '<header class="topbar">\n'+
+    '  <a class="mark" href="'+esc(home)+'" target="_blank" rel="noopener noreferrer">'+EXPORT_MARK+' Tzippy</a>\n'+
+    '  <div class="div"></div>\n'+
+    '  <div class="ctx"><span class="nm">'+esc(title)+'</span><span class="mt">'+esc(meta)+'</span></div>\n'+
+    '  <span class="sp"></span>\n'+
+    '  <div class="acts">\n'+
+    '    <button class="btn btn-ghost" id="print">Print</button>\n'+
+    '    <button class="btn btn-ghost" id="theme">Dark</button>\n'+
+    '    <a class="btn btn-bare" id="gh" href="'+esc(home)+'" target="_blank" rel="noopener noreferrer">Analyze your own chat</a>\n'+
+    '  </div>\n</header>\n'+
+    '<div id="app" class="on"><div class="shell">\n'+
+    '<nav class="sidenav" aria-label="Report sections">'+nav+'</nav>\n'+
+    '<main>'+banner+body+'</main>\n'+
+    '</div></div>\n'+
+    '<script>\n'+
+    'var MON='+JSON.stringify(MON)+';\n'+
+    'var nf=function(n){return n.toLocaleString()};\n'+
+    'var fmtKey=function(k){var p=k.split("-"); return +p[2]+" "+MON[+p[1]-1]+" "+p[0]};\n'+
+    'var TL='+JSON.stringify(S.tl)+';\n'+
+    '('+wireDoc.toString()+')(TL);\n'+
+    EXPORT_JS+
+    '<\/script>\n</body>\n</html>\n';
+}
+
+/* ---- Modal ---- */
+let EXPORT_HTML=null, EXPORT_TIMER=null;
+
+function fmtSize(bytes){
+  return bytes>=1048576 ? (bytes/1048576).toFixed(1)+" MB"
+                        : Math.max(1,Math.round(bytes/1024))+" KB";
+}
+// Rebuilding on every toggle also proves the file builds; the result is
+// cached so Download / Send / Preview never wait for it twice.
+function refreshExport(){
+  const boxes=[...document.querySelectorAll("#ex-secs input")];
+  const n=boxes.filter(b=>b.checked).length;
+  const anon=$("#ex-anon").checked, notext=$("#ex-notext").checked;
+  const note=$("#ex-note"), txt=$("#ex-note-txt");
+  if(anon&&notext){
+    note.classList.remove("warn-tone");
+    txt.textContent="No names, no messages — numbers and charts only. Safe to send to anyone.";
+  }else if(anon){
+    note.classList.remove("warn-tone");
+    txt.textContent="Names are replaced, but messages are still quoted word for word — a quote can identify someone on its own.";
+  }else{
+    note.classList.add("warn-tone");
+    txt.textContent="This file carries real names"+(notext?"":" and quoted messages")+
+      ". Send it to people already in the chat, not to the open internet.";
+  }
+  EXPORT_HTML=null;
+  $("#ex-save").disabled=$("#ex-preview").disabled=$("#ex-send").disabled=(n===0);
+  $("#ex-size").textContent=n?"Building the file…":"Pick at least one section to save.";
+  clearTimeout(EXPORT_TIMER);
+  if(!n) return;
+  EXPORT_TIMER=setTimeout(()=>{
+    try{
+      EXPORT_HTML=buildExportHTML(currentExportOpts());
+      $("#ex-size").textContent=n+" section"+(n===1?"":"s")+" · "+
+        fmtSize(new Blob([EXPORT_HTML]).size)+" · built on your device, nothing uploaded";
+    }catch(e){
+      EXPORT_HTML=null;
+      $("#ex-size").textContent="Couldn't build the file in this browser.";
+    }
+  },220);
+}
+function exportReady(){
+  if(EXPORT_HTML) return EXPORT_HTML;
+  const opts=currentExportOpts();
+  if(!opts.sections.size) return null;
+  try{ EXPORT_HTML=buildExportHTML(opts); }catch(e){ return null; }
+  return EXPORT_HTML;
+}
+function exportBlob(html){ return new Blob([html],{type:"text/html;charset=utf-8"}) }
+function flash(btn,label){
+  const was=btn.textContent; btn.textContent=label;
+  setTimeout(()=>{btn.textContent=was},1600);
+}
+
+function openExportModal(){
+  if(!CURRENT||!CURRENT.D) return;
+  $("#ex-name").value=(CURRENT.name||"").replace(/\s*\(demo data\)$/i,"").trim();
+  $("#ex-secs").innerHTML=SECTIONS.map(sc=>
+    '<label class="exp-check"><input type="checkbox" value="'+esc(sc.id)+'" checked>'+
+    esc(sc.label)+'</label>').join("");
+  $("#ex-secs").querySelectorAll("input").forEach(i=>i.addEventListener("change",refreshExport));
+  $("#export-modal").classList.add("on");
+  refreshExport();
+}
+function closeExportModal(){
+  const m=document.getElementById("export-modal");
+  if(m) m.classList.remove("on");
+  clearTimeout(EXPORT_TIMER);
+}
+
+$("#export").addEventListener("click",()=>{ tzTrack("export-open"); openExportModal(); });
+$("#ex-close").addEventListener("click",closeExportModal);
+$("#export-modal").addEventListener("click",e=>{
+  if(e.target===$("#export-modal")) closeExportModal();
+});
+$("#ex-name").addEventListener("input",refreshExport);
+$("#ex-anon").addEventListener("change",()=>{
+  if($("#ex-anon").checked) tzTrack("export-anon"); refreshExport();
+});
+$("#ex-notext").addEventListener("change",()=>{
+  if($("#ex-notext").checked) tzTrack("export-notext"); refreshExport();
+});
+const setAllSecs=on=>{
+  document.querySelectorAll("#ex-secs input").forEach(i=>{i.checked=on});
+  refreshExport();
+};
+$("#ex-all").addEventListener("click",()=>setAllSecs(true));
+$("#ex-none").addEventListener("click",()=>setAllSecs(false));
+(function(){const d=$("#ex-adv"); if(d) d.addEventListener("toggle",()=>{
+  if(d.open) tzTrack("export-advanced");
+});})();
+
+$("#ex-save").addEventListener("click",()=>{
+  const html=exportReady(); if(!html) return;
+  tzTrack("export-download");
+  const url=URL.createObjectURL(exportBlob(html)), a=document.createElement("a");
+  a.href=url; a.download=exportFilename(currentExportOpts());
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  flash($("#ex-save"),"Saved ✓");
+});
+
+$("#ex-preview").addEventListener("click",()=>{
+  const html=exportReady(); if(!html) return;
+  tzTrack("export-preview");
+  const url=URL.createObjectURL(exportBlob(html));
+  window.open(url,"_blank","noopener");
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+});
+
+// The share sheet only appears where it can actually carry a file (mobile).
+try{
+  const probe=new File(["<p></p>"],"probe.html",{type:"text/html"});
+  if(navigator.canShare&&navigator.canShare({files:[probe]})) $("#ex-send").hidden=false;
+}catch(e){ /* no File / no share sheet — download is the path */ }
+
+$("#ex-send").addEventListener("click",async()=>{
+  const html=exportReady(); if(!html) return;
+  tzTrack("export-send");
+  const opts=currentExportOpts();
+  const file=new File([html],exportFilename(opts),{type:"text/html"});
+  try{
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],
+        title:(opts.title||CURRENT.name||"WhatsApp group")+" — Tzippy report"});
+      return;
+    }
+  }catch(e){ if(e&&e.name==="AbortError") return; }
+  $("#ex-save").click();   // fall back to a plain download
+});
+
 /* ---- Route: if the page is opened with a #card= link, show that card ---- */
 function restoreIntake(){
   // Leave the shared-card view and return to the normal landing page.
@@ -3519,9 +3963,10 @@ async function routeShareLink(){
   intake.style.display="none";
   progress.classList.remove("on");
   app.classList.remove("on");
-  closeShareModal();
+  closeShareModal(); closeExportModal();
   $("#tb-ctx").hidden=true; $("#tb-div").hidden=true;
-  $("#reset").hidden=true; $("#share").hidden=true; $("#tb-tag").hidden=false;
+  $("#reset").hidden=true; $("#share").hidden=true; $("#export").hidden=true;
+  $("#tb-tag").hidden=false;
   document.getElementById("share-view").classList.add("on");
   window.scrollTo(0,0);
   return true;
