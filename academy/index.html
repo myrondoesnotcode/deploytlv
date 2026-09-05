@@ -149,6 +149,7 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .wait-alt{margin-top:14px!important;font-size:13px}
 .wait-alt a{text-decoration:underline;text-underline-offset:3px}
 .wait-alt a:hover{color:var(--orange-deep)}
+.apply{background:var(--paper)}
 .embed{border:1px solid var(--ink);background:var(--paper);padding:10px;min-height:520px}
 .embed>div{min-height:500px}
 .embed-fallback{font-size:11px;color:var(--muted);margin:10px 4px 2px;text-align:center}
@@ -208,7 +209,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.shots a:hover,.opt:hover{transform:none}.ticker div{animation:none}.cursor{animation:none}.js .rv{opacity:1;transform:none;transition:none}}
 </style></head><body><div class="site">
 
-<nav class="nav"><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><a class="btn" id="top-cta" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a></nav>
+<nav class="nav"><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><a class="btn" href="#apply">Reserve my seat &rarr;</a></nav>
 
 <div class="ticker"><div><span><b>&#9679;</b> Tue 8 Sep / 18:00&ndash;20:00</span><span>Tel Aviv</span><span><b>10 seats only</b></span><span><i class="nis">&#8362;</i>150</span><span>No coding experience</span><span>No idea needed</span><span><b>Leave with it live</b></span><span><b>&#9679;</b> Tue 8 Sep / 18:00&ndash;20:00</span><span>Tel Aviv</span><span><b>10 seats only</b></span><span><i class="nis">&#8362;</i>150</span><span>No coding experience</span><span>No idea needed</span><span><b>Leave with it live</b></span></div></div>
 
@@ -217,7 +218,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  <h1>Build something <em>real</em> with AI<span class="cursor"></span></h1>
  <p>No coding experience. No idea needed. You leave with it live on the internet.</p>
  <div class="facts"><span>Tue 8 Sep</span><span>18:00&ndash;20:00</span><span>10 seats</span><span><i class="nis">&#8362;</i>150</span></div>
- <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a>
+ <a class="btn" href="#apply">Reserve my seat &rarr;</a>
 </section>
 
 <section class="proof rv">
@@ -309,17 +310,32 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 
 <section class="close rv" id="go">
  <h2>Stop saving it.<br>Ship it.</h2>
- <a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a>
+ <a class="btn" href="#apply">Reserve my seat &rarr;</a>
  <p>Tue 8 Sep &middot; 18:00&ndash;20:00 &middot; Tel Aviv &middot; 10 seats</p>
 </section>
 
-<section class="wait rv" id="online">
+<section class="wait apply" id="apply">
+ <div class="wait-in">
+  <div>
+   <div class="kicker">Tue 8 September &middot; Tel Aviv</div>
+   <h2>Reserve your<br>seat.</h2>
+   <p>Ten seats. Applying is free &mdash; nothing is charged here. We&rsquo;ll come back to you with the venue and a Bit request for <i class="nis">&#8362;</i>150, and the seat is yours once that lands.</p>
+  </div>
+  <div class="embed">
+   <div data-fillout-id="jKsfCiX3ejus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+   <noscript><a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Open the form &rarr;</a></noscript>
+   <p class="embed-fallback">Form not loading? <a href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Open it in a new tab &rarr;</a></p>
+  </div>
+ </div>
+</section>
+
+<section class="wait" id="online">
  <div class="wait-in">
   <div>
    <div class="kicker">Can&rsquo;t make the 8th?</div>
    <h2>An online Academy<br>is coming.</h2>
    <p>Same two hours, same outcome, run remotely &mdash; for people who can&rsquo;t get to Tel Aviv on a Tuesday evening. Leave your details and we&rsquo;ll tell you when dates are set.</p>
-   <p class="wait-alt">Coming on the 8th instead? Use <a href="#top-cta">Reserve my seat</a> above &mdash; that&rsquo;s a different form.</p>
+   <p class="wait-alt">Coming on the 8th instead? Use <a href="#apply">Reserve my seat</a> above &mdash; that&rsquo;s a different form.</p>
   </div>
   <div class="embed">
    <div data-fillout-id="wscq9uTpqBus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
@@ -331,7 +347,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
 
 <footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
 </div>
-<div class="sticky"><a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a></div>
+<div class="sticky"><a class="btn" href="#apply">Reserve my seat &rarr;</a></div>
 <script>
 (function(){
  // Reveal is decorative, so it must never be able to hide content permanently.
