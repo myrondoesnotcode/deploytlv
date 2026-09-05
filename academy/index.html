@@ -141,6 +141,24 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}
 .built span{font-size:9.5px;text-transform:uppercase;color:var(--muted);text-align:right}
 
 /* close */
+/* waitlist — deliberately calmer than the paid CTA above it */
+.wait{padding:64px 46px;border-bottom:1px solid var(--ink);background:var(--paper2)}
+.wait-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,430px);gap:52px;align-items:center}
+.wait h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(26px,3.4vw,44px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase;margin:12px 0}
+.wait p{font-size:14px;line-height:1.65;color:var(--muted);margin:0;max-width:46ch}
+.wf{display:grid;gap:10px}
+.wf label{display:block;font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.wf input{width:100%;padding:14px;border:1px solid var(--ink);background:var(--paper);font:400 16px 'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;color:var(--ink)}
+.wf input:focus{outline:2px solid var(--orange);outline-offset:-1px}
+.wf .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.wf button{margin-top:4px;min-height:52px;border:1.5px solid var(--ink);background:var(--orange);color:var(--ink);font:700 12px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:.06em;box-shadow:4px 4px 0 var(--ink);cursor:pointer;transition:.12s}
+.wf button:hover:not(:disabled){transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.wf button:disabled{opacity:.55;cursor:default}
+.wf-msg{font-size:13px;line-height:1.6;margin:4px 0 0;min-height:1.3em}
+.wf-msg.ok{color:var(--orange-deep);font-weight:500}
+.wf-msg.err{color:#a8291a}
+
+/* close */
 .close{padding:120px 46px;text-align:center;background:var(--orange)}
 .close h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(46px,8vw,110px);line-height:.85;letter-spacing:-.055em;text-transform:uppercase;margin:0 0 26px}
 .close .btn{background:var(--paper)}
@@ -165,6 +183,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .built div:first-child{border-top:0}
  .built b{display:block;font-size:24px}
  .built span{display:block;margin-top:7px;text-align:left}.who img{max-width:190px}
+ .wait{padding:48px 24px}.wait-in{grid-template-columns:1fr;gap:26px}
  .close{padding:86px 24px}footer{padding:22px 24px}
 }
 @media(max-width:560px){
@@ -183,7 +202,7 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  .community-copy{padding:38px 18px}.community-media{min-height:210px}
  .make{padding:44px 18px}.reassure div{padding:22px 18px}
  .proof{padding:54px 18px}.proof h2{font-size:30px;margin-bottom:26px}.shots{gap:10px}
- .beat{padding:28px 18px}.who{padding:40px 18px}.close{padding:64px 18px}
+ .beat{padding:28px 18px}.who{padding:40px 18px}.wait{padding:40px 18px}.close{padding:64px 18px}
  .close .btn{width:100%}
  footer{padding:20px 18px}
  .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--ink);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
@@ -297,6 +316,26 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
  <p>Tue 8 Sep &middot; 18:00&ndash;20:00 &middot; Tel Aviv &middot; 10 seats</p>
 </section>
 
+<section class="wait rv" id="waitlist">
+ <div class="wait-in">
+  <div>
+   <div class="kicker">Can&rsquo;t make the 8th?</div>
+   <h2>An online Academy<br>is coming.</h2>
+   <p>Same idea, run remotely, for people who can&rsquo;t get to Tel Aviv on a Tuesday evening. Leave your name and we&rsquo;ll tell you when dates are set. Nothing else sent.</p>
+  </div>
+  <form class="wf" id="wf" novalidate>
+   <div><label for="wf-name">Name</label>
+    <input id="wf-name" name="name" type="text" autocomplete="name" maxlength="120" required placeholder="Your name"></div>
+   <div><label for="wf-email">Email</label>
+    <input id="wf-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="you@example.com"></div>
+   <div class="hp" aria-hidden="true"><label for="wf-co">Company</label>
+    <input id="wf-co" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+   <button type="submit">Add me to the list &rarr;</button>
+   <p class="wf-msg" id="wf-msg" role="status" aria-live="polite"></p>
+  </form>
+ </div>
+</section>
+
 <footer><a class="logo" href="/">DEPLOY<b>_</b>TLV</a><div>Tel Aviv / 2026</div></footer>
 </div>
 <div class="sticky"><a class="btn" href="https://forms.fillout.com/t/jKsfCiX3ejus" target="_blank" rel="noopener">Reserve my seat &rarr;</a></div>
@@ -329,6 +368,35 @@ footer{padding:26px 46px;display:flex;justify-content:space-between;gap:16px;fle
    obs.unobserve(v)
   }})},{rootMargin:'320px 0px'});
  document.querySelectorAll('video.lazy-video').forEach(function(v){obs.observe(v)});
+})();
+</script>
+<script>
+(function(){
+ // Public anon key + an INSERT-only RLS policy: this can add a row and can
+ // never read one. See build/academy-waitlist.sql before touching the policy.
+ var EP="https://uzloavbzhebsoizkxheb.supabase.co/rest/v1/academy_waitlist";
+ var KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6bG9hdmJ6aGVic29pemt4aGViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDEyNjAsImV4cCI6MjA5OTAxNzI2MH0.J0Aa8FYCVQYUddvDEbeN_0yNYweYs_nupsQu1MLLlnk";
+ var f=document.getElementById('wf'); if(!f) return;
+ var msg=document.getElementById('wf-msg'), btn=f.querySelector('button');
+ function say(t,c){msg.textContent=t;msg.className='wf-msg'+(c?' '+c:'')}
+ f.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(f.company.value){f.reset();say('Thanks.','ok');return}
+  var name=f.name.value.trim(), email=f.email.value.trim();
+  if(!name){say('Your name, please.','err');return}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){say('That email does not look right.','err');return}
+  btn.disabled=true; say('Adding you\u2026');
+  fetch(EP,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,
+    'Content-Type':'application/json','Prefer':'return=minimal'},
+   body:JSON.stringify({name:name,email:email,source:'academy'})})
+  .then(function(r){
+   if(r.ok){f.reset();say('You are on the list. We will email you when dates are set.','ok');return}
+   if(r.status===409){f.reset();say('You are already on the list.','ok');return}
+   throw new Error(r.status);
+  })
+  .catch(function(){say('Something went wrong \u2014 try again in a moment.','err')})
+  .then(function(){btn.disabled=false});
+ });
 })();
 </script>
 <script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
