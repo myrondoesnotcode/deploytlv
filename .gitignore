@@ -31,3 +31,7 @@ build/deploy3/li_data.txt
 
 # Deploy #4 plaintext (encrypted data.enc.js is what ships)
 events/4/data.js
+
+# Deploy #5 plaintext (encrypted data.enc.js is what ships)
+events/5/data.js
+build/deploy5/deploy5-profiles.json
