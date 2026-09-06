@@ -344,6 +344,38 @@ function App() {
   );
 }
 
+/* Every attendee has 3+ authored collaboration angles naming specific people — 412
+   across the room. The original Who-To-Meet used only the 15 curated matches, so 77 of
+   102 people saw nothing and 8 hit a literal "No matches found". These angles ARE the
+   personal intro list; this renders them and links the names. */
+const NAME_INDEX = ATTENDEES
+  .map(a => ({ a, re: new RegExp("\\b" + a.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s*\(.*$/, "") + "\\b") }))
+  .sort((x, y) => y.a.name.length - x.a.name.length);
+
+function AngleText({ text, setSelected }) {
+  const parts = [];
+  let rest = text, guard = 0;
+  while (rest && guard++ < 40) {
+    let best = null;
+    for (const { a, re } of NAME_INDEX) {
+      const m = re.exec(rest);
+      if (m && (best === null || m.index < best.i)) best = { i: m.index, len: m[0].length, a };
+    }
+    if (!best) break;
+    if (best.i > 0) parts.push(rest.slice(0, best.i));
+    const who = best.a;
+    parts.push(
+      <span key={parts.length} onClick={e => { e.stopPropagation(); setSelected(who); }}
+        style={{ cursor: "pointer", fontWeight: 700, color: INK, borderBottom: "1px solid " + ACCENT }}>
+        {rest.substr(best.i, best.len)}
+      </span>
+    );
+    rest = rest.slice(best.i + best.len);
+  }
+  if (rest) parts.push(rest);
+  return <span>{parts}</span>;
+}
+
 /* ── WHO TO MEET tab ── */
 function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
   const q = myName.trim().toLowerCase();
@@ -390,9 +422,8 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
           <div className="d2-flat" style={{ borderLeft: "3px solid " + ACCENT, padding: "14px 16px", marginBottom: 24 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
               <div className="barlow" style={{ fontSize: 22, fontWeight: 900 }}>{me.name}</div>
-              <span className="barlow" onClick={() => { setMyId(null); setMyName(""); }}
-                onClickCapture={() => { try { localStorage.removeItem("d5_me"); } catch (e) {} }}
-              style={{ cursor: "pointer", color: GOLD, fontSize: 11, letterSpacing: 1.5, whiteSpace: "nowrap", textTransform: "uppercase", borderBottom: "1px solid " + BORDER }}>NOT YOU? ↻</span>
+              <span className="barlow" onClick={() => { setMyId(null); setMyName(""); try { localStorage.removeItem("d5_me"); } catch (e) {} }}
+                style={{ cursor: "pointer", color: GOLD, fontSize: 11, letterSpacing: 1.5, whiteSpace: "nowrap", textTransform: "uppercase", borderBottom: "1px solid " + BORDER }}>NOT YOU? ↻</span>
             </div>
             <div className="barlow" style={{ fontSize: 12, color: GOLD, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8 }}>{me.project}</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -403,9 +434,26 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
             </div>
           </div>
 
+          {(me.collab || []).length > 0 && (
+            <React.Fragment>
+              <Label mt={0}>★ Who you should meet ({me.collab.length})</Label>
+              <div style={{ fontSize: 12, color: MUTED, marginBottom: 14, lineHeight: 1.6 }}>
+                Written for you specifically. Tap any name to open their profile.
+              </div>
+              {me.collab.map((c, i) => (
+                <div key={i} className="d2-flat" style={{ padding: "13px 16px", marginBottom: 8, display: "flex", gap: 10 }}>
+                  <span style={{ color: ACCENT, fontWeight: 900, flexShrink: 0 }}>→</span>
+                  <span style={{ fontSize: 12.5, color: MUTED, lineHeight: 1.6 }}>
+                    <AngleText text={c} setSelected={setSelected} />
+                  </span>
+                </div>
+              ))}
+            </React.Fragment>
+          )}
+
           {myMatches.length > 0 && (
             <React.Fragment>
-              <Label mt={0}>★ Your Priority Matches ({myMatches.length})</Label>
+              <Label mt={28}>★ Priority matches for the whole room ({myMatches.length})</Label>
               {myMatches.map(m => {
                 const otherName = m.a === me.name ? m.b : m.a;
                 const other = byName(otherName);
@@ -427,7 +475,7 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
 
           {peers.length > 0 && (
             <React.Fragment>
-              <Label mt={myMatches.length > 0 ? 28 : 0}>Others In Your Domain ({peers.length})</Label>
+              <Label mt={28}>Others in your domain ({peers.length})</Label>
               <div style={{ fontSize: 12, color: MUTED, marginBottom: 14, lineHeight: 1.6 }}>These attendees share at least one cluster with you — common ground for a conversation.</div>
               {peers.map(a => (
                 <div key={a.id} className="d2-card" style={{ padding: "12px 16px", marginBottom: 8, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} onClick={() => setSelected(a)}>
@@ -447,7 +495,11 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
             </React.Fragment>
           )}
 
-          {myMatches.length === 0 && peers.length === 0 && <div style={{ color: MUTED, fontSize: 13 }}>No matches found for this profile.</div>}
+          {(me.collab || []).length === 0 && myMatches.length === 0 && peers.length === 0 && (
+            <div style={{ color: MUTED, fontSize: 13, lineHeight: 1.7 }}>
+              Your profile is still light on detail — browse the Profiles tab, or find Myron and he will point you at the right people.
+            </div>
+          )}
         </React.Fragment>
       )}
     </div>
