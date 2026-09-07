@@ -109,7 +109,16 @@ function StackChips({ stack, max }) {
 function App() {
   /* Opens on the full room. Who To Meet is one tab across and remembers whoever has
      already identified themselves, so their own list is still one tap away. */
-  const savedMe = (() => { try { return JSON.parse(localStorage.getItem("d5_me") || "null"); } catch (e) { return null; } })();
+  /* Validate the shape, don't just parse it: a stored value from an older build (or
+     a stale key) that isn't {id, name} used to blank the whole page with no way back
+     other than clearing site data — a bad thing to hand 110 phones at the door. */
+  const savedMe = (() => {
+    try {
+      const v = JSON.parse(localStorage.getItem("d5_me") || "null");
+      if (!v || typeof v !== "object" || typeof v.name !== "string") return null;
+      return ATTENDEES.some(a => a.id === v.id && a.name === v.name) ? v : null;
+    } catch (e) { return null; }
+  })();
   const [tab, setTab] = useState("profiles");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
