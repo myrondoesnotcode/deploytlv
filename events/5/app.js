@@ -274,9 +274,9 @@ function App() {
                 <Badge text={m.tag} bg={TAG_COLORS[m.tag] || "#888"} color="#fff" />
               </div>
               <div className="barlow" style={{ fontSize: 19, fontWeight: 900, marginBottom: 8, lineHeight: 1.1 }}>
-                <span style={{ cursor: "pointer", borderBottom: "2px solid " + BORDER }} onClick={() => { const o = byName(m.a); if (o) setSelected(o); }}>{m.a}</span>
+                <span style={byName(m.a) ? { cursor: "pointer", borderBottom: "2px solid " + BORDER } : undefined} onClick={() => { const o = byName(m.a); if (o) setSelected(o); }}>{m.a}</span>
                 {" "}<span style={{ color: GOLD }}>↔</span>{" "}
-                <span style={{ cursor: "pointer", borderBottom: "2px solid " + BORDER }} onClick={() => { const o = byName(m.b); if (o) setSelected(o); }}>{m.b}</span>
+                <span style={byName(m.b) ? { cursor: "pointer", borderBottom: "2px solid " + BORDER } : undefined} onClick={() => { const o = byName(m.b); if (o) setSelected(o); }}>{m.b}</span>
               </div>
               <div style={{ fontSize: 12.5, color: MUTED, lineHeight: 1.6 }}>{m.why}</div>
             </div>
@@ -466,7 +466,7 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
                 const otherName = m.a === me.name ? m.b : m.a;
                 const other = byName(otherName);
                 return (
-                  <div key={m.rank} className="d2-card" style={{ padding: 16, marginBottom: 10 }} onClick={() => other && setSelected(other)}>
+                  <div key={m.rank} className="d2-card" style={{ padding: 16, marginBottom: 10, cursor: other ? "pointer" : "default" }} onClick={() => other && setSelected(other)}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                       <span style={{ color: FAINT, fontSize: 11 }}>MATCH #{m.rank}</span>
                       <Badge text={m.tag} bg={TAG_COLORS[m.tag] || "#888"} color="#fff" />
@@ -474,7 +474,9 @@ function ForMe({ myName, setMyName, myId, setMyId, setSelected }) {
                     <div className="barlow" style={{ fontSize: 18, fontWeight: 900 }}>{otherName}</div>
                     {other && <div className="barlow" style={{ fontSize: 12, color: GOLD, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 8 }}>{other.project}</div>}
                     <div style={{ fontSize: 12.5, color: MUTED, lineHeight: 1.6 }}>{m.why}</div>
-                    <div style={{ marginTop: 10, fontSize: 10, color: FAINT, letterSpacing: 1 }}>TAP TO VIEW FULL PROFILE →</div>
+                    {/* Five matches pair a person with a group ("the mobility cluster"),
+                        so there is no profile to open — don't promise a tap that does nothing. */}
+                    {other && <div style={{ marginTop: 10, fontSize: 10, color: FAINT, letterSpacing: 1 }}>TAP TO VIEW FULL PROFILE →</div>}
                   </div>
                 );
               })}
@@ -625,7 +627,7 @@ function Modal({ a, setSelected }) {
                     <Badge text={m.tag} bg={TAG_COLORS[m.tag] || "#888"} color="#fff" />
                   </div>
                   <div className="barlow" style={{ fontSize: 15, fontWeight: 800, marginBottom: 4 }}>
-                    <span style={{ cursor: "pointer", borderBottom: "1px solid " + BORDER }} onClick={() => { const o = byName(otherName); if (o) setSelected(o); }}>{otherName}</span>
+                    <span style={byName(otherName) ? { cursor: "pointer", borderBottom: "1px solid " + BORDER } : undefined} onClick={() => { const o = byName(otherName); if (o) setSelected(o); }}>{otherName}</span>
                   </div>
                   <div style={{ fontSize: 12, color: MUTED, lineHeight: 1.55 }}><AngleText text={m.why} setSelected={setSelected} /></div>
                 </div>
