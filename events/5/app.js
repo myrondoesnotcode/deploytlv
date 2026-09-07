@@ -107,11 +107,10 @@ function StackChips({ stack, max }) {
 
 /* ── App ── */
 function App() {
-  /* The job at an event is "who should I talk to", not "browse 102 cards", so the app
-     opens on Who To Meet. Someone who has already identified themselves goes straight
-     to their own list on the next visit. */
+  /* Opens on the full room. Who To Meet is one tab across and remembers whoever has
+     already identified themselves, so their own list is still one tap away. */
   const savedMe = (() => { try { return JSON.parse(localStorage.getItem("d5_me") || "null"); } catch (e) { return null; } })();
-  const [tab, setTab] = useState("forme");
+  const [tab, setTab] = useState("profiles");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
   const [clusterFilter, setClusterFilter] = useState(null);
