@@ -133,7 +133,7 @@ function App() {
     if (a._hay) return a._hay;
     a._hay = [a.name, a.project, a.tagline, a.insight, a.building, a.bg, a.seeking,
       (a.stack || []).join(" "), (a.cluster || []).join(" "), (a.collab || []).join(" "),
-      a.d1label, a.role].filter(Boolean).join(" ").toLowerCase();
+      a.d1label, a.role, a.openToWork ? "open to work hiring job" : ""].filter(Boolean).join(" ").toLowerCase();
     return a._hay;
   };
   const filtered = ATTENDEES.filter(a => {
@@ -244,6 +244,7 @@ function App() {
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 6, marginBottom: 8, flexWrap: "wrap" }}>                  {a.role && <Badge text={(a.role === "HOST" ? "★ " : "🎤 ") + a.role} bg={BLACK} color={ACCENT} />}
+                  {a.openToWork && <Badge text="◆ OPEN TO WORK" bg={ACCENT} color={BLACK} />}
                   {a.d1 && <Badge text={"↩ " + (a.d1label || "Alum")} border={BORDER} color={MUTED} />}
                 </div>
                 <div style={{ fontSize: 12, color: MUTED, lineHeight: 1.5, marginBottom: 6 }}>{a.tagline}</div>
@@ -544,6 +545,7 @@ function Modal({ a, setSelected }) {
 
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
           <RevBadge rev={a.revenue} />          {a.role && <Badge text={(a.role === "HOST" ? "★ " : "🎤 ") + a.role} bg={BLACK} color={ACCENT} />}
+          {a.openToWork && <Badge text="◆ OPEN TO WORK" bg={ACCENT} color={BLACK} />}
           {a.d1 && <Badge text={"↩ " + (a.d1label || "Returning alum")} border={BORDER} color={MUTED} />}
           {liHref && <a className="d2-link" href={liHref} target="_blank" rel="noreferrer" style={{ color: MUTED, fontSize: 11, textDecoration: "none", border: "1px solid " + BORDER, padding: "3px 8px", letterSpacing: 1 }}>LINKEDIN ↗</a>}
           {websiteHref && <a className="d2-link" href={websiteHref} target="_blank" rel="noreferrer" style={{ color: MUTED, fontSize: 11, textDecoration: "none", border: "1px solid " + BORDER, padding: "3px 8px", letterSpacing: 1 }}>{a.website} ↗</a>}
