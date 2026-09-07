@@ -590,7 +590,8 @@ function Modal({ a, setSelected }) {
             <Label>Collaboration Angles</Label>
             {a.collab.map((c, i) => (
               <div key={i} style={{ fontSize: 12.5, color: MUTED, lineHeight: 1.6, marginBottom: 7, display: "flex", gap: 8 }}>
-                <span style={{ color: ACCENT, fontWeight: 900 }}>→</span><span>{c}</span>
+                <span style={{ color: ACCENT, fontWeight: 900 }}>→</span>
+                <span><AngleText text={c} setSelected={setSelected} /></span>
               </div>
             ))}
           </React.Fragment>
@@ -617,7 +618,7 @@ function Modal({ a, setSelected }) {
                   <div className="barlow" style={{ fontSize: 15, fontWeight: 800, marginBottom: 4 }}>
                     <span style={{ cursor: "pointer", borderBottom: "1px solid " + BORDER }} onClick={() => { const o = byName(otherName); if (o) setSelected(o); }}>{otherName}</span>
                   </div>
-                  <div style={{ fontSize: 12, color: MUTED, lineHeight: 1.55 }}>{m.why}</div>
+                  <div style={{ fontSize: 12, color: MUTED, lineHeight: 1.55 }}><AngleText text={m.why} setSelected={setSelected} /></div>
                 </div>
               );
             })}
