@@ -75,10 +75,13 @@
   }
 
   /* --- registration form ------------------------------------------------
-     No third-party embed. Two submit strategies, both configured in
+     No third-party embed. Submit strategies, configured in
      build/academy/academy.data.mjs:
+       'supabase' — insert a row into academy_requests (insert-only RLS)
        'endpoint' — POST JSON to a URL you own
        'mailto'   — open the visitor's own mail client, prefilled
+     A failed save falls back to a prefilled mailto link, so a request is
+     never simply lost.
      Either way the wording is "request", never "confirmed": nothing here
      takes a payment, so nothing here may claim a seat is held.            */
   var form = document.getElementById('regform')
@@ -129,28 +132,55 @@
       if (!data.name) { form.elements.name.focus(); say('Add your name so we know who to write back to.', false); return }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { form.elements.email.focus(); say('That email does not look right — check it and send again.', false); return }
 
-      if (enroll.strategy === 'endpoint' && enroll.endpoint) {
-        var btn = form.querySelector('button[type=submit]')
-        btn.setAttribute('aria-disabled', 'true')
-        say('Sending&hellip;')
-        fetch(enroll.endpoint, {
+      /* Honeypot: people never see this field, bots fill it in. Pretend it
+         worked and store nothing. */
+      if (form.elements.website && form.elements.website.value) {
+        form.reset(); say('Request received. We will come back to you by email.'); return
+      }
+
+      var sb = enroll.supabase || {}
+      var req = null
+      if (enroll.strategy === 'supabase' && sb.url && sb.anonKey) {
+        req = fetch(sb.url.replace(/\/$/, '') + '/rest/v1/' + (sb.table || 'academy_requests'), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': sb.anonKey,
+            'Authorization': 'Bearer ' + sb.anonKey,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            course: data.course.slice(0, 120), name: data.name.slice(0, 120),
+            email: data.email.slice(0, 254), idea: data.idea ? data.idea.slice(0, 2000) : null,
+            page: location.pathname.slice(0, 200)
+          })
+        })
+      } else if (enroll.strategy === 'endpoint' && enroll.endpoint) {
+        req = fetch(enroll.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
-        }).then(function (r) {
+        })
+      }
+
+      if (req) {
+        var btn = form.querySelector('button[type=submit]')
+        btn.setAttribute('aria-disabled', 'true')
+        say('Sending&hellip;')
+        req.then(function (r) {
           if (!r.ok) throw new Error(r.status)
           if (CFG.urls && CFG.urls.confirmation) { location.href = CFG.urls.confirmation; return }
           form.reset()
           say('Request received. We will come back to you by email about ' + data.course + '.')
         }).catch(function () {
-          say('That did not go through. Email us directly at <a href="mailto:' + (CFG.contactEmail) + '">' + CFG.contactEmail + '</a> and we will pick it up.', false)
+          say('That did not go through on our side. <a href="' + mailtoFor(data).replace(/"/g, '&quot;') + '">Send it by email instead</a> &mdash; it opens already filled in &mdash; or write to ' + CFG.contactEmail + '.', false)
         }).then(function () { btn.removeAttribute('aria-disabled') })
         return
       }
 
       /* mailto: hand it to the visitor's own mail client. */
       window.location.href = mailtoFor(data)
-      say('Your mail app should be opening with the request filled in &mdash; press send and we will take it from there. Nothing has been charged.')
+      say('Your mail app should be opening with the request filled in &mdash; press send and we will take it from there. Nothing has been charged. If nothing opened, write to <a href="mailto:' + CFG.contactEmail + '">' + CFG.contactEmail + '</a>.')
     })
   }
 

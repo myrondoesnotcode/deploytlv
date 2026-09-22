@@ -2,7 +2,12 @@
 window.ACADEMY_CONFIG = {
  "contactEmail": "hello@deploytlv.com",
  "enrollment": {
-  "strategy": "mailto",
+  "strategy": "supabase",
+  "supabase": {
+   "url": "https://uzloavbzhebsoizkxheb.supabase.co",
+   "table": "academy_requests",
+   "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6bG9hdmJ6aGVic29pemt4aGViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDEyNjAsImV4cCI6MjA5OTAxNzI2MH0.J0Aa8FYCVQYUddvDEbeN_0yNYweYs_nupsQu1MLLlnk"
+  },
   "endpoint": "",
   "fallbackFormUrl": ""
  },
