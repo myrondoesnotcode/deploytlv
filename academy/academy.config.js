@@ -22,12 +22,12 @@ window.ACADEMY_CONFIG = {
   "teamsContact": ""
  },
  "cohort": {
-  "date": null,
-  "startTime": null,
-  "endTime": null,
+  "date": "2026-09-29",
+  "startTime": "19:00",
+  "endTime": "21:00",
   "timezone": "Asia/Jerusalem",
-  "dateLabel": null,
-  "timeLabel": null
+  "dateLabel": "Tuesday 29 September",
+  "timeLabel": "19:00 – 21:00"
  },
  "venue": {
   "name": "Deploy TLV",
@@ -42,21 +42,39 @@ window.ACADEMY_CONFIG = {
  "courses": [
   {
    "id": "academy-101",
+   "code": "ACADEMY 101",
+   "title": "Build & ship a website with AI",
    "label": "ACADEMY 101 — Build & ship a website with AI",
-   "status": "waitlist"
+   "status": "enrolling",
+   "date": "2026-09-29",
+   "startTime": "19:00",
+   "endTime": "21:00",
+   "dateLabel": "Tuesday 29 September",
+   "timeLabel": "19:00 – 21:00"
   },
   {
    "id": "academy-102",
+   "code": "ACADEMY 102",
+   "title": "Edit video with AI",
    "label": "ACADEMY 102 — Edit video with AI",
-   "status": "waitlist"
+   "status": "enrolling",
+   "date": "2026-09-30",
+   "startTime": "19:00",
+   "endTime": "21:00",
+   "dateLabel": "Wednesday 30 September",
+   "timeLabel": "19:00 – 21:00"
   },
   {
    "id": "academy-103",
+   "code": "ACADEMY 103",
+   "title": "Automate your work",
    "label": "ACADEMY 103 — Automate your work",
    "status": "waitlist"
   },
   {
    "id": "academy-104",
+   "code": "ACADEMY 104",
+   "title": "Build an AI tool",
    "label": "ACADEMY 104 — Build an AI tool",
    "status": "soon"
   }

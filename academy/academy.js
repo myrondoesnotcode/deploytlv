@@ -169,7 +169,12 @@
         say('Sending&hellip;')
         req.then(function (r) {
           if (!r.ok) throw new Error(r.status)
-          if (CFG.urls && CFG.urls.confirmation) { location.href = CFG.urls.confirmation; return }
+          if (CFG.urls && CFG.urls.confirmation) {
+            /* Tell the confirmation page which class this was for. */
+            var picked = (CFG.courses || []).filter(function (c) { return c.label === data.course })[0]
+            location.href = CFG.urls.confirmation + (picked ? '?course=' + encodeURIComponent(picked.id) : '')
+            return
+          }
           form.reset()
           say('Request received. We will come back to you by email about ' + data.course + '.')
         }).catch(function () {
@@ -192,6 +197,27 @@
   if (icsBtn) {
     var note = document.getElementById('icsNote')
     var co = CFG.cohort || {}
+    var summary = 'Deploy Academy 101 — build & ship a website with AI'
+    var slug = 'deploy-academy-101'
+    /* ?course= picks the class that was booked; each carries its own date. */
+    var booked = (CFG.courses || []).filter(function (c) {
+      return c.id === new URLSearchParams(location.search).get('course')
+    })[0]
+    if (booked) {
+      co = booked
+      summary = 'Deploy ' + booked.code.replace('ACADEMY', 'Academy') + ' — ' + booked.title
+      slug = 'deploy-' + booked.id
+      var cls = document.getElementById('cf-class')
+      var when = document.getElementById('cf-when')
+      if (cls) {
+        cls.querySelector('strong').textContent = booked.code.replace('ACADEMY', 'Academy')
+        cls.querySelector('span').textContent = booked.title
+      }
+      if (when) {
+        when.querySelector('strong').textContent = booked.dateLabel || 'Date coming soon'
+        when.querySelector('span').textContent = booked.timeLabel || 'We will email you the moment it is set'
+      }
+    }
     if (!co.date) {
       icsBtn.setAttribute('aria-disabled', 'true')
       icsBtn.textContent = 'Date coming soon'
@@ -205,18 +231,18 @@
         var ics = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Deploy TLV//Academy//EN',
           'BEGIN:VEVENT',
-          'UID:' + d + '-academy@deploytlv.com',
+          'UID:' + d + '-' + slug + '@deploytlv.com',
           'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, ''),
           'DTSTART;TZID=' + (co.timezone || 'Asia/Jerusalem') + ':' + d + 'T' + s,
           'DTEND;TZID=' + (co.timezone || 'Asia/Jerusalem') + ':' + d + 'T' + e,
-          'SUMMARY:Deploy Academy 101 — build & ship a website with AI',
+          'SUMMARY:' + summary,
           'LOCATION:' + (CFG.venue ? CFG.venue.line : 'Tel Aviv'),
-          'DESCRIPTION:Bring a laptop and charger. Nothing to buy in advance.',
+          'DESCRIPTION:Bring a laptop and charger, with Claude Code set up beforehand (it comes with a paid Claude plan, Pro or above).',
           'END:VEVENT', 'END:VCALENDAR'
         ].join('\r\n')
         var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }))
         var a = document.createElement('a')
-        a.href = url; a.download = 'deploy-academy-101.ics'
+        a.href = url; a.download = slug + '.ics'
         document.body.appendChild(a); a.click(); a.remove()
         setTimeout(function () { URL.revokeObjectURL(url) }, 1000)
       })
