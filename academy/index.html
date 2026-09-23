@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Deploy Academy &middot; Practical AI workshops in Tel Aviv</title>
-<meta name="description" content="Learn by shipping. Practical AI workshops in Tel Aviv — small groups, no lectures, and you leave with something real and live on the internet.">
+<meta name="description" content="Learn AI by shipping something real. Small, in-person AI workshops in Tel Aviv for people who don’t code. Ten people a class, and you leave with something you built yourself.">
 <link rel="canonical" href="https://deploytlv.com/academy/">
 
 <meta property="og:type" content="website">
@@ -19,369 +19,722 @@
 <meta name="theme-color" content="#ff5a18">
 
 <!--A:jsonld-org--><script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Deploy Academy","url":"https://deploytlv.com/academy/","parentOrganization":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"description":"Practical AI workshops in Tel Aviv. Small groups. No lectures. Leave with something real.","address":{"@type":"PostalAddress","streetAddress":"Pinsker St 11","addressLocality":"Tel Aviv-Yafo","postalCode":"6259413","addressCountry":"IL"},"email":"hello@deploytlv.com","hasOfferCatalog":{"@type":"OfferCatalog","name":"Deploy Academy courses","itemListElement":[{"@type":"Course","name":"ACADEMY 101 — Build & ship a website with AI","description":"Leave with your own website live on the internet.","url":"https://deploytlv.com/academy/build-and-ship/","provider":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"offers":{"@type":"Offer","price":"250","priceCurrency":"ILS"}},{"@type":"Course","name":"ACADEMY 102 — Edit video with AI","description":"Turn raw footage into a finished short-form video, using AI as an editing copilot.","url":"https://deploytlv.com/academy/","provider":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"offers":{"@type":"Offer","price":"300","priceCurrency":"ILS"}},{"@type":"Course","name":"ACADEMY 103 — Automate your work","description":"Build a working automation for a repetitive part of your actual job.","url":"https://deploytlv.com/academy/","provider":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"offers":{"@type":"Offer","price":"300","priceCurrency":"ILS"}},{"@type":"Course","name":"ACADEMY 104 — Build an AI tool","description":"Build and launch a simple internal tool for your work or business.","url":"https://deploytlv.com/academy/","provider":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"offers":{"@type":"Offer","price":"300","priceCurrency":"ILS"}}]}}</script><!--/A:jsonld-org-->
-<!--A:jsonld-faq-home--><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need coding experience?","acceptedAnswer":{"@type":"Answer","text":"No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online."}},{"@type":"Question","name":"Do I need an idea?","acceptedAnswer":{"@type":"Answer","text":"No. Bring one if you have one. If not, you start from one of the starter projects and the first twenty minutes turn it into something buildable."}},{"@type":"Question","name":"What do I leave with?","acceptedAnswer":{"@type":"Answer","text":"A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us."}},{"@type":"Question","name":"What should I bring?","acceptedAnswer":{"@type":"Answer","text":"A laptop and its charger. That is the whole list."}},{"@type":"Question","name":"What software or accounts do I need?","acceptedAnswer":{"@type":"Answer","text":"You need Claude Code, the AI tool we build with. It comes with a paid Claude plan (Pro or above), so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class."}},{"@type":"Question","name":"What is the cancellation and refund policy?","acceptedAnswer":{"@type":"Answer","text":"Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort."}},{"@type":"Question","name":"Is this available for companies?","acceptedAnswer":{"@type":"Answer","text":"Yes. Academy for Teams runs the same workshop privately for a team, adapted around that team’s actual workflows."}},{"@type":"Question","name":"Will there be more Academy courses?","acceptedAnswer":{"@type":"Answer","text":"Yes. Video editing (Academy 102) already has a date, and automation and building an AI tool are next in the catalog above. Join a waitlist and you will hear when a date lands."}}]}</script><!--/A:jsonld-faq-home-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Deploy Academy — home page.
+   Fewer, better pictures: the room on video at the top, one student at work,
+   the instructor's portrait, the shirt. Everything else is proof in the form
+   the course actually produces — live URLs — and the real two-hour agenda
+   drawn to scale.
+   ========================================================================== */
+@font-face{font-family:'Archivo Black';src:url('/assets/fonts/archivo-black-400.woff2')format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-400.woff2')format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-500.woff2')format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Silkscreen';src:url('/assets/fonts/silkscreen-700.woff2')format('woff2');font-weight:700;font-display:swap}
 
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-black-400.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/silkscreen-700.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/ibm-plex-mono-400.woff2">
-<link rel="stylesheet" href="/academy/academy.css">
-<script>document.documentElement.className="js"</script>
-</head><body><div class="site">
-<a class="skip" href="#main">Skip to content</a>
+:root{
+ --paper:#f3eedf;--paper2:#ebe4d2;--card:#f8f4e9;--ink:#11100d;--ink2:#2b2822;
+ --orange:#ff5a18;--orange-deep:#ad3600;--muted:#5f584c;--muted-dark:#bdb5a6;
+ --rule:rgba(17,16,13,.16);--rule-strong:rgba(17,16,13,.55);--rule-dark:#3a362f;
+ --serif:'IBM Plex Serif',Georgia,'Times New Roman',serif;
+ --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+ --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+ --brand:'Archivo Black',Arial Black,sans-serif;
+ --pixel:'Silkscreen',ui-monospace,monospace;
+ --max:1240px;--pad:20px;--r:4px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:92px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+img,video{display:block;max-width:100%;height:auto}
+p{margin:0}
+figure{margin:0}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;margin:0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--orange-deep);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.nis{font-family:var(--sans)}
+.url{font:400 14px/1.4 var(--mono);color:var(--orange-deep);word-break:break-all}
 
-<nav class="nav">
+/* The one pixel-font moment: a stamp on things that actually went live. */
+.stamp{display:inline-flex;align-items:center;gap:6px;padding:4px 7px 3px;background:var(--orange);color:var(--ink);font:700 10px/1 var(--pixel);letter-spacing:.04em;text-transform:uppercase;border-radius:2px;white-space:nowrap}
+.stamp::before{content:'';width:6px;height:6px;background:var(--ink)}
+
+/* --- buttons ------------------------------------------------------------ */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1px solid var(--ink);border-radius:3px;background:var(--ink);color:var(--paper);font:500 15px/1 var(--sans);text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s}
+.btn:hover{background:var(--ink2)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.btn.primary:hover{background:#ff6d33;border-color:#ff6d33}
+.btn.outline{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
+.btn.outline:hover{border-color:var(--ink);background:rgba(17,16,13,.04)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.textlink{font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--orange)}
+.textlink:hover{color:var(--orange-deep)}
+
+/* --- nav: identical to the deploytlv.com header -------------------------- */
+.nav{position:sticky;top:0;z-index:20;height:58px;display:flex;align-items:center;gap:10px;padding:0 var(--pad);background:rgba(243,238,223,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--ink)}
+.logo{font:700 16px var(--pixel);letter-spacing:-.06em;text-decoration:none;white-space:nowrap}
+.logo b{color:var(--orange)}
+.where{font:700 9px var(--pixel);color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.links{margin-left:auto;display:flex;align-items:center;gap:24px;font:500 14px var(--sans)}
+.links a:not(.bbtn){display:none;text-decoration:none}
+.links a:not(.bbtn):hover{color:var(--orange-deep)}
+.status{display:none;font:400 12px var(--sans);color:var(--muted);white-space:nowrap}
+.status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:7px}
+
+/* The Deploy button: pixel type, ink border, hard shadow. Used for the
+   primary action only; everything else stays flat. */
+.bbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 17px;border:1.5px solid var(--ink);background:var(--orange);color:var(--ink);font:700 10px var(--pixel);letter-spacing:.03em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s;cursor:pointer;white-space:nowrap}
+.bbtn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.nav .bbtn{min-height:34px;padding:0 10px;font-size:8px;box-shadow:2px 2px 0 var(--ink)}
+.hero .bbtn{box-shadow:3px 3px 0 #000}
+@media(max-width:340px){.where{display:none}}
+
+/* --- hero: the room, on video, edge to edge ----------------------------- */
+.hero{position:relative;min-height:clamp(580px,78svh,740px);display:flex;align-items:flex-end;color:#fff;background:#1b1916;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,16,13,.72) 0%,rgba(17,16,13,.35) 55%,rgba(17,16,13,0) 80%),linear-gradient(180deg,rgba(17,16,13,0) 45%,rgba(17,16,13,.6) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-top:120px;padding-bottom:40px}
+.hero .eyebrow{font:700 10px var(--pixel);letter-spacing:.04em;text-transform:uppercase;color:var(--paper);margin-bottom:18px}
+.hero h1{font-size:clamp(44px,6.3vw,80px);line-height:1.04;letter-spacing:-.035em;max-width:10.5em}
+.hero .lead{font-size:clamp(17px,1.8vw,20px);line-height:1.55;max-width:29em;margin-top:22px;color:rgba(255,255,255,.94)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .credit{margin-top:30px;font-size:12px;color:rgba(255,255,255,.8)}
+
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:1px solid var(--rule);margin:0}
+.facts div{padding:18px 16px 18px 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-size:13px;color:var(--muted)}
+.facts dd{margin:3px 0 0;font:500 17px/1.3 var(--sans)}
+
+/* --- sections ----------------------------------------------------------- */
+.sec{padding:72px 0}
+.sec.alt{background:var(--paper2)}
+.kick{font:500 14px var(--sans);color:var(--orange-deep);display:block;margin-bottom:16px}
+.sec h2{font-size:clamp(32px,4.6vw,52px);line-height:1.06}
+.intro{font-size:18px;line-height:1.6;color:var(--muted);max-width:36em;margin-top:14px}
+
+/* --- shipped: proof as live URLs, first thing after the hero ------------ */
+.shipped{display:grid;gap:0;margin-top:40px;border-top:1px solid var(--rule-strong)}
+.ship{display:grid;gap:6px;padding:22px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.ship h3{font-size:22px;line-height:1.25}
+a.ship:hover h3{color:var(--orange-deep)}
+.ship p{color:var(--muted);font-size:15px;max-width:34em}
+.ship .who{font-size:15px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ship .who b{font-weight:500}
+
+/* --- Academy 101 -------------------------------------------------------- */
+.c101{display:grid;gap:32px;margin-top:36px;background:var(--card);padding:28px 24px;border:1px solid var(--rule);border-top:4px solid var(--orange);border-radius:var(--r)}
+.c101 .code{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted)}
+.c101 h3{font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin-top:12px}
+.c101 .desc{font-size:18px;color:var(--ink2);margin-top:12px;max-width:30em}
+.c101 dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:24px 0 0;border-top:1px solid var(--rule)}
+.c101 dl div{padding:12px 12px 12px 0;border-bottom:1px solid var(--rule)}
+.c101 dt{font-size:13px;color:var(--muted)}
+.c101 dd{margin:2px 0 0;font-weight:500}
+.c101 .leave{margin-top:22px;font-size:15px;color:var(--ink2);max-width:32em}
+.c101 .leave b{font-weight:500}
+.c101 .actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:26px}
+
+/* The two hours, drawn to scale. Build is the long orange block, on purpose. */
+.tl h4{font:500 13px var(--mono);color:var(--muted);margin-bottom:14px}
+.tl ol{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.tl li{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.tl .bar{height:10px;border-radius:2px;background:var(--ink);width:calc(var(--m) / 40 * 100%)}
+.tl li.build .bar{background:var(--orange)}
+.tl time{font:400 13px var(--mono);color:var(--muted)}
+.tl b{font-weight:500}
+.tl span{color:var(--muted);font-size:15px}
+.pill{display:inline-flex;align-items:center;gap:7px;font:400 14px var(--sans);color:var(--ink2)}
+.pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.pill.soon::before{background:transparent;border:1px solid var(--muted)}
+
+.next-h{margin:48px 0 0;font:500 13px var(--mono);color:var(--muted);padding-bottom:12px;border-bottom:1px solid var(--rule-strong)}
+.crs{display:grid;gap:10px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.crs-code{font:500 13px var(--mono);color:var(--muted)}
+.crs h3{font-size:23px;line-height:1.15}
+.crs .desc{color:var(--ink2);margin-top:4px;max-width:34em;font-size:16px}
+.crs .note{font-size:15px;color:var(--muted);margin-top:2px}
+.crs .act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.crs .price{font-weight:500}
+.crs .btn{min-height:40px;font-size:14px;padding:0 15px}
+
+/* --- in their words ----------------------------------------------------- */
+.words{display:grid;gap:40px;align-items:center}
+.words .ph img{width:100%;aspect-ratio:4/5;max-height:640px;object-fit:cover;border-radius:var(--r)}
+.words .ph figcaption{margin-top:10px;font-size:14px;color:var(--muted)}
+.q + .q{margin-top:44px}
+.q blockquote{margin:0;font:400 clamp(22px,2.6vw,30px)/1.38 var(--serif);letter-spacing:-.01em;text-indent:-.42em}
+.q figcaption{margin-top:16px;font-size:15px;color:var(--muted)}
+.q figcaption b{color:var(--ink);font-weight:500}
+.q figcaption a{margin-left:10px}
+
+/* --- faculty ------------------------------------------------------------ */
+.faculty{display:grid;gap:32px;margin-top:40px}
+.faculty .portrait img{width:100%;max-width:220px;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;border-radius:var(--r)}
+.faculty h3{font-size:32px}
+.faculty .role{font-size:17px;color:var(--muted);margin-top:4px}
+.faculty .bio p{margin-top:16px;max-width:34em;color:var(--ink2)}
+.faculty .bio em{font-style:italic}
+.works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px;margin-top:64px}
+.works-h{margin-top:72px;font-size:24px}
+.works-h + .works{margin-top:24px}
+.work{text-decoration:none}
+.work .img{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r);background:#1b1916;border:1px solid var(--rule)}
+.work img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .4s ease}
+.work:hover img{transform:scale(1.03)}
+.work .stamp{position:absolute;left:10px;top:10px}
+.work h4{margin-top:12px;font-size:18px;line-height:1.25}
+.work p{font-size:15px;color:var(--muted);margin-top:4px}
+.work .url{display:block;margin-top:6px;font-size:12px}
+
+/* --- community band ----------------------------------------------------- */
+.band{background:var(--orange);color:var(--ink)}
+.band .wrap{display:grid;gap:32px;padding-top:72px;padding-bottom:72px;align-items:center}
+.band-v video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r);background:#1b1916}
+.band-v figcaption{margin-top:10px;font-size:14px}
+.band h2{font-size:clamp(32px,4.4vw,48px);line-height:1.06}
+.band p{font-size:18px;margin-top:16px;max-width:30em}
+.band .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.band .btn.outline{border-color:var(--ink)}
+
+/* --- admissions --------------------------------------------------------- */
+.split{display:grid;gap:40px}
+.checks{list-style:none;margin:32px 0 0;padding:0;border-top:1px solid var(--rule-strong)}
+.checks li{padding:16px 0 16px 30px;border-bottom:1px solid var(--rule);position:relative}
+.checks li::before{content:'';position:absolute;left:2px;top:25px;width:12px;height:6px;border-left:2px solid var(--orange-deep);border-bottom:2px solid var(--orange-deep);transform:rotate(-45deg)}
+.checks b{display:block;font-weight:500}
+.checks span{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+.form{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:28px 22px}
+.form h3{font-size:26px}
+.form .fine{font-size:14px;color:var(--muted);margin-top:6px}
+.field{margin-top:18px}
+.field label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+.field label em{font-style:normal;font-weight:400;color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;font:400 16px var(--sans);color:var(--ink);background:#fff;border:1px solid var(--rule-strong);border-radius:3px;padding:12px 13px;min-height:48px}
+.field textarea{min-height:92px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--orange);outline-offset:0;border-color:var(--ink)}
+.form .btn{width:100%;margin-top:22px}
+.form .status{display:block;white-space:normal;margin-top:14px;padding:12px 14px;border-radius:3px;background:var(--paper2);font:400 15px/1.5 var(--sans)}
+.form .status[hidden]{display:none}
+
+/* --- FAQ ---------------------------------------------------------------- */
+.faq{border-top:1px solid var(--rule-strong);max-width:820px;margin-top:36px}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{display:flex;justify-content:space-between;gap:20px;padding:20px 0;cursor:pointer;list-style:none;font:500 19px/1.35 var(--serif)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font:400 22px/1 var(--sans);color:var(--muted);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:hover{color:var(--orange-deep)}
+.faq p{padding:0 0 22px;color:var(--ink2);max-width:40em}
+
+
+/* ===================== >= 760px ======================================== */
+@media(min-width:760px){
+ :root{--pad:36px}
+ .hero .wrap{padding-bottom:56px}
+ .facts{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .facts div{border-bottom:0;border-right:1px solid var(--rule);padding:20px 20px 20px}
+ .facts div:first-child{padding-left:0}
+ .facts div:last-child{border-right:0}
+ .ship{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,.8fr);gap:28px;align-items:baseline}
+ .c101 dl{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .crs{grid-template-columns:150px minmax(0,1fr) auto;align-items:start;gap:10px 32px}
+ .crs-code{padding-top:6px}
+ .crs .act{flex-direction:column;align-items:flex-end;text-align:right}
+ .words{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:64px}
+ .words .ph img{aspect-ratio:9/16}
+ .faculty{grid-template-columns:280px minmax(0,1fr);gap:56px;align-items:start}
+ .faculty .portrait img{max-width:320px}
+ .works{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 24px}
+ .band .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
+ .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+ .form{padding:32px}
+}
+@media(min-width:980px){
+ .nav{height:72px}
+ .logo{font-size:20px}
+ .links a:not(.bbtn),.status{display:inline-flex;align-items:center}
+ .nav .bbtn{min-height:40px;padding:0 15px;font-size:10px;box-shadow:3px 3px 0 var(--ink)}
+ .sec{padding:88px 0}
+ .c101{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 56px;padding:40px}
+ /* On desktop the agenda becomes one horizontal bar: 120 minutes, to scale. */
+ .tl ol{grid-template-columns:15fr 15fr 40fr 20fr 20fr 10fr;gap:4px}
+ .tl li{align-content:start}
+ .tl .bar{width:100%}
+ .tl li:nth-child(n+2) time,.tl li:nth-child(n+2) b{padding-right:4px}
+ .tl.wide{grid-column:1 / -1;padding-top:28px;border-top:1px solid var(--rule)}
+ .tl h4{margin-bottom:18px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Readable controls and compact layouts for the workshop preview. */
+.video-toggle{position:absolute;z-index:2;right:var(--pad);bottom:24px;min-height:40px;padding:0 14px;border:1px solid #ffffff80;border-radius:3px;background:#11100dcc;color:#fff;font:500 13px var(--sans);cursor:pointer}
+.hero .credit{padding-right:125px}
+.c101 .code{align-items:flex-start;flex-direction:column;gap:10px}
+.c101 .pill{font-size:13px}
+.c101 .pill::before{flex-shrink:0}
+.facts div:last-child dd{color:var(--orange-deep)}
+@media(min-width:980px) and (max-width:1150px){.nav .status{display:none}}
+@media(max-width:759px){
+ .hero{min-height:620px}
+ .hero .wrap{padding-top:76px;padding-bottom:78px}
+ .hero::after{background:linear-gradient(90deg,#11100dbb,#11100d30),linear-gradient(0deg,#11100ddd,transparent)}
+ .hero h1{font-size:clamp(42px,10.6vw,64px)}
+ .hero .lead{font-size:17px;max-width:30em}
+ .hero .credit{padding-right:0;font-size:11px}
+ .video-toggle{bottom:18px}
+ .facts div:last-child{grid-column:1 / -1;border-bottom:0}
+ .facts dd{font-size:16px}
+ .sec h2{font-size:34px;max-width:18em}
+ .c101{padding:24px 18px;margin-inline:-4px}
+ .c101 dl{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .tl ol{gap:20px}
+ .tl li{grid-template-columns:52px minmax(0,1fr);gap:6px 14px}
+ .tl .bar{grid-column:2;grid-row:1}
+ .tl time{grid-column:1;grid-row:1 / 3}
+ .tl li>div:last-child{grid-column:2}
+ .words .ph img{aspect-ratio:4/5;max-height:480px}
+ .works{gap:28px 14px}
+ .work h4{font-size:19px}
+ .work .url{overflow-wrap:anywhere;word-break:normal}
+ .band .wrap{padding-top:48px;padding-bottom:48px}
+}
+
+
+/* ==========================================================================
+   Deploy devices for the lower half — the same vocabulary as deploytlv.com:
+   ink rules, pixel codes (BUILD_001), Archivo Black caps for card titles,
+   mono meta, ink-bordered cards, a stats strip, the orange closer.
+   ========================================================================== */
+.sec,.band{border-top:1px solid var(--ink)}
+.code{display:block;font:700 9px var(--pixel);letter-spacing:.04em;text-transform:uppercase;color:var(--orange-deep)}
+.go{font:700 9px var(--pixel);letter-spacing:.04em;text-transform:uppercase;color:var(--orange-deep);text-decoration:none}
+.go:hover{text-decoration:underline;text-underline-offset:4px}
+.b-head{display:grid;gap:4px;margin-bottom:40px}
+.b-head .kick{margin-bottom:10px}
+.media{margin:0}
+.annot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:12px}
+.annot strong{font:400 17px/1 var(--brand);text-transform:uppercase;letter-spacing:-.03em}
+.annot span{font:400 11px var(--mono);text-transform:uppercase;color:var(--muted)}
+.media img,.media video{border:1.5px solid var(--ink);border-radius:0}
+
+.qcards{display:grid;gap:18px}
+.qcard{margin:0;padding:22px 20px;border:1.5px solid var(--ink);background:var(--card)}
+.qcard blockquote{margin:14px 0 0;font:400 clamp(20px,2.3vw,26px)/1.4 var(--serif);text-indent:-.42em}
+/* The original post under each quote: cropped to the top, fading out,
+   one click to the full screenshot. */
+.qcard .shot{position:relative;display:block;margin-top:18px;max-height:230px;overflow:hidden;border:1px solid var(--ink);background:#fff}
+.qcard .shot img{width:100%;height:auto;display:block}
+.qcard .shot::after{content:'';position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,rgba(248,244,233,0),var(--card))}
+.qcard .shot-tag{position:absolute;right:8px;top:8px;z-index:1;padding:4px 6px 3px;background:var(--ink);color:var(--paper);font:700 8px var(--pixel);text-transform:uppercase;letter-spacing:.04em}
+.qcard .shot:hover{box-shadow:4px 4px 0 var(--ink)}
+.qcard .shot.whole{max-height:none;padding:16px;background:var(--paper2);border-color:var(--rule-strong)}
+.qcard .shot.whole::after{display:none}
+.qcard .shot.whole img{max-width:300px;margin:0 auto;border-radius:10px}
+.qcard figcaption{display:flex;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;align-items:baseline;margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font:400 11px var(--mono);text-transform:uppercase;color:var(--muted)}
+.qcard figcaption b{color:var(--ink);font-weight:500}
+
+.faculty .bio p:first-child{margin-top:0}
+.faculty .portrait img{border-radius:0}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:48px 0 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.stats div{padding:18px 16px 18px 0}
+.stats div:nth-child(odd){border-right:1px solid var(--rule)}
+.stats div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+.stats div:nth-child(even){padding-left:16px}
+.stats b{display:block;font:700 22px/1 var(--pixel);letter-spacing:-.04em}
+.stats span{display:block;margin-top:8px;font:400 11px var(--mono);text-transform:uppercase;color:var(--muted)}
+.stats i{font-style:normal}
+.bcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:48px}
+.bcard{display:flex;flex-direction:column;padding:14px;border:1.5px solid var(--ink);background:var(--card);text-decoration:none;transition:transform .15s,box-shadow .15s}
+.bcard:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.bcard .img{position:relative;aspect-ratio:4/3;overflow:hidden;margin-top:10px;border:1px solid var(--ink);background:#1b1916}
+.bcard img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.bcard .stamp{position:absolute;left:8px;top:8px}
+.bcard h4{margin-top:14px;font:400 clamp(15px,1.8vw,19px)/1.05 var(--brand);text-transform:uppercase;letter-spacing:-.03em}
+.bcard p{margin-top:6px;font:400 12px/1.5 var(--mono);color:var(--muted)}
+.bcard .go{margin-top:auto;padding-top:12px}
+
+.band .kick{color:var(--ink)}
+.band h2{font:400 clamp(36px,5.6vw,64px)/.92 var(--brand);text-transform:uppercase;letter-spacing:-.05em}
+.band .annot span{color:var(--ink)}
+.band .row{align-items:center;gap:22px}
+.band .go{color:var(--ink)}
+.bbtn.light{background:var(--paper)}
+
+.rows{margin:32px 0 0;border-top:1.5px solid var(--ink)}
+.rows .r{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)}
+.rows .r b{grid-column:1 / -1;font:400 17px/1.1 var(--brand);text-transform:uppercase;letter-spacing:-.03em}
+.rows .meta{grid-column:1 / -1;font:400 11px var(--mono);text-transform:uppercase;color:var(--muted)}
+.rows .r.next{background:var(--paper2);margin:0 -10px;padding:14px 10px}
+.rows .tag{display:inline-flex;align-items:center;gap:5px;padding:3px 6px;background:var(--orange);font:700 8px var(--pixel);text-transform:uppercase;width:max-content}
+.rows .tag::before{content:'●';font-size:7px}
+.checks li::before{border-color:var(--orange-deep)}
+.form{border:1.5px solid var(--ink);border-radius:0;box-shadow:6px 6px 0 var(--ink);background:var(--card)}
+.form .code{margin-bottom:10px}
+.field label{font:700 9px var(--pixel);letter-spacing:.04em;text-transform:uppercase}
+.field label em{font:400 11px var(--mono);text-transform:none}
+.field input,.field select,.field textarea{border:1.5px solid var(--ink);border-radius:0;background:var(--paper)}
+
+.faq{border-top:1.5px solid var(--ink)}
+.faq summary{align-items:baseline;gap:18px}
+.faq summary .code{flex:none;width:44px}
+.faq summary .qq{flex:1}
+.faq summary::after{font:700 14px var(--pixel);color:var(--orange-deep)}
+.faq p{padding-left:62px}
+
+.closing{padding:88px var(--pad);background:var(--orange);color:var(--ink);text-align:center;border-top:1px solid var(--ink)}
+.closing .kick{color:var(--ink);margin-bottom:22px}
+.closing h2{font:400 clamp(48px,10vw,120px)/.88 var(--brand);text-transform:uppercase;letter-spacing:-.055em}
+.closing .when{margin:24px 0 30px;font:700 10px var(--pixel);letter-spacing:.04em;text-transform:uppercase}
+footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px 28px;padding:24px var(--pad);background:var(--paper);color:var(--ink);border-top:1px solid var(--ink)}
+.flinks{display:flex;flex-wrap:wrap;gap:8px 22px;font:700 9px var(--pixel);text-transform:uppercase}
+.flinks a{text-decoration:none}
+.flinks a:hover{color:var(--orange-deep)}
+.fwhere{font:700 9px var(--pixel);text-transform:uppercase;color:var(--muted)}
+
+@media(min-width:760px){
+ .b-head{grid-template-columns:150px minmax(0,1fr);align-items:start}
+ .b-head .kick{padding-top:14px;margin:0}
+ .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .stats div{border-bottom:0!important;border-right:1px solid var(--rule);padding:22px 20px}
+ .stats div:first-child{padding-left:0}
+ .stats div:last-child{border-right:0}
+ .bcards{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+ .rows .r{grid-template-columns:110px minmax(0,1fr) auto;gap:14px}
+ .rows .r b{grid-column:auto}
+ .rows .meta{grid-column:auto;text-align:right}
+ .rows .r .tag{grid-row:1;grid-column:1 / -1}
+ .closing{padding:120px var(--pad)}
+}
+@media(prefers-reduced-motion:reduce){.bcard:hover{transform:none}}
+
+/* --- 01: the Uzi reel beside the three beats it shows -------------------- */
+.see{display:grid;gap:36px;align-items:center}
+.see-v .clip{position:relative;width:100%;max-width:340px;aspect-ratio:9/16;overflow:hidden;border:1.5px solid var(--ink);background:#000;box-shadow:6px 6px 0 var(--ink)}
+.see-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
+.see-v .annot{max-width:340px}
+.snd{position:absolute;right:10px;bottom:10px;z-index:2;padding:8px 10px 7px;border:1.5px solid var(--ink);background:var(--orange);color:var(--ink);font:700 9px var(--pixel);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+.snd:hover{background:var(--paper)}
+.beats{list-style:none;margin:32px 0 0;padding:0;border-top:1.5px solid var(--ink)}
+.beats li{padding:18px 0;border-bottom:1px solid var(--rule)}
+.beats b{display:block;margin-top:8px;font:400 clamp(18px,2vw,22px)/1.1 var(--brand);text-transform:uppercase;letter-spacing:-.03em}
+.beats p{margin-top:6px;color:var(--muted);font-size:16px;max-width:30em}
+.beats p.said{font:400 16px/1.5 var(--serif);font-style:italic;color:var(--ink2)}
+.beats p.said + p.said{margin-top:4px}
+.see-cta{display:flex;align-items:center;gap:10px;margin-top:24px}
+@media(min-width:760px){.see{grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:64px}}
+
+/* --- conversion: the offer next to every primary button ------------------ */
+.hero .offer{margin-top:16px;font:700 9px var(--pixel);letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.8}
+.c101 .extra{margin-top:10px;font-size:14px;color:var(--muted);max-width:32em}
+.form .reassure{margin-top:12px;font:400 11px var(--mono);text-transform:uppercase;color:var(--muted);line-height:1.7}
+</style>
+</head><body>
+
+<nav class="nav" aria-label="Main">
  <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
  <span class="where">/ Academy</span>
- <a class="btn" href="#classes">Upcoming classes &rarr;</a>
+ <div class="links">
+  <span class="status"><i></i>Next class · Tue 29 Sep</span>
+  <a href="#shipped">See it</a>
+  <a href="#courses">Courses</a>
+  <a href="#faculty">Instructor</a>
+  <a href="#teams">Teams</a>
+  <a class="bbtn" href="#admissions">Request a seat &rarr;</a>
+ </div>
 </nav>
 
 <main id="main">
 
-<header class="hero">
- <div>
-  <span class="kicker">Deploy Academy</span>
-  <h1>Learn by<br>shipping.</h1>
-  <p class="sub">Practical AI workshops in Tel Aviv. Small groups. No lectures. Leave with something real.</p>
+<header class="hero" id="top">
+ <video id="roomv" poster="video/hero-poster.jpg" src="video/hero.mp4" muted loop playsinline preload="metadata" aria-label="The Academy 101 pilot session in Tel Aviv"></video>
+ <button class="video-toggle" id="video-toggle" type="button" aria-controls="roomv">Play video</button>
+ <div class="wrap">
+  <p class="eyebrow">Deploy Academy / Tel Aviv / IRL</p>
+  <h1>Learn AI by shipping something real.</h1>
+  <p class="lead">Small, in-person AI workshops for people who don’t code. One evening, and you leave with something you built yourself, finished. The instructor works the room the whole time, so nobody stays stuck for long.</p>
   <div class="cta">
-   <a class="btn orange" href="#classes">View upcoming classes &rarr;</a>
-   <a class="btn" href="#teams">Academy for teams &rarr;</a>
+   <a class="bbtn" href="#admissions" data-course="academy-101">Request a seat for Tue 29 Sep &rarr;</a>
+   <a class="btn ghost" href="#courses">See all courses</a>
   </div>
-  <!--A:proofline--><p class="proofline"><i aria-hidden="true"></i>REAL PROJECTS SHIPPED IN THE ROOM · LIVE THE SAME NIGHT</p><!--/A:proofline-->
- </div>
- <div class="phone hero-phone">
-  <video id="uziv" poster="uzi-poster.jpg" src="uzi.mp4" muted loop playsinline autoplay preload="metadata" aria-label="A website for a dog, built and shipped in one sitting"></video>
-  <button class="snd" id="sndBtn" type="button">&#128266; Sound on</button>
+  <p class="offer">Academy 101 · <span class="nis">₪</span>250 · 19:00–21:00 · 10 seats · Full refund up to 48h before</p>
+  <p class="credit">Filmed at the Academy 101 pilot, 8 September 2026.</p>
  </div>
 </header>
 
-<section class="section" id="built" aria-labelledby="built-h">
- <span class="kicker">Built at Deploy Academy</span>
- <h2 id="built-h">People walk in.<br>Things <em>go live</em>.</h2>
- <p class="lede">Work made by people in the room, in the room. Nobody in this section wrote the code themselves.</p>
+<div class="wrap">
+ <dl class="facts">
+  <div><dt>Format</dt><dd>In person, Tel Aviv</dd></div>
+  <div><dt>Class size</dt><dd>10 max, every class</dd></div>
+  <div><dt>Length</dt><dd>2 hours</dd></div>
+  <div><dt>Coding experience</dt><dd>None needed</dd></div>
+  <div><dt>Next class</dt><dd>Tue 29 Sep, 19:00</dd></div>
+ </dl>
+</div>
 
- <div class="room rv">
-  <video class="lazy-video" data-src="room.mp4" poster="room-poster.jpg" muted loop playsinline preload="none" aria-label="A Deploy Academy session in Tel Aviv"></video>
-  <span class="tag">Academy / Tel Aviv / IRL</span>
- </div>
-
- <div class="wall">
-<!--A:testimonials-->
-  <figure class="wall-card shot-card rv">
-   <img src="/academy/testimonials/shira-linkedin.png" alt="LinkedIn post by Shira: “I did get a bit scared when the big word (GitHub) came up. Apparently Claude Code literally just pushes it for you.” She made a live site and a Tetris game in the workshop." width="1116" height="1060" loading="lazy" decoding="async">
-   <figcaption><b>Shira</b><span>B2B brand strategist, Natural Intelligence</span></figcaption>
-  </figure>
-  <figure class="wall-card shot-card cut rv">
-   <img src="/academy/testimonials/gal-whatsapp.png" alt="Message from Gal, a private English teacher: she made games to reward two young students who are learning to read, “and they really loved it! Highly recommend.”" width="556" height="503" loading="lazy" decoding="async">
-   <figcaption><b>Gal</b><span>Private English teacher</span></figcaption>
-  </figure>
-<!--/A:testimonials-->
- </div>
-
- <h3 class="sub-h">What they made</h3>
- <div class="made">
-<!--A:student-rows-->
-  <a class="made-row rv" href="https://lnkd.in/dU2224Cc" target="_blank" rel="noopener">
-   <div><h3>Recap site + a Bratz Tetris game</h3><p>Built a live page about her own session in under five minutes, then a sound-on Tetris game to go with it.</p></div>
-   <b>Shira · Brand strategist, Natural Intelligence</b><span class="go">Open &rarr;</span>
-  </a>
-  <div class="made-row rv">
-   <div><h3>Reading games for her students</h3><p>Games that reinforce what her students just practised. She now uses them at the end of lessons.</p></div>
-   <b>Gal · Private English teacher</b>
-  </div>
-<!--/A:student-rows-->
- </div>
-</section>
-
-<section class="section tint" id="classes" aria-labelledby="classes-h">
- <span class="kicker">The catalog</span>
- <h2 id="classes-h">Upcoming classes</h2>
- <p class="lede">Every class is two things: a small group, and something of yours that works by the end of it. <!--A:cohort-home--><span class="kicker">Next classes — Academy 101: Tuesday 29 September · Academy 102: Wednesday 30 September</span><!--/A:cohort-home--></p>
- <div class="courses">
-<!--A:courses-->
-  <article class="course rv" id="academy-101">
-   <div class="course-top">
-    <p class="course-code">ACADEMY 101</p>
-    <p class="status enrolling">Enrolling</p>
+<section class="sec" id="shipped" aria-labelledby="shipped-h"><div class="wrap">
+ <div class="see">
+  <figure class="see-v media">
+   <div class="clip">
+    <video id="seev" data-src="/academy/uzi.mp4" poster="/academy/uzi-poster.jpg" muted loop playsinline preload="none" aria-label="Myron builds a website for his dog Uzi with AI and opens it live on his phone"></video>
+    <button class="snd" id="seeSnd" type="button">Sound on</button>
    </div>
+   <figcaption class="annot"><strong>Pet Uzi</strong><span>Built in one sitting / 50 sec</span></figcaption>
+  </figure>
+  <div>
+   <span class="kick">01 / See it happen</span>
+   <h2 id="shipped-h">From a few sentences to a live URL</h2>
+   <p class="intro">This is Academy 101, start to finish, on one small project: a website for a dog. The quotes are the actual prompts that built it.</p>
+   <ol class="beats">
+    <li><span class="code">Step_01 / Describe it</span><b>A few sentences, no code</b><p class="said">“I want to make a website for Uzi. It needs to be a pet counter. We want there to be a button that says Pet Uzi… Every time that somebody presses it, it goes up… We want it to go live on Github Pages.”</p></li>
+    <li><span class="code">Step_02 / Push back</span><b>Then feedback, in plain English</b><p class="said">“Can you make the UI slightly more fun and modern.”</p><p class="said">“It’s not centered on the computer and not centered on the phone.”</p></li>
+    <li><span class="code">Step_03 / Ship it</span><b>A URL on your phone</b><p>Claude Code puts it live on GitHub Pages. Open it on your phone, send it to anyone.</p></li>
+   </ol>
+   <p class="see-cta"><span class="stamp">Live</span> <a class="go" href="https://myrondoesnotcode.github.io/petuzi/" target="_blank" rel="noopener">Uzi’s site is still up. Go pet him &rarr;</a></p>
+  </div>
+ </div>
+</div></section>
+
+<section class="sec alt" id="courses" aria-labelledby="courses-h"><div class="wrap">
+ <span class="kick">02 / Courses</span>
+ <h2 id="courses-h">You build during the class, not after it</h2>
+
+ <div class="c101" id="academy-101">
+  <div>
+   <p class="code">ACADEMY 101 <span class="pill">Enrolling · Tue 29 Sep, 19:00–21:00</span></p>
    <h3>Build &amp; ship a website with AI</h3>
-   <p class="outcome">Leave with your own website live on the internet.</p>
-   <dl>
+   <p class="desc">Leave with your own website live on the internet.</p>
+  </div>
+  <div>
+   <dl style="margin-top:0">
     <div><dt>Level</dt><dd>Beginner</dd></div>
-    <div><dt>Duration</dt><dd>2 hours</dd></div>
-    <div><dt>Format</dt><dd>In person · Tel Aviv</dd></div>
-    <div><dt>Date</dt><dd>Tue 29 Sep · 19:00 – 21:00</dd></div>
-    <div><dt>Price</dt><dd class="price"><i class="nis">₪</i>250</dd></div>
-    <div><dt>Seats</dt><dd>10 max</dd></div>
+    <div><dt>Tuition</dt><dd><span class="nis">₪</span>250</dd></div>
    </dl>
-   <div class="foot">
-    <a class="btn orange" href="/academy/build-and-ship/#register" data-course="academy-101">Register &rarr;</a>
-    <a class="linkish" href="/academy/build-and-ship/">Full syllabus &rarr;</a>
+   <p class="extra">You’ll also need a Claude Pro plan for Claude Code, paid to Anthropic, not us. <a class="textlink" href="#faq">What to set up</a></p>
+   <p class="leave"><b>You leave with</b> a finished project on your own account, a live public URL, the prompting guide that got you there, and a Deploy Academy certificate.</p>
+   <div class="actions">
+    <a class="bbtn" href="#admissions" data-course="academy-101">Request a seat &rarr;</a>
+    <a class="textlink" href="/academy/build-and-ship/">Full syllabus</a>
    </div>
-  </article>
-  <article class="course rv" id="academy-102">
-   <div class="course-top">
-    <p class="course-code">ACADEMY 102</p>
-    <p class="status enrolling">Enrolling</p>
-   </div>
+  </div>
+  <div class="tl wide">
+   <h4>The two hours, to scale</h4>
+   <ol>
+    <li style="--m:15"><div class="bar"></div><time>0:00</time><div><b>See what’s possible</b><br><span>Real examples, end to end.</span></div></li>
+    <li style="--m:15"><div class="bar"></div><time>0:15</time><div><b>Setup</b><br><span>Check Claude Code works, then GitHub.</span></div></li>
+    <li style="--m:40" class="build"><div class="bar"></div><time>0:30</time><div><b>Build</b><br><span>Prompt, test, push back, repeat. The longest block, on purpose.</span></div></li>
+    <li style="--m:20"><div class="bar"></div><time>1:10</time><div><b>Ship</b><br><span>Push it live and open the URL.</span></div></li>
+    <li style="--m:20"><div class="bar"></div><time>1:30</time><div><b>Improve</b><br><span>Mobile, fixes, one more feature.</span></div></li>
+    <li style="--m:10"><div class="bar"></div><time>1:50</time><div><b>Demo</b><br><span>Show the room.</span></div></li>
+   </ol>
+  </div>
+ </div>
+
+ <h3 class="next-h">More classes</h3>
+ <article class="crs" id="academy-102">
+  <span class="crs-code">ACADEMY 102</span>
+  <div>
    <h3>Edit video with AI</h3>
-   <p class="outcome">Turn raw footage into a finished short-form video, using AI as an editing copilot.</p>
-   <p class="outcome">For creators, marketers, founders and business owners.</p>
+   <p class="desc">Turn raw footage into a finished short-form video, using AI as an editing copilot. For creators, marketers, founders and business owners.</p>
    <p class="note">Not an AI video-generation class. You edit real footage.</p>
-   <dl>
-    <div><dt>Level</dt><dd>Beginner</dd></div>
-    <div><dt>Format</dt><dd>In person · Tel Aviv</dd></div>
-    <div><dt>Date</dt><dd>Wed 30 Sep · 19:00 – 21:00</dd></div>
-    <div><dt>Price</dt><dd class="price"><i class="nis">₪</i>300</dd></div>
-    <div><dt>Seats</dt><dd>Small group</dd></div>
-   </dl>
-   <div class="foot">
-    <a class="btn orange" href="#register" data-course="academy-102">Register &rarr;</a>
-   </div>
-  </article>
-  <article class="course rv" id="academy-103">
-   <div class="course-top">
-    <p class="course-code">ACADEMY 103</p>
-    <p class="status waitlist">Join waitlist</p>
-   </div>
+  </div>
+  <div class="act"><span class="pill">Wed 30 Sep, 19:00–21:00</span><span class="price"><span class="nis">₪</span>300</span><a class="btn" href="#admissions" data-course="academy-102">Request a seat</a></div>
+ </article>
+ <article class="crs" id="academy-103">
+  <span class="crs-code">ACADEMY 103</span>
+  <div>
    <h3>Automate your work</h3>
-   <p class="outcome">Build a working automation for a repetitive part of your actual job.</p>
-   <dl>
-    <div><dt>Level</dt><dd>Beginner</dd></div>
-    <div><dt>Format</dt><dd>In person · Tel Aviv</dd></div>
-    <div><dt>Date</dt><dd>Date coming soon</dd></div>
-    <div><dt>Price</dt><dd class="price"><i class="nis">₪</i>300</dd></div>
-    <div><dt>Seats</dt><dd>Small group</dd></div>
-   </dl>
-   <div class="foot">
-    <a class="btn " href="#register" data-course="academy-103">Join the waitlist &rarr;</a>
-   </div>
-  </article>
-  <article class="course rv" id="academy-104">
-   <div class="course-top">
-    <p class="course-code">ACADEMY 104</p>
-    <p class="status soon">Coming soon</p>
-   </div>
+   <p class="desc">Build a working automation for a repetitive part of your actual job.</p>
+  </div>
+  <div class="act"><span class="price"><span class="nis">₪</span>300</span><a class="btn outline" href="#admissions" data-course="academy-103">Join the waitlist</a></div>
+ </article>
+ <article class="crs" id="academy-104">
+  <span class="crs-code">ACADEMY 104</span>
+  <div>
    <h3>Build an AI tool</h3>
-   <p class="outcome">Build and launch a simple internal tool for your work or business.</p>
-   <dl>
-    <div><dt>Level</dt><dd>Beginner</dd></div>
-    <div><dt>Format</dt><dd>In person · Tel Aviv</dd></div>
-    <div><dt>Date</dt><dd>Date coming soon</dd></div>
-    <div><dt>Price</dt><dd class="price"><i class="nis">₪</i>300</dd></div>
-    <div><dt>Seats</dt><dd>Small group</dd></div>
-   </dl>
-   <div class="foot">
-    <a class="btn " href="#register" data-course="academy-104">Tell me when &rarr;</a>
-   </div>
-  </article>
-<!--/A:courses-->
- </div>
-</section>
+   <p class="desc">Build and launch a simple internal tool for your work or business.</p>
+  </div>
+  <div class="act"><span class="price"><span class="nis">₪</span>300</span><a class="btn outline" href="#admissions" data-course="academy-104">Tell me when</a></div>
+ </article>
+</div></section>
 
-<section class="section dark" id="how" aria-labelledby="how-h">
- <span class="kicker">How Academy works</span>
- <h2 id="how-h">Pick &rarr; Build<br>&rarr; Ship &rarr; Demo</h2>
- <p class="lede">You build during the class, not after it. The session ends when the thing you made is online and you have shown it to the room.</p>
- <div class="flow">
-<!--A:flow-->
-  <div><b>PICK</b><strong>Pick</strong><span>Twenty minutes in you have something small and buildable. No idea of your own? You start from one of ours.</span></div>
-  <div><b>BUILD</b><strong>Build</strong><span>You describe it, the AI writes it, you test it and push back. This is the part nobody shows you.</span></div>
-  <div><b>SHIP</b><strong>Ship</strong><span>It goes online under your own account. A real URL you can send to anyone.</span></div>
-  <div><b>DEMO</b><strong>Demo</strong><span>You show the room what you shipped. Everyone leaves having seen ten of them.</span></div>
-<!--/A:flow-->
+<section class="sec" id="words" aria-labelledby="words-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">03 / In their words</span>
+  <h2 id="words-h">What the pilot class said</h2>
  </div>
- <div class="term" aria-hidden="true">
-  <div class="term-bar"><i></i>what shipping looks like</div>
-  <pre class="term-body"><b>$</b> claude "build me a site for my dog"
-  writing index.html
-  writing style.css
-<b>$</b> git push
-  published to github pages
-  <u>live at yourname.github.io</u> <span class="cur"></span></pre>
+ <div class="words">
+  <div class="qcards">
+   <figure class="qcard">
+    <span class="code">QUOTE_01</span>
+    <blockquote>“I did get a bit scared when the big word (GitHub) came up. Apparently Claude Code literally just pushes it for you.”</blockquote>
+    <a class="shot" href="/academy/testimonials/shira-linkedin.png" target="_blank" rel="noopener" aria-label="Open Shira’s original LinkedIn post"><img src="/academy/testimonials/shira-linkedin.png" alt="Shira’s LinkedIn post about the workshop" width="1116" height="1060" loading="lazy"><span class="shot-tag">LinkedIn</span></a>
+    <figcaption><span><b>Shira</b> / B2B brand strategist, Natural Intelligence</span><a class="go" href="/academy/testimonials/shira-linkedin.png" target="_blank" rel="noopener">Original post &rarr;</a></figcaption>
+   </figure>
+   <figure class="qcard">
+    <span class="code">QUOTE_02</span>
+    <blockquote>“I made some games to support what we practised in the lesson and they really loved it! Highly recommend.”</blockquote>
+    <a class="shot whole" href="/academy/testimonials/gal-whatsapp.png" target="_blank" rel="noopener" aria-label="Open Gal’s original WhatsApp message"><img src="/academy/testimonials/gal-whatsapp.png" alt="Gal’s WhatsApp message about the games she made" width="556" height="503" loading="lazy"><span class="shot-tag">WhatsApp</span></a>
+    <figcaption><span><b>Gal</b> / Private English teacher</span><a class="go" href="/academy/testimonials/gal-whatsapp.png" target="_blank" rel="noopener">Original message &rarr;</a></figcaption>
+   </figure>
+  </div>
+  <figure class="ph media">
+   <img src="img/coding.jpg" alt="Shira working on her project at the pilot class" loading="lazy">
+   <figcaption class="annot"><strong>Shira</strong><span>Mid-build / Academy 101 pilot</span></figcaption>
+  </figure>
  </div>
-</section>
+</div></section>
 
-<section class="section" id="proof" aria-labelledby="proof-h">
- <span class="kicker">Who teaches it</span>
- <h2 id="proof-h">He doesn&rsquo;t code<br>either.</h2>
-<!--A:instructor-->
-  <div class="who">
-   <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
-   <div>
-    <strong>Produced Invested for Aleph.<br>Built Deploy.<br>Still doesn’t code.</strong>
-    <p>Myron produced <em>Invested</em>, Michael Eisenberg’s show at Aleph VC, with guests like Fiverr CEO Micha Kaufman, Windward CEO Ami Daniel and ex-Fiverr CBO Gali Arnon.</p>
-    <p>In May 2026 he started Deploy: 30 builders at the first event, 102 by the fourth, from companies like monday.com, Google and Aleph.</p>
-    <p>He has never worked as a developer. Everything he has shipped, he built with AI, the same way you will build yours — and he is the one sitting next to you while you do it.</p>
-   </div>
-  </div>
-  <div class="facts creds">
-   <div><b>Producer</b><strong>Invested by Aleph</strong><span>Michael Eisenberg’s show</span></div>
-   <div><b>Founder</b><strong>Deploy TLV</strong><span>5 events since May 2026</span></div>
-   <div><b>The room</b><strong>102 builders</strong><span>at Deploy #4</span></div>
-   <div><b>Ships</b><strong>6 live projects</strong><span>All built with AI</span></div>
-  </div>
-<!--/A:instructor-->
- <h3 class="sub-h">What he built with AI</h3>
- <div class="builds">
-<!--A:builds-->
-  <a class="build rv" href="https://myrondoesnotcode.github.io/petuzi/" target="_blank" rel="noopener">
-   <div class="shot"><img src="shots/uzi-site.jpg" alt="Screenshot of Pet Uzi" width="424" height="700" loading="lazy" decoding="async"></div>
-   <div class="meta"><h3>Pet Uzi</h3><p>A photo of a dog, a few instructions, a global pet counter. Live in one sitting.</p><span class="go">Open &rarr;</span></div>
-  </a>
-  <a class="build rv" href="https://myrondoesnotcode.github.io/petuzi/game.html" target="_blank" rel="noopener">
-   <div class="shot"><img src="shots/uzi-game.jpg" alt="Screenshot of Tel Aviv Run" width="424" height="700" loading="lazy" decoding="async"></div>
-   <div class="meta"><h3>Tel Aviv Run</h3><p>A browser game starring the same dog.</p><span class="go">Open &rarr;</span></div>
-  </a>
-  <a class="build rv" href="https://myrondoesnotcode.github.io/turboturf/" target="_blank" rel="noopener">
-   <div class="shot"><img src="shots/turboturf.jpg" alt="Screenshot of Turbo Turf Trimmer" width="1000" height="625" loading="lazy" decoding="async"></div>
-   <div class="meta"><h3>Turbo Turf Trimmer</h3><p>A retro arcade game where you race the clock to mow a lawn.</p><span class="go">Open &rarr;</span></div>
-  </a>
-  <a class="build rv" href="https://myrondoesnotcode.github.io/townbuilder/" target="_blank" rel="noopener">
-   <div class="shot"><img src="shots/townbuilder.jpg" alt="Screenshot of Village Builder" width="1000" height="625" loading="lazy" decoding="async"></div>
-   <div class="meta"><h3>Village Builder</h3><p>A kids’ game where hand movements control what gets built. Just a browser tab.</p><span class="go">Open &rarr;</span></div>
-  </a>
-  <a class="build rv" href="https://myrondoesnotcode.github.io/unGPT/" target="_blank" rel="noopener">
-   <div class="shot"><img src="shots/unGPT.jpg" alt="Screenshot of unGPT" width="1000" height="625" loading="lazy" decoding="async"></div>
-   <div class="meta"><h3>unGPT</h3><p>Strips the em dashes out of AI-written text. One annoying problem, one tiny tool.</p><span class="go">Open &rarr;</span></div>
-  </a>
-  <a class="build rv" href="https://myrondoesnotcode.github.io/timecalc/" target="_blank" rel="noopener">
-   <div class="shot"><img src="shots/timecalc.jpg" alt="Screenshot of World Time Bridge" width="1000" height="625" loading="lazy" decoding="async"></div>
-   <div class="meta"><h3>World Time Bridge</h3><p>Works out what time it is for whoever you’re calling.</p><span class="go">Open &rarr;</span></div>
-  </a>
-<!--/A:builds-->
+<section class="sec alt" id="faculty" aria-labelledby="faculty-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">04 / Instructor</span>
+  <h2 id="faculty-h">Taught by the founder of Deploy TLV</h2>
  </div>
- <div class="uzi-strip two rv">
-  <div class="uzi-img"><img src="uzi-bubble.png" alt="Uzi the dog, in a speech bubble: I have a website." width="640" height="853" loading="lazy" decoding="async"></div>
-  <div>
-   <h3>Yes, the dog has a website.</h3>
-   <p>One photo, a few instructions, live before the coffee went cold. It is the smallest possible version of what you do in Academy 101 &mdash; which is exactly why we keep showing it.</p>
-   <div class="links">
-    <a class="linkish" href="https://myrondoesnotcode.github.io/petuzi/" target="_blank" rel="noopener">Go pet him &rarr;</a>
-    <a class="linkish" href="https://myrondoesnotcode.github.io/petuzi/game.html" target="_blank" rel="noopener">Play his game &rarr;</a>
-   </div>
+ <div class="faculty">
+  <figure class="portrait media">
+   <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy">
+   <figcaption class="annot"><strong>Myron Shneider</strong><span>Founder, Deploy TLV / Producer, Aleph</span></figcaption>
+  </figure>
+  <div class="bio">
+   <p>Myron founded Deploy TLV, Tel Aviv’s fastest-growing English-speaking community of AI builders. It went from 30 people at its first event in May 2026 to 102 at its fourth ten weeks later, and now has more than 300 members from companies like monday.com, Google and Aleph.</p>
+   <p>He is a producer at Aleph, the Israeli VC firm, on <em>Invested</em>, Michael Eisenberg’s interview show. His episodes include Gavin Baker of Atreides, Nas Daily, Carta CEO Henry Ward, General Catalyst co-founder David Fialkow and Fiverr CEO Micha Kaufman. Before Aleph he worked at Antler, Flock Freight and Doing Things Media.</p>
+   <p>He has never worked as a developer. Everything below, he built with AI, the same way you’ll build yours, and he’s the one next to you while you do it.</p>
   </div>
  </div>
-</section>
+ <div class="stats">
+  <div><b>300+</b><span>Deploy TLV members</span></div>
+  <div><b>30&rarr;102</b><span>Builders, Deploy #01 to #04</span></div>
+  <div><b>Aleph</b><span>Producer, <i>Invested</i></span></div>
+  <div><b>6</b><span>Live projects, all built with AI</span></div>
+ </div>
+ <div class="bcards">
+  <a class="bcard" href="https://myrondoesnotcode.github.io/petuzi/" target="_blank" rel="noopener"><span class="code">BUILD_001</span><div class="img"><img src="/academy/shots/uzi-site.jpg" alt="Screenshot of Pet Uzi" loading="lazy"><span class="stamp">Live</span></div><h4>Pet Uzi</h4><p>A photo of a dog, a few instructions and a global pet counter.</p><span class="go">Open project &rarr;</span></a>
+  <a class="bcard" href="https://myrondoesnotcode.github.io/petuzi/game.html" target="_blank" rel="noopener"><span class="code">BUILD_002</span><div class="img"><img src="/academy/shots/uzi-game.jpg" alt="Screenshot of Tel Aviv Run" loading="lazy"><span class="stamp">Live</span></div><h4>Tel Aviv Run</h4><p>A browser game starring the same dog.</p><span class="go">Open project &rarr;</span></a>
+  <a class="bcard" href="https://myrondoesnotcode.github.io/turboturf/" target="_blank" rel="noopener"><span class="code">BUILD_003</span><div class="img"><img src="/academy/shots/turboturf.jpg" alt="Screenshot of Turbo Turf Trimmer" loading="lazy"><span class="stamp">Live</span></div><h4>Turbo Turf Trimmer</h4><p>A retro arcade game where you race the clock to mow a lawn.</p><span class="go">Open project &rarr;</span></a>
+  <a class="bcard" href="https://myrondoesnotcode.github.io/townbuilder/" target="_blank" rel="noopener"><span class="code">BUILD_004</span><div class="img"><img src="/academy/shots/townbuilder.jpg" alt="Screenshot of Village Builder" loading="lazy"><span class="stamp">Live</span></div><h4>Village Builder</h4><p>A kids’ game where hand movements control what gets built.</p><span class="go">Open project &rarr;</span></a>
+  <a class="bcard" href="https://myrondoesnotcode.github.io/unGPT/" target="_blank" rel="noopener"><span class="code">BUILD_005</span><div class="img"><img src="/academy/shots/unGPT.jpg" alt="Screenshot of unGPT" loading="lazy"><span class="stamp">Live</span></div><h4>unGPT</h4><p>Strips the em dashes out of AI-written text.</p><span class="go">Open project &rarr;</span></a>
+  <a class="bcard" href="https://myrondoesnotcode.github.io/timecalc/" target="_blank" rel="noopener"><span class="code">BUILD_006</span><div class="img"><img src="/academy/shots/timecalc.jpg" alt="Screenshot of World Time Bridge" loading="lazy"><span class="stamp">Live</span></div><h4>World Time Bridge</h4><p>Works out what time it is for whoever you’re calling.</p><span class="go">Open project &rarr;</span></a>
+ </div>
+</div></section>
 
-<section class="section tint" id="teams" aria-labelledby="teams-h">
- <div class="teams">
-  <div>
-   <span class="kicker">Deploy Academy for Teams</span>
-   <h2 id="teams-h">Bring it<br>in house.</h2>
-   <p class="lede">Private, practical AI workshops for startups and companies. We adapt the workshop around the team&rsquo;s actual workflows and leave them with something working.</p>
-  </div>
-  <div>
-   <ul class="ticks">
-    <li><i>[&check;]</i><div>Built around your workflows<span>We ask what the team actually does all day, then build the session on that.</span></div></li>
-    <li><i>[&check;]</i><div>Hands on, not a talk<span>Same format: everyone builds, everyone ships, everyone demos.</span></div></li>
-    <li><i>[&check;]</i><div>Your room or ours<span>Tel Aviv, or wherever the team sits.</span></div></li>
-   </ul>
-   <p style="margin-top:22px"><!--A:teams-cta--><a class="btn orange" href="mailto:hello@deploytlv.com?subject=Academy%20for%20Teams">Bring Academy to your team &rarr;</a><!--/A:teams-cta--></p>
-  </div>
- </div>
-</section>
-
-<section class="section" id="register" aria-labelledby="register-h">
+<section class="sec" id="admissions" aria-labelledby="admissions-h"><div class="wrap">
  <div class="split">
   <div>
-   <span class="kicker">Take a seat</span>
-   <h2 id="register-h">Register, or<br>join the list.</h2>
-   <p class="lede">Academy 101 runs in Tel Aviv for <!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> a seat, ten people at a time. Academy 102, video editing, runs the next evening. The other classes are being scheduled now &mdash; tell us which one you want and you will hear the moment a date is set.</p>
-   <ul class="ticks">
-    <li><i>[&check;]</i><div>Nothing is charged here<span>You are telling us you want a seat. Payment comes after, once we confirm your seat by email.</span></div></li>
-    <li><i>[&check;]</i><div>Ten seats per class<span>Small enough that someone gets to you when you are stuck.</span></div></li>
+   <span class="kick">05 / Admissions</span>
+   <h2 id="admissions-h">Request a seat</h2>
+   <p class="intro">Pick a class and send the request. For courses without a date yet, you’ll hear from us as soon as one is set.</p>
+   <ul class="checks">
+    <li><b>Nothing is charged here</b><span>This is a request for a seat. Payment comes later, once we confirm your seat by email.</span></li>
+    <li><b>Capped at ten, every class</b><span>For now we keep every class to ten people, so the quality stays high and everyone gets real attention when they’re stuck.</span></li>
    </ul>
   </div>
-  <form class="reg" id="regform" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
-   <h3>Request a seat</h3>
-   <p class="fine" style="margin:10px 0 18px">Two hours, in Tel Aviv. No coding experience needed.</p>
+  <form class="form" id="regform" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
+   <span class="code">SEAT_REQUEST</span>
+   <p class="fine">19:00–21:00 at Pinsker St 11, Tel Aviv.</p>
    <div class="field">
-    <label for="reg-course">Which class</label>
+    <label for="reg-course">Course</label>
     <select id="reg-course" name="course">
-<!--A:course-options-->
-    <option value="ACADEMY 101 — Build &amp; ship a website with AI">ACADEMY 101 — Build &amp; ship a website with AI</option>
-    <option value="ACADEMY 102 — Edit video with AI">ACADEMY 102 — Edit video with AI</option>
-    <option value="ACADEMY 103 — Automate your work">ACADEMY 103 — Automate your work</option>
-    <option value="ACADEMY 104 — Build an AI tool">ACADEMY 104 — Build an AI tool</option>
-<!--/A:course-options-->
+     <option>ACADEMY 101 — Build &amp; ship a website with AI</option>
+     <option>ACADEMY 102 — Edit video with AI</option>
+     <option>ACADEMY 103 — Automate your work</option>
+     <option>ACADEMY 104 — Build an AI tool</option>
     </select>
    </div>
-   <div class="field">
-    <label for="reg-name">Your name</label>
-    <input id="reg-name" name="name" type="text" autocomplete="name" required>
-   </div>
-   <div class="field">
-    <label for="reg-email">Email</label>
-    <input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" required>
-   </div>
-   <div class="field">
-    <label for="reg-idea">What would you like to build? <em>(optional)</em></label>
-    <textarea id="reg-idea" name="idea" rows="3"></textarea>
-   </div>
-   <div class="hp" aria-hidden="true"><label for="reg-website">Leave this empty</label><input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-   <button class="btn orange wide" type="submit">Send my request &rarr;</button>
-   <p class="reg-status" id="reg-status" role="status" hidden></p>
-   <p class="fine">We only use this to get back to you about the class.</p>
+   <div class="field"><label for="reg-name">Full name</label><input id="reg-name" name="name" type="text" autocomplete="name"></div>
+   <div class="field"><label for="reg-email">Email</label><input id="reg-email" name="email" type="email" autocomplete="email"></div>
+   <div class="field"><label for="reg-idea">What would you like to build? <em>(optional)</em></label><textarea id="reg-idea" name="idea" rows="3"></textarea></div>
+   <div class="vh" aria-hidden="true"><label for="reg-website">Leave this empty</label><input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+   <button class="bbtn" type="submit" style="width:100%;margin-top:22px">Send request &rarr;</button>
+   <p class="status" id="reg-status" role="status" hidden></p>
+   <p class="reassure">Nothing is charged now · Full refund up to 48h before class</p>
+   <p class="fine" style="margin-top:8px">We only use this to get back to you about the course.</p>
   </form>
  </div>
-</section>
+</div></section>
 
-<section class="section tint" id="faq" aria-labelledby="faq-h">
- <span class="kicker">Before you book</span>
- <h2 id="faq-h">Questions</h2>
- <div class="qa">
-<!--A:faq-home-->
-  <details>
-   <summary><span>Do I need coding experience?</span><i>+</i></summary>
-   <p>No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online.</p>
-  </details>
-  <details>
-   <summary><span>Do I need an idea?</span><i>+</i></summary>
-   <p>No. Bring one if you have one. If not, you start from one of the starter projects and the first twenty minutes turn it into something buildable.</p>
-  </details>
-  <details>
-   <summary><span>What do I leave with?</span><i>+</i></summary>
-   <p>A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us.</p>
-  </details>
-  <details>
-   <summary><span>What should I bring?</span><i>+</i></summary>
-   <p>A laptop and its charger. That is the whole list.</p>
-  </details>
-  <details>
-   <summary><span>What software or accounts do I need?</span><i>+</i></summary>
-   <p>You need Claude Code, the AI tool we build with. It comes with a paid Claude plan (Pro or above), so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class.</p>
-  </details>
-  <details>
-   <summary><span>What is the cancellation and refund policy?</span><i>+</i></summary>
-   <p>Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.</p>
-  </details>
-  <details>
-   <summary><span>Is this available for companies?</span><i>+</i></summary>
-   <p>Yes. Academy for Teams runs the same workshop privately for a team, adapted around that team’s actual workflows.</p>
-  </details>
-  <details>
-   <summary><span>Will there be more Academy courses?</span><i>+</i></summary>
-   <p>Yes. Video editing (Academy 102) already has a date, and automation and building an AI tool are next in the catalog above. Join a waitlist and you will hear when a date lands.</p>
-  </details>
-<!--/A:faq-home-->
+<section class="sec alt" id="faq" aria-labelledby="faq-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">06 / FAQ</span>
+  <h2 id="faq-h">Before you book</h2>
  </div>
-</section>
+ <div class="faq">
+  <details><summary><span class="code">Q_01</span><span class="qq">Do I need coding experience?</span></summary><p>No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online.</p></details>
+  <details><summary><span class="code">Q_02</span><span class="qq">Do I need an idea?</span></summary><p>No. Bring one if you have one. If not, you start from one of our starter projects and we help you make it yours during the build.</p></details>
+  <details><summary><span class="code">Q_03</span><span class="qq">What do I leave with?</span></summary><p>A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us.</p></details>
+  <details><summary><span class="code">Q_04</span><span class="qq">What should I bring?</span></summary><p>A laptop and its charger, with Claude Code installed.</p></details>
+  <details><summary><span class="code">Q_05</span><span class="qq">What software or accounts do I need?</span></summary><p>You need Claude Code, the AI tool we build with. It comes with a Claude Pro plan or above, so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class.</p></details>
+  <details><summary><span class="code">Q_06</span><span class="qq">What is the cancellation and refund policy?</span></summary><p>Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.</p></details>
+ </div>
+</div></section>
 
-<section class="close">
- <h2>Go on then.<br>Ship something.</h2>
- <a class="btn" href="#classes">View upcoming classes &rarr;</a>
- <p><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> &middot; Tel Aviv &middot; <!--A:capacity-->10<!--/A:capacity--> seats a class</p>
+<section class="band" id="teams" aria-labelledby="teams-h"><div class="wrap">
+ <figure class="band-v media">
+  <video id="commv" data-src="/assets/video/hero-web.mp4" poster="/deploy1-poster.jpg" muted loop playsinline preload="none" aria-label="Builders talking and showing each other their work at a Deploy TLV event"></video>
+  <figcaption class="annot"><strong>Deploy #01</strong><span>The first Deploy / May 18 / 30 builders</span></figcaption>
+ </figure>
+ <div>
+  <span class="kick">07 / Community + teams</span>
+  <h2 id="teams-h">Part of Deploy TLV.</h2>
+  <p>Deploy Academy is run by Deploy TLV, a community of AI builders in Tel Aviv. We can also run the same hands-on workshop privately for your startup or company, built around what your team actually does all day.</p>
+  <div class="row">
+   <a class="bbtn light" href="mailto:hello@deploytlv.com?subject=Academy%20for%20Teams">Bring it to your team &rarr;</a>
+   <a class="go" href="/">Meet the community &rarr;</a>
+  </div>
+ </div>
+</div></section>
+
+<section class="closing" aria-labelledby="closing-h">
+ <span class="kick">Deploy / Academy</span>
+ <h2 id="closing-h">Come build<br>something.</h2>
+ <p class="when">Tue 29 Sep / Wed 30 Sep / 19:00 / Pinsker St 11</p>
+ <a class="bbtn light" href="#admissions">Request a seat &rarr;</a>
 </section>
 
 </main>
 
 <footer>
  <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
- <div>The work is the program.</div>
- <a class="linkish" href="/">Deploy TLV &rarr;</a>
- <div>Tel Aviv / 2026</div>
+ <nav class="flinks" aria-label="Footer">
+  <a href="#courses">Courses</a><a href="#faculty">Instructor</a><a href="#teams">Teams</a><a href="#faq">FAQ</a><a href="mailto:hello@deploytlv.com">Email</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">WhatsApp</a>
+ </nav>
+ <span class="fwhere">Tel Aviv / 2026</span>
 </footer>
-</div>
+
+
+<script>
+(function(){
+ var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches
+ var hv=document.getElementById('roomv')
+ var toggle=document.getElementById('video-toggle')
+ function updateVideoLabel(){toggle.textContent=hv.paused?'Play video':'Pause video'}
+ if(hv){
+  hv.addEventListener('play',updateVideoLabel)
+  hv.addEventListener('pause',updateVideoLabel)
+  toggle.addEventListener('click',function(){if(hv.paused){var p=hv.play();if(p&&p.catch)p.catch(updateVideoLabel)}else hv.pause()})
+  if(!reduce){var p=hv.play();if(p&&p.catch)p.catch(updateVideoLabel)}
+ }
+ /* The Uzi reel: loads on approach, plays muted; one button for sound, and it
+    re-mutes once it scrolls away so audio never follows you down the page. */
+ var uv=document.getElementById('seev'),sb=document.getElementById('seeSnd')
+ if(uv&&'IntersectionObserver' in window){
+  new IntersectionObserver(function(es,o){es.forEach(function(e){if(!e.isIntersecting)return;uv.src=uv.dataset.src;if(!reduce){var q=uv.play();if(q&&q.catch)q.catch(function(){})}o.disconnect()})},{rootMargin:'300px 0px'}).observe(uv)
+  new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting&&!uv.muted){uv.muted=true;sb.textContent='Sound on'}})},{threshold:.2}).observe(uv)
+ }
+ if(sb)sb.addEventListener('click',function(){if(!uv.src)uv.src=uv.dataset.src;uv.muted=!uv.muted;sb.textContent=uv.muted?'Sound on':'Mute';if(uv.paused){var q=uv.play();if(q&&q.catch)q.catch(function(){})}})
+ /* The community reel loads when it's about to be seen, not before. */
+ var cv=document.getElementById('commv')
+ if(cv&&'IntersectionObserver' in window){
+  new IntersectionObserver(function(es,o){es.forEach(function(e){if(!e.isIntersecting)return;cv.src=cv.dataset.src;if(!reduce){var q=cv.play();if(q&&q.catch)q.catch(function(){})}o.disconnect()})},{rootMargin:'300px 0px'}).observe(cv)
+ }
+ /* Clicking a course's button preselects it in the form. */
+ var sel=document.getElementById('reg-course')
+ document.querySelectorAll('[data-course]').forEach(function(a){a.addEventListener('click',function(){var n=a.dataset.course.split('-')[1];[].forEach.call(sel.options,function(o){if(o.text.indexOf('ACADEMY '+n)===0)sel.value=o.value})})})
+})()
+</script>
 <script src="/academy/academy.config.js"></script>
 <script src="/academy/academy.js"></script>
 <script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>
