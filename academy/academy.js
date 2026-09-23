@@ -237,7 +237,7 @@
           'DTEND;TZID=' + (co.timezone || 'Asia/Jerusalem') + ':' + d + 'T' + e,
           'SUMMARY:' + summary,
           'LOCATION:' + (CFG.venue ? CFG.venue.line : 'Tel Aviv'),
-          'DESCRIPTION:Bring a laptop and charger, with Claude Code set up beforehand (it comes with a paid Claude plan, Pro or above).',
+          'DESCRIPTION:Bring a laptop and charger, with Claude Code set up beforehand (it comes with a Claude Pro plan or above).',
           'END:VEVENT', 'END:VCALENDAR'
         ].join('\r\n')
         var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }))

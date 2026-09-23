@@ -19,223 +19,211 @@
 <meta name="theme-color" content="#ff5a18">
 
 <!--A:jsonld-course--><script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Deploy Academy 101: Build & ship a website with AI","description":"Leave with your own website live on the internet. A hands-on, small-group AI workshop in Tel Aviv. No coding experience and no idea required.","url":"https://deploytlv.com/academy/build-and-ship/","inLanguage":"en","teaches":["Building a website with AI","Publishing to GitHub Pages","Turning an idea into a live URL"],"coursePrerequisites":"None. No coding experience required.","educationalLevel":"Beginner","isAccessibleForFree":false,"provider":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"offers":{"@type":"Offer","price":"250","priceCurrency":"ILS","category":"Workshop seat","availability":"https://schema.org/LimitedAvailability","url":"https://deploytlv.com/academy/build-and-ship/"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"onsite","courseWorkload":"PT2H","name":"Deploy Academy 101","maximumAttendeeCapacity":10,"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","instructor":{"@type":"Person","name":"Myron Shneider","jobTitle":"Founder of Deploy","image":"https://deploytlv.com/assets/people/Myron_Shneider.jpg","sameAs":["https://github.com/myrondoesnotcode","https://www.linkedin.com/in/mshneider"]},"organizer":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com"},"location":{"@type":"Place","name":"Deploy TLV","address":{"@type":"PostalAddress","streetAddress":"Pinsker St 11","addressLocality":"Tel Aviv-Yafo","postalCode":"6259413","addressCountry":"IL"}},"startDate":"2026-09-29T19:00+03:00","endDate":"2026-09-29T21:00+03:00","eventStatus":"https://schema.org/EventScheduled"}}</script><!--/A:jsonld-course-->
-<!--A:jsonld-faq-course--><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need coding experience?","acceptedAnswer":{"@type":"Answer","text":"No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online."}},{"@type":"Question","name":"Do I need an idea?","acceptedAnswer":{"@type":"Answer","text":"No. Bring one if you have one. If not, you start from one of the starter projects and the first twenty minutes turn it into something buildable."}},{"@type":"Question","name":"What do I leave with?","acceptedAnswer":{"@type":"Answer","text":"A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us."}},{"@type":"Question","name":"What should I bring?","acceptedAnswer":{"@type":"Answer","text":"A laptop and its charger. That is the whole list."}},{"@type":"Question","name":"What software or accounts do I need?","acceptedAnswer":{"@type":"Answer","text":"You need Claude Code, the AI tool we build with. It comes with a paid Claude plan (Pro or above), so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class."}},{"@type":"Question","name":"What is the cancellation and refund policy?","acceptedAnswer":{"@type":"Answer","text":"Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort."}},{"@type":"Question","name":"Is this available for companies?","acceptedAnswer":{"@type":"Answer","text":"Yes. Academy for Teams runs the same workshop privately for a team, adapted around that team’s actual workflows."}},{"@type":"Question","name":"Will there be more Academy courses?","acceptedAnswer":{"@type":"Answer","text":"Yes. Video editing (Academy 102) already has a date, and automation and building an AI tool are next in the catalog above. Join a waitlist and you will hear when a date lands."}}]}</script><!--/A:jsonld-faq-course-->
+<!--A:jsonld-faq-course--><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need coding experience?","acceptedAnswer":{"@type":"Answer","text":"No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online."}},{"@type":"Question","name":"Do I need an idea?","acceptedAnswer":{"@type":"Answer","text":"No. Bring one if you have one. If not, you start from one of our starter projects and we help you make it yours during the build."}},{"@type":"Question","name":"What do I leave with?","acceptedAnswer":{"@type":"Answer","text":"A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us."}},{"@type":"Question","name":"What should I bring?","acceptedAnswer":{"@type":"Answer","text":"A laptop and its charger, with Claude Code installed."}},{"@type":"Question","name":"What software or accounts do I need?","acceptedAnswer":{"@type":"Answer","text":"You need Claude Code, the AI tool we build with. It comes with a Claude Pro plan or above, so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class."}},{"@type":"Question","name":"What is the cancellation and refund policy?","acceptedAnswer":{"@type":"Answer","text":"Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort."}}]}</script><!--/A:jsonld-faq-course-->
 
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-black-400.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/silkscreen-700.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/ibm-plex-mono-400.woff2">
-<link rel="stylesheet" href="/academy/academy.css">
-<script>document.documentElement.className="js"</script>
-</head><body><div class="site">
-<a class="skip" href="#main">Skip to content</a>
-
-<nav class="nav">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/academy/site.css">
+</head><body>
+<nav class="nav" aria-label="Main">
  <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
- <span class="where">/ Academy / 101</span>
- <a class="btn orange" href="#register">Take a seat &rarr;</a>
+ <a class="where" href="/academy/" style="text-decoration:none">/ Academy / 101</a>
+ <div class="links">
+  <span class="status"><i></i>Next class · Tue 29 Sep</span>
+  <a href="#syllabus">Syllabus</a>
+  <a href="#faculty">Instructor</a>
+  <a href="#faq">FAQ</a>
+  <a class="bbtn" href="#register">Request a seat &rarr;</a>
+ </div>
 </nav>
 
 <main id="main">
 
-<header class="hero">
- <div>
-  <span class="kicker">Academy 101 &middot; <!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> a seat</span>
-  <h1>Build &amp; ship<br>a website<br>with <em>AI</em>.</h1>
-  <p class="sub">Two hours. Ten people. You leave with your own website live on the internet.</p>
-  <div class="cta">
-   <a class="btn orange" href="#register">Take a seat &rarr;</a>
-   <a class="btn" href="#syllabus">See the syllabus &rarr;</a>
-  </div>
-  <!--A:proofline--><p class="proofline"><i aria-hidden="true"></i>REAL PROJECTS SHIPPED IN THE ROOM · LIVE THE SAME NIGHT</p><!--/A:proofline-->
+<header class="phero"><div class="wrap">
+ <span class="kick">Academy 101 / Tel Aviv / IRL</span>
+ <h1>Build &amp; ship a website with AI.</h1>
+ <p class="lead">Two hours, ten people at most, and you leave with your own website live on the internet. No coding experience needed.</p>
+ <div class="cta">
+  <a class="bbtn" href="#register">Request a seat for Tue 29 Sep &rarr;</a>
+  <a class="btn outline" href="#syllabus">See the syllabus</a>
  </div>
- <div class="term" aria-hidden="true">
-  <div class="term-bar"><i></i>two hours &mdash; start to live</div>
-  <pre class="term-body"><b>00:00</b> you have never done this
-<b>00:30</b> tools are set up
-<b>01:10</b> the thing works locally
-<b>01:30</b> <u>it is on the internet</u>
-<b>02:00</b> the room has seen it <span class="cur"></span></pre>
- </div>
-</header>
+ <p class="offer"><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> · 19:00–21:00 · 10 seats · Full refund up to 48h before</p>
+</div></header>
 
-<div class="facts-wrap"><div class="facts">
+<div class="wrap">
+ <dl class="facts">
 <!--A:facts-101-->
-  <div><b>Next cohort</b><strong>Tuesday 29 September</strong><span>19:00 – 21:00</span></div>
-  <div><b>Where</b><strong>Pinsker St 11</strong><span>Tel Aviv-Yafo, 6259413</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Pinsker%20St%2011%2C%20Tel%20Aviv-Yafo%2C%206259413" target="_blank" rel="noopener">Open in maps &rarr;</a></div>
-  <div><b>Room size</b><strong>10 people</strong><span>Small group, hands on</span></div>
-  <div><b>Price</b><strong><i class="nis">₪</i>250</strong><span>Per seat</span></div>
+  <div><dt>Next class</dt><dd>Tue 29 Sep, 19:00</dd></div>
+  <div><dt>Where</dt><dd>Pinsker St 11</dd></div>
+  <div><dt>Length</dt><dd>2 hours</dd></div>
+  <div><dt>Class size</dt><dd>10 max</dd></div>
+  <div><dt>Tuition</dt><dd><i class="nis">₪</i>250</dd></div>
 <!--/A:facts-101-->
-</div></div>
+ </dl>
+</div>
 
-<section class="section" aria-labelledby="who-for-h">
- <div class="split-wide">
-  <div>
-   <span class="kicker">Who it&rsquo;s for</span>
-   <h2 id="who-for-h">People who keep<br>saying &ldquo;I&rsquo;d build<br>that if I could&rdquo;.</h2>
-  </div>
-  <div>
-   <ul class="ticks">
-    <li><i>[&check;]</i><div>You have never written code<span>Most of the room hasn&rsquo;t. The AI writes it; you learn to direct it.</span></div></li>
-    <li><i>[&check;]</i><div>You have an idea nobody will build for you<span>A tool, a site, a small thing that would make your week easier.</span></div></li>
-    <li><i>[&check;]</i><div>You have tried AI tools and stalled<span>Usually at the same place: getting it out of the chat window and onto the internet.</span></div></li>
-    <li><i>[&check;]</i><div>You learn by doing<span>There is no lecture. You are building within the first half hour.</span></div></li>
-   </ul>
-  </div>
- </div>
-</section>
-
-<section class="section tint" aria-labelledby="build-h">
- <div class="split-wide">
-  <div>
-   <span class="kicker">What you build</span>
-   <h2 id="build-h">One thing.<br>Finished.</h2>
-   <p class="lede">A real website or a small interactive tool &mdash; your idea if you have one, a starter project if you don&rsquo;t. One project, taken all the way, beats three half-built ones.</p>
-  </div>
-  <div>
-   <ul class="ticks">
-    <li><i>[&check;]</i><div>A personal site, a landing page, or a small game<span>Past rooms have shipped all three.</span></div></li>
-    <li><i>[&check;]</i><div>Hosted on GitHub Pages, under your account<span>Free, public, and yours. Nothing is locked to us.</span></div></li>
-    <li><i>[&check;]</i><div>A URL you can send to anyone that evening<span>That is the bit that makes it real.</span></div></li>
-   </ul>
-  </div>
- </div>
-</section>
-
-<section class="section" id="syllabus" aria-labelledby="syl-h">
- <span class="kicker">The two hours, minute by minute</span>
- <h2 id="syl-h">Syllabus</h2>
- <div class="syl">
-<!--A:syllabus-->
-  <div><time>00:00 – 00:15</time><div><h3>See what’s possible</h3><p>Real examples, and the build-to-deploy workflow end to end before you touch it.</p></div></div>
-  <div><time>00:15 – 00:30</time><div><h3>Setup</h3><p>Check Claude Code works, then GitHub and project folders. We do it together.</p></div></div>
-  <div><time>00:30 – 01:10</time><div><h3>Build</h3><p>Choose a starting point, prompt, test, iterate. The longest block, on purpose.</p></div></div>
-  <div><time>01:10 – 01:30</time><div><h3>Ship</h3><p>Push the project to GitHub Pages and open the live URL.</p></div></div>
-  <div><time>01:30 – 01:50</time><div><h3>Improve</h3><p>Mobile testing, visual fixes, debugging, and adding one more feature.</p></div></div>
-  <div><time>01:50 – 02:00</time><div><h3>Demo</h3><p>Show the room what you shipped.</p></div></div>
-<!--/A:syllabus-->
- </div>
-</section>
-
-<section class="section dark" aria-labelledby="inc-h">
- <div class="split-wide">
-  <div>
-   <span class="kicker">What&rsquo;s included</span>
-   <h2 id="inc-h">In the<br>price.</h2>
-  </div>
-  <div>
-   <ul class="ticks">
-<!--A:included-->
-  <li><i>[&check;]</i><div>The live two-hour workshop<span>In the room, in Tel Aviv.</span></div></li>
-  <li><i>[&check;]</i><div>Small-group help while you build<span>Ten people, not a lecture hall.</span></div></li>
-  <li><i>[&check;]</i><div>Starter project options<span>So nobody loses the session to picking an idea.</span></div></li>
-  <li><i>[&check;]</i><div>Setup support<span>Accounts and tooling sorted with you at the start of class.</span></div></li>
-  <li><i>[&check;]</i><div>A finished project<span>Yours, under your own account.</span></div></li>
-  <li><i>[&check;]</i><div>A live public URL<span>Nothing is locked to us.</span></div></li>
-  <li><i>[&check;]</i><div>A reusable prompting guide<span>The prompts that did the work, to take away.</span></div></li>
-  <li><i>[&check;]</i><div>A Deploy Academy certificate<span>For the ones who like a certificate.</span></div></li>
-  <li><i>[&check;]</i><div>Post-class resources<span>Where to go next, and how to keep the project alive.</span></div></li>
-<!--/A:included-->
-   </ul>
-  </div>
- </div>
-</section>
-
-<section class="section" aria-labelledby="req-h">
- <div class="split-wide">
-  <div>
-   <span class="kicker">Requirements</span>
-   <h2 id="req-h">Bring a<br>laptop.</h2>
-   <p class="lede">The one thing to get beforehand is Claude Code, which comes with a paid Claude plan (Pro or above). Everything else is set up with you in the first block of the class.</p>
-  </div>
-  <div>
-   <ul class="ticks">
-<!--A:requirements-->
-  <li><i>[&check;]</i><div>A laptop and its charger<span>Any laptop. Mac, Windows or Linux.</span></div></li>
-  <li><i>[&check;]</i><div>Claude Code, set up before class<span>It comes with a paid Claude plan (Pro or above). If it isn’t working when you arrive, we fix it in the setup block.</span></div></li>
-  <li><i>[&check;]</i><div>An email address you can open in class<span>For the account setup at the start.</span></div></li>
-  <li><i>[&check;]</i><div>No coding experience<span>Genuinely none required — that is the point of the class.</span></div></li>
-  <li><i>[&check;]</i><div>No idea required<span>Bring one if you have one. If not, you start from a prompt we give you.</span></div></li>
-<!--/A:requirements-->
-   </ul>
-  </div>
- </div>
-</section>
-
-<section class="section tint" aria-labelledby="ins-h">
- <span class="kicker">Who teaches it</span>
- <h2 id="ins-h">Myron Shneider</h2>
-<!--A:instructor-->
-  <div class="who">
-   <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
-   <div>
-    <strong>Produced Invested for Aleph.<br>Built Deploy.<br>Still doesn’t code.</strong>
-    <p>Myron produced <em>Invested</em>, Michael Eisenberg’s show at Aleph VC, with guests like Fiverr CEO Micha Kaufman, Windward CEO Ami Daniel and ex-Fiverr CBO Gali Arnon.</p>
-    <p>In May 2026 he started Deploy: 30 builders at the first event, 102 by the fourth, from companies like monday.com, Google and Aleph.</p>
-    <p>He has never worked as a developer. Everything he has shipped, he built with AI, the same way you will build yours — and he is the one sitting next to you while you do it.</p>
-   </div>
-  </div>
-  <div class="facts creds">
-   <div><b>Producer</b><strong>Invested by Aleph</strong><span>Michael Eisenberg’s show</span></div>
-   <div><b>Founder</b><strong>Deploy TLV</strong><span>5 events since May 2026</span></div>
-   <div><b>The room</b><strong>102 builders</strong><span>at Deploy #4</span></div>
-   <div><b>Ships</b><strong>6 live projects</strong><span>All built with AI</span></div>
-  </div>
-<!--/A:instructor-->
- <p style="margin-top:22px"><a class="linkish" href="/academy/#proof">See what he&rsquo;s shipped &rarr;</a></p>
-</section>
-
-<section class="section" aria-labelledby="work-h">
- <span class="kicker">Student work</span>
- <h2 id="work-h">Made in<br>the room.</h2>
- <p class="lede">Built during a session by people who arrived without a line of code to their name.</p>
- <div class="wall">
-<!--A:testimonials-->
-  <figure class="wall-card shot-card rv">
-   <img src="/academy/testimonials/shira-linkedin.png" alt="LinkedIn post by Shira: “I did get a bit scared when the big word (GitHub) came up. Apparently Claude Code literally just pushes it for you.” She made a live site and a Tetris game in the workshop." width="1116" height="1060" loading="lazy" decoding="async">
-   <figcaption><b>Shira</b><span>B2B brand strategist, Natural Intelligence</span></figcaption>
-  </figure>
-  <figure class="wall-card shot-card cut rv">
-   <img src="/academy/testimonials/gal-whatsapp.png" alt="Message from Gal, a private English teacher: she made games to reward two young students who are learning to read, “and they really loved it! Highly recommend.”" width="556" height="503" loading="lazy" decoding="async">
-   <figcaption><b>Gal</b><span>Private English teacher</span></figcaption>
-  </figure>
-<!--/A:testimonials-->
- </div>
-
- <h3 class="sub-h">What they made</h3>
- <div class="made">
-<!--A:student-rows-->
-  <a class="made-row rv" href="https://lnkd.in/dU2224Cc" target="_blank" rel="noopener">
-   <div><h3>Recap site + a Bratz Tetris game</h3><p>Built a live page about her own session in under five minutes, then a sound-on Tetris game to go with it.</p></div>
-   <b>Shira · Brand strategist, Natural Intelligence</b><span class="go">Open &rarr;</span>
-  </a>
-  <div class="made-row rv">
-   <div><h3>Reading games for her students</h3><p>Games that reinforce what her students just practised. She now uses them at the end of lessons.</p></div>
-   <b>Gal · Private English teacher</b>
-  </div>
-<!--/A:student-rows-->
- </div>
-</section>
-
-<section class="section tint" id="register" aria-labelledby="reg-h">
+<section class="sec" aria-labelledby="who-for-h"><div class="wrap">
  <div class="split">
   <div>
-   <span class="kicker"><!--A:cohort--><span class="kicker">Next cohort — Tuesday 29 September · 19:00 – 21:00</span><!--/A:cohort--></span>
-   <h2 id="reg-h">Take a seat.</h2>
-   <p class="lede"><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> per seat, ten seats a class, in Tel Aviv. Send the request and we come back to you by email with how to pay. Your seat is held once payment lands &mdash; not before.</p>
-   <ul class="ticks">
-    <li><i>[&check;]</i><div>Cancellation<span><!--A:refund-->Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.<!--/A:refund--></span></div></li>
-    <li><i>[&check;]</i><div>Company or team?<span>Academy for Teams runs this privately, built around your workflows.</span></div></li>
-   </ul>
-   <p style="margin-top:20px"><a class="linkish" href="/academy/#teams">Academy for teams &rarr;</a></p>
+   <span class="kick">01 / Who it’s for</span>
+   <h2 id="who-for-h">People who keep saying “I’d build that if I could”</h2>
   </div>
-  <form class="reg" id="regform" data-course="academy-101" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
-   <h3>Request a seat</h3>
-   <div class="sum">
-    <div><b>Class</b><span>Academy 101</span></div>
-    <div><b>Price</b><span><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--></span></div>
+  <ul class="checks">
+   <li><b>You have never written code</b><span>Most of the room hasn’t. The AI writes it; you learn to direct it.</span></li>
+   <li><b>You have an idea nobody will build for you</b><span>A tool, a site, a small thing that would make your week easier.</span></li>
+   <li><b>You have tried AI tools and stalled</b><span>Usually at the same place: getting it out of the chat window and onto the internet.</span></li>
+   <li><b>You learn by doing</b><span>Fifteen minutes of examples, then you’re building.</span></li>
+  </ul>
+ </div>
+</div></section>
+
+<section class="sec alt" aria-labelledby="build-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">02 / What you build</span>
+   <h2 id="build-h">One thing, finished</h2>
+   <p class="intro">A real website or a small interactive tool: your idea if you have one, a starter project if you don’t. One project taken all the way beats three half-built ones.</p>
+  </div>
+  <ul class="checks">
+   <li><b>A personal site, a landing page, or a small game</b><span>Your choice, sized to fit two hours.</span></li>
+   <li><b>Hosted on GitHub Pages, under your account</b><span>Free, public, and yours. Nothing is locked to us.</span></li>
+   <li><b>A URL you can send to anyone that evening</b><span>That’s the bit that makes it real.</span></li>
+  </ul>
+ </div>
+</div></section>
+
+<section class="sec" id="syllabus" aria-labelledby="syl-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">03 / Syllabus</span>
+  <h2 id="syl-h">The two hours, to scale</h2>
+ </div>
+ <div class="tl wide">
+  <ol>
+<!--A:syllabus-->
+    <li style="--m:15"><div class="bar"></div><time>0:00</time><div><b>See what’s possible</b><br><span>Real examples, and the build-to-deploy workflow end to end before you touch it.</span></div></li>
+    <li style="--m:15"><div class="bar"></div><time>0:15</time><div><b>Setup</b><br><span>Check Claude Code works, then GitHub and project folders. We do it together.</span></div></li>
+    <li style="--m:40" class="build"><div class="bar"></div><time>0:30</time><div><b>Build</b><br><span>Choose a starting point, prompt, test, iterate. The longest block, on purpose.</span></div></li>
+    <li style="--m:20"><div class="bar"></div><time>1:10</time><div><b>Ship</b><br><span>Push the project to GitHub Pages and open the live URL.</span></div></li>
+    <li style="--m:20"><div class="bar"></div><time>1:30</time><div><b>Improve</b><br><span>Mobile testing, visual fixes, debugging, and adding one more feature.</span></div></li>
+    <li style="--m:10"><div class="bar"></div><time>1:50</time><div><b>Demo</b><br><span>Show the room what you shipped.</span></div></li>
+<!--/A:syllabus-->
+  </ol>
+ </div>
+</div></section>
+
+<section class="sec alt" aria-labelledby="inc-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">04 / What’s included</span>
+   <h2 id="inc-h">In the price</h2>
+   <p class="intro"><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> a seat. You’ll also need a Claude Pro plan for Claude Code, paid to Anthropic, not us.</p>
+  </div>
+  <ul class="checks">
+<!--A:included-->
+    <li><b>The live two-hour workshop</b><span>In the room, in Tel Aviv.</span></li>
+    <li><b>Small-group help while you build</b><span>Ten people, not a lecture hall.</span></li>
+    <li><b>Starter project options</b><span>So nobody loses the session to picking an idea.</span></li>
+    <li><b>Setup support</b><span>Accounts and tooling sorted with you at the start of class.</span></li>
+    <li><b>A finished project</b><span>Yours, under your own account.</span></li>
+    <li><b>A live public URL</b><span>Nothing is locked to us.</span></li>
+    <li><b>A reusable prompting guide</b><span>The prompts that did the work, to take away.</span></li>
+    <li><b>A Deploy Academy certificate</b><span>For the ones who like a certificate.</span></li>
+    <li><b>Post-class resources</b><span>Where to go next, and how to keep the project alive.</span></li>
+<!--/A:included-->
+  </ul>
+ </div>
+</div></section>
+
+<section class="sec" aria-labelledby="req-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">05 / Requirements</span>
+   <h2 id="req-h">Bring a laptop</h2>
+   <p class="intro">The one thing to get beforehand is Claude Code, which comes with a Claude Pro plan or above. Everything else is set up with you in the first block of the class.</p>
+  </div>
+  <ul class="checks">
+<!--A:requirements-->
+    <li><b>A laptop and its charger</b><span>Any laptop. Mac, Windows or Linux.</span></li>
+    <li><b>Claude Code, set up before class</b><span>It comes with a Claude Pro plan or above. If it isn’t working when you arrive, we fix it in the setup block.</span></li>
+    <li><b>An email address you can open in class</b><span>For the account setup at the start.</span></li>
+    <li><b>No coding experience</b><span>Genuinely none required — that is the point of the class.</span></li>
+    <li><b>No idea required</b><span>Bring one if you have one. If not, you start from a prompt we give you.</span></li>
+<!--/A:requirements-->
+  </ul>
+ </div>
+</div></section>
+
+<section class="sec alt" id="words" aria-labelledby="words-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">06 / In their words</span>
+  <h2 id="words-h">What the pilot class said</h2>
+ </div>
+ <div class="qcards two-up">
+<!--A:testimonials-->
+   <figure class="qcard">
+    <span class="code">QUOTE_01</span>
+    <blockquote>&ldquo;I did get a bit scared when the big word (GitHub) came up. Apparently Claude Code literally just pushes it for you.&rdquo;</blockquote>
+    <a class="shot" href="/academy/testimonials/shira-linkedin.png" target="_blank" rel="noopener" aria-label="Open Shira’s original LinkedIn post"><img src="/academy/testimonials/shira-linkedin.png" alt="LinkedIn post by Shira: “I did get a bit scared when the big word (GitHub) came up. Apparently Claude Code literally just pushes it for you.” She made a live site and a Tetris game in the workshop." width="1116" height="1060" loading="lazy" decoding="async"><span class="shot-tag">LinkedIn</span></a>
+    <figcaption><span><b>Shira</b> / B2B brand strategist, Natural Intelligence</span><a class="go" href="/academy/testimonials/shira-linkedin.png" target="_blank" rel="noopener">Original post &rarr;</a></figcaption>
+   </figure>
+   <figure class="qcard">
+    <span class="code">QUOTE_02</span>
+    <blockquote>&ldquo;I made some games to support what we practised in the lesson and they really loved it.&rdquo;</blockquote>
+    <a class="shot whole" href="/academy/testimonials/gal-whatsapp.png" target="_blank" rel="noopener" aria-label="Open Gal’s original WhatsApp post"><img src="/academy/testimonials/gal-whatsapp.png" alt="Message from Gal, a private English teacher: she made games to reward two young students who are learning to read, “and they really loved it! Highly recommend.”" width="556" height="503" loading="lazy" decoding="async"><span class="shot-tag">WhatsApp</span></a>
+    <figcaption><span><b>Gal</b> / Private English teacher</span><a class="go" href="/academy/testimonials/gal-whatsapp.png" target="_blank" rel="noopener">Original message &rarr;</a></figcaption>
+   </figure>
+<!--/A:testimonials-->
+ </div>
+</div></section>
+
+<section class="sec" id="faculty" aria-labelledby="faculty-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">07 / Instructor</span>
+  <h2 id="faculty-h">Taught by the founder of Deploy TLV</h2>
+ </div>
+<!--A:instructor-->
+  <div class="faculty">
+   <figure class="portrait media">
+    <img src="/assets/people/Myron_Shneider.jpg" alt="Myron Shneider" width="400" height="400" loading="lazy" decoding="async">
+    <figcaption class="annot"><strong>Myron Shneider</strong><span>Founder, Deploy TLV / Producer, Aleph</span></figcaption>
+   </figure>
+   <div class="bio">
+    <p>Myron founded Deploy TLV, Tel Aviv’s fastest-growing English-speaking community of AI builders. It went from 30 people at its first event in May 2026 to 102 at its fourth ten weeks later, and now has more than 300 members from companies like monday.com, Google and Aleph.</p>
+    <p>He is a producer at Aleph, the Israeli VC firm, on <em>Invested</em>, Michael Eisenberg’s interview show. His episodes include Gavin Baker of Atreides, Nas Daily, Carta CEO Henry Ward, General Catalyst co-founder David Fialkow and Fiverr CEO Micha Kaufman. Before Aleph he worked at Antler, Flock Freight and Doing Things Media.</p>
+    <p>He has never worked as a developer. Everything he has shipped, he built with AI, the same way you’ll build yours, and he’s the one next to you while you do it.</p>
    </div>
+  </div>
+  <div class="stats">
+   <div><b>300+</b><span>Deploy TLV members</span></div>
+   <div><b>30→102</b><span>Builders, Deploy #01 to #04</span></div>
+   <div><b>Aleph</b><span>Producer, <i>Invested</i></span></div>
+   <div><b>6</b><span>Live projects, all built with AI</span></div>
+  </div>
+<!--/A:instructor-->
+ <p style="margin-top:28px"><a class="go" href="/academy/#faculty">See what he’s built with AI &rarr;</a></p>
+</div></section>
+
+<section class="sec alt" id="register" aria-labelledby="reg-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">08 / Request a seat</span>
+   <h2 id="reg-h">Save your spot for Tuesday</h2>
+   <p class="intro"><!--A:cohort-->Next class: Tuesday 29 September, 19:00 – 21:00<!--/A:cohort-->. Send the request and we’ll email you to confirm your seat and take payment.</p>
+   <ul class="checks">
+    <li><b>Nothing is charged here</b><span>This is a request for a seat. Payment comes later, once we confirm your seat by email.</span></li>
+    <li><b>Cancellation</b><span><!--A:refund-->Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.<!--/A:refund--></span></li>
+    <li><b>Capped at ten, every class</b><span>For now we keep every class to ten people, so the quality stays high and everyone gets real attention when they’re stuck.</span></li>
+   </ul>
+  </div>
+  <form class="form" id="regform" data-course="academy-101" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
+   <span class="code">SEAT_REQUEST</span>
+   <p class="fine">19:00–21:00 at Pinsker St 11, Tel Aviv.</p>
    <div class="field">
-    <label for="reg-course">Which class</label>
+    <label for="reg-course">Course</label>
     <select id="reg-course" name="course">
 <!--A:course-options-->
     <option value="ACADEMY 101 — Build &amp; ship a website with AI">ACADEMY 101 — Build &amp; ship a website with AI</option>
@@ -245,82 +233,52 @@
 <!--/A:course-options-->
     </select>
    </div>
-   <div class="field">
-    <label for="reg-name">Your name</label>
-    <input id="reg-name" name="name" type="text" autocomplete="name" required>
-   </div>
-   <div class="field">
-    <label for="reg-email">Email</label>
-    <input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" required>
-   </div>
-   <div class="field">
-    <label for="reg-idea">What would you like to build? <em>(optional)</em></label>
-    <textarea id="reg-idea" name="idea" rows="3"></textarea>
-   </div>
-   <div class="hp" aria-hidden="true"><label for="reg-website">Leave this empty</label><input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-   <button class="btn orange wide" type="submit">Send my request &rarr;</button>
-   <p class="reg-status" id="reg-status" role="status" hidden></p>
-   <p class="fine">Nothing is charged here. We only use this to get back to you about the class.</p>
+   <div class="field"><label for="reg-name">Full name</label><input id="reg-name" name="name" type="text" autocomplete="name"></div>
+   <div class="field"><label for="reg-email">Email</label><input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email"></div>
+   <div class="field"><label for="reg-idea">What would you like to build? <em>(optional)</em></label><textarea id="reg-idea" name="idea" rows="3"></textarea></div>
+   <div class="vh" aria-hidden="true"><label for="reg-website">Leave this empty</label><input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+   <button class="bbtn" type="submit" style="width:100%;margin-top:22px">Send request &rarr;</button>
+   <p class="status" id="reg-status" role="status" hidden></p>
+   <p class="reassure">Nothing is charged now · Full refund up to 48h before class</p>
+   <p class="fine" style="margin-top:8px">We only use this to get back to you about the course.</p>
   </form>
  </div>
-</section>
+</div></section>
 
-<section class="section" id="faq" aria-labelledby="faq-h">
- <span class="kicker">Before you book</span>
- <h2 id="faq-h">Questions</h2>
- <div class="qa">
+<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap">
+ <div class="b-head">
+  <span class="kick">09 / FAQ</span>
+  <h2 id="faq-h">Before you book</h2>
+ </div>
+ <div class="faq">
 <!--A:faq-course-->
-  <details>
-   <summary><span>Do I need coding experience?</span><i>+</i></summary>
-   <p>No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online.</p>
-  </details>
-  <details>
-   <summary><span>Do I need an idea?</span><i>+</i></summary>
-   <p>No. Bring one if you have one. If not, you start from one of the starter projects and the first twenty minutes turn it into something buildable.</p>
-  </details>
-  <details>
-   <summary><span>What do I leave with?</span><i>+</i></summary>
-   <p>A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us.</p>
-  </details>
-  <details>
-   <summary><span>What should I bring?</span><i>+</i></summary>
-   <p>A laptop and its charger. That is the whole list.</p>
-  </details>
-  <details>
-   <summary><span>What software or accounts do I need?</span><i>+</i></summary>
-   <p>You need Claude Code, the AI tool we build with. It comes with a paid Claude plan (Pro or above), so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class.</p>
-  </details>
-  <details>
-   <summary><span>What is the cancellation and refund policy?</span><i>+</i></summary>
-   <p>Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.</p>
-  </details>
-  <details>
-   <summary><span>Is this available for companies?</span><i>+</i></summary>
-   <p>Yes. Academy for Teams runs the same workshop privately for a team, adapted around that team’s actual workflows.</p>
-  </details>
-  <details>
-   <summary><span>Will there be more Academy courses?</span><i>+</i></summary>
-   <p>Yes. Video editing (Academy 102) already has a date, and automation and building an AI tool are next in the catalog above. Join a waitlist and you will hear when a date lands.</p>
-  </details>
+  <details><summary><span class="code">Q_01</span><span class="qq">Do I need coding experience?</span></summary><p>No. That is who the class is for. The AI writes the code; you learn how to direct it and how to get it online.</p></details>
+  <details><summary><span class="code">Q_02</span><span class="qq">Do I need an idea?</span></summary><p>No. Bring one if you have one. If not, you start from one of our starter projects and we help you make it yours during the build.</p></details>
+  <details><summary><span class="code">Q_03</span><span class="qq">What do I leave with?</span></summary><p>A finished project on a live public URL under your own account, the prompting guide that got it there, and an Academy certificate. Nothing is locked to us.</p></details>
+  <details><summary><span class="code">Q_04</span><span class="qq">What should I bring?</span></summary><p>A laptop and its charger, with Claude Code installed.</p></details>
+  <details><summary><span class="code">Q_05</span><span class="qq">What software or accounts do I need?</span></summary><p>You need Claude Code, the AI tool we build with. It comes with a Claude Pro plan or above, so sign up and install it before the session. If it isn’t working when you arrive, we fix it together in the setup block. Everything else, including GitHub, we set up with you in class.</p></details>
+  <details><summary><span class="code">Q_06</span><span class="qq">What is the cancellation and refund policy?</span></summary><p>Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.</p></details>
 <!--/A:faq-course-->
  </div>
-</section>
+</div></section>
 
-<section class="close">
- <h2>Two hours.<br>One live URL.</h2>
- <a class="btn" href="#register">Take a seat &rarr;</a>
- <p><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> &middot; <!--A:capacity-->10<!--/A:capacity--> seats &middot; <!--A:price101--><i class="nis">₪</i>250<!--/A:price101--></p>
+<section class="closing" aria-labelledby="closing-h">
+ <span class="kick">Deploy / Academy 101</span>
+ <h2 id="closing-h">Two hours.<br>One live URL.</h2>
+ <p class="when"><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> / <!--A:capacity-->10<!--/A:capacity--> seats / <!--A:price101--><i class="nis">₪</i>250<!--/A:price101--></p>
+ <a class="bbtn light" href="#register">Request a seat &rarr;</a>
 </section>
 
 </main>
 
 <footer>
  <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
- <div>The work is the program.</div>
- <a class="linkish" href="/academy/">All Academy classes &rarr;</a>
- <div>Tel Aviv / 2026</div>
+ <nav class="flinks" aria-label="Footer">
+  <a href="/academy/">All courses</a><a href="#syllabus">Syllabus</a><a href="#faculty">Instructor</a><a href="#faq">FAQ</a><a href="mailto:hello@deploytlv.com">Email</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">WhatsApp</a>
+ </nav>
+ <span class="fwhere">Tel Aviv / 2026</span>
 </footer>
-</div>
+
 <script src="/academy/academy.config.js"></script>
 <script src="/academy/academy.js"></script>
 <script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script>

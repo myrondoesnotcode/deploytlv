@@ -12,89 +12,109 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-black-400.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/silkscreen-700.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/ibm-plex-mono-400.woff2">
-<link rel="stylesheet" href="/academy/academy.css">
-<script>document.documentElement.className="js"</script>
-</head><body><div class="site">
-<a class="skip" href="#main">Skip to content</a>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/academy/site.css">
 
-<nav class="nav">
+</head><body>
+<nav class="nav" aria-label="Main">
  <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
- <span class="where">/ Academy</span>
- <a class="btn" href="/academy/">All classes &rarr;</a>
+ <a class="where" href="/academy/" style="text-decoration:none">/ Academy</a>
+ <div class="links">
+  <a class="bbtn" href="/academy/">All courses &rarr;</a>
+ </div>
 </nav>
 
 <main id="main">
 
-<header class="hero">
- <div>
-  <p class="conf-badge"><!--A:confirm-badge-->Request received<!--/A:confirm-badge--></p>
-  <h1><!--A:confirm-head-->Got it.<br>You&rsquo;re on<br>the list.<!--/A:confirm-head--></h1>
-  <p class="sub"><!--A:confirm-note-->Nothing has been charged. We come back to you by email with how to pay &mdash; your seat is held once that lands, and not before.<!--/A:confirm-note--></p>
-  <div class="cta">
-   <button class="btn orange" type="button" id="icsBtn">Add to calendar &rarr;</button>
-   <a class="btn" href="/academy/build-and-ship/#syllabus">See the syllabus &rarr;</a>
-  </div>
-  <p class="fine" id="icsNote" style="margin-top:14px;font-size:11px;color:var(--muted)"></p>
+<header class="phero"><div class="wrap">
+ <span class="stamp"><!--A:confirm-badge-->Request received<!--/A:confirm-badge--></span>
+ <h1><!--A:confirm-head-->Got it.<br>You&rsquo;re on<br>the list.<!--/A:confirm-head--></h1>
+ <p class="lead"><!--A:confirm-note-->Nothing has been charged. We come back to you by email with how to pay &mdash; your seat is held once that lands, and not before.<!--/A:confirm-note--></p>
+ <div class="cta">
+  <button class="bbtn" type="button" id="icsBtn">Add to calendar &rarr;</button>
+  <a class="btn outline" href="/academy/build-and-ship/#syllabus">See the syllabus</a>
  </div>
- <div class="term" aria-hidden="true">
-  <div class="term-bar"><i></i>what happens next</div>
-  <pre class="term-body"><b>1</b> we confirm the date with you
-<b>2</b> you pay, the seat is held
-<b>3</b> you show up with a laptop
-<b>4</b> <u>you leave with a live URL</u> <span class="cur"></span></pre>
- </div>
-</header>
+ <p class="offer" id="icsNote"></p>
+</div></header>
 
-<div class="facts-wrap"><div class="facts">
+<div class="wrap">
+ <dl class="facts conf">
 <!--A:confirm-facts-->
-  <div id="cf-class"><b>Class</b><strong>Academy 101</strong><span>Build &amp; ship a website with AI</span></div>
-  <div id="cf-when"><b>When</b><strong>Tuesday 29 September</strong><span>19:00 – 21:00</span></div>
-  <div><b>Where</b><strong>Pinsker St 11</strong><span>Tel Aviv-Yafo, 6259413</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Pinsker%20St%2011%2C%20Tel%20Aviv-Yafo%2C%206259413" target="_blank" rel="noopener">Open in maps &rarr;</a></div>
-  <div><b>Bring</b><strong>Laptop + charger</strong><span>And Claude Code, set up before class</span></div>
+  <div id="cf-class"><dt>Class</dt><dd><strong>Academy 101</strong><span>Build &amp; ship a website with AI</span></dd></div>
+  <div id="cf-when"><dt>When</dt><dd><strong>Tuesday 29 September</strong><span>19:00 – 21:00</span></dd></div>
+  <div><dt>Where</dt><dd><strong>Pinsker St 11</strong><span>Tel Aviv-Yafo</span></dd></div>
+  <div><dt>Bring</dt><dd><strong>Laptop + charger</strong><span>And Claude Code, set up before class</span></dd></div>
 <!--/A:confirm-facts-->
-</div></div>
+ </dl>
+</div>
 
-<section class="section" aria-labelledby="prep-h">
- <span class="kicker">Before the class</span>
- <h2 id="prep-h">Four small<br>things.</h2>
- <ul class="ticks">
-<!--A:prep-->
-  <li><i>[&check;]</i><div>Put it in your calendar<span>The button above hands the date, time and address to your calendar.</span></div></li>
-  <li><i>[&check;]</i><div>Get Claude Code<span>Sign up for a Claude plan (Pro or above) and install Claude Code. If it isn’t working when you arrive, we fix it in the setup block.</span></div></li>
-  <li><i>[&check;]</i><div>Pack a laptop and its charger<span>Any laptop. Two hours goes quickly on 20% battery.</span></div></li>
-  <li><i>[&check;]</i><div>Know your email password<span>You will sign in to a new account or two during the setup block.</span></div></li>
-  <li><i>[&check;]</i><div>Have a think about what you want to build<span>Optional. If nothing comes to mind, you start from one of the starter projects.</span></div></li>
-<!--/A:prep-->
- </ul>
-</section>
-
-<section class="section tint" aria-labelledby="help-h">
- <span class="kicker">Stay in the loop</span>
- <h2 id="help-h">Say hello.</h2>
- <p class="lede">The Deploy community group is where the room lives between sessions &mdash; demos, questions, and whatever anyone just shipped.</p>
- <div class="cta" style="display:flex;flex-direction:column;gap:12px;margin-top:26px">
-<!--A:confirm-links-->
-  <a class="btn " href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">Join the Deploy community &rarr;</a>
-  <a class="btn ghost" href="mailto:hello@deploytlv.com">Email us &rarr;</a>
-<!--/A:confirm-links-->
+<section class="sec" aria-labelledby="next-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">01 / What happens next</span>
+   <h2 id="next-h">Three steps to your seat</h2>
+  </div>
+  <ol class="beats">
+   <li><span class="code">Step_01</span><b>We email you</b><p>To confirm your seat and send how to pay.</p></li>
+   <li><span class="code">Step_02</span><b>You pay, the seat is yours</b><p>Full refund if you cancel more than 48 hours before class.</p></li>
+   <li><span class="code">Step_03</span><b>You show up with a laptop</b><p>And leave with something you built yourself, finished.</p></li>
+  </ol>
  </div>
-</section>
+</div></section>
 
-<section class="close">
- <h2>See you<br>in the room.</h2>
- <a class="btn" href="/academy/">Back to Academy &rarr;</a>
- <p><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> &middot; Tel Aviv</p>
+<section class="sec alt" aria-labelledby="prep-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">02 / Before the class</span>
+   <h2 id="prep-h">A few small things</h2>
+  </div>
+  <ul class="checks">
+<!--A:prep-->
+    <li><b>Put it in your calendar</b><span>The button above hands the date, time and address to your calendar.</span></li>
+    <li><b>Get Claude Code</b><span>Sign up for a Claude Pro plan or above and install Claude Code. If it isn’t working when you arrive, we fix it in the setup block.</span></li>
+    <li><b>Pack a laptop and its charger</b><span>Any laptop. Two hours goes quickly on 20% battery.</span></li>
+    <li><b>Know your email password</b><span>You will sign in to a new account or two during the setup block.</span></li>
+    <li><b>Have a think about what you want to build</b><span>Optional. If nothing comes to mind, you start from one of the starter projects.</span></li>
+<!--/A:prep-->
+  </ul>
+ </div>
+</div></section>
+
+<section class="sec" aria-labelledby="help-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">03 / Stay in the loop</span>
+   <h2 id="help-h">Say hello</h2>
+   <p class="intro">The Deploy community group is where the room lives between sessions: demos, questions, and whatever anyone just shipped.</p>
+  </div>
+  <div class="row-links">
+<!--A:confirm-links-->
+  <a class="bbtn" href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">Join the Deploy community &rarr;</a>
+  <a class="go" href="mailto:hello@deploytlv.com">Email us &rarr;</a>
+<!--/A:confirm-links-->
+  </div>
+ </div>
+</div></section>
+
+<section class="closing" aria-labelledby="closing-h">
+ <span class="kick">Deploy / Academy</span>
+ <h2 id="closing-h">See you<br>in the room.</h2>
+ <p class="when"><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> / Tel Aviv</p>
+ <a class="bbtn light" href="/academy/">Back to Academy &rarr;</a>
 </section>
 
 </main>
 
 <footer>
  <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
- <div>The work is the program.</div>
- <a class="linkish" href="/academy/">All Academy classes &rarr;</a>
- <div>Tel Aviv / 2026</div>
+ <nav class="flinks" aria-label="Footer">
+  <a href="/academy/">All courses</a><a href="/academy/build-and-ship/">Academy 101</a><a href="mailto:hello@deploytlv.com">Email</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">WhatsApp</a>
+ </nav>
+ <span class="fwhere">Tel Aviv / 2026</span>
 </footer>
-</div>
+
 <script src="/academy/academy.config.js"></script>
 <script src="/academy/academy.js"></script>
 </body></html>
