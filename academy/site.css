@@ -433,3 +433,36 @@ footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:w
  .qcards.two-up{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
 }
 @media(min-width:760px){.facts.conf{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* ==========================================================================
+   Course landing page (/academy/build-and-ship/, short link /academy/101/):
+   pitch and form side by side, so signing up never needs a scroll.
+   ========================================================================== */
+.lp-hero{padding:40px 0 8px}
+.lp-hero .wrap{display:grid;gap:32px;align-items:start}
+.lp-pitch h1{font-size:clamp(40px,6.2vw,76px);line-height:1;letter-spacing:-.03em;max-width:12em}
+.lp-pitch .lead{font-size:clamp(17px,1.8vw,20px);line-height:1.55;max-width:32em;margin-top:18px;color:var(--ink2)}
+.lp-pitch .checks{margin-top:24px}
+.lp-quote{margin:28px 0 0;padding:16px 0 0;border-top:1px solid var(--rule)}
+.lp-quote blockquote{margin:0;font:400 italic 18px/1.45 var(--serif);color:var(--ink2);text-indent:-.4em}
+.lp-quote figcaption{margin-top:10px;font:400 11px var(--mono);text-transform:uppercase;color:var(--muted)}
+.lp-quote figcaption b{color:var(--ink);font-weight:500}
+.lp-price{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:12px 0 4px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.lp-price b{font:400 40px/1 var(--brand);letter-spacing:-.04em}
+.lp-price span{font:400 12px/1.5 var(--mono);text-transform:uppercase;color:var(--muted);text-align:right}
+.lp-hero .form{position:relative}
+.lp-hero + .wrap .facts{margin-top:40px;border-top:1px solid var(--ink)}
+@media(min-width:900px){
+ .lp-hero{padding-top:64px}
+ .lp-hero .wrap{grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:56px}
+ .lp-hero .form{position:sticky;top:96px}
+}
+
+/* Readability: the pixel font is only legible with some size and air. */
+.bbtn{min-height:50px;padding:0 20px;font-size:12px;letter-spacing:.06em;line-height:1.35}
+.nav .bbtn{min-height:38px;padding:0 12px;font-size:10px;letter-spacing:.05em}
+@media(min-width:760px){.nav .bbtn{min-height:42px;padding:0 16px;font-size:11px}}
+/* Long labels ("Request a seat for Tue 29 Sep") wrap on phones instead of overflowing. */
+@media(max-width:520px){.bbtn:not(.nav .bbtn){white-space:normal;text-align:center;padding:12px 16px}}
+.field label{font-size:10px}
+#regform{scroll-margin-top:84px}

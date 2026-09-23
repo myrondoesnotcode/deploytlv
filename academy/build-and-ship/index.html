@@ -6,12 +6,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://deploytlv.com/academy/build-and-ship/">
 <meta property="og:site_name" content="Deploy TLV">
-<meta property="og:title" content="Academy 101 — build &amp; ship a website with AI">
-<meta property="og:description" content="Two hours, ten seats, Tel Aviv. You leave with your own website live on the internet.">
+<meta property="og:title" content="Academy 101 · Tue 29 Sep · Build &amp; ship a website with AI">
+<meta property="og:description" content="Two hours in Tel Aviv, ten seats, ₪250. No coding experience needed. You leave with your own website live on the internet.">
 <meta property="og:image" content="https://deploytlv.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Academy 101 — build &amp; ship a website with AI">
-<meta name="twitter:description" content="Two hours, ten seats, Tel Aviv. You leave with your own website live on the internet.">
+<meta name="twitter:title" content="Academy 101 · Tue 29 Sep · Build &amp; ship a website with AI">
+<meta name="twitter:description" content="Two hours in Tel Aviv, ten seats, ₪250. No coding experience needed. You leave with your own website live on the internet.">
 <meta name="twitter:image" content="https://deploytlv.com/og.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="32x32">
@@ -28,30 +28,57 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/academy/site.css">
-</head><body>
+</head><body class="lp">
 <nav class="nav" aria-label="Main">
- <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
- <a class="where" href="/academy/" style="text-decoration:none">/ Academy / 101</a>
+ <a class="logo" href="/academy/">DEPLOY<b>_</b>TLV</a>
+ <span class="where">/ Academy 101</span>
  <div class="links">
-  <span class="status"><i></i>Next class · Tue 29 Sep</span>
-  <a href="#syllabus">Syllabus</a>
-  <a href="#faculty">Instructor</a>
-  <a href="#faq">FAQ</a>
-  <a class="bbtn" href="#register">Request a seat &rarr;</a>
+  <span class="status"><i></i>Tue 29 Sep · 19:00 · Tel Aviv</span>
+  <a class="bbtn" href="#regform">Request a seat &rarr;</a>
  </div>
 </nav>
 
 <main id="main">
 
-<header class="phero"><div class="wrap">
- <span class="kick">Academy 101 / Tel Aviv / IRL</span>
- <h1>Build &amp; ship a website with AI.</h1>
- <p class="lead">Two hours, ten people at most, and you leave with your own website live on the internet. No coding experience needed.</p>
- <div class="cta">
-  <a class="bbtn" href="#register">Request a seat for Tue 29 Sep &rarr;</a>
-  <a class="btn outline" href="#syllabus">See the syllabus</a>
+<!-- The pitch and the form, side by side: nobody has to scroll to sign up. -->
+<header class="lp-hero" id="register"><div class="wrap">
+ <div class="lp-pitch">
+  <span class="kick"><!--A:cohort-->Next class: Tuesday 29 September, 19:00 – 21:00<!--/A:cohort--></span>
+  <h1>Build &amp; ship a website with AI.</h1>
+  <p class="lead">A two-hour, hands-on workshop in Tel Aviv for people who don’t code. You leave with your own website live on the internet.</p>
+  <ul class="checks">
+   <li><b>Your own site, live on a public URL</b><span>Built by you, hosted under your own account. Nothing is locked to us.</span></li>
+   <li><b>Ten people at most</b><span>The instructor works the room the whole time, so nobody stays stuck for long.</span></li>
+   <li><b>No coding experience needed</b><span>Bring a laptop with Claude Code installed. We set up everything else with you.</span></li>
+  </ul>
+  <figure class="lp-quote">
+   <blockquote>“I did get a bit scared when the big word (GitHub) came up. Apparently Claude Code literally just pushes it for you.”</blockquote>
+   <figcaption><b>Shira</b> / B2B brand strategist, pilot class</figcaption>
+  </figure>
  </div>
- <p class="offer"><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> · 19:00–21:00 · 10 seats · Full refund up to 48h before</p>
+
+ <form class="form" id="regform" data-course="academy-101" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
+  <span class="code">SEAT_REQUEST / ACADEMY 101</span>
+  <div class="lp-price"><b><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--></b><span>Tue 29 Sep · 19:00–21:00<br>Pinsker St 11, Tel Aviv</span></div>
+  <div class="field"><label for="reg-name">Full name</label><input id="reg-name" name="name" type="text" autocomplete="name"></div>
+  <div class="field"><label for="reg-email">Email</label><input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email"></div>
+  <div class="field"><label for="reg-idea">What would you like to build? <em>(optional)</em></label><textarea id="reg-idea" name="idea" rows="2"></textarea></div>
+  <div class="field vh">
+   <label for="reg-course">Course</label>
+   <select id="reg-course" name="course" tabindex="-1">
+<!--A:course-options-->
+    <option value="ACADEMY 101 — Build &amp; ship a website with AI">ACADEMY 101 — Build &amp; ship a website with AI</option>
+    <option value="ACADEMY 102 — Edit video with AI">ACADEMY 102 — Edit video with AI</option>
+    <option value="ACADEMY 103 — Automate your work">ACADEMY 103 — Automate your work</option>
+    <option value="ACADEMY 104 — Build an AI tool">ACADEMY 104 — Build an AI tool</option>
+<!--/A:course-options-->
+   </select>
+  </div>
+  <div class="vh" aria-hidden="true"><label for="reg-website">Leave this empty</label><input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <button class="bbtn" type="submit" style="width:100%;margin-top:20px">Request my seat &rarr;</button>
+  <p class="status" id="reg-status" role="status" hidden></p>
+  <p class="reassure">Nothing is charged now · We email you to confirm and take payment · Full refund up to 48h before class</p>
+ </form>
 </div></header>
 
 <div class="wrap">
@@ -66,40 +93,10 @@
  </dl>
 </div>
 
-<section class="sec" aria-labelledby="who-for-h"><div class="wrap">
- <div class="split">
-  <div>
-   <span class="kick">01 / Who it’s for</span>
-   <h2 id="who-for-h">People who keep saying “I’d build that if I could”</h2>
-  </div>
-  <ul class="checks">
-   <li><b>You have never written code</b><span>Most of the room hasn’t. The AI writes it; you learn to direct it.</span></li>
-   <li><b>You have an idea nobody will build for you</b><span>A tool, a site, a small thing that would make your week easier.</span></li>
-   <li><b>You have tried AI tools and stalled</b><span>Usually at the same place: getting it out of the chat window and onto the internet.</span></li>
-   <li><b>You learn by doing</b><span>Fifteen minutes of examples, then you’re building.</span></li>
-  </ul>
- </div>
-</div></section>
-
-<section class="sec alt" aria-labelledby="build-h"><div class="wrap">
- <div class="split">
-  <div>
-   <span class="kick">02 / What you build</span>
-   <h2 id="build-h">One thing, finished</h2>
-   <p class="intro">A real website or a small interactive tool: your idea if you have one, a starter project if you don’t. One project taken all the way beats three half-built ones.</p>
-  </div>
-  <ul class="checks">
-   <li><b>A personal site, a landing page, or a small game</b><span>Your choice, sized to fit two hours.</span></li>
-   <li><b>Hosted on GitHub Pages, under your account</b><span>Free, public, and yours. Nothing is locked to us.</span></li>
-   <li><b>A URL you can send to anyone that evening</b><span>That’s the bit that makes it real.</span></li>
-  </ul>
- </div>
-</div></section>
-
 <section class="sec" id="syllabus" aria-labelledby="syl-h"><div class="wrap">
  <div class="b-head">
-  <span class="kick">03 / Syllabus</span>
-  <h2 id="syl-h">The two hours, to scale</h2>
+  <span class="kick">01 / The two hours</span>
+  <h2 id="syl-h">You build during the class, not after it</h2>
  </div>
  <div class="tl wide">
   <ol>
@@ -115,51 +112,9 @@
  </div>
 </div></section>
 
-<section class="sec alt" aria-labelledby="inc-h"><div class="wrap">
- <div class="split">
-  <div>
-   <span class="kick">04 / What’s included</span>
-   <h2 id="inc-h">In the price</h2>
-   <p class="intro"><!--A:price101--><i class="nis">₪</i>250<!--/A:price101--> a seat. You’ll also need a Claude Pro plan for Claude Code, paid to Anthropic, not us.</p>
-  </div>
-  <ul class="checks">
-<!--A:included-->
-    <li><b>The live two-hour workshop</b><span>In the room, in Tel Aviv.</span></li>
-    <li><b>Small-group help while you build</b><span>Ten people, not a lecture hall.</span></li>
-    <li><b>Starter project options</b><span>So nobody loses the session to picking an idea.</span></li>
-    <li><b>Setup support</b><span>Accounts and tooling sorted with you at the start of class.</span></li>
-    <li><b>A finished project</b><span>Yours, under your own account.</span></li>
-    <li><b>A live public URL</b><span>Nothing is locked to us.</span></li>
-    <li><b>A reusable prompting guide</b><span>The prompts that did the work, to take away.</span></li>
-    <li><b>A Deploy Academy certificate</b><span>For the ones who like a certificate.</span></li>
-    <li><b>Post-class resources</b><span>Where to go next, and how to keep the project alive.</span></li>
-<!--/A:included-->
-  </ul>
- </div>
-</div></section>
-
-<section class="sec" aria-labelledby="req-h"><div class="wrap">
- <div class="split">
-  <div>
-   <span class="kick">05 / Requirements</span>
-   <h2 id="req-h">Bring a laptop</h2>
-   <p class="intro">The one thing to get beforehand is Claude Code, which comes with a Claude Pro plan or above. Everything else is set up with you in the first block of the class.</p>
-  </div>
-  <ul class="checks">
-<!--A:requirements-->
-    <li><b>A laptop and its charger</b><span>Any laptop. Mac, Windows or Linux.</span></li>
-    <li><b>Claude Code, set up before class</b><span>It comes with a Claude Pro plan or above. If it isn’t working when you arrive, we fix it in the setup block.</span></li>
-    <li><b>An email address you can open in class</b><span>For the account setup at the start.</span></li>
-    <li><b>No coding experience</b><span>Genuinely none required — that is the point of the class.</span></li>
-    <li><b>No idea required</b><span>Bring one if you have one. If not, you start from a prompt we give you.</span></li>
-<!--/A:requirements-->
-  </ul>
- </div>
-</div></section>
-
 <section class="sec alt" id="words" aria-labelledby="words-h"><div class="wrap">
  <div class="b-head">
-  <span class="kick">06 / In their words</span>
+  <span class="kick">02 / In their words</span>
   <h2 id="words-h">What the pilot class said</h2>
  </div>
  <div class="qcards two-up">
@@ -180,9 +135,45 @@
  </div>
 </div></section>
 
-<section class="sec" id="faculty" aria-labelledby="faculty-h"><div class="wrap">
+<section class="sec" aria-labelledby="inc-h"><div class="wrap">
+ <div class="split">
+  <div>
+   <span class="kick">03 / What you get</span>
+   <h2 id="inc-h">In the price</h2>
+   <ul class="checks">
+<!--A:included-->
+    <li><b>The live two-hour workshop</b><span>In the room, in Tel Aviv.</span></li>
+    <li><b>Small-group help while you build</b><span>Ten people, not a lecture hall.</span></li>
+    <li><b>Starter project options</b><span>So nobody loses the session to picking an idea.</span></li>
+    <li><b>Setup support</b><span>Accounts and tooling sorted with you at the start of class.</span></li>
+    <li><b>A finished project</b><span>Yours, under your own account.</span></li>
+    <li><b>A live public URL</b><span>Nothing is locked to us.</span></li>
+    <li><b>A reusable prompting guide</b><span>The prompts that did the work, to take away.</span></li>
+    <li><b>A Deploy Academy certificate</b><span>For the ones who like a certificate.</span></li>
+    <li><b>Post-class resources</b><span>Where to go next, and how to keep the project alive.</span></li>
+<!--/A:included-->
+   </ul>
+  </div>
+  <div>
+   <span class="kick">04 / What to bring</span>
+   <h2>Just a laptop</h2>
+   <p class="intro">The one thing to get beforehand is Claude Code, which comes with a Claude Pro plan or above, paid to Anthropic, not us.</p>
+   <ul class="checks">
+<!--A:requirements-->
+    <li><b>A laptop and its charger</b><span>Any laptop. Mac, Windows or Linux.</span></li>
+    <li><b>Claude Code, set up before class</b><span>It comes with a Claude Pro plan or above. If it isn’t working when you arrive, we fix it in the setup block.</span></li>
+    <li><b>An email address you can open in class</b><span>For the account setup at the start.</span></li>
+    <li><b>No coding experience</b><span>Genuinely none required — that is the point of the class.</span></li>
+    <li><b>No idea required</b><span>Bring one if you have one. If not, you start from a prompt we give you.</span></li>
+<!--/A:requirements-->
+   </ul>
+  </div>
+ </div>
+</div></section>
+
+<section class="sec alt" id="faculty" aria-labelledby="faculty-h"><div class="wrap">
  <div class="b-head">
-  <span class="kick">07 / Instructor</span>
+  <span class="kick">05 / Instructor</span>
   <h2 id="faculty-h">Taught by the founder of Deploy TLV</h2>
  </div>
 <!--A:instructor-->
@@ -204,50 +195,11 @@
    <div><b>6</b><span>Live projects, all built with AI</span></div>
   </div>
 <!--/A:instructor-->
- <p style="margin-top:28px"><a class="go" href="/academy/#faculty">See what he’s built with AI &rarr;</a></p>
-</div></section>
-
-<section class="sec alt" id="register" aria-labelledby="reg-h"><div class="wrap">
- <div class="split">
-  <div>
-   <span class="kick">08 / Request a seat</span>
-   <h2 id="reg-h">Save your spot for Tuesday</h2>
-   <p class="intro"><!--A:cohort-->Next class: Tuesday 29 September, 19:00 – 21:00<!--/A:cohort-->. Send the request and we’ll email you to confirm your seat and take payment.</p>
-   <ul class="checks">
-    <li><b>Nothing is charged here</b><span>This is a request for a seat. Payment comes later, once we confirm your seat by email.</span></li>
-    <li><b>Cancellation</b><span><!--A:refund-->Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.<!--/A:refund--></span></li>
-    <li><b>Capped at ten, every class</b><span>For now we keep every class to ten people, so the quality stays high and everyone gets real attention when they’re stuck.</span></li>
-   </ul>
-  </div>
-  <form class="form" id="regform" data-course="academy-101" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
-   <span class="code">SEAT_REQUEST</span>
-   <p class="fine">19:00–21:00 at Pinsker St 11, Tel Aviv.</p>
-   <div class="field">
-    <label for="reg-course">Course</label>
-    <select id="reg-course" name="course">
-<!--A:course-options-->
-    <option value="ACADEMY 101 — Build &amp; ship a website with AI">ACADEMY 101 — Build &amp; ship a website with AI</option>
-    <option value="ACADEMY 102 — Edit video with AI">ACADEMY 102 — Edit video with AI</option>
-    <option value="ACADEMY 103 — Automate your work">ACADEMY 103 — Automate your work</option>
-    <option value="ACADEMY 104 — Build an AI tool">ACADEMY 104 — Build an AI tool</option>
-<!--/A:course-options-->
-    </select>
-   </div>
-   <div class="field"><label for="reg-name">Full name</label><input id="reg-name" name="name" type="text" autocomplete="name"></div>
-   <div class="field"><label for="reg-email">Email</label><input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email"></div>
-   <div class="field"><label for="reg-idea">What would you like to build? <em>(optional)</em></label><textarea id="reg-idea" name="idea" rows="3"></textarea></div>
-   <div class="vh" aria-hidden="true"><label for="reg-website">Leave this empty</label><input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-   <button class="bbtn" type="submit" style="width:100%;margin-top:22px">Send request &rarr;</button>
-   <p class="status" id="reg-status" role="status" hidden></p>
-   <p class="reassure">Nothing is charged now · Full refund up to 48h before class</p>
-   <p class="fine" style="margin-top:8px">We only use this to get back to you about the course.</p>
-  </form>
- </div>
 </div></section>
 
 <section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap">
  <div class="b-head">
-  <span class="kick">09 / FAQ</span>
+  <span class="kick">06 / FAQ</span>
   <h2 id="faq-h">Before you book</h2>
  </div>
  <div class="faq">
@@ -263,18 +215,18 @@
 </div></section>
 
 <section class="closing" aria-labelledby="closing-h">
- <span class="kick">Deploy / Academy 101</span>
+ <span class="kick">Academy 101 / Tue 29 Sep</span>
  <h2 id="closing-h">Two hours.<br>One live URL.</h2>
- <p class="when"><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> / <!--A:capacity-->10<!--/A:capacity--> seats / <!--A:price101--><i class="nis">₪</i>250<!--/A:price101--></p>
- <a class="bbtn light" href="#register">Request a seat &rarr;</a>
+ <p class="when"><!--A:venue-->Pinsker St 11, Tel Aviv-Yafo<!--/A:venue--> / 19:00 / <!--A:capacity-->10<!--/A:capacity--> seats / <!--A:price101--><i class="nis">₪</i>250<!--/A:price101--></p>
+ <a class="bbtn light" href="#regform">Request my seat &rarr;</a>
 </section>
 
 </main>
 
 <footer>
- <a class="logo" href="/">DEPLOY<b>_</b>TLV</a>
+ <a class="logo" href="/academy/">DEPLOY<b>_</b>TLV</a>
  <nav class="flinks" aria-label="Footer">
-  <a href="/academy/">All courses</a><a href="#syllabus">Syllabus</a><a href="#faculty">Instructor</a><a href="#faq">FAQ</a><a href="mailto:hello@deploytlv.com">Email</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="/academy/">All Academy courses</a><a href="mailto:hello@deploytlv.com">Email</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU" target="_blank" rel="noopener">WhatsApp</a>
  </nav>
  <span class="fwhere">Tel Aviv / 2026</span>
 </footer>
