@@ -113,6 +113,14 @@
         '&body=' + encodeURIComponent(body)
     }
 
+    function waFor (data) {
+      return 'https://wa.me/' + CFG.whatsappNumber + '?text=' + encodeURIComponent([
+        'Hi! I just requested a seat at Deploy Academy.', '',
+        'Class: ' + data.course, 'Name: ' + data.name, 'Email: ' + data.email,
+        'What I want to build: ' + (data.idea || 'not sure yet')
+      ].join('\n'))
+    }
+
     function say (msg, ok) {
       statusEl.hidden = false
       statusEl.innerHTML = msg
@@ -127,7 +135,7 @@
         course: courseSel ? courseSel.value : (CFG.defaultCourse || 'Deploy Academy'),
         name: (form.elements.name.value || '').trim(),
         email: (form.elements.email.value || '').trim(),
-        idea: (form.elements.idea.value || '').trim()
+        idea: form.elements.idea ? (form.elements.idea.value || '').trim() : ''
       }
       if (!data.name) { form.elements.name.focus(); say('Add your name so we know who to write back to.', false); return }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { form.elements.email.focus(); say('That email does not look right — check it and send again.', false); return }
@@ -138,11 +146,22 @@
         form.reset(); say('Request received. We will come back to you by email.'); return
       }
 
+      /* WhatsApp first: open the chat with the request typed out, inside
+         the click itself so browsers don't block it and phones hand it to
+         the app. The save below still runs; keepalive lets it finish even if
+         this tab navigates away. This tab moves on to the confirmation page. */
+      var waWin = null
+      if (CFG.whatsappNumber) {
+        try { sessionStorage.setItem('academy_request', JSON.stringify(data)) } catch (e) {}
+        waWin = window.open(waFor(data), '_blank')
+      }
+
       var sb = enroll.supabase || {}
       var req = null
       if (enroll.strategy === 'supabase' && sb.url && sb.anonKey) {
         req = fetch(sb.url.replace(/\/$/, '') + '/rest/v1/' + (sb.table || 'academy_requests'), {
           method: 'POST',
+          keepalive: true,
           headers: {
             'Content-Type': 'application/json',
             'apikey': sb.anonKey,
@@ -169,6 +188,11 @@
         say('Sending&hellip;')
         req.then(function (r) {
           if (!r.ok) throw new Error(r.status)
+          /* Hand the answers to the confirmation page for its WhatsApp
+             button. sessionStorage stays in this tab — never in the URL. */
+          try { sessionStorage.setItem('academy_request', JSON.stringify(data)) } catch (e) {}
+          /* Pop-up blocked: take this tab to WhatsApp instead. */
+          if (CFG.whatsappNumber && !waWin) { location.href = waFor(data); return }
           if (CFG.urls && CFG.urls.confirmation) {
             /* Tell the confirmation page which class this was for. */
             var picked = (CFG.courses || []).filter(function (c) { return c.label === data.course })[0]
@@ -187,6 +211,35 @@
       window.location.href = mailtoFor(data)
       say('Your mail app should be opening with the request filled in &mdash; press send and we will take it from there. Nothing has been charged. If nothing opened, write to <a href="mailto:' + CFG.contactEmail + '">' + CFG.contactEmail + '</a>.')
     })
+  }
+
+  /* --- send it on WhatsApp --------------------------------------------
+     On /academy/confirmed/: a wa.me link that opens a chat with us with the
+     visitor's request already typed out, so all they do is press send.
+     Hidden unless whatsappNumber is set.                                   */
+  var waSlot = document.getElementById('waSlot')
+  if (waSlot && CFG.whatsappNumber) {
+    var got = null
+    try { got = JSON.parse(sessionStorage.getItem('academy_request') || 'null') } catch (e) {}
+    var lines = got
+      ? ['Hi! I just requested a seat at Deploy Academy.', '',
+         'Class: ' + got.course, 'Name: ' + got.name, 'Email: ' + got.email,
+         'What I want to build: ' + (got.idea || 'not sure yet')]
+      : ['Hi! I just requested a seat at Deploy Academy.']
+    var wa = document.createElement('a')
+    wa.className = 'bbtn'
+    wa.href = 'https://wa.me/' + CFG.whatsappNumber + '?text=' + encodeURIComponent(lines.join('\n'))
+    wa.target = '_blank'; wa.rel = 'noopener'
+    wa.innerHTML = (got ? 'WhatsApp didn’t open? Tap here' : 'Message us on WhatsApp') + ' &rarr;'
+    waSlot.parentNode.insertBefore(wa, waSlot.parentNode.firstChild)
+    var waNote = document.createElement('p')
+    waNote.className = 'offer'
+    waNote.textContent = 'Your request is typed out in the chat. Press send and we take it from there on WhatsApp.'
+    waSlot.parentNode.parentNode.insertBefore(waNote, waSlot.parentNode.nextSibling)
+    waSlot.remove()
+    /* One loud button: the calendar steps down beside it. */
+    var ics = document.getElementById('icsBtn')
+    if (ics) ics.className = 'btn outline'
   }
 
   /* --- add to calendar --------------------------------------------------
