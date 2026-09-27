@@ -100,6 +100,22 @@
       }
     }
 
+    /* The line above the fields describes whichever class is selected:
+       date, time, price and room, or "coming soon" for a waitlist class. */
+    var details = document.getElementById('reg-details')
+    function showDetails () {
+      if (!details || !courseSel) return
+      var c = (CFG.courses || []).filter(function (x) { return x.label === courseSel.value })[0]
+      if (!c) return
+      var where = CFG.venue ? CFG.venue.street + ', Tel Aviv' : 'Tel Aviv'
+      details.textContent = c.dateLabel
+        ? [c.dateLabel + (c.timeLabel ? ', ' + c.timeLabel : ''),
+           c.price ? (CFG.currencySymbol || '₪') + c.price : '', where].filter(Boolean).join(' · ')
+        : 'Date coming soon. Leave your details and we will tell you first.'
+    }
+    if (courseSel) courseSel.addEventListener('change', showDetails)
+    showDetails()
+
     function mailtoFor (data) {
       var body = [
         'Class: ' + data.course,

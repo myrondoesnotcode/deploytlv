@@ -47,6 +47,7 @@ window.ACADEMY_CONFIG = {
    "title": "Build & ship a website with AI",
    "label": "ACADEMY 101 — Build & ship a website with AI",
    "status": "enrolling",
+   "price": 250,
    "date": "2026-09-29",
    "startTime": "19:00",
    "endTime": "21:00",
@@ -59,6 +60,7 @@ window.ACADEMY_CONFIG = {
    "title": "Edit video with AI",
    "label": "ACADEMY 102 — Edit video with AI",
    "status": "enrolling",
+   "price": 300,
    "date": "2026-09-30",
    "startTime": "19:00",
    "endTime": "21:00",
@@ -70,14 +72,16 @@ window.ACADEMY_CONFIG = {
    "code": "ACADEMY 103",
    "title": "Automate your work",
    "label": "ACADEMY 103 — Automate your work",
-   "status": "waitlist"
+   "status": "waitlist",
+   "price": 300
   },
   {
    "id": "academy-104",
    "code": "ACADEMY 104",
    "title": "Build an AI tool",
    "label": "ACADEMY 104 — Build an AI tool",
-   "status": "soon"
+   "status": "soon",
+   "price": 300
   }
  ]
 }

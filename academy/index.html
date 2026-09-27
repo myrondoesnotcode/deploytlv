@@ -119,7 +119,7 @@
    <p class="intro">Nothing is charged now. Sending opens WhatsApp so we can confirm your seat, then you pay. Full refund up to 48 hours before class.</p>
   </div>
   <form class="form" id="regform" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain" novalidate>
-   <p class="fine">19:00–21:00 at Pinsker St 11, Tel Aviv.</p>
+   <p class="fine" id="reg-details">19:00–21:00 at Pinsker St 11, Tel Aviv.</p>
    <div class="field">
     <label for="reg-course">Class</label>
     <select id="reg-course" name="course">
@@ -172,7 +172,7 @@
  }
  /* Clicking a course's button preselects it in the form. */
  var sel=document.getElementById('reg-course')
- document.querySelectorAll('[data-course]').forEach(function(a){a.addEventListener('click',function(){var n=a.dataset.course.split('-')[1];[].forEach.call(sel.options,function(o){if(o.text.indexOf('ACADEMY '+n)===0)sel.value=o.value})})})
+ document.querySelectorAll('[data-course]').forEach(function(a){a.addEventListener('click',function(){var n=a.dataset.course.split('-')[1];[].forEach.call(sel.options,function(o){if(o.text.indexOf('ACADEMY '+n)===0)sel.value=o.value});sel.dispatchEvent(new Event('change'))})})
 })()
 </script>
 <script src="/academy/academy.config.js"></script>
