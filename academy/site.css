@@ -466,3 +466,7 @@ footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:w
 @media(max-width:520px){.bbtn:not(.nav .bbtn){white-space:normal;text-align:center;padding:12px 16px}}
 .field label{font-size:10px}
 #regform{scroll-margin-top:84px}
+
+/* A quiet line pointing company buyers to the private-team offer. */
+.teamline{margin-top:18px;font-size:15px;color:var(--muted)}
+.teamline a{color:var(--orange-deep);text-underline-offset:3px}
