@@ -10,6 +10,26 @@
   var CFG = window.ACADEMY_CONFIG || {}
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+  /* --- dates that have passed since the last build ----------------------
+     The build drops past dates, but the pages are static: if nobody rebuilds
+     after a class, its date would still read as "next". So from the day after
+     a class, every stamped date says "coming soon" and the config forgets it,
+     which also stops the form and the calendar button offering it.          */
+  var today = ''
+  try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jerusalem' }).format(new Date()) } catch (e) {}
+  function past (d) { return Boolean(today && d && d < today) }
+  if (today) {
+    document.querySelectorAll('[data-when]').forEach(function (el) {
+      if (past(el.getAttribute('data-when'))) el.textContent = el.getAttribute('data-later') || 'Date coming soon'
+    })
+    ;(CFG.courses || []).forEach(function (c) {
+      if (!past(c.date)) return
+      ;['date', 'startTime', 'endTime', 'dateLabel', 'timeLabel', 'slot'].forEach(function (k) { delete c[k] })
+      if (c.status === 'enrolling') c.status = 'waitlist'
+    })
+    if (CFG.cohort && past(CFG.cohort.date)) CFG.cohort = { timezone: CFG.cohort.timezone }
+  }
+
   /* --- reveal on scroll (decorative) ------------------------------------ */
   var rvs = [].slice.call(document.querySelectorAll('.rv'))
   function show (el) { el.classList.add('in') }
@@ -116,14 +136,21 @@
     if (courseSel) courseSel.addEventListener('change', showDetails)
     showDetails()
 
+    /* Evening/daytime and "how did you hear" — both optional. */
+    function extras (data) {
+      return [data.slot && 'Evening or daytime: ' + data.slot,
+              data.source && 'Heard about us: ' + data.source].filter(Boolean)
+    }
+
     function mailtoFor (data) {
       var body = [
         'Class: ' + data.course,
         'Name: ' + data.name,
-        'Email: ' + data.email,
+        'Email: ' + data.email
+      ].concat(extras(data), [
         '', 'What I would like to build:', data.idea || '(not sure yet)',
         '', '— sent from deploytlv.com' + location.pathname
-      ].join('\n')
+      ]).join('\n')
       return 'mailto:' + (CFG.contactEmail || 'hello@deploytlv.com') +
         '?subject=' + encodeURIComponent('Academy seat request — ' + data.course) +
         '&body=' + encodeURIComponent(body)
@@ -132,9 +159,10 @@
     function waFor (data) {
       return 'https://wa.me/' + CFG.whatsappNumber + '?text=' + encodeURIComponent([
         'Hi! I just requested a seat at Deploy Academy.', '',
-        'Class: ' + data.course, 'Name: ' + data.name, 'Email: ' + data.email,
+        'Class: ' + data.course, 'Name: ' + data.name, 'Email: ' + data.email
+      ].concat(extras(data), [
         'What I want to build: ' + (data.idea || 'not sure yet')
-      ].join('\n'))
+      ]).join('\n'))
     }
 
     function say (msg, ok) {
@@ -151,7 +179,9 @@
         course: courseSel ? courseSel.value : (CFG.defaultCourse || 'Deploy Academy'),
         name: (form.elements.name.value || '').trim(),
         email: (form.elements.email.value || '').trim(),
-        idea: form.elements.idea ? (form.elements.idea.value || '').trim() : ''
+        idea: form.elements.idea ? (form.elements.idea.value || '').trim() : '',
+        slot: form.elements.slot ? form.elements.slot.value : '',
+        source: form.elements.source ? form.elements.source.value : ''
       }
       if (!data.name) { form.elements.name.focus(); say('Add your name so we know who to write back to.', false); return }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { form.elements.email.focus(); say('That email does not look right — check it and send again.', false); return }
@@ -175,6 +205,9 @@
       var sb = enroll.supabase || {}
       var req = null
       if (enroll.strategy === 'supabase' && sb.url && sb.anonKey) {
+        /* academy_requests has no columns for evening/daytime or the source,
+           so they ride along at the top of `idea` (and so reach the email). */
+        var note = extras(data).concat(data.idea ? [data.idea] : []).join('\n')
         req = fetch(sb.url.replace(/\/$/, '') + '/rest/v1/' + (sb.table || 'academy_requests'), {
           method: 'POST',
           keepalive: true,
@@ -186,7 +219,7 @@
           },
           body: JSON.stringify({
             course: data.course.slice(0, 120), name: data.name.slice(0, 120),
-            email: data.email.slice(0, 254), idea: data.idea ? data.idea.slice(0, 2000) : null,
+            email: data.email.slice(0, 254), idea: note ? note.slice(0, 2000) : null,
             page: location.pathname.slice(0, 200)
           })
         })
@@ -239,8 +272,10 @@
     try { got = JSON.parse(sessionStorage.getItem('academy_request') || 'null') } catch (e) {}
     var lines = got
       ? ['Hi! I just requested a seat at Deploy Academy.', '',
-         'Class: ' + got.course, 'Name: ' + got.name, 'Email: ' + got.email,
-         'What I want to build: ' + (got.idea || 'not sure yet')]
+         'Class: ' + got.course, 'Name: ' + got.name, 'Email: ' + got.email]
+          .concat(got.slot ? ['Evening or daytime: ' + got.slot] : [],
+                  got.source ? ['Heard about us: ' + got.source] : [],
+                  ['What I want to build: ' + (got.idea || 'not sure yet')])
       : ['Hi! I just requested a seat at Deploy Academy.']
     var wa = document.createElement('a')
     wa.className = 'bbtn'

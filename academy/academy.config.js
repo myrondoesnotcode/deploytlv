@@ -23,12 +23,13 @@ window.ACADEMY_CONFIG = {
   "teamsContact": ""
  },
  "cohort": {
-  "date": "2026-09-29",
+  "date": "2026-10-14",
   "startTime": "19:00",
   "endTime": "21:00",
   "timezone": "Asia/Jerusalem",
-  "dateLabel": "Tuesday 29 September",
-  "timeLabel": "19:00 – 21:00"
+  "dateLabel": "Wednesday 14 October",
+  "timeLabel": "19:00 – 21:00",
+  "slot": "Evening"
  },
  "venue": {
   "name": "Deploy TLV",
@@ -48,24 +49,20 @@ window.ACADEMY_CONFIG = {
    "label": "ACADEMY 101 — Build & ship a website with AI",
    "status": "enrolling",
    "price": 250,
-   "date": "2026-09-29",
+   "date": "2026-10-14",
    "startTime": "19:00",
    "endTime": "21:00",
-   "dateLabel": "Tuesday 29 September",
-   "timeLabel": "19:00 – 21:00"
+   "dateLabel": "Wednesday 14 October",
+   "timeLabel": "19:00 – 21:00",
+   "slot": "Evening"
   },
   {
    "id": "academy-102",
    "code": "ACADEMY 102",
    "title": "Edit video with AI",
    "label": "ACADEMY 102 — Edit video with AI",
-   "status": "enrolling",
-   "price": 300,
-   "date": "2026-09-30",
-   "startTime": "19:00",
-   "endTime": "21:00",
-   "dateLabel": "Wednesday 30 September",
-   "timeLabel": "19:00 – 21:00"
+   "status": "waitlist",
+   "price": 300
   },
   {
    "id": "academy-103",
