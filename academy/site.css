@@ -69,7 +69,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;marg
 .bbtn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .nav .bbtn{min-height:34px;padding:0 10px;font-size:8px;box-shadow:2px 2px 0 var(--ink)}
 .hero .bbtn{box-shadow:3px 3px 0 #000}
-@media(max-width:340px){.where{display:none}}
+@media(max-width:420px){.where{display:none}}
 
 /* --- hero: the room, on video, edge to edge ----------------------------- */
 .hero{position:relative;min-height:clamp(580px,78svh,740px);display:flex;align-items:flex-end;color:#fff;background:#1b1916;overflow:hidden}
@@ -243,6 +243,7 @@ a.ship:hover h3{color:var(--orange-deep)}
  .tl li{align-content:start}
  .tl .bar{width:100%}
  .tl li:nth-child(n+2) time,.tl li:nth-child(n+2) b{padding-right:4px}
+ .tl.weeks ol{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
  .tl.wide{grid-column:1 / -1;padding-top:28px;border-top:1px solid var(--rule)}
  .tl h4{margin-bottom:18px}
 }
@@ -470,3 +471,49 @@ footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:w
 /* A quiet line pointing company buyers to the private-team offer. */
 .teamline{margin-top:18px;font-size:15px;color:var(--muted)}
 .teamline a{color:var(--orange-deep);text-underline-offset:3px}
+
+/* ==========================================================================
+   Readability + conversion pass (2026-10-16). The pixel font stays for
+   decoration (logo, eyebrows, codes, stamps); anything a visitor has to read
+   to decide — date, price, seats, form labels, the button itself — is set in
+   the sans at a size you can read on a phone.
+   ========================================================================== */
+.hero .offer,.phero .offer{font:500 15px/1.5 var(--sans);letter-spacing:0;text-transform:none}
+.hero .offer{color:#fff}
+.field label{font:600 14px/1.3 var(--sans);letter-spacing:0;text-transform:none}
+.field label em{font:400 13px var(--sans);text-transform:none}
+.bbtn{font:600 15px/1.2 var(--sans);letter-spacing:0;text-transform:none}
+.nav .bbtn{font-size:13px}
+@media(min-width:760px){.nav .bbtn{font-size:14px}}
+.form .reassure{font:400 13px/1.5 var(--sans);text-transform:none}
+.qcard figcaption{font:400 13px var(--sans);text-transform:none}
+
+/* Course pages on a phone: date, price and the button before the checklist,
+   so the first screen says what, when, how much and where to click. The form
+   sits beside the pitch on desktop, so this line is phone/tablet only. */
+.lp-quick{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:22px;padding:16px 0 0;border-top:1px solid var(--rule)}
+.lp-quick .q-price{font:400 28px/1 var(--brand);letter-spacing:-.03em}
+.lp-quick .nis{font-style:normal;font-weight:600}
+.lp-quick .q-when{font:500 15px/1.4 var(--sans);color:var(--ink2)}
+.lp-quick .bbtn{margin-left:auto}
+@media(min-width:900px){.lp-quick{display:none}}
+
+/* Home: what you could build, as screenshots of live sites. */
+.works.home{margin-top:32px}
+.works.home .work h4{font-family:var(--serif)}
+
+/* Home: how the evening works, four steps in a row. */
+.steps{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:0;border-top:1.5px solid var(--ink)}
+.steps li{padding:18px 0;border-bottom:1px solid var(--rule)}
+.steps .n{font:700 10px var(--pixel);letter-spacing:.04em;color:var(--orange-deep)}
+.steps b{display:block;margin-top:6px;font:500 22px/1.2 var(--serif)}
+.steps span{display:block;margin-top:6px;color:var(--muted);font-size:16px;max-width:30em}
+.steps-note{margin-top:20px;font-size:15px;color:var(--muted)}
+@media(min-width:760px){
+ .steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 28px;border-top:0}
+ .steps li{border-top:1.5px solid var(--ink);border-bottom:0}
+}
+.lp-price span{font:400 13px/1.5 var(--sans);text-transform:none}
+/* Nine projects: three rows on desktop; on a phone (two columns) the ninth would sit alone, so it is left out there. */
+@media(max-width:759px){.works.home .work:nth-child(9){display:none}}
+.closing .when{font:500 15px/1.5 var(--sans);letter-spacing:0;text-transform:none}

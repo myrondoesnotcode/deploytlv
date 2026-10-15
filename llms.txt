@@ -1,0 +1,53 @@
+# Deploy Academy (Deploy TLV)
+
+> Hands-on AI classes taught in English, in person in Tel Aviv, Israel, for people who don’t code. Ten people a class, no lectures: you build something real with AI (Claude Code or OpenAI Codex) and leave with it live on the internet.
+
+Venue: Pinsker St 11, Tel Aviv-Yafo, Israel. Language: English (no Hebrew needed). Contact: hello@deploytlv.com, WhatsApp +972503512415.
+Instructor: Myron Shneider, founder and host of Deploy, an English-language tech media company in Israel that also runs Israel’s fastest-growing English-speaking AI community (300+ members). Previously produced media content for Aleph VC, including Invested with Michael Eisenberg.
+Refunds: Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.
+Updated: 2026-10-16
+
+## Courses
+
+- [Academy 101: Build & ship a website with AI](https://deploytlv.com/academy/build-and-ship/): Leave with your own website live on the internet. 2 hours. ₪250. 10 seats. Next: Wednesday 21 October 2026, 19:00 – 21:00 (runs every Wednesday at 19:00; next dates: Wed 21 Oct, Wed 28 Oct, Wed 4 Nov, Wed 11 Nov, Wed 18 Nov, Wed 25 Nov).
+- [Academy 102: Edit video with AI](https://deploytlv.com/academy/edit-video/): Learn the workflow to edit, caption and animate your own videos with Claude Code, and keep using it after class. 2 hours. ₪300. 10 seats. Next: Date not set yet; waitlist open.
+- [Academy 201: Build an app with AI](https://deploytlv.com/academy/build-an-app/): Four weekly evenings. Leave with your own working app, live on the internet and on your phone’s home screen. 4 weeks · 4 × 2 hours. ₪1,200. 10 seats. Next: Starts Monday 16 November 2026, 19:00 – 21:00, then weekly for 4 weeks.
+- [Academy 103: Automate your work](https://deploytlv.com/academy/): Build a working automation for a repetitive part of your actual job. ₪300. 10 seats. Next: Date not set yet; waitlist open.
+- [Academy 104: Build an AI tool](https://deploytlv.com/academy/): Build and launch a simple internal tool for your work or business. ₪300. 10 seats. Next: Date not set yet; waitlist open.
+
+## How to book
+
+Nothing is charged when you ask for a seat. We confirm on WhatsApp, then you pay.
+
+- Fastest: message us on WhatsApp with the class, the date, your name and email: https://wa.me/972503512415?text=Hi%2C%20I%E2%80%99d%20like%20a%20seat%20in%20Academy%20101%20on%20Wednesday%2021%20October.%0AName%3A%0AEmail%3A
+- Academy 101 (Build & ship a website with AI): the request form at https://deploytlv.com/academy/build-and-ship/#regform needs only a name and an email.
+- Academy 201 (Build an app with AI): the request form at https://deploytlv.com/academy/build-an-app/#regform needs only a name and an email.
+- Classes without a date yet: the same forms put you on the waitlist, and you hear first when a date is set.
+- For a company or team: https://wa.me/972503512415?text=Hi%2C%20I%E2%80%99d%20like%20to%20bring%20a%20Deploy%20Academy%20class%20to%20my%20team.%0ACompany%3A%0ATeam%20size%3A%0AWhat%20we%20want%20to%20build%3A or email hello@deploytlv.com.
+- If a class doesn’t fill, we tell you ahead of time and you choose: the next date, or a full refund.
+
+## Topics
+
+- [Learn Claude Code in Tel Aviv](https://deploytlv.com/academy/learn-claude/): which classes teach Claude Code, and what you need.
+- [Learn OpenAI Codex in Tel Aviv](https://deploytlv.com/academy/learn-codex/): Academy 101 can be taken with Codex instead of Claude Code.
+- [Build an app with AI](https://deploytlv.com/academy/build-an-app/): the four-week Academy 201 course.
+- [Build a website with AI](https://deploytlv.com/academy/build-and-ship/): Academy 101, one evening.
+- [Edit video with AI](https://deploytlv.com/academy/edit-video/): Academy 102, one evening.
+
+## FAQ
+
+- Is it taught in English? Yes. Every Deploy Academy class is taught in English, in person in Tel Aviv. You don’t need any Hebrew.
+- Do I need to know how to code? No. The AI writes the code. You tell it what you want.
+- Who is it for? People who don’t code and want to build things with AI: founders, marketers, teachers, freelancers and people changing careers. Classes are in English, so they suit English speakers anywhere in Israel, including expats, new immigrants and international teams.
+- When do classes run? Is there a daytime class? Academy 101 runs every Wednesday evening, 19:00 to 21:00, at Pinsker St 11, Tel Aviv. The next date is at the top of this page. Daytime classes are coming: choose “Daytime” in the form and we will tell you when the first one is set.
+- I live outside Tel Aviv. Can I still come? Yes. Students have come in from other cities for it. The class is at Pinsker St 11 in central Tel Aviv. If an evening class is hard to get home from, choose “Daytime” in the form and we will tell you when a daytime class is set.
+- Do I need an idea? No. Bring one if you have it, or start from one of ours.
+- What do I bring? A laptop and charger, with Claude Code installed (it comes with a Claude Pro plan, paid to Anthropic). If it isn’t working when you arrive, we fix it together.
+- How is this different from a bootcamp or an online course? It is two hours, in a room of ten, and you finish with something live. A bootcamp takes months and teaches you to write code; here the AI writes it and you learn to direct it. An online course leaves you alone when setup breaks; here someone fixes it next to you.
+- Can I get a refund? Yes, a full refund up to 48 hours before class. After that, we move you to the next one.
+- Can I use Codex instead of Claude Code? Yes. Academy 101 works the same way with OpenAI Codex as with Claude Code, so bring whichever you already pay for. Codex comes with a ChatGPT plan such as Plus; Claude Code comes with a Claude Pro plan or above.
+- Is there a longer course? Yes. Academy 201, Build an app with AI, runs over four weekly evenings and you leave with a working app. The single-evening classes are the place to start if you have never built anything.
+
+## Optional
+
+- [Deploy TLV community](https://deploytlv.com/): the AI-builders community behind the Academy.

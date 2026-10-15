@@ -22,8 +22,26 @@
     document.querySelectorAll('[data-when]').forEach(function (el) {
       if (past(el.getAttribute('data-when'))) el.textContent = el.getAttribute('data-later') || 'Date coming soon'
     })
+    /* A weekly class (Academy 101) rolls on to its next real date instead. */
+    var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    function nextOn (r) {
+      var d = new Date(today + 'T00:00:00Z')
+      d.setUTCDate(d.getUTCDate() + (r.weekday - d.getUTCDay() + 7) % 7)
+      for (var i = 0; i < 52 && r.skip.indexOf(d.toISOString().slice(0, 10)) !== -1; i++) d.setUTCDate(d.getUTCDate() + 7)
+      return d
+    }
     ;(CFG.courses || []).forEach(function (c) {
       if (!past(c.date)) return
+      if (c.repeat) {
+        var d = nextOn(c.repeat)
+        c.date = d.toISOString().slice(0, 10)
+        c.dateLabel = DAYS[d.getUTCDay()] + ' ' + d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()]
+        if (CFG.cohort && past(CFG.cohort.date)) {
+          CFG.cohort.date = c.date; CFG.cohort.dateLabel = c.dateLabel
+        }
+        return
+      }
       ;['date', 'startTime', 'endTime', 'dateLabel', 'timeLabel', 'slot'].forEach(function (k) { delete c[k] })
       if (c.status === 'enrolling') c.status = 'waitlist'
     })
@@ -130,11 +148,24 @@
       var where = CFG.venue ? CFG.venue.street + ', Tel Aviv' : 'Tel Aviv'
       details.textContent = c.dateLabel
         ? [c.dateLabel + (c.timeLabel ? ', ' + c.timeLabel : ''),
-           c.price ? (CFG.currencySymbol || '₪') + c.price : '', where].filter(Boolean).join(' · ')
+           c.price ? (CFG.currencySymbol || '₪') + Number(c.price).toLocaleString('en-US') : '', where].filter(Boolean).join(' · ')
         : 'Date coming soon. Leave your details and we will tell you first.'
     }
-    if (courseSel) courseSel.addEventListener('change', showDetails)
+    /* "Evening or daytime?" only matters for a class without a date (the
+       waitlist). For a dated class it is one more field between the visitor
+       and the button, so it is hidden and its answer cleared. */
+    var slotSel = document.getElementById('reg-slot')
+    function toggleSlot () {
+      if (!slotSel || !courseSel) return
+      var c = (CFG.courses || []).filter(function (x) { return x.label === courseSel.value })[0]
+      var dated = Boolean(c && c.date)
+      var field = slotSel.closest('.field')
+      if (field) field.hidden = dated
+      if (dated) slotSel.value = ''
+    }
+    if (courseSel) courseSel.addEventListener('change', function () { showDetails(); toggleSlot() })
     showDetails()
+    toggleSlot()
 
     /* Evening/daytime and "how did you hear" — both optional. */
     function extras (data) {

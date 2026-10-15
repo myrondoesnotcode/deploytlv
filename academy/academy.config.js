@@ -23,11 +23,11 @@ window.ACADEMY_CONFIG = {
   "teamsContact": ""
  },
  "cohort": {
-  "date": "2026-10-14",
+  "date": "2026-10-21",
   "startTime": "19:00",
   "endTime": "21:00",
   "timezone": "Asia/Jerusalem",
-  "dateLabel": "Wednesday 14 October",
+  "dateLabel": "Wednesday 21 October",
   "timeLabel": "19:00 – 21:00",
   "slot": "Evening"
  },
@@ -49,12 +49,18 @@ window.ACADEMY_CONFIG = {
    "label": "ACADEMY 101 — Build & ship a website with AI",
    "status": "enrolling",
    "price": 250,
-   "date": "2026-10-14",
+   "date": "2026-10-21",
    "startTime": "19:00",
    "endTime": "21:00",
-   "dateLabel": "Wednesday 14 October",
+   "dateLabel": "Wednesday 21 October",
    "timeLabel": "19:00 – 21:00",
-   "slot": "Evening"
+   "slot": "Evening",
+   "repeat": {
+    "weekday": 3,
+    "skip": [],
+    "startTime": "19:00",
+    "endTime": "21:00"
+   }
   },
   {
    "id": "academy-102",
@@ -63,6 +69,20 @@ window.ACADEMY_CONFIG = {
    "label": "ACADEMY 102 — Edit video with AI",
    "status": "waitlist",
    "price": 300
+  },
+  {
+   "id": "academy-201",
+   "code": "ACADEMY 201",
+   "title": "Build an app with AI",
+   "label": "ACADEMY 201 — Build an app with AI",
+   "status": "enrolling",
+   "price": 1200,
+   "date": "2026-11-16",
+   "startTime": "19:00",
+   "endTime": "21:00",
+   "dateLabel": "Monday 16 November",
+   "timeLabel": "19:00 – 21:00",
+   "slot": "Evening"
   },
   {
    "id": "academy-103",
