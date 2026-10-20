@@ -21,6 +21,24 @@ OUT = ROOT / "db"
 SUPABASE_JS = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"
 
 
+# link previews (WhatsApp, LinkedIn, X): card source is build/db/og-card.html
+SHARE_TAGS = """
+<meta name="description" content="Every answer, tool, project and win from the DeployTLV Founders/Builders group, searchable. Free for Deploy Log subscribers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deploytlv.com/db/">
+<meta property="og:site_name" content="Deploy TLV">
+<meta property="og:title" content="Deploy DB: everything TLV builders figured out">
+<meta property="og:description" content="Every answer, tool, project and win from the DeployTLV Founders/Builders group, searchable. Free with the Deploy Log.">
+<meta property="og:image" content="https://deploytlv.com/db/og.png">
+<meta property="og:image:alt" content="Deploy DB: everything TLV builders figured out">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deploy DB: everything TLV builders figured out">
+<meta name="twitter:description" content="Every answer, tool, project and win from the DeployTLV Founders/Builders group. Free with the Deploy Log.">
+<meta name="twitter:image" content="https://deploytlv.com/db/og.png">"""
+
 def env():
     vals = {}
     p = ROOT / ".env.local"
@@ -61,7 +79,7 @@ def main():
     s = must_replace(s, "  S.canEdit=true;\n", "")
     s = must_replace(s, 'function safeImg(r){return r.image&&/^img\\/[a-z0-9-]+\\.jpg$/.test(r.image)?r.image:null;}',
                      'function safeImg(r){return r.image&&/^https:\\/\\/[a-z0-9-]+\\.supabase\\.co\\/storage\\/v1\\/object\\/sign\\//.test(r.image)?r.image:null;}')
-    s = must_replace(s, '<title>Deploy DB · Members</title>', '<title>Deploy DB · Members</title>\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">')
+    s = must_replace(s, '<title>Deploy DB · Members</title>', '<title>Deploy DB · Members</title>\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">' + SHARE_TAGS)
     # --- subscribe-to-access funnel ---
     cards = (ROOT / "build/db/subscribe-cards.html").read_text()
     step = (ROOT / "build/db/subscribe-step.html").read_text()
