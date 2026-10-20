@@ -686,3 +686,5 @@ dialog.clipdlg .x{all:unset;cursor:pointer;position:absolute;top:10px;right:10px
  .worksat .logos{gap:22px}.worksat .logos img{height:20px}
 }
 @media(max-width:420px){ .people{grid-template-columns:1fr} }
+/* footer wordmark: fit the width, centred, nothing clipped */
+.mega{font-size:12.6vw;letter-spacing:-.04em;line-height:1;text-align:center;margin:56px 0 0;padding:0 0 2.4vw;width:100%;overflow:hidden}

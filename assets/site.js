@@ -96,7 +96,9 @@ function chrome(){
       <div><h4>Work with us</h4><ul><li><a href="partner.html">Partner with Deploy</a></li><li><a href="kit.html">Media kit</a></li><li><a href="host.html">Book Myron</a></li></ul></div>
       <div><h4>Follow</h4><ul><li><a href="${L.instagram}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a></li><li><a href="${L.linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a href="${L.whatsapp}" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul></div>
     </div>
-    <div class="mega" aria-hidden="true">DEPLOY<b>TLV</b></div>
+  </div>
+  <div class="mega" aria-hidden="true">DEPLOY<b>TLV</b></div>
+  <div class="wrap">
     <div class="fine"><span>Deploy TLV · made in Tel Aviv</span><span>Hosted by Myron Shneider</span><a href="mailto:${L.email}">${L.email}</a></div>
   </div></footer>`;
 }
