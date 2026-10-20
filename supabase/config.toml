@@ -1,0 +1,37 @@
+# Deploy DB: Supabase auth settings, pushed with `supabase config push --workdir .`
+project_id = "deploy-db"
+
+[auth]
+enabled = true
+site_url = "https://deploytlv.com/db/"
+additional_redirect_urls = ["https://deploytlv.com/db/", "http://localhost:4320/db/"]
+jwt_expiry = 3600
+# Anyone can create an account; access to the data still requires an active newsletter subscription (public.subscribers).
+enable_signup = true
+
+[auth.email]
+# true = the email provider is ON.
+enable_signup = true
+enable_confirmations = false
+double_confirm_changes = true
+# sign-in links last 15 minutes, and a new one can be requested every 30 seconds
+otp_expiry = 900
+max_frequency = "30s"
+
+# Sign-in emails go out through Resend from mail.deploytlv.com. The password comes from RESEND_API_KEY in .env.local.
+[auth.email.smtp]
+enabled = true
+host = "smtp.resend.com"
+port = 465
+user = "resend"
+pass = "env(RESEND_API_KEY)"
+admin_email = "hello@mail.deploytlv.com"
+sender_name = "Deploy TLV"
+
+[auth.email.template.magic_link]
+subject = "Your Deploy DB sign-in link"
+content_path = "./supabase/templates/magic_link.html"
+
+[auth.rate_limit]
+# emails per hour, project-wide (custom SMTP lifts the built-in cap of 2)
+email_sent = 100

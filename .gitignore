@@ -35,3 +35,9 @@ events/4/data.js
 # Deploy #5 plaintext (encrypted data.enc.js is what ships)
 events/5/data.js
 build/deploy5/deploy5-profiles.json
+
+# Deploy DB: local secrets and member data, never commit
+.env.local
+build/db/private/
+supabase/.temp/
+supabase/.branches/

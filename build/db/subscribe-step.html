@@ -1,0 +1,15 @@
+      <!-- signed in, not subscribed yet -->
+      <div class="card" id="vSub" hidden>
+        <div class="bar"><span>ONE_STEP_LEFT.EXE</span><i></i></div>
+        <div class="in">
+          <div><h2>One step left</h2><p class="sub" style="margin-top:8px">You're signed in as <span class="mail" id="subEmail">you@company.com</span>. The Deploy DB is for Deploy Log subscribers. Subscribe to unlock it.</p></div>
+          <form id="subForm" novalidate style="display:grid;gap:14px">
+            <div class="field"><label for="subName">First and last name <span style="color:var(--muted)">(optional)</span></label><input id="subName" autocomplete="name"></div>
+            <label class="remember" style="align-items:flex-start"><input type="checkbox" id="subConsent" style="margin-top:3px"> <span>Yes, send me the Deploy Log weekly email. I can unsubscribe anytime, and my access ends when I do.</span></label>
+            <span class="err" id="subConsentErr" hidden>Tick the box to subscribe.</span>
+            <button type="submit" class="sbtn orange wide" id="subBtn">SUBSCRIBE &amp; UNLOCK</button>
+          </form>
+          <p class="small">Not you? <button type="button" id="subSignOut" style="background:none;border:0;padding:0;color:var(--orange-deep);font-weight:600;cursor:pointer;text-decoration:underline">Sign out</button></p>
+        </div>
+      </div>
+
