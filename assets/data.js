@@ -27,7 +27,7 @@ window.DEPLOY = {
 
   /* Headline numbers. Each one is said once in the hero and once to partners. */
   stats: [
-    { value: '1.1M', label: 'Instagram views, 19 Sep – 18 Oct 2026' },
+    { value: '1.1M', label: 'Instagram views in the last month' },
     { value: '745K', label: 'Views on our biggest story' },
     { value: '400+', label: 'People in the community' }
   ],

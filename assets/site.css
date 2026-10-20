@@ -688,3 +688,25 @@ dialog.clipdlg .x{all:unset;cursor:pointer;position:absolute;top:10px;right:10px
 @media(max-width:420px){ .people{grid-template-columns:1fr} }
 /* footer wordmark: fit the width, centred, nothing clipped */
 .mega{font-size:12.6vw;letter-spacing:-.04em;line-height:1;text-align:center;margin:56px 0 0;padding:0 0 2.4vw;width:100%;overflow:hidden}
+/* small phones: grids never wider than the screen */
+@media(max-width:980px){
+ .wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .folder,.roomfilm{grid-template-columns:minmax(0,1fr)}
+ .folder>*,.roomfilm>*,.phero .wrap>*{min-width:0}
+ .nightclips figure{flex:1 1 0;min-width:0;max-width:150px}.nightclips .phone{width:100%}.nightclips figcaption{max-width:none}
+ main .enq,main .enquiry{grid-template-columns:minmax(0,1fr)}
+ main .enq>*,main .enquiry>*{min-width:0}
+ .enquiry input:not([type=radio]):not([type=checkbox]),.enquiry select,.enquiry textarea{width:100%;min-width:0;box-sizing:border-box}
+}
+@media(max-width:400px){
+ .phero h1{font-size:15vw}
+ .folder h2{font-size:14vw}
+ .folder{padding:26px 16px}
+ .snap .views{right:-4px}
+ .direct a.big{font-size:22px;overflow-wrap:anywhere}
+}
+@media(max-width:420px){
+ .head h2{font-size:min(56px,14.4vw)}
+ .more .snap:nth-child(odd),.more .snap:nth-child(even){transform:none}
+}
+@media(max-width:400px){ body .sec .more .snap{transform:none;min-width:0} body .sec .more .snap .views{right:-2px} }

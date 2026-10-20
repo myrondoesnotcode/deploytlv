@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=mvh718te">
+<link rel="stylesheet" href="/assets/site.css?v=mvh7i00g">
 <style>
 body{background:#d9d2c0}
 body:after{display:none}
@@ -59,14 +59,17 @@ h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
 .spk b{display:block;font:400 14px var(--disp);text-transform:uppercase;margin-bottom:1.5mm}
 .contact{margin-top:auto;display:flex;justify-content:space-between;align-items:end;border-top:2px solid #3a362f;padding-top:6mm}
 .contact h2{font-size:15mm;line-height:.85}
-.contact span{font:600 13px/2 var(--mono);text-align:right}
+.contact span{font:600 13px/2 var(--mono);text-align:right;overflow-wrap:anywhere;min-width:0}
 @media print{ @page{size:A4;margin:0} body{background:none} .bar{display:none!important} .page{margin:0;box-shadow:none;page-break-after:always;break-after:page} }
 @media(max-width:860px){ .cover img{max-width:100%;height:auto} .page{width:auto;min-height:0;margin:16px;padding:18px} .cover{margin:-18px -18px 20px;padding:18px 18px 0;grid-template-columns:1fr 34%;min-height:0} .cover h1{font-size:18vw} .cover .stamp{display:none}
  .nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){border-left:0}.nums div:nth-child(n+3){border-top:2px solid var(--ink)} .nums b{font-size:40px}
- .aud,.cov,.fmts,.spk,.offerk{grid-template-columns:1fr} .reels{grid-template-columns:1fr 1fr} h3.h{font-size:26px} .contact h2{font-size:44px} }
+ .aud,.cov,.fmts,.spk,.offerk{grid-template-columns:1fr} .reels{grid-template-columns:1fr 1fr} h3.h{font-size:26px} .contact h2{font-size:44px} 
+ .cover{grid-template-columns:minmax(0,1fr)} .cover>div{min-width:0}
+ .cover h1.kitlogo{font-size:11.2vw;white-space:nowrap} .cover .sub{font-size:6.2vw;white-space:nowrap}
+ .cover img{width:58%;justify-self:end;margin-top:-8px} }
 </style>
 </head><body data-noremote="1">
-<div class="bar noprint"><a class="logo" href="/">DEPLOY<i>.</i></a><button class="btn o" onclick="print()">Save as PDF</button><a class="link" href="/partner/#enquire">Get in touch</a></div>
+<div class="bar noprint"><a class="logo" href="/">DEPLOY <b>TLV</b></a><button class="btn o" onclick="print()">Save as PDF</button><a class="link" href="/partner/#enquire">Get in touch</a></div>
 
 <!-- page 1 -->
 <section class="page">
@@ -80,10 +83,10 @@ h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
     <img src="/media/sticker-host-fun.webp" alt="">
     <span class="stamp" id="nextstamp">Next night · Mon 26 Oct</span>
   </div>
-  <div class="nums" id="nums"><div><b>1.1M</b><span>Instagram views, 19 Sep – 18 Oct 2026</span></div><div><b>745K</b><span>Views on our biggest story</span></div><div><b>400+</b><span>People in the community</span></div><div><b>6</b><span>Nights hosted since May 2026</span></div></div>
+  <div class="nums" id="nums"><div><b>1.1M</b><span>Instagram views in the last month</span></div><div><b>745K</b><span>Views on our biggest story</span></div><div><b>400+</b><span>People in the community</span></div><div><b>6</b><span>Nights hosted since May 2026</span></div></div>
   <h3 class="h">Who's watching</h3>
   <div class="aud">
-    <div><b>Reach</b>1,129,948 Instagram views and 735,949 accounts reached, 19 Sep – 18 Oct 2026. 98% of views came from people who don’t follow us yet.</div>
+    <div><b>Reach</b>1,129,948 Instagram views and 735,949 accounts reached in the last month. 98% of views came from people who don’t follow us yet.</div>
     <div><b>Followers</b>5,738 followers, up 4,904 in that month. 72.5% are in Israel; the United States is second.</div>
     <div><b>Who they are</b>84% aged 25–44 (61.5% are 25–34). 69% men, 31% women. Founders, engineers and operators, plus the people who meet us in person every week.</div>
   </div>
@@ -105,8 +108,8 @@ h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvh718te"></script>
-<script src="/assets/site.js?v=mvh718te"></script>
+<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvh7i00g"></script>
+<script src="/assets/site.js?v=mvh7i00g"></script>
    <dialog class="clipdlg" id="clipdlg" aria-label="Video"><button class="x" aria-label="Close">✕</button><video controls="" playsinline=""></video></dialog>
    
 <script>
