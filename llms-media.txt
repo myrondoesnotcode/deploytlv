@@ -1,0 +1,18 @@
+## Deploy media
+
+Deploy is an English-language media company telling the stories of Israeli tech and AI, based in Tel Aviv. It also runs Israel's fastest-growing English-speaking AI community.
+
+### Stories
+- [Waze: He gave his map away. Google paid $1B.](https://deploytlv.com/stories/waze/): Ehud Shabtai, Uri Levine and Amir Shinar · Waze founded 2008 · bought by Google in 2013
+- [Base44: A reservist built his partner an app. Wix paid $80M.](https://deploytlv.com/stories/base44/): Maor Shlomo · Base44 started 2025 · bought by Wix six months later
+- [Wonderful: They broke the first rule of Israeli startups.](https://deploytlv.com/stories/wonderful/): Bar Winkler and Roey Lalazar · Wonderful founded 2025 · AI agents that answer customer calls
+- [Wiz: He turned down Google's reported $23B.](https://deploytlv.com/stories/wiz/): Assaf Rappaport, Ami Luttwak, Yinon Costica and Roy Reznik · Wiz founded 2020
+- [PillCam: A missile engineer took a dare. It took 20 years.](https://deploytlv.com/stories/pillcam/): Gavriel Iddan · Given Imaging · bought by Covidien in 2013
+- [Tesla: Tesla's new Roadster drove upside down. Here's how.](https://deploytlv.com/stories/tesla/): Elon Musk · Tesla Roadster, shown live on 15 Oct 2026 · Tesla says production starts in 2028
+- [Cal AI: 15 colleges rejected him. Then he sold his app.](https://deploytlv.com/stories/calai/): Zach Yadegari and Henry Langmack · Cal AI · bought by MyFitnessPal in December 2025
+- [Polaroid: A 3-year-old's question became Polaroid.](https://deploytlv.com/stories/land/): Edwin Land · Polaroid · first instant print shown in 1947
+
+### Work with Deploy
+- [Event coverage, films and sponsorship](https://deploytlv.com/partner/): event coverage from ₪3,000 in Tel Aviv.
+- [Myron Shneider, founder and host](https://deploytlv.com/host/)
+- [Deploy DB](https://deploytlv.com/db/): the searchable database of what Deploy's builders know, free for Deploy Log subscribers.

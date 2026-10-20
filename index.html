@@ -1,632 +1,288 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Deploy TLV — The Room Where TLV Builds</title>
-<meta name="description" content="One of Israel's largest and fastest-growing English-speaking AI communities. Founders, engineers and makers shipping real products in Tel Aviv — events, weekly coworking, and people making things.">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deploy TLV · Israeli tech and AI stories, in English</title>
+<meta name="description" content="Deploy TLV tells the stories behind Israeli tech, in English, and runs one of Israel’s fastest-growing English-speaking AI communities: founder nights, weekly coworking and Deploy Academy workshops in Tel Aviv.">
 <link rel="canonical" href="https://deploytlv.com/">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://deploytlv.com">
-<meta property="og:site_name" content="Deploy TLV">
-<meta property="og:title" content="Deploy TLV — The Room Where TLV Builds">
-<meta property="og:description" content="One of Israel's largest and fastest-growing English-speaking AI communities. Founders, engineers and makers shipping real products in Tel Aviv.">
-<meta property="og:image" content="https://deploytlv.com/og.png">
-<meta property="og:image:alt" content="Deploy TLV — the room where TLV builds">
-<meta property="og:image:width" content="2400">
-<meta property="og:image:height" content="1260">
-<meta property="og:image:type" content="image/png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Deploy TLV — The Room Where TLV Builds">
-<meta name="twitter:description" content="One of Israel's largest and fastest-growing English-speaking AI communities. Tel Aviv.">
-<meta name="twitter:image" content="https://deploytlv.com/og.png">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="/favicon.ico" sizes="32x32">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#ff5a18">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-black-400.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/silkscreen-700.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/ibm-plex-mono-400.woff2">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com","logo":"https://deploytlv.com/apple-touch-icon.png","description":"An English-speaking community of AI builders in Tel Aviv — events, weekly coworking, and a network of founders and engineers shipping real products.","areaServed":"Tel Aviv, Israel","sameAs":["https://instagram.com/deploytlv","https://www.linkedin.com/company/deploytlv"],"subOrganization":{"@type":"EducationalOrganization","name":"Deploy Academy","url":"https://deploytlv.com/academy/","description":"Hands-on AI classes taught in English in Tel Aviv, for people who don’t code."}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"Deploy #6 by DeployTLV","description":"Deploy TLV's sixth meetup for people building with AI in Tel Aviv. In English, and no boring panels.","startDate":"2026-10-26T18:00:00+02:00","endDate":"2026-10-26T20:00:00+02:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"Sarona","address":{"@type":"PostalAddress","streetAddress":"Sarona","addressLocality":"Tel Aviv-Yafo","addressCountry":"IL"}},"image":["https://images.lumacdn.com/uploads/a3/2d2e6660-6a3f-49e8-8b00-6309a430d6cf.png"],"organizer":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com","logo":"https://deploytlv.com/apple-touch-icon.png","sameAs":["https://instagram.com/deploytlv","https://www.linkedin.com/company/deploytlv"]},"performer":{"@type":"Organization","name":"Deploy TLV","url":"https://deploytlv.com","logo":"https://deploytlv.com/apple-touch-icon.png","sameAs":["https://instagram.com/deploytlv","https://www.linkedin.com/company/deploytlv"]},"inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"ILS","availability":"https://schema.org/InStock","url":"https://luma.com/o8dzr1kh","validFrom":"2026-10-16T00:00:00+03:00"},"url":"https://luma.com/o8dzr1kh"}</script>
-<style>
-/* Self-hosted fonts: same origin, preloaded, so glyphs are ready at first paint.
-   Metric-matched fallbacks mean a swap (if it happens at all) shifts no layout. */
-@font-face{font-family:'Archivo Black';src:url('/assets/fonts/archivo-black-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-500.woff2')format('woff2');font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Mono';src:url('/assets/fonts/ibm-plex-mono-600.woff2')format('woff2');font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:'Silkscreen';src:url('/assets/fonts/silkscreen-400.woff2')format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Silkscreen';src:url('/assets/fonts/silkscreen-700.woff2')format('woff2');font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:'Archivo Fallback';src:local('Arial'),local('Helvetica');size-adjust:115.35%;ascent-override:76.12%;descent-override:18.21%;line-gap-override:0%}
-@font-face{font-family:'Plex Fallback';src:local('Menlo-Regular'),local('Menlo Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:99.66%;ascent-override:102.85%;descent-override:27.59%;line-gap-override:0%}
-@font-face{font-family:'Silkscreen Fallback';src:local('Menlo-Regular'),local('Menlo Regular'),local('Consolas'),local('Monaco'),local('Courier New');size-adjust:145.34%;ascent-override:70.87%;descent-override:17.2%;line-gap-override:0%}
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:site_name" content="Deploy"><meta property="og:type" content="website">
+<meta property="og:title" content="Deploy TLV · Israeli tech and AI stories, in English"><meta property="og:description" content="Deploy TLV tells the stories behind Israeli tech, in English, and runs one of Israel’s fastest-growing English-speaking AI communities: founder nights, weekly coworking and Deploy Academy workshops in Tel Aviv."><meta property="og:url" content="https://deploytlv.com/">
+<meta property="og:image" content="https://deploytlv.com/media/og-home.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://deploytlv.com/media/og-home.jpg">
+<meta property="og:locale" content="en_US">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://deploytlv.com/#org","name":"Deploy","alternateName":["DeployTLV","Deploy TLV"],"url":"https://deploytlv.com/","logo":"https://deploytlv.com/apple-touch-icon.png","description":"Deploy is an English-language tech and AI media company based in Tel Aviv. It tells the stories of Israeli tech and runs Israel’s fastest-growing English-speaking AI community.","address":{"@type":"PostalAddress","addressLocality":"Tel Aviv-Yafo","addressCountry":"IL"},"sameAs":["https://instagram.com/deploytlv","https://www.youtube.com/watch?v=bh5vQedObiQ","https://www.linkedin.com/company/deploytlv"],"founder":{"@id":"https://deploytlv.com/host/#myron"},"subOrganization":{"@type":"EducationalOrganization","name":"Deploy Academy","url":"https://deploytlv.com/academy/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Deploy","url":"https://deploytlv.com/","publisher":{"@id":"https://deploytlv.com/#org"},"inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Deploy stories","itemListElement":[{"@type":"ListItem","position":1,"url":"https://deploytlv.com/stories/waze/","name":"Waze: He gave his map away. Google paid $1B."},{"@type":"ListItem","position":2,"url":"https://deploytlv.com/stories/base44/","name":"Base44: A reservist built his partner an app. Wix paid $80M."},{"@type":"ListItem","position":3,"url":"https://deploytlv.com/stories/wonderful/","name":"Wonderful: They broke the first rule of Israeli startups."},{"@type":"ListItem","position":4,"url":"https://deploytlv.com/stories/wiz/","name":"Wiz: He turned down Google's reported $23B."},{"@type":"ListItem","position":5,"url":"https://deploytlv.com/stories/pillcam/","name":"PillCam: A missile engineer took a dare. It took 20 years."},{"@type":"ListItem","position":6,"url":"https://deploytlv.com/stories/tesla/","name":"Tesla: Tesla's new Roadster drove upside down. Here's how."},{"@type":"ListItem","position":7,"url":"https://deploytlv.com/stories/calai/","name":"Cal AI: 15 colleges rejected him. Then he sold his app."},{"@type":"ListItem","position":8,"url":"https://deploytlv.com/stories/land/","name":"Polaroid: A 3-year-old's question became Polaroid."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Deploy?","acceptedAnswer":{"@type":"Answer","text":"Deploy is an English-language media company telling the stories of Israeli tech and AI, based in Tel Aviv. We publish one-minute founder stories on Instagram, long-form episodes on YouTube, and cover the city’s tech events with the orange mic. We also run Israel’s fastest-growing English-speaking AI community: Deploy nights, weekly coworking and Deploy Academy."}},{"@type":"Question","name":"Is everything in English?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every story, episode, event and Academy class is in English, for locals, newcomers and international teams alike."}},{"@type":"Question","name":"How do I come to a Deploy night?","acceptedAnswer":{"@type":"Answer","text":"Deploy nights are free and listed on Luma; the next one is in the guide above. Join the community to hear about each one first, and come to weekly coworking in Tel Aviv in the meantime."}},{"@type":"Question","name":"Can Deploy cover my event or launch?","acceptedAnswer":{"@type":"Answer","text":"Yes. Event coverage starts from ₪3,000 in Tel Aviv: Myron on the orange mic, a finished reel and a collab post on @deploytlv. We also make founder films and long-form explainers, and sponsors can present our stories."}},{"@type":"Question","name":"Who hosts Deploy?","acceptedAnswer":{"@type":"Answer","text":"Myron Shneider, founder and host of Deploy. Before founding Deploy, he produced media content for Aleph VC, including Invested with Michael Eisenberg."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"DEPLOY_006 by Deploy","description":"Our sixth night, at Sarona in Tel Aviv. People show what they built, then the room takes over. Free, in English.","startDate":"2026-10-26T18:00:00+02:00","endDate":"2026-10-26T20:00:00+02:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","inLanguage":"en","isAccessibleForFree":true,"location":{"@type":"Place","name":"Sarona","address":{"@type":"PostalAddress","addressLocality":"Tel Aviv-Yafo","addressCountry":"IL"}},"organizer":{"@id":"https://deploytlv.com/#org"},"url":"https://luma.com/o8dzr1kh","offers":{"@type":"Offer","price":"0","priceCurrency":"ILS","availability":"https://schema.org/InStock","url":"https://luma.com/o8dzr1kh"}}</script>
 
 
-:root{--paper:#f3eedf;--paper2:#e9e1ce;--ink:#11100d;--orange:#ff5a18;--muted:#6e675c;--line:rgba(17,16,13,.24);--max:1440px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#d8d0c1;color:var(--ink);font-family:'IBM Plex Mono','Plex Fallback',ui-monospace,monospace}a{color:inherit;text-decoration:none}img,video{display:block;width:100%}.site{max-width:var(--max);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 70px rgba(0,0,0,.13)}.nav{height:72px;padding:0 34px;display:flex;align-items:center;border-bottom:1px solid var(--ink);position:sticky;top:0;background:rgba(243,238,223,.94);backdrop-filter:blur(12px);z-index:50}.logo{font:700 20px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;letter-spacing:-.06em}.logo b{color:var(--orange)}.links{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:10px;text-transform:uppercase}.status{font-size:9px;color:var(--muted)}.status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:7px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border:1.5px solid var(--ink);font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;background:transparent;box-shadow:3px 3px 0 var(--ink);transition:.12s}.btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:var(--orange)}.btn.orange{background:var(--orange)}.ticker{height:34px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--ink);font-size:9px;text-transform:uppercase;white-space:nowrap}.ticker div{animation:marquee 30s linear infinite}.ticker span{margin-right:52px}.ticker b{color:var(--orange)}@keyframes marquee{to{transform:translateX(-50%)}}
-.hero{display:grid;grid-template-columns:.82fr 1.18fr;min-height:780px;border-bottom:1px solid var(--ink)}.hero-copy{padding:88px 46px 46px;display:flex;flex-direction:column;justify-content:center}.eyebrow,.kicker{font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);text-transform:uppercase}.hero h1,.display{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif,sans-serif;text-transform:uppercase;letter-spacing:-.055em;line-height:.86}.hero h1{font-size:clamp(64px,7vw,112px);margin:18px 0 28px}.hero p{font-size:15px;line-height:1.65;max-width:510px;margin:0;color:#37332d}.hero p+ p{margin-top:8px}.hero-actions{display:flex;gap:14px;margin-top:30px}.hero-foot{margin-top:auto;padding-top:55px;font-size:9px;color:var(--muted);display:flex;gap:24px}.hero-media{padding:28px 28px 28px 0}.media-main{height:100%;min-height:680px;position:relative;overflow:hidden;background:#222}.media-main video{height:100%;object-fit:cover}.media-main:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.58));pointer-events:none}.live{position:absolute;top:16px;left:16px;background:var(--paper);padding:8px 10px;font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;z-index:2}.live b{color:var(--orange)}.media-caption{position:absolute;left:20px;right:20px;bottom:18px;color:white;z-index:2;display:flex;justify-content:space-between;align-items:end;font-size:9px}.media-caption strong{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:25px;text-transform:uppercase}.section{padding:94px 46px;border-bottom:1px solid var(--ink)}.section-top{display:grid;grid-template-columns:125px 1fr 340px;gap:28px;align-items:end;margin-bottom:52px}.section-id{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.section-top h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(44px,5.6vw,82px);line-height:.89;letter-spacing:-.05em;text-transform:uppercase;margin:0}.section-top p{font-size:11px;line-height:1.7;color:var(--muted);margin:0}.cowork{display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:center}.cowork-copy h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(42px,5vw,70px);line-height:.9;text-transform:uppercase;margin:12px 0 25px;letter-spacing:-.045em}.cowork-copy p{font-size:13px;line-height:1.8;max-width:500px}.cowork-meta{display:flex;gap:26px;margin:28px 0;font-size:9px;color:var(--muted);text-transform:uppercase}.vertical-wrap{height:660px;display:grid;grid-template-columns:1fr .56fr;gap:12px}.vertical-main{overflow:hidden;background:#171512;position:relative;isolation:isolate}.vertical-main:before{content:"";position:absolute;inset:-22px;background:var(--media-poster,none) center/cover no-repeat;filter:blur(22px) brightness(.52) saturate(.8);transform:scale(1.08);z-index:-1}.vertical-main:after{content:"";position:absolute;inset:0;background:rgba(17,16,13,.10);pointer-events:none}.vertical-main video{height:100%;object-fit:contain;object-position:center;position:relative;z-index:1}.vertical-side{display:flex;flex-direction:column;justify-content:flex-end;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 0}.vertical-side b{font:700 10px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.vertical-side strong{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:28px;text-transform:uppercase;line-height:.95;margin:12px 0}.vertical-side p{font-size:9px;color:var(--muted);line-height:1.6}.room-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:20px;align-items:end}.visual{overflow:hidden;background:#171512;position:relative;isolation:isolate}.visual:before{content:"";position:absolute;inset:-22px;background:var(--media-poster,none) center/cover no-repeat;filter:blur(24px) brightness(.50) saturate(.85);transform:scale(1.08);z-index:-1}.visual:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(243,238,223,.08);pointer-events:none;z-index:2}.room-big .visual{height:580px}.room-side-stack{display:grid;grid-template-rows:1fr 1fr;gap:26px}.room-small{padding-bottom:0}.room-small .visual{height:255px}.visual video{height:100%;object-fit:contain;object-position:center;position:relative;z-index:1}.visual img{height:100%;object-fit:cover}.annotation{display:flex;justify-content:space-between;padding-top:15px}.annotation strong{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:26px;text-transform:uppercase}.annotation span{font-size:9px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:55px}.stat{padding:24px 8px}.stat:not(:last-child){border-right:1px solid var(--line)}.stat b{font:700 24px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;display:block}.stat span{font-size:8px;text-transform:uppercase;color:var(--muted)}
-.community-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px}.community-copy h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:48px;line-height:.92;text-transform:uppercase;margin:0 0 22px}.community-copy>p{font-size:13px;line-height:1.8;color:#4a443a}.rooms{margin-top:38px;border-top:1px solid var(--ink)}.roomrow{padding:22px 0;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:120px 1fr 30px;gap:20px}.roomrow small{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.roomrow b{font-size:15px}.roomrow p{font-size:9px;color:var(--muted);margin:6px 0 0}.community-photo{height:590px;overflow:hidden;position:relative;background:#222}.community-photo video,.community-photo img{height:100%;object-fit:cover}.community-photo .tag{position:absolute;bottom:16px;left:16px;background:var(--orange);padding:9px 11px;font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace}.people-shell{position:relative}.people-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.people-count{font-size:9px;color:var(--muted)}.people-arrows{display:flex;gap:8px}.people-arrow{width:38px;height:38px;border:1px solid var(--ink);background:transparent;font-size:18px;cursor:pointer;transition:.12s}.people-arrow:hover{background:var(--orange)}.people-track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,24%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}.people-track::-webkit-scrollbar{display:none}.person{scroll-snap-align:start;cursor:pointer;transition:.16s;border:1px solid transparent;padding:0 0 12px}.person:hover,.person.active{border-color:var(--ink);background:var(--paper2)}.person img{aspect-ratio:4/5;object-fit:cover;filter:grayscale(100%);transition:.2s}.person:hover img,.person.active img{filter:grayscale(0)}.person h4{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:18px;text-transform:uppercase;margin:12px 12px 4px}.person p{font-size:9px;line-height:1.5;color:var(--muted);margin:0 12px}.person .open-profile{display:flex;justify-content:space-between;align-items:center;margin:11px 12px 0;padding-top:10px;border-top:1px solid var(--line);font-size:8px;text-transform:uppercase}.profile-panel{margin-top:18px;border:1px solid var(--ink);display:grid;grid-template-columns:minmax(250px,.72fr) 1.28fr;background:var(--paper2);min-height:360px;overflow:hidden}.profile-media{min-height:360px;background:#222}.profile-media img{height:100%;object-fit:cover;object-position:center}.profile-content{padding:34px 38px;display:flex;flex-direction:column}.profile-top{display:flex;justify-content:space-between;gap:24px}.profile-kicker{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.profile-content h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:38px;line-height:.92;text-transform:uppercase;margin:10px 0 8px}.profile-role{font-size:10px;color:var(--muted)}.profile-close{border:0;background:transparent;font-size:23px;line-height:1;cursor:pointer}.profile-bio{font-size:12px;line-height:1.75;max-width:650px;margin:28px 0;color:#39352f}.profile-meta{margin-top:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink)}.profile-meta div{padding:18px 12px 0 0}.profile-meta div+div{border-left:1px solid var(--line);padding-left:18px}.profile-meta span{display:block;font:700 7px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);margin-bottom:7px}.profile-meta b{font-size:10px}.profile-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:8px}.profile-nav button{border:0;background:transparent;font:600 9px 'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;cursor:pointer;text-transform:uppercase}.profile-nav button:hover{color:var(--orange)}.builds{display:grid;grid-template-columns:1.3fr .7fr .7fr;grid-auto-rows:245px;gap:12px}.build{border:1px solid var(--ink);padding:22px;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper2);transition:.15s;overflow:hidden}.build:first-child{grid-row:span 2;background:var(--ink);color:var(--paper)}.build:hover{background:var(--orange);color:var(--ink)}.build code{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.build:hover code{color:var(--ink)}.build h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(24px,3vw,46px);line-height:.9;text-transform:uppercase;margin:0}.build p{font-size:9px;max-width:260px}.events{border-top:1px solid var(--ink)}.event{display:grid;grid-template-columns:150px 1fr 230px 70px;align-items:center;min-height:100px;border-bottom:1px solid var(--ink);transition:.15s}.event:hover{background:var(--orange);padding-left:12px}.event code{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.event:hover code{color:var(--ink)}.event strong{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:24px;text-transform:uppercase}.event span{font-size:9px;color:var(--muted)}.event em{font-style:normal;font-size:18px}.intel{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px;align-items:center}.intel-copy h3{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:52px;line-height:.9;text-transform:uppercase;margin:12px 0 22px}.intel-copy p{font-size:12px;line-height:1.8;color:var(--muted)}.intel-ui{background:var(--ink);color:var(--paper);padding:30px;min-height:430px;display:flex;flex-direction:column}.intel-head{display:flex;justify-content:space-between;font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);padding-bottom:18px;border-bottom:1px solid #555}.intel-question{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:38px;text-transform:uppercase;line-height:.95;margin:40px 0}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #777;padding:8px 10px;font-size:8px}.intel-numbers{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #555}.intel-numbers div{padding-top:20px}.intel-numbers b{font:700 21px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;display:block;color:var(--orange)}.intel-numbers span{font-size:7px;color:#aaa}.proof{padding:38px 46px;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:180px 1fr;align-items:center}.proof-label{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}.logos{display:flex;align-items:center;justify-content:space-between;gap:28px;opacity:.55}.logos img{max-width:88px;max-height:30px;object-fit:contain;filter:grayscale(1)}.cta{padding:120px 46px;text-align:center;background:var(--orange)}.cta .kicker{color:var(--ink)}.cta h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(55px,8vw,115px);line-height:.84;letter-spacing:-.055em;text-transform:uppercase;margin:18px auto 28px;max-width:1050px}.cta p{max-width:560px;margin:0 auto 30px;font-size:12px;line-height:1.7}.cta .btn{background:var(--paper)}footer{padding:28px 34px;display:flex;justify-content:space-between;font-size:8px;text-transform:uppercase}.cursor{display:inline-block;width:.55em;height:.11em;background:var(--orange);vertical-align:.08em;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}.reveal{opacity:0;transform:translateY(14px);transition:.55s ease}.reveal.in{opacity:1;transform:none}
-@media(max-width:900px){.links a:not(.btn){display:none}.hero{grid-template-columns:1fr}.hero-copy{min-height:610px;padding:70px 24px 35px}.hero-media{padding:0 20px 20px}.media-main{min-height:520px}.section{padding:72px 24px}.section-top{grid-template-columns:1fr}.section-top p{max-width:520px}.cowork,.room-grid,.community-grid,.intel{grid-template-columns:1fr}.room-side-stack{grid-template-columns:1fr 1fr;grid-template-rows:auto}.vertical-wrap{height:620px;grid-template-columns:1fr .42fr}.room-big .visual{height:480px}.room-small{padding:0}.room-side-stack{grid-template-columns:1fr;grid-template-rows:auto}.people-track{grid-auto-columns:minmax(220px,42%)}.profile-panel{grid-template-columns:.8fr 1.2fr}.builds{grid-template-columns:1fr 1fr}.build:first-child{grid-row:span 1;grid-column:span 2}.event{grid-template-columns:110px 1fr 50px}.event span{display:none}.proof{grid-template-columns:1fr;gap:25px}.logos{flex-wrap:wrap;justify-content:flex-start}.hero-foot{flex-wrap:wrap}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}@media(max-width:560px){.nav{padding:0 18px}.status{display:none}.hero h1{font-size:56px}.hero-media{padding:0}.media-main{min-height:520px}.hero-actions{flex-direction:column;align-items:flex-start}.section-top h2{font-size:44px}.vertical-wrap{height:570px;grid-template-columns:1fr}.vertical-side{display:none}.people-track{grid-auto-columns:78%}.profile-panel{grid-template-columns:1fr}.profile-media{height:360px;min-height:0}.profile-content{padding:26px 22px}.profile-content h3{font-size:32px}.profile-meta{grid-template-columns:1fr}.profile-meta div+div{border-left:0;padding-left:0}.builds{display:flex;flex-direction:column}.build{min-height:190px}.event{grid-template-columns:92px 1fr 30px}.event strong{font-size:17px}.intel-numbers{grid-template-columns:1fr 1fr}.cta{padding:90px 22px}footer{gap:12px;flex-wrap:wrap}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.ticker div{animation:none}.cursor{animation:none}.reveal{opacity:1;transform:none}}
-
-/* V7 — MEDIA ORIENTATION + MOBILE PERFORMANCE PASS
-   Keep the established Deploy OS visual system. Media now respects source aspect ratio. */
-.hero-media{display:flex;align-items:center;padding:28px 28px 28px 0}
-.media-main{width:100%;height:auto;min-height:0;aspect-ratio:16/9;background:var(--ink)}
-.media-main video{width:100%;height:100%;object-fit:cover;object-position:center}
-
-/* Coworking source is portrait (9:16). Give it a portrait frame instead of letterboxing. */
-.vertical-wrap{height:auto;display:grid;grid-template-columns:minmax(280px,430px) minmax(150px,.56fr);gap:18px;justify-content:end;align-items:stretch}
-.vertical-main{aspect-ratio:9/16;background:transparent}
-.vertical-main:before,.vertical-main:after{display:none}
-.vertical-main video{width:100%;height:100%;object-fit:cover;object-position:center}
-
-/* From The Room: each clip gets its native geometry. No faux blurred bars / no black letterbox. */
-.room-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,.72fr) minmax(0,1.5fr);gap:20px;align-items:start}
-.room-card{min-width:0}
-.room-card .visual{height:auto;background:transparent}
-.room-card .visual:before,.room-card .visual:after{display:none}
-.room-card.portrait .visual{aspect-ratio:9/16}
-.room-card.landscape .visual{aspect-ratio:16/9}
-.room-card .visual video{width:100%;height:100%;object-fit:cover;object-position:center;background:transparent}
-.room-card .annotation{gap:12px;align-items:flex-start}
-.room-card .annotation>span{text-align:right;white-space:nowrap}
-.room-card.latest .annotation strong:after{content:'  / LATEST';font:700 7px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);letter-spacing:0}
-
-/* Posters should fill the exact frame before a lazy video is ready. */
-video[poster]{background-size:cover;background-position:center}
-
-@media(max-width:900px){
-  .hero{min-height:0}.hero-media{padding:0 24px 30px}.media-main{min-height:0;aspect-ratio:16/9}
-  .vertical-wrap{grid-template-columns:minmax(0,1fr) minmax(135px,.42fr);max-width:640px;margin-left:auto}
-  .room-grid{grid-template-columns:1fr 1fr;gap:18px}
-  .room-card.landscape{grid-column:1/-1}
-}
-@media(max-width:560px){
-  .hero-copy{min-height:0;padding:58px 20px 30px}.hero h1{font-size:50px;line-height:.88}.hero p{font-size:13px}.hero-foot{padding-top:34px}
-  .hero-media{padding:0 0 18px}.media-main{aspect-ratio:16/9}.media-caption{left:13px;right:13px;bottom:12px}.media-caption strong{font-size:18px}.live{top:10px;left:10px;padding:6px 8px}
-  .section{padding:64px 20px}.section-top{margin-bottom:34px}.section-top h2{font-size:41px;line-height:.92}
-  .cowork{gap:34px}.vertical-wrap{display:block;max-width:78vw;margin:0 auto}.vertical-main{width:100%;aspect-ratio:9/16}.vertical-side{display:block;border:0;padding:14px 0 0}.vertical-side strong{font-size:21px}.vertical-side p{display:none}
-  .room-grid{display:flex;overflow-x:auto;gap:14px;scroll-snap-type:x mandatory;scroll-padding-left:20px;margin-left:-20px;margin-right:-20px;padding:0 20px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .room-grid::-webkit-scrollbar{display:none}.room-card{scroll-snap-align:start;flex:0 0 72vw}.room-card.landscape{flex-basis:88vw}.room-card .annotation{padding-top:10px}.room-card .annotation strong{font-size:20px}.room-card .annotation span{font-size:8px}.room-card .annotation>span{white-space:normal;max-width:86px}
-  .stats{margin-top:34px}
-  .people-track{grid-auto-columns:82%}.profile-panel{margin-top:14px}.profile-media{height:310px}
-  .community-photo{height:440px}
-}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=mvh6fty8">
+</head><body class="">
+     
 
 
-/* V8 — RHYTHM / COPY / DENSITY PASS
-   Same Deploy OS system. Less dead space, stronger hierarchy, more intentional section rhythm. */
-.section{padding:78px 46px}
-.section-top{margin-bottom:38px;align-items:start}
-.section-top p{padding-top:8px;max-width:390px}
-.cowork-section{background:var(--paper2);padding-top:72px;padding-bottom:72px}
-.cowork{grid-template-columns:minmax(0,.92fr) minmax(520px,1.08fr);gap:54px;align-items:stretch}
-.cowork-copy{min-height:610px;display:flex;flex-direction:column;justify-content:space-between;padding:2px 0}
-.cowork-copy h3{font-size:clamp(46px,4.7vw,66px);margin:12px 0 22px}
-.cowork-copy p{font-size:12px;line-height:1.75;max-width:540px}
-.cowork-bottom{margin-top:34px}
-.cowork-points{border-top:1px solid var(--ink);margin-bottom:24px}
-.cowork-point{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);align-items:start}
-.cowork-point b{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange);padding-top:2px}
-.cowork-point span{font-size:9px;line-height:1.45;letter-spacing:.01em}
-.cowork-meta{margin:20px 0 22px}
-.vertical-wrap{grid-template-columns:minmax(250px,360px) minmax(190px,1fr);gap:0;justify-content:stretch;max-width:620px;margin-left:auto;width:100%}
-.vertical-main{border:1px solid var(--ink)}
-.vertical-side{background:var(--ink);color:var(--paper);border:0;padding:26px 24px;justify-content:space-between}
-.vertical-side strong{font-size:31px;color:var(--paper)}
-.vertical-side p{font-size:9px;color:#b9b1a3;line-height:1.65;max-width:230px}
-.side-lines{border-top:1px solid #49443d;margin-top:30px}
-.side-lines span{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #34312c;font-size:7px;color:#918a7e}
-.side-lines span b{font:600 7px 'IBM Plex Mono','Plex Fallback',ui-monospace,monospace;color:var(--paper);text-align:right}
-#room{padding-top:80px}
-#room .section-top{margin-bottom:42px}
-.room-grid{align-items:start}
-.room-card .visual{border:1px solid var(--ink)}
-.annotation{min-height:68px}
-.stats{margin-top:42px}
-.community-grid{align-items:stretch}
-.community-photo{height:auto;min-height:520px}
-#people .section-top{margin-bottom:30px}
-.profile-panel[hidden]{display:none}
-.people-toolbar{padding-top:2px}
-.builds{grid-auto-rows:220px}
-#events .section-top{margin-bottom:34px}
-.cta{padding-top:100px;padding-bottom:100px}
+<nav class="top" aria-label="Main"><div class="wrap">
+    <a class="logo" href="/" aria-label="Deploy TLV, home">DEPLOY <b>TLV</b></a>
+    <div class="navlinks"><a href="/#stories">Stories</a><a href="/#longform">Long-form</a><a href="/#guide">What's on</a><a href="/academy/">Academy</a><a href="/#community">Community</a><a href="/db/">Deploy DB</a><a href="/partner/">Work with us</a></div>
+    <div class="nav-end"><span class="livebug"><i></i>LIVE TONIGHT</span><a class="btn o" href="/#subscribe">Subscribe</a>
+      <button class="menubtn" aria-expanded="false" aria-controls="menu">Menu</button></div>
+    <div class="menu" id="menu"><a href="/#stories">Stories</a><a href="/#longform">Long-form</a><a href="/#guide">What's on</a><a href="/academy/">Academy</a><a href="/#community">Community</a><a href="/db/">Deploy DB</a><a href="/partner/">Work with us</a><a href="/host/">Myron, the host</a><a class="btn o" href="/#subscribe">Subscribe</a></div>
+  </div></nav>
+<main>
 
-@media(max-width:1100px) and (min-width:901px){
-  .cowork{grid-template-columns:.8fr 1.2fr;gap:36px}
-  .vertical-wrap{grid-template-columns:minmax(220px,330px) minmax(165px,1fr)}
-  .cowork-copy{min-height:590px}
-}
-@media(max-width:900px){
-  .section{padding:66px 24px}
-  .section-top{margin-bottom:32px}
-  .cowork-section{padding-top:62px;padding-bottom:62px}
-  .cowork{grid-template-columns:1fr;gap:38px}
-  .cowork-copy{min-height:0}
-  .cowork-bottom{margin-top:28px}
-  .cowork-points{max-width:620px}
-  .vertical-wrap{grid-template-columns:minmax(250px,360px) minmax(160px,1fr);max-width:620px;margin:0}
-  .community-photo{min-height:460px}
-}
-@media(max-width:560px){
-  .section{padding:54px 18px}
-  .section-top{margin-bottom:27px}
-  .section-top p{padding-top:0;font-size:10px}
-  .cowork-section{padding-top:52px;padding-bottom:52px}
-  .cowork-copy h3{font-size:42px}
-  .cowork-copy p{font-size:11px;line-height:1.7}
-  .cowork-point{grid-template-columns:32px 1fr;padding:11px 0}
-  .cowork-point span{font-size:8px}
-  .cowork-meta{gap:14px;flex-wrap:wrap}
-  .vertical-wrap{display:grid;grid-template-columns:1fr;max-width:78vw;margin:0 auto;gap:0}
-  .vertical-main{width:100%}
-  .vertical-side{display:block;padding:18px 17px}
-  .vertical-side strong{font-size:22px;display:block;margin:9px 0 8px}
-  .vertical-side p{display:block;font-size:8px;margin:0}
-  .side-lines{margin-top:16px}
-  .side-lines span{padding:8px 0}
-  .annotation{min-height:58px}
-  .stats{margin-top:28px}
-  #people .section-top{margin-bottom:24px}
-  .people-toolbar{margin-bottom:10px}
-  .profile-panel{margin-top:12px}
-  .community-photo{min-height:400px}
-  .cta{padding-top:78px;padding-bottom:78px}
-}
+<!-- HERO · TV channel 1 -->
+<header class="hero on-orange" id="watch"><div class="wrap">
+  <h1>Tel Aviv, you're <span class="w">on air.</span></h1>
+  <div class="copy">
+    <p class="lede">The stories behind Israeli tech, told in English. We turn founders, exits and big bets into one-minute stories, go deeper on YouTube, and bring the orange mic to Tel Aviv's tech events. Then we get everyone in one room, and teach AI hands-on at Deploy Academy.</p>
+    <div class="stats" id="stats"><div class="stat stat1"><span class="n">1.1M</span><span class="lbl">Instagram views, 19 Sep – 18 Oct 2026</span><svg class="doodle in" viewBox="0 0 150 74" style="--len:460" aria-hidden="true"><path d="M28 12 C70 -2 142 6 144 34 C146 62 62 74 24 62 C-4 52 4 22 40 10 C54 5 70 5 82 7"></path></svg></div><div class="stat"><span class="n">745K</span><span class="lbl">Views on our biggest story</span></div><div class="stat"><span class="n">400+</span><span class="lbl">People in the community</span></div></div>
+    <div class="acts"><button class="btn" id="watchnow"><span class="tri" aria-hidden="true"></span> Watch the latest story</button><a class="btn c" href="#longform">Long-form on YouTube</a></div>
+  </div>
+  <div class="tvzone">
+    <div class="tv">
+      <i class="ant" style="left:40%;transform:rotate(-30deg)"></i><i class="ant" style="left:44%;transform:rotate(24deg)"></i>
+      <div class="screen wide" id="screen" aria-live="polite"><div class="full"><video id="tvvid" src="/media/clips/hero-sizzle.mp4" poster="/media/clips/hero-sizzle.jpg" loop="" playsinline="" autoplay="" muted="" data-silent="1"></video></div>
+        <div class="gfx l"><span class="chn" id="gchn">CH 1 · ON AIR</span><span class="ttl" id="gttl">Live from the room</span><span class="big n" id="gbig"></span><span class="sm" id="gsm"></span></div>
+        <div class="gfx r" aria-hidden="true"><span class="wm">DEPLOY<i>.</i></span></div>
+        <button class="tvplay" id="tvplay" aria-label="Play the long-form episode"></button>
+        <span class="lflabel" id="lflabel">CH 1 · ON AIR · Live from the room</span>
+        <canvas id="tvstatic" width="160" height="100"></canvas>
+      </div>
+      <div class="panel"><div class="chdisp" id="chdisp" aria-hidden="true">1</div><button class="chbtn" id="chup" aria-label="Next channel">CH ▲</button><button class="chbtn" id="chdn" aria-label="Previous channel">CH ▼</button><button class="tvsnd" id="tvsnd" aria-label="Sound off"><i class="ic ic-snd-off" aria-hidden="true"></i><span class="t">SOUND OFF</span></button><span class="grille"></span></div>
+    </div>
+    <div class="feet"><i></i><i></i></div>
+  </div>
+</div>
+<div class="ticker" aria-hidden="true"><div id="ticker"><span>Academy 101 · <em>TODAY</em><b>✺</b>DEPLOY_006 · <em>Mon 26 Oct</em><b>✺</b>Academy 201 · <em>Mon 16 Nov</em><b>✺</b>Weekly coworking · <em>Tel Aviv</em><b>✺</b>New founder story · <em>every few days</em><b>✺</b></span><span>Academy 101 · <em>TODAY</em><b>✺</b>DEPLOY_006 · <em>Mon 26 Oct</em><b>✺</b>Academy 201 · <em>Mon 16 Nov</em><b>✺</b>Weekly coworking · <em>Tel Aviv</em><b>✺</b>New founder story · <em>every few days</em><b>✺</b></span></div></div>
+</header>
 
+<!-- STORIES · channel 2 -->
+<section class="sec" id="stories"><div class="wrap">
+  <div class="head row"><div><h2>Stories</h2>
+    <p>One founder, one big bet, under a minute. Waze, Wiz, Base44 and more: the stories behind the companies everyone's talking about, told the way I'd tell a friend. Tap a face to watch.</p></div>
+    <button class="btn o" data-feed="waze"><span class="tri" aria-hidden="true"></span> Watch them all</button></div>
+  <div class="wall" id="wall"><article class="snap" data-id="waze"><span class="sticker tag">Most follows</span><span class="sticker views" style="background:var(--sun)"><span class="n">126K</span>views</span><button class="shot" data-feed="waze" aria-label="Watch the Waze story with sound"><img src="/media/thumbs/card-waze-v2.jpg" alt="" loading="lazy"><video data-src="/media/clips/waze.mp4" poster="/media/thumbs/card-waze-v2.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Waze</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/waze/">He gave his map away. Google paid $1B.</a></h3></article><article class="snap" data-id="base44"><span class="sticker views" style="background:var(--pink)"><span class="n">60.8K</span>views</span><button class="shot" data-feed="base44" aria-label="Watch the Base44 story with sound"><img src="/media/thumbs/card-base44.jpg" alt="" loading="lazy"><video data-src="/media/clips/base44.mp4" poster="/media/thumbs/card-base44.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Base44</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/base44/">A reservist built his partner an app. Wix paid $80M.</a></h3></article><article class="snap" data-id="wonderful"><span class="sticker views" style="background:var(--lime)"><span class="n">28.9K</span>views</span><button class="shot" data-feed="wonderful" aria-label="Watch the Wonderful story with sound"><img src="/media/thumbs/card-wonderful.jpg" alt="" loading="lazy"><video data-src="/media/clips/wonderful.mp4" poster="/media/thumbs/card-wonderful.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Wonderful</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/wonderful/">They broke the first rule of Israeli startups.</a></h3></article><article class="snap" data-id="wiz"><span class="sticker views" style="background:var(--sky)"><span class="n">19.1K</span>views</span><button class="shot" data-feed="wiz" aria-label="Watch the Wiz story with sound"><img src="/media/thumbs/card-wiz.jpg" alt="" loading="lazy"><video data-src="/media/clips/wiz.mp4" poster="/media/thumbs/card-wiz.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Wiz</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/wiz/">He turned down Google's reported $23B.</a></h3></article><article class="snap" data-id="tesla"><span class="sticker tag">Most shared</span><span class="sticker views" style="background:var(--lime)"><span class="n">745K</span>views</span><button class="shot" data-feed="tesla" aria-label="Watch the Tesla story with sound"><img src="/media/thumbs/card-tesla.jpg" alt="" loading="lazy"><video data-src="/media/clips/tesla.mp4" poster="/media/thumbs/card-tesla.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Tesla</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/tesla/">Tesla's new Roadster drove upside down. Here's how.</a></h3></article><article class="snap" data-id="calai"><span class="sticker views" style="background:var(--sky)"><span class="n">75.7K</span>views</span><button class="shot" data-feed="calai" aria-label="Watch the Cal AI story with sound"><img src="/media/thumbs/card-calai.jpg" alt="" loading="lazy"><video data-src="/media/clips/calai.mp4" poster="/media/thumbs/card-calai.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Cal AI</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/calai/">15 colleges rejected him. Then he sold his app.</a></h3></article><article class="snap" data-id="land"><span class="sticker views" style="background:var(--pink)"><span class="n">5.1K</span>views</span><button class="shot" data-feed="land" aria-label="Watch the Polaroid story with sound"><img src="/media/thumbs/card-land.jpg" alt="" loading="lazy"><video data-src="/media/clips/land.mp4" poster="/media/thumbs/card-land.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">Polaroid</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/land/">A 3-year-old's question became Polaroid.</a></h3></article><article class="snap" data-id="pillcam"><span class="sticker views" style="background:var(--paper)"><span class="n">9.3K</span>views</span><button class="shot" data-feed="pillcam" aria-label="Watch the PillCam story with sound"><img src="/media/thumbs/card-pillcam.jpg" alt="" loading="lazy"><video data-src="/media/clips/pillcam.mp4" poster="/media/thumbs/card-pillcam.jpg" muted="" loop="" playsinline="" aria-hidden="true"></video><span class="nm">PillCam</span><span class="pl" aria-hidden="true"></span></button>
+      <h3><a href="/stories/pillcam/">A missile engineer took a dare. It took 20 years.</a></h3></article><a class="snap more" href="https://instagram.com/deploytlv" target="_blank" rel="noopener"><span class="sticker tag" style="background:var(--sun)">New every few days</span><span class="morein">More stories on Instagram ↗</span></a><span class="wallnote hand" style="left:16%;top:-44px">the one that blew up ↓</span></div>
+  <div class="center"><a class="btn c" href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Follow @deploytlv on Instagram ↗</a></div>
+</div></section>
 
-/* V10 — MOBILE-FIRST POLISH PASS
-   Same Deploy visual language. Mobile is composed, not just stacked. */
-@media(max-width:560px){
-  html,body{overflow-x:hidden}
-  body{background:var(--paper)}
-  .site{width:100%;box-shadow:none}
+<!-- LONG-FORM · channel 3 -->
+<section class="sec on-ink" id="longform"><div class="wrap">
+  <div class="head"><h2>Long-form</h2><p>When a story needs more than a minute, we go long on YouTube: researched, hosted on camera and cut in our paper-collage style.</p></div>
+  <div class="lfbox">
+    <div class="player" id="player"><span class="sticker">New episode</span><img src="https://i.ytimg.com/vi/bh5vQedObiQ/maxresdefault.jpg" alt=""><button aria-label="Play: Trump Renamed AI. Now Everyone Wants These Domains."><span></span></button></div>
+    <div><h3 id="lftitle">Trump Renamed AI. Now Everyone Wants These Domains.</h3><p id="lfblurb">Why everyone is suddenly buying .si domains. I go on camera to explain it, cut together in our paper-collage style.</p>
+      <div class="acts"><button class="btn o" id="lfplay"><span class="tri" aria-hidden="true"></span> Play the episode</button><a class="btn c" id="lfyt" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=bh5vQedObiQ">Open on YouTube ↗</a></div></div>
+  </div>
+</div></section>
 
-  /* Navigation: keep the brand + primary action, remove desktop density. */
-  .nav{height:58px;padding:0 14px;backdrop-filter:blur(9px)}
-  .logo{font-size:16px}
-  .links{gap:0}
-  .links .btn{min-height:34px;padding:0 10px;font-size:8px;box-shadow:2px 2px 0 var(--ink)}
-  .ticker{height:27px;font-size:7px}
-  .ticker span{margin-right:34px}
+<!-- ON THE MIC · channel 4 -->
+<section class="sec" id="onthemic"><div class="wrap">
+  <div class="head"><h2>On the <em>mic</em></h2><p>I take the orange mic to the rooms where Tel Aviv tech happens and ask the people building what they're working on. So far: AWS Summit, Nebius and Agentic Israel.</p></div>
+  <div class="aired" data-render="aired"><article class="cv" style="background:var(--orange)"><span class="sticker tag">● AIRED</span>
+      <div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/aws.mp4" poster="/media/clips/aws.jpg" muted="" loop="" playsinline="" aria-label="AWS Summit Tel Aviv" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div>
+      <div><h3 class="who">AWS</h3><div class="what">AWS Summit Tel Aviv</div><div class="dt">10 Sept 2026</div><a class="lnk" href="https://www.instagram.com/deploytlv/reel/DdJokfnNW_0/" target="_blank" rel="noopener">Watch on Instagram ↗</a></div></article><article class="cv" style="background:var(--lime)"><span class="sticker tag">● AIRED</span>
+      <div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/nebius.mp4" poster="/media/clips/nebius.jpg" muted="" loop="" playsinline="" aria-label="Builders &amp; Brews" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div>
+      <div><h3 class="who">Nebius</h3><div class="what">Builders &amp; Brews</div><div class="dt">15 Sept 2026</div><a class="lnk" href="https://www.instagram.com/deploytlv/reel/DdgGgtNtCiO/" target="_blank" rel="noopener">Watch on Instagram ↗</a></div></article><article class="cv" style="background:var(--sky)"><span class="sticker tag new">FIRST TIME ONLINE</span>
+      <div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/agentic-v2.mp4" poster="/media/clips/agentic-v2.jpg" muted="" loop="" playsinline="" aria-label="Agentic Israel at Startup Nation Central" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div>
+      <div><h3 class="who">Agentic</h3><div class="what">Agentic Israel at Startup Nation Central</div><div class="dt">5 Oct 2026</div><span class="lnk" style="border:0">Tap SOUND to watch it here</span></div></article></div>
+</div></section>
 
-  /* Hero: editorial first, then a true wide film frame. */
-  .hero{display:block;border-bottom:1px solid var(--ink)}
-  .hero-copy{padding:44px 18px 26px;min-height:0}
-  .eyebrow,.kicker{font-size:7px}
-  .hero h1{font-size:clamp(43px,13.2vw,58px);line-height:.88;margin:13px 0 20px;letter-spacing:-.06em}
-  .hero p{font-size:12px;line-height:1.55;max-width:34ch}
-  .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-  .hero-actions .btn{width:100%;min-height:42px;padding:0 9px;font-size:8px;box-shadow:2px 2px 0 var(--ink)}
-  .hero-foot{padding-top:27px;gap:13px;font-size:7px}
-  .hero-media{padding:0}
-  .media-main{width:100%;aspect-ratio:16/9;border-radius:0}
-  .media-caption strong{font-size:17px;line-height:.9}
-  .media-caption{font-size:7px}
-  .live{font-size:6px}
+<!-- WHAT'S ON -->
+<section class="sec on-ink" id="guide"><div class="wrap">
+  <div class="head"><h2>What's on</h2><p>Everything coming up at Deploy: Deploy nights, Academy classes, weekly coworking and new stories.</p></div>
+  <div class="listing">
+    <div class="lhead"><strong>Coming up</strong><span>Tel Aviv · all times local</span></div>
+    <div data-render="guide"><div class="row"><div class="when">Wed 21 Oct<small>19:00 – 21:00</small></div><span class="chip" style="background:var(--sun)">Workshop</span>
+        <div class="prog"><h4>Academy 101: Build &amp; ship a website with AI <span class="badge o">TODAY</span></h4><p>Every Wednesday. Two hours, beginners welcome, in English. Leave with your own website live on the internet.</p></div><a class="go hot" href="/academy/build-and-ship/">Book a seat →</a></div><div class="row"><div class="when">Mon 26 Oct<small>18:00 – 20:00 · Sarona</small></div><span class="chip" style="background:var(--orange)">Deploy night</span>
+        <div class="prog"><h4>DEPLOY_006 <span class="badge">NEXT</span></h4><p>Our sixth night, at Sarona in Tel Aviv. People show what they built, then the room takes over. Free, in English.</p></div><a class="go hot" href="https://luma.com/o8dzr1kh" target="_blank" rel="noopener">RSVP on Luma ↗</a></div><div class="row"><div class="when">Mon 16 Nov<small>19:00 – 21:00 · 4 weeks</small></div><span class="chip" style="background:var(--sun)">Course</span>
+        <div class="prog"><h4>Academy 201: Build an app with AI <span class="badge">NEW</span></h4><p>Four Monday evenings. Leave with your own working app, live on the internet and on your phone. ₪1,200.</p></div><a class="go" href="/academy/build-an-app/">See the course →</a></div><div class="row"><div class="when">Every week<small>Tel Aviv</small></div><span class="chip" style="background:var(--lime)">Coworking</span>
+        <div class="prog"><h4>Bring your laptop </h4><p>We take over a room and build next to each other. The WhatsApp group has this week’s day and place.</p><button class="rowvid" type="button" data-clip="/media/clips/coworking.mp4" data-poster="/media/clips/coworking.jpg"><span class="tri" aria-hidden="true"></span> See what it looks like</button></div><a class="go" href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">Get the details ↗</a></div><div class="row"><div class="when">Every few days<small>Instagram</small></div><span class="chip" style="background:var(--pink)">New story</span>
+        <div class="prog"><h4>A new story </h4><p>The companies, the bets and the people behind them, in under a minute.</p></div><a class="go" href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Follow ↗</a></div></div>
+  </div>
+  <div class="past">
+    <h3>Every Deploy night so far</h3>
+    <p>Free evenings in Tel Aviv where people show what they built, then the room takes over. 718 people have applied to come so far.</p>
+  </div>
+  <div class="tix" data-render="nights"><div class="tk"><span class="no">#1</span><div><strong>Deploy for Startups #1</strong><em>Deploy for Startups</em><span>12 Oct 2026 · 178 applied</span></div></div><div class="tk"><span class="no">#5</span><div><strong>Deploy #5</strong><em>AI Showcase</em><span>7 Sept 2026 · 124 applied</span></div></div><div class="tk"><span class="no">#4</span><div><strong>Deploy #4</strong><em>Using AI to Hack Growth</em><span>29 Jul 2026 · 136 applied</span></div></div><div class="tk"><span class="no">#3</span><div><strong>Deploy #3</strong><em>First Dollar Stories</em><span>6 Jul 2026 · 134 applied</span></div></div><div class="tk"><span class="no">#2</span><div><strong>Deploy #2</strong><em>AI Showcase</em><span>8 Jun 2026 · 86 applied</span></div></div><div class="tk"><span class="no">#1</span><div><strong>Deploy #1</strong><em>The first Deploy</em><span>18 May 2026 · 60 applied</span></div></div></div>
+</div></section>
 
-  /* Section rhythm: reduce blank vertical travel. */
-  .section{padding:48px 18px}
-  .section-top{gap:9px;margin-bottom:24px}
-  .section-id{font-size:7px;margin-bottom:2px}
-  .section-top h2{font-size:clamp(36px,10.8vw,46px);line-height:.91;letter-spacing:-.045em}
-  .section-top p{font-size:9px;line-height:1.55;max-width:36ch;color:#575046}
+<!-- ACADEMY · channel 5 -->
+<section class="sec academy" id="academy"><div class="wrap">
+  <div class="folder"><span class="tab">Deploy Academy</span>
+    <div id="acphone"><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/academy.mp4" poster="/media/clips/academy.jpg" muted="" loop="" playsinline="" aria-label="Deploy Academy" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div></div>
+    <div>
+      <h2>Learn by <em>shipping.</em></h2>
+      <p class="lede">Practical AI workshops in Tel Aviv, in English. Ten people, one evening, and you go home with something you built, live on the internet. People come in from Jerusalem and Haifa for it.</p>
+      <div class="classes" id="classes"><a class="cls" href="/academy/build-and-ship/"><span class="sticker">TODAY!</span><b>101 · WED 21 OCT · 19:00</b><strong>Build &amp; ship a website with AI</strong><span>Every Wednesday · 2 hours · ₪250</span></a><a class="cls" href="/academy/build-an-app/"><b>201 · MON 16 NOV · 19:00</b><strong>Build an app with AI</strong><span>4 Monday evenings · ₪1,200</span></a><a class="cls wait" href="/academy/edit-video/"><b>102 · NEXT DATE SOON · JOIN THE WAITLIST</b><strong>Edit video with AI</strong><span>Waitlist open · ₪300</span></a></div>
+      <div class="acts"><a class="btn o" id="acbook" href="/academy/build-and-ship/">Book 101 · Wed 21 Oct →</a><a class="btn c" href="/partner/?pick=team#enquire">Private session for your team</a></div>
+    </div>
+  </div>
+</div></section>
 
-  /* Coworking: text -> compact principles -> portrait media. No empty column. */
-  .cowork-section{padding:46px 18px 48px}
-  .cowork{display:flex;flex-direction:column;gap:28px}
-  .cowork-copy{display:block;min-height:0}
-  .cowork-copy h3{font-size:40px;line-height:.9;margin:9px 0 17px}
-  .cowork-copy p{font-size:10.5px;line-height:1.65;margin:0 0 8px;max-width:37ch}
-  .cowork-bottom{margin-top:22px}
-  .cowork-point{grid-template-columns:27px 1fr;gap:9px;padding:10px 0}
-  .cowork-point b{font-size:7px}
-  .cowork-point span{font-size:8px;line-height:1.45}
-  .cowork-meta{margin:16px 0 18px;gap:10px;font-size:7px}
-  .cowork-copy .btn{width:100%;min-height:44px}
-  .vertical-wrap{width:100%;max-width:330px;margin:0 auto;display:block}
-  .vertical-main{width:100%;aspect-ratio:9/16;border:1px solid var(--ink)}
-  .vertical-side{padding:15px 15px 16px;border:1px solid var(--ink);border-top:0}
-  .vertical-side strong{font-size:20px;margin:8px 0 6px}
-  .vertical-side p{font-size:7.5px;line-height:1.55;max-width:none}
-  .side-lines{margin-top:13px}
-  .side-lines span{padding:7px 0;font-size:6.5px}
-  .side-lines span b{font-size:6.5px}
+<!-- COMMUNITY -->
+<section class="sec community" id="community"><div class="wrap">
+  <div class="head"><h2>The room</h2><p>Founders, engineers and operators building with AI. We meet at Deploy nights to show what we've built, cowork every week in between, and keep talking in a very active WhatsApp group.</p></div>
+  <div class="pins" id="pins"><figure class="pin"><img src="/media/thumbs/room-v2-1.jpg" alt="A packed room talking at DEPLOY_005" loading="lazy"><figcaption class="hand">DEPLOY_005 · demo night</figcaption></figure><figure class="pin"><img src="/media/thumbs/room-v2-2.jpg" alt="The audience watching a demo at DEPLOY_005" loading="lazy"><figcaption class="hand">mid-demo</figcaption></figure><figure class="pin"><img src="/media/thumbs/room-v2-3.jpg" alt="Rows of people at Deploy for Startups" loading="lazy"><figcaption class="hand">Deploy for Startups · 12 Oct</figcaption></figure><figure class="pin"><img src="/media/thumbs/room-v2-4.jpg" alt="Academy students building on laptops" loading="lazy"><figcaption class="hand">Academy · building</figcaption></figure><figure class="pin"><img src="/media/thumbs/room-v2-5.jpg" alt="People working on laptops on sofas" loading="lazy"><figcaption class="hand">laptops out</figcaption></figure><figure class="pin"><img src="/media/thumbs/room-v2-6.jpg" alt="Helping a student next to the Deploy banner" loading="lazy"><figcaption class="hand">help at every table</figcaption></figure><span class="sticker" style="left:44%;top:-18px;background:var(--sun);transform:rotate(-4deg)">● In the room</span></div>
+  <div class="roomfilm">
+    <div class="nightclips" id="nightclips"><figure><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/night-deploy2.mp4" poster="/media/clips/night-deploy2.jpg" muted="" loop="" playsinline="" aria-label="Deploy #2 · AI Showcase" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div><figcaption>Deploy #2 · AI Showcase</figcaption></figure><figure><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/night-deploy4.mp4" poster="/media/clips/night-deploy4.jpg" muted="" loop="" playsinline="" aria-label="Deploy #4 · Using AI to Hack Growth" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div><figcaption>Deploy #4 · Using AI to Hack Growth</figcaption></figure></div>
+    <div class="whos"><h3>Who's in the room</h3><p>A few of the people who come to Deploy.</p><div class="people" id="people"><figure class="person"><img src="/media/people/Eliezer_Steinbock.jpg" alt="" loading="lazy"><figcaption><b>Eliezer Steinbock</b><span>Inbox Zero · Founder</span></figcaption></figure><figure class="person"><img src="/media/people/Matthew_Sigurko.jpg" alt="" loading="lazy"><figcaption><b>Matthew Sigurko</b><span>F5 · Principal Software Engineer</span></figcaption></figure><figure class="person"><img src="/media/people/Mona_Cohen.jpg" alt="" loading="lazy"><figcaption><b>Mona Cohen</b><span>offtheradar.ai · Founder</span></figcaption></figure><figure class="person"><img src="/media/people/Shahar_Luftig.jpg" alt="" loading="lazy"><figcaption><b>Shahar Luftig</b><span>Explorium · Tech Lead</span></figcaption></figure><figure class="person"><img src="/media/people/Neta_Dror.jpg" alt="" loading="lazy"><figcaption><b>Neta Dror</b><span>HaDigitalit · Founder</span></figcaption></figure><figure class="person"><img src="/media/people/Ilan_Oz.jpg" alt="" loading="lazy"><figcaption><b>Ilan Oz</b><span>Team8 · EmberNovels</span></figcaption></figure><figure class="person"><img src="/media/people/Yehonatan_Tsirolnik.jpg" alt="" loading="lazy"><figcaption><b>Yehonatan Tsirolnik</b><span>SailPoint · Nemus</span></figcaption></figure><figure class="person"><img src="/media/people/Artem_Belyakov.jpg" alt="" loading="lazy"><figcaption><b>Artem Belyakov</b><span>Medida · Founding Engineer</span></figcaption></figure><figure class="person"><img src="/media/people/Ariel_Cohen.jpg" alt="" loading="lazy"><figcaption><b>Ariel Cohen</b><span>Swan · Founding GTM Engineer</span></figcaption></figure></div></div>
+  </div>
+  <div class="bignum">
+    <div><b>400+</b><span>people in the Deploy community</span></div>
+    <div><b>718</b><span>applications to our six nights so far</span></div>
+    <div><b>Weekly</b><span>coworking since June</span></div>
+  </div>
+  <div class="worksat"><span>Our community works at</span><div class="logos" data-render="logos"><img src="/assets/logos/monday.png" alt="monday.com" loading="lazy"><img src="/assets/logos/google.png" alt="Google" loading="lazy"><img src="/assets/logos/aleph.svg" alt="Aleph" loading="lazy"><img src="/assets/logos/team8.svg" alt="Team8" loading="lazy"><img src="/assets/logos/walkme_light.svg" alt="WalkMe" loading="lazy"><img src="/assets/logos/payoneer.svg" alt="Payoneer" loading="lazy"></div></div>
+  <div class="acts"><button class="btn o" data-join="">Join Deploy →</button><a class="btn c" href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">WhatsApp group ↗</a></div>
+</div>
+<div class="builds" data-render="builds" aria-label="Companies people in the community are building"><div><span><b>WHAT THE ROOM IS BUILDING</b>Inbox Zero<i>✺</i>NewHedge<i>✺</i>Swan<i>✺</i>offtheradar.ai<i>✺</i>Novee Security<i>✺</i>Decode Insights<i>✺</i>Nemus<i>✺</i>Mana Intelligence<i>✺</i>OrganizEat<i>✺</i>HaDigitalit<i>✺</i>Fundgen<i>✺</i>Opus Eternal<i>✺</i>DragonBot<i>✺</i>Blackspot<i>✺</i>PodSnacks<i>✺</i></span><span><b>WHAT THE ROOM IS BUILDING</b>Inbox Zero<i>✺</i>NewHedge<i>✺</i>Swan<i>✺</i>offtheradar.ai<i>✺</i>Novee Security<i>✺</i>Decode Insights<i>✺</i>Nemus<i>✺</i>Mana Intelligence<i>✺</i>OrganizEat<i>✺</i>HaDigitalit<i>✺</i>Fundgen<i>✺</i>Opus Eternal<i>✺</i>DragonBot<i>✺</i>Blackspot<i>✺</i>PodSnacks<i>✺</i></span></div></div>
+</section>
 
-  /* Event reels: swipe, with a visible next-card edge. Preserve orientation. */
-  #room{padding-left:18px;padding-right:18px}
-  #room .section-top{margin-bottom:24px}
-  .room-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:18px;margin:0 -18px;padding:0 18px 10px;scrollbar-width:none}
-  .room-grid::-webkit-scrollbar{display:none}
-  .room-card{scroll-snap-align:start;flex:0 0 64vw;min-width:0}
-  .room-card.landscape{flex-basis:86vw}
-  .room-card .visual{width:100%;height:auto;border:1px solid var(--ink)}
-  .room-card.portrait .visual{aspect-ratio:9/16}
-  .room-card.landscape .visual{aspect-ratio:16/9}
-  .room-card .visual video{object-fit:cover}
-  .annotation{padding-top:9px;min-height:52px;gap:8px}
-  .annotation strong{font-size:18px;line-height:.95}
-  .annotation span{font-size:7px;line-height:1.35}
-  .room-card .annotation>span{max-width:72px;text-align:right}
-  .stats{grid-template-columns:1fr 1fr;margin-top:24px}
-  .stat{padding:16px 5px}
-  .stat b{font-size:18px}
-  .stat span{font-size:6.5px}
+<!-- WORK WITH US · channel 6 -->
+<section class="sec partner on-ink" id="partner"><div class="wrap">
+  <div class="head"><h2>Put your brand <em>on air.</em></h2><p>Put your event, launch or brand in front of Israel's English-speaking tech crowd, in the stories they already watch and share.</p></div>
+  <div class="reach" id="reach"><div><span class="n">1.1M</span><span class="lbl">Instagram views, 19 Sep – 18 Oct 2026</span></div><div><span class="n">400+</span><span class="lbl">People in the community</span></div></div>
+  <div class="offers">
+    <a class="of" href="/partner/#coverage"><span class="price" id="ofprice">From ₪3,000<small>per event</small></span><h3>Cover your event</h3><p>I come with the orange mic, talk to the people in the room, and we publish a finished reel.</p><span class="ar">See what's included →</span></a>
+    <a class="of" href="/partner/#studio"><span class="price">Studio</span><h3>We make your film</h3><p>Founder stories, long-form explainers and event recaps, in the style our audience already watches.</p><span class="ar">See the formats →</span></a>
+    <a class="of" href="/partner/#sponsor"><span class="price">Monthly</span><h3>Sponsor the stories</h3><p>"Presented by" your brand on every story for a month. One sponsor at a time.</p><span class="ar">How it works →</span></a>
+  </div>
+  <div class="acts"><a class="btn o" href="/partner/">Work with Deploy →</a><a class="btn c" href="/partner/?pick=myron#enquire">Book Myron</a><a class="link" href="/kit/">Download the media kit</a></div>
+</div></section>
 
-  /* Community: copy and pathways first, supporting image shorter. */
-  .community-grid{gap:28px}
-  .community-copy h3{font-size:37px;margin-bottom:16px}
-  .community-copy>p{font-size:10px;line-height:1.65}
-  .rooms{margin-top:24px}
-  .roomrow{grid-template-columns:80px 1fr 18px;gap:9px;padding:16px 0}
-  .roomrow small{font-size:6.5px}
-  .roomrow b{font-size:11px}
-  .roomrow p{font-size:7.5px;line-height:1.4}
-  .community-photo{height:58vw;min-height:230px;max-height:320px}
-  .community-photo .tag{font-size:6px;padding:7px 8px}
+<!-- FAQ -->
+<section class="sec faq" id="faq"><div class="wrap">
+  <div class="head"><h2>Deploy, <em>in short</em></h2></div>
+  <div class="qa">
+    <details open=""><summary>What is Deploy?</summary><p>Deploy is an English-language media company telling the stories of Israeli tech and AI, based in Tel Aviv. We publish one-minute founder stories on Instagram, long-form episodes on YouTube, and cover the city’s tech events with the orange mic. We also run Israel’s fastest-growing English-speaking AI community: Deploy nights, weekly coworking and Deploy Academy.</p></details>
+    <details><summary>Is everything in English?</summary><p>Yes. Every story, episode, event and Academy class is in English, for locals, newcomers and international teams alike.</p></details>
+    <details><summary>How do I come to a Deploy night?</summary><p>Deploy nights are free and listed on Luma; the next one is in the guide above. Join the community to hear about each one first, and come to weekly coworking in Tel Aviv in the meantime.</p></details>
+    <details><summary>Can Deploy cover my event or launch?</summary><p>Yes. Event coverage starts from ₪3,000 in Tel Aviv: Myron on the orange mic, a finished reel and a collab post on @deploytlv. We also make founder films and long-form explainers, and sponsors can present our stories.</p></details>
+    <details><summary>Who hosts Deploy?</summary><p>Myron Shneider, founder and host of Deploy. Before founding Deploy, he produced media content for Aleph VC, including Invested with Michael Eisenberg.</p></details>
+  </div>
+</div></section>
 
-  /* People: cards are swipeable and profiles open as a clean full-width detail card. */
-  .people-toolbar{align-items:center}
-  .people-count{font-size:7px;max-width:190px;line-height:1.4}
-  .people-arrow{width:34px;height:34px}
-  .people-track{grid-auto-columns:72vw;gap:10px;margin:0 -18px;padding:0 18px 2px;scroll-padding:18px}
-  .person h4{font-size:16px;margin:10px 10px 3px}
-  .person p{font-size:7.5px;margin:0 10px}
-  .person .open-profile{font-size:7px;margin:9px 10px 0;padding-top:8px}
-  .profile-panel{display:block;margin:13px -1px 0;min-height:0}
-  .profile-panel[hidden]{display:none}
-  .profile-media{height:auto;min-height:0;aspect-ratio:4/3}
-  .profile-content{padding:20px 17px}
-  .profile-content h3{font-size:29px}
-  .profile-role{font-size:8px}
-  .profile-bio{font-size:9px;line-height:1.6;margin:18px 0}
-  .profile-meta{grid-template-columns:1fr 1fr}
-  .profile-meta div{padding-top:13px}
-  .profile-meta div+div{border-left:1px solid var(--line);padding-left:12px}
-  .profile-meta span{font-size:6px}
-  .profile-meta b{font-size:8px}
-  .profile-nav{margin-top:18px;padding-top:13px}
-  .profile-nav button{font-size:7px}
+<!-- SUBSCRIBE -->
+<section class="subband" id="subscribe"><div class="wrap">
+  <div><h2>One email a week.</h2><p>The Deploy Log: what's on in Tel Aviv tech, the best new stories, and where the orange mic is going next. It also gets you into the Deploy DB.</p></div>
+  <div><form class="subwrap" data-subscribe="" novalidate="">
+    <div class="subform"><label class="sr" for="subem">Email</label><input id="subem" type="email" placeholder="you@company.com" autocomplete="email" required=""><button type="submit">Add me</button></div>
+    <label class="consent"><input type="checkbox" name="consent"> <span>Yes, send me the Deploy Log weekly email. I can unsubscribe anytime.</span></label>
+    <p class="formnote" role="status"></p>
+    <p class="privacy">We'll email you a one-click link to confirm. No password. Unsubscribe from any email.</p>
+  </form></div>
+</div></section>
+</main>
 
-  /* Builds: swipe instead of five tall stacked cards. */
-  .builds{display:flex;overflow-x:auto;gap:10px;margin:0 -18px;padding:0 18px 8px;scroll-snap-type:x mandatory;scroll-padding:18px;scrollbar-width:none}
-  .builds::-webkit-scrollbar{display:none}
-  .build{flex:0 0 74vw;min-height:215px;scroll-snap-align:start;padding:18px}
-  .build:first-child{grid-row:auto;grid-column:auto;min-height:215px}
-  .build h3{font-size:31px}
-  .build p{font-size:8px}
-
-  /* Events: convert desktop rows into compact mobile event cards. */
-  .events{border-top:1px solid var(--ink)}
-  .event{display:grid;grid-template-columns:1fr 26px;grid-template-areas:'code arrow' 'title arrow' 'meta arrow';gap:6px 8px;min-height:0;padding:17px 0;align-items:center}
-  .event:hover{padding-left:0}
-  .event code{grid-area:code;font-size:7px}
-  .event strong{grid-area:title;font-size:19px;line-height:1.05}
-  .event span{grid-area:meta;display:block;font-size:7px;line-height:1.35}
-  .event em{grid-area:arrow;text-align:right;font-size:18px}
-
-  /* Product section: reduce UI height while keeping it legible. */
-  .intel{gap:28px}
-  .intel-copy h3{font-size:39px;margin:9px 0 15px}
-  .intel-copy p{font-size:9.5px;line-height:1.65}
-  .intel-copy .btn{width:100%;margin-top:5px}
-  .intel-ui{min-height:340px;padding:20px 17px}
-  .intel-head{font-size:6.5px;padding-bottom:13px}
-  .intel-question{font-size:29px;margin:26px 0}
-  .chip{font-size:6.5px;padding:7px 8px}
-  .intel-numbers{grid-template-columns:1fr 1fr}
-  .intel-numbers div{padding:13px 0}
-  .intel-numbers b{font-size:17px}
-  .intel-numbers span{font-size:6px}
-
-  /* Social proof should not become a giant logo wall on a phone. */
-  .proof{padding:24px 18px;gap:13px;display:block}
-  .proof-label{font-size:7px;margin-bottom:13px}
-  .logos{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;gap:28px;padding-bottom:4px;scrollbar-width:none}
-  .logos::-webkit-scrollbar{display:none}
-  .logos img{flex:0 0 auto;max-width:75px;max-height:24px}
-
-  /* Closing section: strong but not three screens tall. */
-  .cta{padding:68px 18px 64px}
-  .cta h2{font-size:clamp(43px,12vw,58px);line-height:.87;margin:13px auto 20px}
-  .cta p{font-size:9px;line-height:1.55;max-width:34ch}
-  .cta .btn{width:100%;max-width:320px;min-height:45px}
-  footer{padding:20px 18px;display:grid;grid-template-columns:1fr auto;gap:7px;font-size:6.5px}
-  footer>div:nth-child(2){display:none}
-}
+<footer class="ft"><div class="wrap">
+    <div class="cols">
+      <div class="about"><a class="logo" href="/">DEPLOY <b>TLV</b></a>The show about the people building tech in Tel Aviv. Founder stories, long-form, the orange mic at events, and the room where it all happens.</div>
+      <div><h4>Watch</h4><ul><li><a href="/#stories">Stories</a></li><li><a href="/#longform">Long-form</a></li><li><a href="/#onthemic">On the mic</a></li></ul></div>
+      <div><h4>Come along</h4><ul><li><a href="/#guide">What's on</a></li><li><a href="/#academy">Academy</a></li><li><a href="/#community">Community</a></li><li><a href="/db/">Deploy DB</a></li></ul></div>
+      <div><h4>Work with us</h4><ul><li><a href="/partner/">Partner with Deploy</a></li><li><a href="/kit/">Media kit</a></li><li><a href="/host/">Book Myron</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://www.youtube.com/watch?v=bh5vQedObiQ" target="_blank" rel="noopener">YouTube ↗</a></li><li><a href="https://www.linkedin.com/company/deploytlv" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul></div>
+    </div>
+    <div class="mega" aria-hidden="true">DEPLOY<b>TLV</b></div>
+    <div class="fine"><span>Deploy TLV · made in Tel Aviv</span><span>Hosted by Myron Shneider</span><a href="mailto:hello@deploytlv.com">hello@deploytlv.com</a></div>
+  </div></footer>
 
 
-/* V11 — MOBILE FROM-THE-ROOM EDITORIAL STACK
-   Event footage scrolls naturally; no horizontal swipe carousel on mobile. */
-@media(max-width:560px){
-  #room .room-grid{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-    overflow:visible !important;
-    margin-left:0 !important;
-    margin-right:0 !important;
-    padding:0 !important;
-    gap:34px !important;
-  }
-  #room .room-card{
-    flex:none !important;
-    width:100% !important;
-    scroll-snap-align:none !important;
-  }
-  #room .room-card.portrait{
-    width:min(86vw,420px) !important;
-  }
-  #room .room-card.portrait:nth-child(1){
-    margin-left:0;
-    margin-right:auto;
-  }
-  #room .room-card.portrait:nth-child(2){
-    margin-left:auto;
-    margin-right:0;
-    width:min(78vw,380px) !important;
-  }
-  #room .room-card.landscape{
-    width:100% !important;
-    grid-column:auto !important;
-  }
-  #room .room-card .annotation{
-    padding-top:11px;
-    gap:14px;
-  }
-  #room .room-card .annotation strong{font-size:20px}
-  #room .room-card .annotation>span{
-    max-width:104px;
-    text-align:right;
-  }
-}
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvh6fty8"></script>
+<script src="/assets/site.js?v=mvh6fty8"></script>
+   <dialog class="clipdlg" id="clipdlg" aria-label="Video"><button class="x" aria-label="Close">✕</button><video controls="" playsinline=""></video></dialog>
+   
+<script>
+window.DeployPage = function(){
+  const {D,$,$$,esc,phone,openFeed,hiss,noise,isSound,posted} = Deploy;
+  const {dayDiff,fmtDay,rel} = DeployDates;
 
+  /* hero numbers: said once here, once to partners */
+  $('#stats').innerHTML = D.stats.map((s,i)=>`<div class="stat${i===0?' stat1':''}"><span class="n">${s.value}</span><span class="lbl">${esc(s.label)}</span>${i===0?'<svg class="doodle" viewBox="0 0 150 74" style="--len:460" aria-hidden="true"><path d="M28 12 C70 -2 142 6 144 34 C146 62 62 74 24 62 C-4 52 4 22 40 10 C54 5 70 5 82 7"/></svg>':''}</div>`).join('');
 
-/* V12 — EDITING PASS
-   No redesign. Tighten copy hierarchy, emphasize what's current, and simplify mobile browsing. */
-.cowork-lede{font-size:15px!important;line-height:1.72!important;max-width:540px!important;margin:8px 0 0!important;color:#37332d}
-.cowork-rule{margin:22px 0 4px;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif,sans-serif;font-size:clamp(25px,2.6vw,38px);line-height:.95;text-transform:uppercase;letter-spacing:-.035em}
-.cowork-rule .cursor{width:.42em;margin-left:.13em}
-.community-lede{font-size:15px!important;line-height:1.75!important;color:#37332d!important;max-width:610px;margin:18px 0 0!important}
-.next-event{position:relative;background:var(--paper2)}
-.next-event code i{font-style:normal;color:var(--ink);background:var(--orange);padding:5px 7px;margin-right:10px}
-.next-event:hover code i{background:var(--ink);color:var(--orange)}
-#events .event:first-child{border-top:2px solid var(--ink)}
-@media(min-width:901px){
-  .cowork-copy{min-height:0;justify-content:center;gap:34px}
-  .cowork-bottom{margin-top:0}
-  .cowork-section .section-top{margin-bottom:30px}
-  .community-copy{display:flex;flex-direction:column;justify-content:center}
-}
-@media(max-width:560px){
-  .cowork-lede{font-size:11px!important;line-height:1.65!important;max-width:36ch!important}
-  .cowork-rule{font-size:27px;margin:18px 0 2px}
-  .community-lede{font-size:10.5px!important;line-height:1.65!important;margin-top:12px!important}
-  /* Builds are a readable vertical list on phones; reserve horizontal browsing for people. */
-  .builds{display:block!important;overflow:visible!important;margin:0!important;padding:0!important}
-  .build{min-height:0!important;width:100%!important;margin:0!important;padding:15px 0!important;border:0!important;border-top:1px solid var(--ink)!important;background:transparent!important;color:var(--ink)!important;display:grid!important;grid-template-columns:76px 1fr 26px!important;gap:10px!important;align-items:center!important}
-  .build:last-child{border-bottom:1px solid var(--ink)!important}
-  .build:first-child{background:transparent!important;color:var(--ink)!important}
-  .build code{color:var(--orange)!important;font-size:6.5px!important}
-  .build>div{display:block!important}
-  .build h3{font-size:20px!important;line-height:1!important;margin:0 0 4px!important}
-  .build p{font-size:7.5px!important;line-height:1.4!important;margin:0!important;max-width:none!important}
-  .build>span{font-size:0;text-align:right}
-  .build>span:after{content:'→';font-size:17px}
-  .next-event code{display:flex;align-items:center;gap:7px}
-  .next-event code i{padding:4px 5px;margin:0;font-size:6px}
-  .intel-copy p{max-width:36ch}
-}
+  /* ticker: only what's next, with dates */
+  const g = Deploy.upcoming().filter(x=>x.date);
+  const bits = g.map(x=>`${esc(x.title.split(':')[0])} · <em>${rel(x.date)||fmtDay(x.date)}</em>`).concat(['Weekly coworking · <em>Tel Aviv</em>','New founder story · <em>every few days</em>']);
+  const t = bits.join('<b>✺</b>')+'<b>✺</b>'; $('#ticker').innerHTML = `<span>${t}</span><span>${t}</span>`;
 
+  /* stories wall: real faces, one tap to watch. Waze (#1) gets the big frame. */
+  const order = ['waze','base44','wonderful','wiz','tesla','calai','land','pillcam'];
+  $('#wall').innerHTML = order.map(id=>{ const s=D.stories.find(x=>x.id===id); const live=!!s.posted;
+    const views = live ? `<span class="sticker views" style="background:var(--${s.color==='orange'?'paper':s.color})"><span class="n">${s.views}</span>views</span>` : '';
+    const shot = live
+      ? `<button class="shot" data-feed="${s.id}" aria-label="Watch the ${esc(s.name)} story with sound"><img src="${s.thumb}" alt="" loading="lazy"><video data-src="../clips/${s.id}.mp4" poster="${s.thumb}" muted loop playsinline aria-hidden="true"></video><span class="nm">${esc(s.name)}</span><span class="pl" aria-hidden="true"></span></button>`
+      : `<div class="shot"><img src="${s.thumb}" alt="" loading="lazy"><span class="nm">${esc(s.name)}</span><span class="stamp">Coming soon</span></div>`;
+    return `<article class="snap${live?'':' soon'}" data-id="${s.id}">${s.rank===1?'<span class="sticker tag">Most follows</span>':s.tag?`<span class="sticker tag">${esc(s.tag)}</span>`:''}${views}${shot}
+      <h3>${live?`<a href="watch.html?s=${s.id}">${esc(s.headline)}</a>`:esc(s.headline)}</h3></article>`; }).join('')
+    + `<a class="snap more" href="https://instagram.com/deploytlv" target="_blank" rel="noopener"><span class="sticker tag" style="background:var(--sun)">New every few days</span><span class="morein">More stories on Instagram ↗</span></a>`
+    + `<span class="wallnote hand" style="left:16%;top:-44px">the one that blew up ↓</span>`;
+  if (!Deploy.RM) $$('#wall .snap:not(.soon)').forEach(c=>{ const v=$('video',c);
+    c.addEventListener('mouseenter',()=>{ if(!v.src) v.src=v.dataset.src; v.play().then(()=>c.classList.add('playing')).catch(()=>{}); });
+    c.addEventListener('mouseleave',()=>{ v.pause(); c.classList.remove('playing'); }); });
+  const newest = posted().sort((x,y)=>y.posted.localeCompare(x.posted))[0];
+  $('#watchnow').onclick = ()=>openFeed(newest.id);
 
-/* V13 — RHYTHM + MOTION PASS
-   Keep Deploy OS restrained: real content moves naturally; interface moves mechanically. */
-.community-section{padding-top:72px;overflow:hidden}
-.community-head{display:grid;grid-template-columns:125px minmax(0,1fr) 330px;grid-template-rows:auto auto;gap:24px 28px;align-items:start;position:relative;margin-bottom:34px}
-.community-head .section-id{grid-column:1;grid-row:1;padding-top:10px}
-.community-head h2{grid-column:2;grid-row:1;font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(56px,6.2vw,92px);line-height:.86;letter-spacing:-.055em;text-transform:uppercase;margin:0;position:relative;z-index:2}
-.community-head>p{grid-column:3;grid-row:1;font-size:11px;line-height:1.7;color:var(--muted);margin:10px 0 0;max-width:30ch;position:relative;z-index:2}
-.community-collage{grid-column:2/4;grid-row:2;height:330px;display:grid;grid-template-columns:1.15fr .72fr .88fr;gap:10px;position:relative;margin-top:-8px}
-.collage-img{overflow:hidden;background:var(--ink);clip-path:inset(0 100% 0 0);transition:clip-path .55s steps(7,end)}
-.community-collage.in .collage-img{clip-path:inset(0 0 0 0)}
-.community-collage.in .collage-b{transition-delay:.08s}.community-collage.in .collage-c{transition-delay:.16s}
-.collage-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.02)}
-.collage-a img{object-position:center 28%}.collage-b img{object-position:center 22%}.collage-c img{object-position:center 25%}
-.collage-label{position:absolute;right:12px;bottom:12px;background:var(--orange);padding:8px 10px;font:700 7px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace}
-.community-body{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:end}
-.community-copy{display:block!important}
-.community-lede{margin-top:14px!important}
-.community-proof{display:grid;grid-template-columns:repeat(4,1fr);margin-top:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.community-proof span{padding:16px 8px;font-size:7.5px;color:var(--muted);text-transform:uppercase}
-.community-proof span:not(:last-child){border-right:1px solid var(--line)}
-.community-proof b{font:700 12px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--ink);display:block;margin-bottom:5px}
-.community-body .rooms{margin-top:0}
+  /* long-form */
+  const lf = D.longform;
+  $('#lftitle').textContent = lf.title; $('#lfblurb').textContent = lf.blurb; $('#lfyt').href = 'https://www.youtube.com/watch?v='+lf.yt;
+  $('#player').innerHTML = `<span class="sticker">New episode</span><img src="${lf.poster}" alt=""><button aria-label="Play: ${esc(lf.title)}"><span></span></button>`;
+  const playLF = ()=>{ $('#player').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${lf.yt}?autoplay=1&rel=0" title="${esc(lf.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`; };
+  $('#player button').onclick = playLF; $('#lfplay').onclick = playLF;
 
-/* Make the weekly section use its height instead of leaving a soft blank column. */
-@media(min-width:901px){
-  .cowork{align-items:stretch}
-  .cowork-copy{justify-content:space-between!important;padding:8px 0 8px}
-  .cowork-bottom{padding-top:40px;border-top:1px solid var(--line)}
-  .vertical-wrap{transform:translateY(-18px);margin-bottom:-18px}
-}
+  /* academy: classes from data; a past date falls back to the waitlist */
+  $('#acphone').innerHTML = phone('../clips/academy.mp4','../clips/academy.jpg',{label:'Deploy Academy'});
+  const ac = D.academy.map(DeployDates.resolve); const next = ac.filter(c=>c.date && dayDiff(c.date)>=0).sort((a,b)=>a.date.localeCompare(b.date))[0];
+  $('#classes').innerHTML = ac.map(c=>{ const on = c.date && dayDiff(c.date)>=0, r = on && rel(c.date);
+    return `<a class="cls${on?'':' wait'}" href="${c.href}">${r?`<span class="sticker">${r}!</span>`:''}<b>${c.code} · ${on?`${fmtDay(c.date).toUpperCase()} · ${c.time}`:'NEXT DATE SOON · JOIN THE WAITLIST'}</b><strong>${esc(c.title)}</strong><span>${esc(c.meta)}</span></a>`; }).join('');
+  if (next) { $('#acbook').textContent = `Book ${next.code} · ${fmtDay(next.date)} →`; $('#acbook').href = next.href; }
 
-/* Mechanical section-label boot. JS swaps in characters; cursor is purely visual. */
-.section-id.booting:after{content:'_';color:var(--orange);animation:blink .48s steps(1) infinite;margin-left:2px}
+  /* the room on video, and some of the people in it */
+  $('#nightclips').innerHTML = (D.nightClips||[]).map(n=>`<figure>${phone(n.src, n.poster, {label:n.cap})}<figcaption>${esc(n.cap)}</figcaption></figure>`).join('');
+  $('#people').innerHTML = (D.people||[]).map(p=>`<figure class="person"><img src="${p.img}" alt="" loading="lazy"><figcaption><b>${esc(p.name)}</b><span>${esc(p.role)}</span></figcaption></figure>`).join('');
 
-/* Videos announce themselves briefly as they wake up. */
-.visual,.vertical-main{position:relative}
-.visual.media-ready:before,.vertical-main.media-ready:before{content:'● READY';display:block!important;position:absolute;left:10px;top:10px;z-index:5;background:var(--orange)!important;color:var(--ink);padding:6px 8px;font:700 6px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;filter:none!important;transform:none!important;inset:auto!important;animation:readyOut .7s steps(4,end) forwards}
-@keyframes readyOut{0%,55%{opacity:1}100%{opacity:0}}
+  /* community: real photos, pinned */
+  const caps = D.room.length ? D.room : [];
+  $('#pins').innerHTML = caps.map(r=>`<figure class="pin"><img src="${r.src}" alt="${esc(r.alt||'A Deploy night in Tel Aviv')}" loading="lazy"><figcaption class="hand">${esc(r.cap)}</figcaption></figure>`).join('')
+    + (caps.length ? `<span class="sticker" style="left:44%;top:-18px;background:var(--sun);transform:rotate(-4deg)">● In the room</span>` : '');
 
-/* Buttons/rows feel like hardware rather than floating UI. */
-.btn .arrow-shift{display:inline-block;transition:transform .12s steps(2,end)}
-.btn:hover .arrow-shift{transform:translateX(4px)}
-.event em,.roomrow>b:last-child,.build>span{transition:transform .12s steps(2,end)}
-.event:hover em,.roomrow:hover>b:last-child,.build:hover>span{transform:translateX(5px)}
+  /* partner: two numbers a buyer cares about, and the real price */
+  $('#reach').innerHTML = [D.stats[0], D.stats[2]].map(s=>`<div><span class="n">${s.value}</span><span class="lbl">${esc(s.label)}</span></div>`).join('');
+  $('#ofprice').innerHTML = `From ₪${D.coverage.from.toLocaleString('en-US')}<small>per event</small>`;
 
-/* Break the repeated full-viewport rhythm: some chapters are deliberately compact. */
-#people.section,#builds.section,#events.section{padding-top:76px;padding-bottom:76px}
+  /* the TV: one channel per remote button 1–5. Vertical stories sit in the middle; the sides carry the graphics. */
+  const CH=[
+    {label:'CH 1 · ON AIR', title:'Live from the room', src:'../clips/hero-sizzle.mp4', poster:'../clips/hero-sizzle.jpg', silent:1, full:1},
+    {label:'CH 2 · STORIES', title:'Waze: he gave his map away', src:'../clips/waze.mp4', poster:'../clips/waze.jpg', big:'126K', sm:'views'},
+    {label:'CH 3 · LONG-FORM', title:D.longform.title, yt:D.longform.yt, poster:D.longform.poster},
+    {label:'CH 4 · ON THE MIC', title:'Live from AWS Summit Tel Aviv', src:'../clips/aws.mp4', poster:'../clips/aws.jpg', big:'10 Sep', sm:'2026'},
+    {label:'CH 5 · ACADEMY', title:"A year ago I couldn't code", src:'../clips/academy.mp4', poster:'../clips/academy.jpg', big:next?fmtDay(next.date).split(' ').slice(1).join(' '):'101', sm:next?'next class':'waitlist open'}];
+  CH.forEach(c=>{ if(c.src) c.src=Deploy.rw(c.src); if(c.poster) c.poster=Deploy.rw(c.poster); });
+  let cur=0; const scr=$('#screen'), tvs=$('#tvstatic');
+  function render(i){ const c=CH[i]; scr.querySelectorAll('.v9,.full').forEach(e=>e.remove()); scr.classList.remove('yt','lf','wide');
+    if(c.yt){ scr.insertAdjacentHTML('afterbegin',`<div class="full"><img src="${c.poster}" alt=""></div>`); scr.classList.add('lf'); $('#lflabel').textContent=c.label; }
+    else if(c.full){ scr.insertAdjacentHTML('afterbegin',`<div class="full"><video id="tvvid" src="${c.src}" poster="${c.poster}" loop playsinline autoplay muted data-silent="${c.silent?1:0}"></video></div>`); scr.classList.add('wide'); $('#lflabel').textContent=c.label+' · '+c.title;
+      const v=$('#tvvid'); v.muted=!isSound()||!!c.silent; v.play().catch(()=>{}); }
+    else { scr.insertAdjacentHTML('afterbegin',`<div class="v9"><video id="tvvid" src="${c.src}" poster="${c.poster}" loop playsinline autoplay muted data-silent="${c.silent?1:0}"></video></div>`);
+      const v=$('#tvvid'); v.muted=!isSound()||!!c.silent; v.play().catch(()=>{}); }
+    $('#gchn').textContent=c.label; $('#gttl').textContent=c.title; $('#gbig').textContent=c.big||''; $('#gsm').textContent=c.sm||''; $('#chdisp').textContent=i+1; }
+  function show(i){ cur=(i+CH.length)%CH.length; hiss(220); noise(tvs,260); setTimeout(()=>render(cur),110); }
+  window.DeployTV = show;
+  $('#chup').onclick=()=>show(cur+1); $('#chdn').onclick=()=>show(cur-1);
+  $('#tvsnd').onclick=()=>Deploy.setSound(!isSound());
+  $('#tvplay').onclick=()=>{ scr.querySelectorAll('.full').forEach(e=>e.remove()); scr.classList.remove('lf'); scr.classList.add('yt');
+    scr.insertAdjacentHTML('afterbegin',`<div class="full"><iframe src="https://www.youtube-nocookie.com/embed/${D.longform.yt}?autoplay=1&rel=0" title="${esc(D.longform.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`); };
+  render(0);
+};
+</script>
 
-@media(max-width:900px){
-  .community-section{padding-top:58px}
-  .community-head{grid-template-columns:1fr;grid-template-rows:auto;gap:14px;margin-bottom:24px}
-  .community-head .section-id,.community-head h2,.community-head>p,.community-collage{grid-column:1;grid-row:auto}
-  .community-head h2{font-size:clamp(48px,11vw,72px)}
-  .community-head>p{max-width:44ch;margin-top:0}
-  .community-collage{height:300px;margin-top:8px;grid-template-columns:1.2fr .8fr}
-  .collage-c{display:none}
-  .community-body{grid-template-columns:1fr;gap:24px}
-  .community-proof{margin-top:22px}
-}
-@media(max-width:560px){
-  .community-section{padding-top:48px}
-  .community-head h2{font-size:45px;line-height:.9}
-  .community-collage{height:230px;grid-template-columns:1.15fr .85fr;margin-left:-20px;margin-right:-20px}
-  .collage-label{right:8px;bottom:8px}
-  .community-proof{grid-template-columns:1fr 1fr}
-  .community-proof span:nth-child(2){border-right:0}.community-proof span:nth-child(-n+2){border-bottom:1px solid var(--line)}
-  #people.section,#builds.section,#events.section{padding-top:54px;padding-bottom:54px}
-}
-
-
-/* V14 — CONSOLIDATION PASS: fewer chapters, sharper hierarchy */
-.community-intro{margin-bottom:34px}
-.community-section .people-shell{margin-top:0}
-.community-footer{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;margin-top:28px}
-.community-footer .community-proof{margin-top:0}
-.community-footer .rooms{margin-top:0}
-.compact-system{padding-top:62px;padding-bottom:62px;background:var(--ink);color:var(--paper)}
-.compact-grid,.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
-.compact-grid h2,.partner-grid h2{font-family:'Archivo Black','Archivo Fallback',Arial,sans-serif;font-size:clamp(44px,5.6vw,78px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase;margin:10px 0 0}
-.compact-copy>p,.partner-copy>p{font-size:12px;line-height:1.75;max-width:520px;margin:0 0 26px}
-.compact-system .section-id{color:var(--orange)}
-.lab-links{border-top:1px solid #555;margin-bottom:24px}
-.lab-links a{display:grid;grid-template-columns:180px 1fr 24px;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid #555;transition:.12s}
-.lab-links a:hover{color:var(--orange);padding-left:8px}
-.lab-links span{font:700 8px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}
-.lab-links b{font-size:10px;font-weight:500}
-.lab-links em{font-style:normal}
-.text-link{font:700 9px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace;color:var(--orange)}
-.partner-section{padding-top:62px;padding-bottom:62px;background:var(--paper2)}
-.partner-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
-.partner-tags span{border:1px solid var(--ink);padding:8px 10px;font:700 7px 'Silkscreen','Silkscreen Fallback',ui-monospace,monospace}
-.cowork-points{display:none!important}
-.cowork-bottom{gap:18px}
-@media(max-width:900px){.community-footer,.compact-grid,.partner-grid{grid-template-columns:1fr;gap:28px}.compact-system,.partner-section{padding-top:54px;padding-bottom:54px}.lab-links a{grid-template-columns:150px 1fr 20px}}
-@media(max-width:560px){.community-intro{margin-bottom:22px}.community-footer{margin-top:20px;gap:20px}.compact-system,.partner-section{padding:46px 18px}.compact-grid,.partner-grid{gap:22px}.compact-grid h2,.partner-grid h2{font-size:40px}.compact-copy>p,.partner-copy>p{font-size:9.5px;line-height:1.65}.lab-links a{grid-template-columns:1fr 18px;gap:8px;padding:14px 0}.lab-links span{grid-column:1}.lab-links b{grid-column:1;font-size:9px}.lab-links em{grid-column:2;grid-row:1/3;align-self:center}.partner-section .btn{width:100%}}
-
-/* V15 — 18 BUILDS + FOOTER SOCIALS. Feature card leads, the rest go dense. */
-.builds{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:168px;gap:12px}
-.build:first-child{grid-row:span 2;grid-column:span 2}
-.build{padding:18px}
-.build h3{font-size:clamp(17px,1.7vw,24px)}
-.build:first-child h3{font-size:clamp(30px,3.4vw,50px)}
-.build p{font-size:9px;max-width:none;line-height:1.5}
-.build span{font-size:8px;text-transform:uppercase}
-.person{display:flex;flex-direction:column}
-.person img{flex:none}
-.person p{flex:1 0 auto}
-.person .open-profile{margin-top:auto}
-.footer-social{display:flex;gap:18px}
-.footer-social a:hover{color:var(--orange)}
-@media(max-width:900px){
-  .builds{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:158px}
-  .build:first-child{grid-column:span 2;grid-row:span 1;min-height:196px}
-}
-@media(max-width:560px){
-  /* .builds is a full-width list on mobile (set !important by the V11 pass) — left alone. */
-  .footer-social{gap:13px}
-}
-
-/* V16 — copy pass. With the restatements gone these columns hold less text,
-   so stop distributing the remainder across the media column's full height. */
-.cowork-copy{gap:30px}
-/* a later pass pins this with !important inside the same query, so match it there */
-@media(min-width:901px){.cowork-copy{justify-content:center!important}}
-.cowork-bottom{margin-top:0}
-.vertical-side{justify-content:center;gap:34px}
-.vertical-side .side-lines{margin-top:0}
-.person .open-profile{justify-content:flex-end}
-@media(max-width:900px){.cowork-copy{justify-content:flex-start;gap:24px}.vertical-side{gap:22px}}
-@media(max-width:560px){.cowork-copy{gap:18px}.vertical-side{gap:14px}}
-/* Academy: one line in the hero (visible on phones, where the nav links are hidden) and a class list styled like the events. */
-.hero-academy{display:block;position:relative;margin-top:18px;padding:12px 38px 12px 14px;border:1.5px solid var(--ink);background:var(--paper2);font-size:11px;line-height:1.45;max-width:520px;transition:.15s}
-.hero-academy b{font-weight:700;color:var(--ink)}
-.hero-academy span{color:var(--muted)}
-.hero-academy i{font-style:normal;position:absolute;right:14px;top:50%;transform:translateY(-50%)}
-.hero-academy:hover{background:var(--orange)}
-.academy-list .event:first-child{border-top:2px solid var(--ink)}
-.academy-all{display:inline-block;margin-top:22px}
-@media(max-width:560px){.hero-academy{font-size:10px;padding:11px 12px;margin-top:14px}}
-/* Academy button in the top bar: shown at every width (the other nav links hide on phones). */
-.links .academy-btn{background:var(--paper);margin-right:10px}
-.links .academy-btn:hover{background:var(--orange)}
-@media(max-width:560px){.links .academy-btn{margin-right:8px}}
-</style></head><body><div class="site">
-<nav class="nav"><div class="logo">DEPLOY<b>_</b>TLV</div><div class="links"><span class="status"><i></i><span id="navStatus">TEL AVIV / ACTIVE</span></span><a href="#cowork">Coworking</a><a href="#events">Events</a><a href="#builds">Builds</a><a class="btn academy-btn" href="/academy/">Academy</a><a class="btn orange" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank">Join Deploy <span class="arrow-shift">→</span></a></div></nav>
-<div class="ticker"><div><span><b>●</b> WEEKLY COWORKING / TEL AVIV</span><span><b>● NEXT</b> DEPLOY_006 / SARONA / OCT 26</span><span><b>●</b> DEPLOY ACADEMY / CLASSES EVERY WED</span><span>300+ COMMUNITY MEMBERS</span><span>APPLICATIONS OPEN</span><span>BUILD SOMETHING</span><span><b>●</b> WEEKLY COWORKING / TEL AVIV</span><span><b>● NEXT</b> DEPLOY_006 / SARONA / OCT 26</span><span><b>●</b> DEPLOY ACADEMY / CLASSES EVERY WED</span><span>300+ COMMUNITY MEMBERS</span><span>APPLICATIONS OPEN</span><span>BUILD SOMETHING</span></div></div>
-<section class="hero"><div class="hero-copy"><div class="eyebrow">TEL AVIV / AI BUILDERS COMMUNITY</div><h1>THE ROOM<br>WHERE TLV<br>BUILDS<span class="cursor"></span></h1><p>If you’re building with AI in Tel Aviv, you should probably know the other people doing it.</p><p>Events. Weekly coworking. People making things.</p><div class="hero-actions"><a class="btn orange" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank">Join Deploy <span class="arrow-shift">→</span></a><a class="btn" href="#cowork">See inside Deploy <span class="arrow-shift">↓</span></a></div><a class="hero-academy" href="/academy/"><span>Learning to build with AI?</span> <b>Deploy Academy</b>: hands-on classes in English, every Wednesday <i>→</i></a><div class="hero-foot"><span>32.0853° N</span><span>34.7818° E</span><span>IRL / EVERY WEEK</span></div></div><div class="hero-media"><div class="media-main"><video src="assets/video/hero-web.mp4" poster="/deploy1-poster.jpg" muted autoplay loop playsinline preload="metadata"></video><div class="live"><b>●</b> LIVE FROM DEPLOY</div><div class="media-caption"><strong>THIS IS<br>THE ROOM.</strong><div>DEPLOY / TEL AVIV<br>IRL</div></div></div></div></section>
-<section class="section cowork-section" id="cowork" data-status="COWORKING / WEEKLY"><div class="section-top"><div class="section-id">01 / EVERY WEEK</div><h2>BRING YOUR<br>LAPTOP.</h2></div><div class="cowork"><div class="cowork-copy"><div><p class="cowork-lede">Every week, we take over a room in Tel Aviv and work next to each other. Bring something you want to move forward. Leave having moved it forward.</p></div><div class="cowork-bottom"><div class="cowork-rule">THE WORK IS THE PROGRAM<span class="cursor"></span></div><a class="btn orange" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank">Come cowork <span class="arrow-shift">→</span></a></div></div><div class="vertical-wrap reveal"><div class="vertical-main"><video data-src="assets/video/coworking-web.mp4" poster="assets/coworking-frame.jpg" muted loop playsinline preload="none" class="lazy-video"></video></div><div class="vertical-side"><div><b>● COWORKING / ACTIVE</b><strong>THE WEEK<br>BETWEEN<br>EVENTS.</strong></div><div class="side-lines"><span>FREQUENCY <b>WEEKLY</b></span><span>FORMAT <b>WORK / TALK / SHIP</b></span><span>LOCATION <b>TEL AVIV</b></span></div></div></div></div></section>
-<section class="section" id="room" data-status="FROM THE ROOM"><div class="section-top"><div class="section-id">02 / FROM THE ROOM</div><h2>THIS IS WHAT<br>DEPLOY LOOKS LIKE.</h2></div><div class="room-grid">
-<article class="room-card portrait latest reveal"><div class="visual"><video data-src="assets/video/deploy4-web.mp4" poster="assets/deploy4-frame.jpg" muted loop playsinline preload="none" class="lazy-video"></video></div><div class="annotation"><div><strong>Deploy #04</strong><br><span>Using AI to Hack Growth / Jul 29</span></div><span>102 BUILDERS / TLV</span></div></article>
-<article class="room-card portrait reveal"><div class="visual"><video data-src="assets/video/deploy2-web.mp4" poster="/deploy2-poster.jpg" muted loop playsinline preload="none" class="lazy-video"></video></div><div class="annotation"><div><strong>Deploy #02</strong><br><span>AI Showcase / Show What You Built / Jun 08</span></div><span>72 BUILDERS</span></div></article>
-<article class="room-card landscape reveal"><div class="visual"><video data-src="assets/video/hero-web.mp4" poster="/deploy1-poster.jpg" muted loop playsinline preload="none" class="lazy-video"></video></div><div class="annotation"><div><strong>Deploy #01</strong><br><span>The First Deploy / May 18</span></div><span>30 BUILDERS</span></div></article>
-</div><div class="stats"><div class="stat"><b>300+</b><span>Community members</span></div><div class="stat"><b>WEEKLY</b><span>Coworking</span></div><div class="stat"><b>IRL</b><span>Events in Tel Aviv</span></div><div class="stat"><b>0</b><span>Boring panels</span></div></div></section>
-<section class="section community-section" id="community" data-status="COMMUNITY / IN THE ROOM"><div class="section-top community-intro"><div class="section-id">03 / COMMUNITY</div><h2>WHO'S IN<br>THE ROOM?</h2><p>You don’t need a pitch deck. You do need to be making something. Founders, engineers, designers, operators — the mix is the point.</p></div><div class="people-shell"><div class="people-toolbar"><div class="people-count"><span id="peopleIndex">01</span> / <span id="peopleTotal">09</span> &nbsp; CLICK A PROFILE TO OPEN</div><div class="people-arrows"><button class="people-arrow" id="peoplePrev" aria-label="Previous people">←</button><button class="people-arrow" id="peopleNext" aria-label="Next people">→</button></div></div><div class="people-track" id="peopleTrack"><article class="person reveal active" tabindex="0" data-person="0"><img src="assets/people/Eliezer_Steinbock.jpg" alt="Eliezer Steinbock" loading="lazy" decoding="async"><h4>Eliezer Steinbock</h4><p>INBOX ZERO / FOUNDER</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="1"><img src="assets/people/Matthew_Sigurko.jpg" alt="Matthew Sigurko" loading="lazy" decoding="async"><h4>Matthew Sigurko</h4><p>F5 / PRINCIPAL SOFTWARE ENGINEER</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="2"><img src="assets/people/Mona_Cohen.jpg" alt="Mona Cohen" loading="lazy" decoding="async"><h4>Mona Cohen</h4><p>OFFTHERADAR.AI / FOUNDER</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="3"><img src="assets/people/Shahar_Luftig.jpg" alt="Shahar Luftig" loading="lazy" decoding="async"><h4>Shahar Luftig</h4><p>EXPLORIUM / TECH LEAD</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="4"><img src="assets/people/Neta_Dror.jpg" alt="Neta Dror" loading="lazy" decoding="async"><h4>Neta Dror</h4><p>HADIGITALIT / FOUNDER</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="5"><img src="assets/people/Ilan_Oz.jpg" alt="Ilan Oz" loading="lazy" decoding="async"><h4>Ilan Oz</h4><p>TEAM8 / EMBERNOVELS</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="6"><img src="assets/people/Yehonatan_Tsirolnik.jpg" alt="Yehonatan Tsirolnik" loading="lazy" decoding="async"><h4>Yehonatan Tsirolnik</h4><p>SAILPOINT / NEMUS</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="7"><img src="assets/people/Artem_Belyakov.jpg" alt="Artem Belyakov" loading="lazy" decoding="async"><h4>Artem Belyakov</h4><p>MEDIDA / FOUNDING ENGINEER</p><div class="open-profile"><span>&rarr;</span></div></article><article class="person reveal" tabindex="0" data-person="8"><img src="assets/people/Ariel_Cohen.jpg" alt="Ariel Cohen" loading="lazy" decoding="async"><h4>Ariel Cohen</h4><p>SWAN / FOUNDING GTM ENGINEER</p><div class="open-profile"><span>&rarr;</span></div></article></div><div class="profile-panel" id="profilePanel" hidden><div class="profile-media"><img id="profileImage" src="assets/people/Eliezer_Steinbock.jpg" alt="Eliezer Steinbock"></div><div class="profile-content"><div class="profile-top"><div><div class="profile-kicker">DEPLOY / MEMBER PROFILE</div><h3 id="profileName">Eliezer Steinbock</h3><div class="profile-role" id="profileRole">Inbox Zero / Founder</div></div><button class="profile-close" id="profileClose" aria-label="Close profile">×</button></div><p class="profile-bio" id="profileBio">Builds Inbox Zero, an open-source AI email assistant that cleans out and automates your inbox. Two decades shipping from Tel Aviv — before this he grew Draft Fantasy to a quarter of a million signups while serving in the IDF.</p><div class="profile-meta"><div><span>CURRENTLY</span><b id="profileWorking">Inbox Zero</b></div><div><span>IN THE ROOM FOR</span><b id="profileFor">Open source, indie building, distribution</b></div></div><div class="profile-nav"><button id="profilePrev">← Previous person</button><span id="profileCounter">01 / 09</span><button id="profileNext">Next person →</button></div></div></div></div><div class="community-footer"><div class="rooms"><a class="roomrow" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank"><small>/BUILDERS</small><div><b>Building something?</b><p>Founders, engineers and makers actively shipping.</p></div><b>→</b></a><a class="roomrow" href="https://forms.fillout.com/t/8Du1eMXqzkus" target="_blank"><small>/COMPANIES</small><div><b>Bringing AI into work?</b><p>Operators figuring out what works inside organizations.</p></div><b>→</b></a></div></div></section>
-<section class="section" id="builds" data-status="CURRENTLY SHIPPING"><div class="section-top"><div class="section-id">04 / CURRENTLY SHIPPING</div><h2>WHAT PEOPLE ARE<br>WORKING ON.</h2></div><div class="builds"><a class="build" href="https://getinboxzero.com" target="_blank" rel="noopener"><code>BUILD_001</code><div><h3>Inbox Zero</h3><p>Open-source AI email assistant that empties your inbox.</p></div><span>OPEN PROJECT &rarr;</span></a><a class="build" href="https://newhedge.io" target="_blank" rel="noopener"><code>BUILD_002</code><div><h3>NewHedge</h3><p>Bloomberg terminal for Bitcoin.</p></div><span>&rarr;</span></a><a class="build" href="https://getswan.com" target="_blank" rel="noopener"><code>BUILD_003</code><div><h3>Swan</h3><p>Prompts into go-to-market pipeline.</p></div><span>&rarr;</span></a><a class="build" href="https://offtheradar.ai" target="_blank" rel="noopener"><code>BUILD_004</code><div><h3>offtheradar.ai</h3><p>AI headhunting agent for executive search.</p></div><span>&rarr;</span></a><a class="build" href="https://novee.security" target="_blank" rel="noopener"><code>BUILD_005</code><div><h3>Novee Security</h3><p>Applied AI against real attack surface.</p></div><span>&rarr;</span></a><a class="build" href="https://decodeinsights.com" target="_blank" rel="noopener"><code>BUILD_006</code><div><h3>Decode Insights</h3><p>Buyer intelligence for go-to-market teams.</p></div><span>&rarr;</span></a><a class="build" href="https://nemus.fyi" target="_blank" rel="noopener"><code>BUILD_007</code><div><h3>Nemus</h3><p>Agentic work portal for real tasks.</p></div><span>&rarr;</span></a><a class="build" href="https://manaintelligence.ai" target="_blank" rel="noopener"><code>BUILD_008</code><div><h3>Mana Intelligence</h3><p>Computer vision on the factory floor.</p></div><span>&rarr;</span></a><a class="build" href="https://home.organizeat.com" target="_blank" rel="noopener"><code>BUILD_009</code><div><h3>OrganizEat</h3><p>Every recipe you own, digitized.</p></div><span>&rarr;</span></a><a class="build" href="https://hadigitalit.com" target="_blank" rel="noopener"><code>BUILD_010</code><div><h3>HaDigitalit</h3><p>Bootstrapped web and product studio.</p></div><span>&rarr;</span></a><a class="build" href="https://fundgen.ai" target="_blank" rel="noopener"><code>BUILD_011</code><div><h3>Fundgen</h3><p>The identity layer for fundraising.</p></div><span>&rarr;</span></a><a class="build" href="https://opus-eternal.com" target="_blank" rel="noopener"><code>BUILD_012</code><div><h3>Opus Eternal</h3><p>AI-assisted personal autobiographies.</p></div><span>&rarr;</span></a><a class="build" href="https://getDragonBot.com" target="_blank" rel="noopener"><code>BUILD_013</code><div><h3>DragonBot</h3><p>AI agent for Amazon store operators.</p></div><span>&rarr;</span></a><a class="build" href="https://tryblackspot.com" target="_blank" rel="noopener"><code>BUILD_014</code><div><h3>Blackspot</h3><p>Catches black frames and freezes before you ship.</p></div><span>&rarr;</span></a><a class="build" href="https://podsnacks.com" target="_blank" rel="noopener"><code>BUILD_015</code><div><h3>PodSnacks</h3><p>AI podcast summaries by email.</p></div><span>&rarr;</span></a><a class="build" href="https://anivea.com" target="_blank" rel="noopener"><code>BUILD_016</code><div><h3>Anivea</h3><p>Self-portrait studio and automation tools.</p></div><span>&rarr;</span></a><a class="build" href="https://whitecity.ai" target="_blank" rel="noopener"><code>BUILD_017</code><div><h3>White City AI</h3><p>AI automation consulting.</p></div><span>&rarr;</span></a><a class="build" href="https://portail-boyar.web.app" target="_blank" rel="noopener"><code>BUILD_018</code><div><h3>Boyar Portal</h3><p>School CRM plus AI teacher matching.</p></div><span>&rarr;</span></a><a class="build" href="https://parshamap.com" target="_blank" rel="noopener"><code>BUILD_019</code><div><h3>Parsha Map</h3><p>Interactive Torah portion learning.</p></div><span>&rarr;</span></a><a class="build" href="https://thediasporamap.com" target="_blank" rel="noopener"><code>BUILD_020</code><div><h3>Diaspora Map</h3><p>Jewish migration, visualized.</p></div><span>&rarr;</span></a><a class="build" href="https://postmaxx.ai" target="_blank" rel="noopener"><code>BUILD_021</code><div><h3>PostMaxx</h3><p>Code output into LinkedIn and X posts.</p></div><span>&rarr;</span></a></div></section>
-<section class="section" id="events" data-status="EVENTS / DEPLOY_006 NEXT"><div class="section-top"><div class="section-id">05 / EVENTS</div><h2>WE DON'T DO<br>BORING PANELS.</h2><p>Sometimes people show what they built. Sometimes they break down what worked. A few people kick things off. Then the room takes over.</p></div><div class="events"><a class="event next-event" href="https://luma.com/o8dzr1kh" target="_blank" rel="noopener"><code><i>● NEXT</i> DEPLOY_006</code><strong>Deploy #6</strong><span>OCT 26 / SARONA, TLV / 6–8 PM</span><em>→</em></a><a class="event" href="https://luma.com/nikggb2g" target="_blank" rel="noopener"><code>DEPLOY_005</code><strong>AI Showcase</strong><span>SEP 07 / TLV</span><em>→</em></a><a class="event" href="https://deploytlv.com/events/4/"><code>DEPLOY_004</code><strong>Using AI to Hack Growth</strong><span>JUL 29 / TLV / 102 BUILDERS</span><em>→</em></a><a class="event" href="https://deploytlv.com/events/3/"><code>DEPLOY_003</code><strong>First Dollar Stories</strong><span>JUL 06 / TLV</span><em>→</em></a><a class="event" href="https://deploytlv.com/events/2/"><code>DEPLOY_002</code><strong>AI Showcase — Show What You Built</strong><span>JUN 08 / TLV / 72 BUILDERS</span><em>→</em></a><a class="event" href="https://deploytlv.com/events/1/recap/"><code>DEPLOY_001</code><strong>Deploy #1</strong><span>MAY 18 / TLV / 30 BUILDERS</span><em>→</em></a></div></section>
-<section class="section" id="academy" data-status="ACADEMY / CLASSES IN ENGLISH"><div class="section-top"><div class="section-id">06 / ACADEMY</div><h2>LEARN TO<br>BUILD WITH AI.</h2><p>Deploy Academy runs hands-on AI classes in English, for people who don’t code. A small group, the instructor in the room, and you leave with something you built, live on the internet.</p></div><div class="events academy-list">
-<!--A:root-academy-->
-<a class="event next-event" href="/academy/build-and-ship/"><code><i>● WEEKLY</i> ACADEMY_101</code><strong>Build &amp; ship a website with AI</strong><span>EVERY WED / 7–9 PM / ₪250 / IN ENGLISH</span><em>→</em></a>
-<a class="event" href="/academy/build-an-app/"><code>ACADEMY_201</code><strong>Build an app with AI</strong><span>4 MONDAYS FROM NOV 16 / ₪1,200 / IN ENGLISH</span><em>→</em></a>
-<a class="event" href="/academy/edit-video/"><code>ACADEMY_102</code><strong>Edit video with AI</strong><span>WAITLIST / ₪300 / IN ENGLISH</span><em>→</em></a>
-<!--/A:root-academy-->
-</div><a class="text-link academy-all" href="/academy/">SEE ALL CLASSES <span class="arrow-shift">→</span></a></section>
-<section class="section compact-system" id="labs" data-status="BUILT BY DEPLOY"><div class="compact-grid"><div><div class="section-id">07 / BUILT BY DEPLOY</div><h2>WE BUILD<br>THINGS TOO.</h2></div><div class="compact-copy"><p>We kept needing tools that didn’t exist, so we started making them.</p><div class="lab-links"><a href="https://deploytlv.com/events/5/"><span>ATTENDEE INTELLIGENCE</span><b>Know who’s in the room before you walk in.</b><em>→</em></a><a href="https://deploytlv.com/tzippy/"><span>TZIPPY</span><b>Turn a WhatsApp export into community intelligence.</b><em>→</em></a></div><a class="text-link" href="/labs">EXPLORE DEPLOY LABS <span class="arrow-shift">→</span></a></div></div></section>
-<section class="section partner-section" id="partners" data-status="PARTNERS / OPEN"><div class="partner-grid"><div><div class="section-id">08 / PARTNERS</div><h2>BUILD SOMETHING<br>WITH US.</h2></div><div class="partner-copy"><p>We work with companies, venues and communities that want to reach people building with AI in Tel Aviv.</p><div class="partner-tags"><span>EVENTS</span><span>CONTENT</span><span>COMMUNITY</span><span>CUSTOM</span></div><a class="btn orange" href="mailto:hello@deploytlv.com">Partner with Deploy <span class="arrow-shift">→</span></a></div></div></section><div class="proof"><div class="proof-label">MEMBERS COME FROM</div><div class="logos"><img src="assets/logos/monday.png" alt="monday.com" loading="lazy"><img src="assets/logos/google.png" alt="Google" loading="lazy"><img src="assets/logos/aleph.svg" alt="Aleph" loading="lazy"><img src="assets/logos/team8.svg" alt="Team8" loading="lazy"><img src="assets/logos/walkme_light.svg" alt="WalkMe" loading="lazy"><img src="assets/logos/payoneer.svg" alt="Payoneer" loading="lazy"></div></div>
-<section class="cta"><div class="kicker">DEPLOY / JOIN</div><h2>YOU SHOULD PROBABLY<br>JUST COME<span class="cursor"></span></h2><a class="btn" href="https://forms.fillout.com/t/gQiowrhyNAus" target="_blank">Join the community <span class="arrow-shift">→</span></a></section><footer><div class="logo">DEPLOY<b>_</b>TLV</div><div class="footer-social"><a href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/deploytlv" target="_blank" rel="noopener">LinkedIn</a><a href="https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t" target="_blank" rel="noopener">WhatsApp</a><a href="/academy/">Academy</a><a href="/tzippy/">Tzippy</a></div><div>TEL AVIV / 2026</div></footer></div><script>
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-// Load non-hero videos only when they approach the viewport. Keeps mobile initial load light.
-const videoObs=new IntersectionObserver(entries=>entries.forEach(entry=>{const v=entry.target;if(entry.isIntersecting){if(!v.src&&v.dataset.src){v.src=v.dataset.src;v.load()}const shell=v.closest('.visual,.vertical-main');if(shell&&!reduceMotion){shell.classList.add('media-ready');setTimeout(()=>shell.classList.remove('media-ready'),850)}const play=v.play();if(play&&play.catch)play.catch(()=>{});videoObs.unobserve(v)}}),{rootMargin:'320px 0px'});document.querySelectorAll('video.lazy-video').forEach(v=>videoObs.observe(v));
-
-// Deploy OS motion: restrained, mechanical, and useful.
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!reduceMotion){
-  // Boot tiny system labels once as they enter view. Headlines remain instant/readable.
-  const labelObs=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-    const el=entry.target, finalText=el.textContent.trim();
-    if(el.dataset.booted){labelObs.unobserve(el);return}
-    el.dataset.booted='1'; el.classList.add('booting'); el.textContent='';
-    let i=0; const step=Math.max(18,Math.min(34,260/finalText.length));
-    const timer=setInterval(()=>{i=Math.min(finalText.length,i+Math.max(1,Math.ceil(finalText.length/8)));el.textContent=finalText.slice(0,i);if(i>=finalText.length){clearInterval(timer);setTimeout(()=>el.classList.remove('booting'),120)}},step);
-    labelObs.unobserve(el);
-  }),{threshold:.65});
-  document.querySelectorAll('.section-id').forEach(el=>labelObs.observe(el));
-}
-
-// Update the tiny nav status to match the chapter currently occupying the viewport.
-const navStatus=document.getElementById('navStatus');
-const statusSections=[...document.querySelectorAll('[data-status]')];
-if(navStatus&&statusSections.length){
-  const statusObs=new IntersectionObserver(entries=>{
-    const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-    if(visible)navStatus.textContent=visible.target.dataset.status;
-  },{rootMargin:'-32% 0px -55% 0px',threshold:[0,.1,.3,.6]});
-  statusSections.forEach(s=>statusObs.observe(s));
-}
-
-const peopleData=[
-{name:"Eliezer Steinbock",role:"Inbox Zero / Founder",img:"assets/people/Eliezer_Steinbock.jpg",bio:"Builds Inbox Zero, an open-source AI email assistant that cleans out and automates your inbox. Two decades shipping from Tel Aviv — before this he grew Draft Fantasy to a quarter of a million signups while serving in the IDF.",working:"Inbox Zero",for:"Open source, indie building, distribution"},
-{name:"Matthew Sigurko",role:"F5 / Principal Software Engineer",img:"assets/people/Matthew_Sigurko.jpg",bio:"Principal engineer at F5, working on API security inside their distributed cloud — he came up through the company from test engineer, and was a fraud analyst at RSA before that. On the side he wrote trifecta-lens, an analyzer for data exfiltration through MCP.",working:"API security at F5",for:"Hard systems problems, honest tradeoffs"},
-{name:"Mona Cohen",role:"offtheradar.ai / Founder",img:"assets/people/Mona_Cohen.jpg",bio:"Building MONA at offtheradar.ai, an AI headhunting agent for executive search — her fourth company, built on thirteen years as an international headhunter. She documents the whole build publicly in her Substack, The Headhunter.",working:"offtheradar.ai",for:"Hiring, introductions, network into product"},
-{name:"Shahar Luftig",role:"Explorium / Tech Lead, Data Engineering",img:"assets/people/Shahar_Luftig.jpg",bio:"Tech lead for data engineering at Explorium, building the external-data foundation that AI agents and GTM systems run on. Self-taught, and has been building things since middle school. On the side: a registry for agent skills, A2A and MCP.",working:"Explorium / an agent-skills registry",for:"Agents, data infrastructure, MCP"},
-{name:"Neta Dror",role:"HaDigitalit / Founder",img:"assets/people/Neta_Dror.jpg",bio:"Runs HaDigitalit, a bootstrapped web and product studio, with fifteen years across product, engineering and marketing. She has bootstrapped three products of her own and founded a community for Israeli women building solo.",working:"HaDigitalit",for:"Bootstrapping, product craft, solo builders"},
-{name:"Ilan Oz",role:"Team8 / EmberNovels",img:"assets/people/Ilan_Oz.jpg",bio:"Business development at Team8, the cybersecurity and AI foundry, after stints at monday.com, Atera and Google Ireland. Then he goes home and builds EmberNovels, which writes custom AI romance novels. Both of those are true at the same time.",working:"Team8 / EmberNovels",for:"Distribution, security, unlikely side projects"},
-{name:"Yehonatan Tsirolnik",role:"SailPoint / Nemus",img:"assets/people/Yehonatan_Tsirolnik.jpg",bio:"Builds AI security tooling at SailPoint by day, and Nemus — an agentic work platform — with the rest of his time. There is a long open-source trail behind him, going back well before any of this was fashionable.",working:"Nemus",for:"Agents, security, open source"},
-{name:"Artem Belyakov",role:"Medida / Founding Engineer",img:"assets/people/Artem_Belyakov.jpg",bio:"Founding engineer at Medida, using computer vision to take remote measurements for the home-remodeling trade. Computer science at HSE Moscow and the Yandex School of Data Analysis, with engineering years at SberDevices and X5 Group behind him.",working:"Medida",for:"Computer vision, ML engineering, early teams"},
-{name:"Ariel Cohen",role:"Swan / Founding GTM Engineer",img:"assets/people/Ariel_Cohen.jpg",bio:"Founding GTM engineer at Swan, an AI coding agent that turns prompts into go-to-market pipeline. He builds the agentic revenue motions and writes about what is working versus what only demos well.",working:"Swan",for:"Go-to-market, growth, agents that do real work"}
-];
-let personIndex=0; const track=document.getElementById('peopleTrack'), cards=[...document.querySelectorAll('.person')], panel=document.getElementById('profilePanel');
-const els={img:document.getElementById('profileImage'),name:document.getElementById('profileName'),role:document.getElementById('profileRole'),bio:document.getElementById('profileBio'),working:document.getElementById('profileWorking'),for:document.getElementById('profileFor'),counter:document.getElementById('profileCounter'),index:document.getElementById('peopleIndex')};
-function showPerson(i,{scrollCard=false,scrollPanel=false}={}){personIndex=(i+peopleData.length)%peopleData.length; const d=peopleData[personIndex]; cards.forEach((c,j)=>c.classList.toggle('active',j===personIndex)); els.img.src=d.img;els.img.alt=d.name;els.name.textContent=d.name;els.role.textContent=d.role;els.bio.textContent=d.bio;els.working.textContent=d.working;els.for.textContent=d.for;els.counter.textContent=String(personIndex+1).padStart(2,'0')+' / '+String(peopleData.length).padStart(2,'0');els.index.textContent=String(personIndex+1).padStart(2,'0');panel.hidden=false;if(scrollCard)cards[personIndex].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});if(scrollPanel)panel.scrollIntoView({behavior:'smooth',block:'nearest'});}
-cards.forEach((c,i)=>{c.addEventListener('click',()=>showPerson(i,{scrollPanel:true}));c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showPerson(i,{scrollPanel:true})}})});
-document.getElementById('peoplePrev').onclick=()=>showPerson(personIndex-1,{scrollCard:true});document.getElementById('peopleNext').onclick=()=>showPerson(personIndex+1,{scrollCard:true});document.getElementById('profilePrev').onclick=()=>showPerson(personIndex-1,{scrollCard:true});document.getElementById('profileNext').onclick=()=>showPerson(personIndex+1,{scrollCard:true});document.getElementById('profileClose').onclick=()=>{panel.hidden=true;cards.forEach(c=>c.classList.remove('active'))};
-// Profiles stay closed until someone is clicked.
-
-</script><script>(function(){var c="deploytlv";if(!c)return;var e=document.createElement("script");e.async=true;e.src="https://gc.zgo.at/count.js";e.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(e)})();</script></body></html>
+</body></html>
