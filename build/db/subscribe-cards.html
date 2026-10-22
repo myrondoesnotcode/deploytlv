@@ -14,8 +14,39 @@
             <span class="err" id="consentErr" hidden>Tick the box to subscribe. Access is for Deploy Log subscribers.</span>
             <button type="submit" class="sbtn orange wide" id="sendLink">SUBSCRIBE &amp; GET ACCESS</button>
           </form>
-          <p class="small">We'll email you a one-click link to confirm. No password. Already subscribed? Same form: you'll get a sign-in link.</p>
+          <p class="small">We'll email you a sign-in link and a 6-digit code. No password.</p>
+          <p class="switch">Already subscribed? <button type="button" class="lnk" id="toLogin">Sign in</button></p>
         </div>
         <div class="cardfoot"><span>Free · Weekly · Unsubscribe anytime</span><a href="#what">What you get ↓</a></div>
+      </div>
+
+      <!-- sign in (returning subscriber, any browser) -->
+      <div class="card" id="vLogin" hidden>
+        <div class="bar"><span>SIGN_IN.EXE</span><i></i></div>
+        <div class="in">
+          <div><h2>Welcome back</h2><p class="sub" style="margin-top:8px">Enter the email you subscribed with. We'll send you a sign-in link and a 6-digit code. Works on any phone or browser.</p></div>
+          <form id="loginForm" novalidate style="display:grid;gap:14px">
+            <div class="field"><label for="loginEmail">Email address</label><input id="loginEmail" type="email" autocomplete="email" placeholder="you@company.com" required><span class="err" id="loginErr" hidden>Enter a valid email address, like you@company.com.</span></div>
+            <button type="submit" class="sbtn orange wide" id="loginBtn">EMAIL ME A SIGN-IN CODE</button>
+          </form>
+          <p class="switch">New here? <button type="button" class="lnk" id="toSignup">Get free access</button></p>
+        </div>
+      </div>
+
+      <!-- check email -->
+      <div class="card" id="vCheck" hidden>
+        <div class="bar"><span>CHECK_INBOX.EXE</span><i></i></div>
+        <div class="in">
+          <div class="icon" aria-hidden="true"><svg width="34" height="26" viewBox="0 0 34 26"><rect x="1.5" y="1.5" width="31" height="23" fill="#fffdf7" stroke="#11100d" stroke-width="2.5"/><path d="M2 3l15 12L32 3" fill="none" stroke="#11100d" stroke-width="2.5"/><rect x="26" y="0" width="8" height="8" fill="#ff5a18" stroke="#11100d" stroke-width="2"/></svg></div>
+          <div><h2>Check your inbox</h2><p class="sub" style="margin-top:8px">We sent an email to <span class="mail" id="sentTo">you@company.com</span>. Tap the link in it, or type the code here.</p></div>
+          <form id="codeForm" novalidate style="display:grid;gap:10px">
+            <div class="field"><label for="code">6-digit code</label><input id="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="10" placeholder="123456" style="font:700 22px var(--mono);letter-spacing:.3em"><span class="err" id="codeErr" hidden>That code didn't work. Check it, or send a new one.</span></div>
+            <button type="submit" class="sbtn orange wide" id="codeBtn">SIGN IN</button>
+          </form>
+          <p class="small">The code is handy when the email opens on a different device or in your mail app's browser. Both work once and expire soon.</p>
+          <div class="row2"><a class="sbtn sm" href="https://mail.google.com" target="_blank" rel="noopener">OPEN GMAIL</a><a class="sbtn sm" href="https://outlook.live.com" target="_blank" rel="noopener">OPEN OUTLOOK</a></div>
+          <p class="small">Nothing there? Check spam or promotions. <button type="button" id="resend" style="background:none;border:0;padding:0;color:var(--orange-deep);font-weight:600;cursor:pointer;text-decoration:underline">Resend email</button> <span id="resendIn"></span></p>
+        </div>
+        <div class="cardfoot"><a href="#" id="diffEmail">← Use a different email</a></div>
       </div>
 

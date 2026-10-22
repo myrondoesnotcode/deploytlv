@@ -83,19 +83,20 @@ def main():
     # --- subscribe-to-access funnel ---
     cards = (ROOT / "build/db/subscribe-cards.html").read_text()
     step = (ROOT / "build/db/subscribe-step.html").read_text()
-    s = re.sub(r'      <!-- sign in -->.*?(?=      <!-- check email -->)', lambda m: cards, s, flags=re.S)
+    # cards = get access + sign in (returning) + check email (link or code)
+    s = re.sub(r'      <!-- sign in -->.*?(?=      <!-- not a member -->)', lambda m: cards, s, flags=re.S)
     s = re.sub(r'      <!-- not a member -->.*?(?=      <!-- oauth progress -->)', lambda m: step, s, flags=re.S)
     s = must_replace(s, '<span class="kick">Members only · Deploy DB</span>', '<span class="kick">Free for Deploy Log subscribers · Deploy DB</span>')
     s = must_replace(s, '<div class="teaser" id="teaser">', '''<div class="whatyou" id="what"><span class="tl">▸ WHAT SUBSCRIBERS GET</span><ul><li><b>Every answer</b> the group has worked out, organized into playbooks by topic.</li><li><b>The stack:</b> the tools, repos and programs members actually use, with links.</li><li><b>Who knows what:</b> find the right builder to ask about anything.</li><li><b>The Deploy Log</b> in your inbox every week, so you never miss the good stuff.</li></ul></div>
       <div class="teaser" id="teaser">''')
-    s = must_replace(s, '<button type="button" class="sbtn sm" id="navSignIn">SIGN IN</button>', '<button type="button" class="sbtn sm orange" id="navSignIn">GET ACCESS</button>')
+    s = must_replace(s, '<button type="button" class="sbtn sm" id="navSignIn">SIGN IN</button>', '<button type="button" class="navlogin" id="navLogin">SIGN IN</button>\n    <button type="button" class="sbtn sm orange" id="navSignIn">GET ACCESS</button>')
     # site nav: logo goes home, links match the main site
     s = must_replace(s, '<a class="slogo" href="#" id="logo">DEPLOY <b>TLV</b></a>', '<a class="slogo" href="/" id="logo">DEPLOY <b>TLV</b></a>')
     s = must_replace(s, '<nav class="slinks" aria-label="Site"><a href="#">Events</a><a href="#">Academy</a><a href="#" aria-current="page">Deploy DB</a></nav>',
                      '<nav class="slinks" aria-label="Site"><a href="/#stories">Stories</a><a href="/#guide">What\'s on</a><a href="/academy/">Academy</a><a href="/db/" aria-current="page">Deploy DB</a><a href="/partner/">Work with us</a></nav>')
     s = must_replace(s, '<div class="trust"><span>NO PASSWORDS</span><span>MEMBERS-ONLY DATA</span><span>HIDE YOUR PROFILE ANYTIME</span></div>', '<div class="trust"><span>FREE WITH THE NEWSLETTER</span><span>NO PASSWORDS</span><span>UNSUBSCRIBE ANYTIME</span></div>')
     s = must_replace(s, '<button type="button" role="menuitem" data-act="signout">Sign out</button>', '<button type="button" role="menuitem" data-act="unsub"><span id="unsubLabel">Unsubscribe</span> <small>✕</small></button>\n        <button type="button" role="menuitem" data-act="signout">Sign out</button>')
-    s = must_replace(s, '.tcard{position:relative', '.whatyou{max-width:640px;background:var(--white);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:14px 16px;display:grid;gap:8px}.whatyou .tl{font:700 10px var(--px);color:var(--orange-deep)}.whatyou ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}.whatyou li{font-size:14px;padding-left:20px;position:relative;line-height:1.45}.whatyou li::before{content:"";position:absolute;left:0;top:.45em;width:9px;height:9px;background:var(--orange);border:1.5px solid var(--ink)}\n.tcard{position:relative')
+    s = must_replace(s, '.tcard{position:relative', '.whatyou{max-width:640px;background:var(--white);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:14px 16px;display:grid;gap:8px}.whatyou .tl{font:700 10px var(--px);color:var(--orange-deep)}.whatyou ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}.whatyou li{font-size:14px;padding-left:20px;position:relative;line-height:1.45}.whatyou li::before{content:"";position:absolute;left:0;top:.45em;width:9px;height:9px;background:var(--orange);border:1.5px solid var(--ink)}\n.navlogin{background:none;border:0;padding:0 6px;white-space:nowrap;min-height:38px;font:700 10px var(--px);color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}#navSignIn{white-space:nowrap}.switch{margin:0;font-size:14px;text-align:center;border-top:1.5px dashed var(--line,#d9d5cc);padding-top:12px}.lnk{background:none;border:0;padding:0;color:var(--orange-deep);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline}\n.tcard{position:relative')
     for gone in ('id="vNo"', 'id="vSent"', 'id="reqForm"'):
         if gone in s:
             raise SystemExit(f"build_page: old access screen still present: {gone}")

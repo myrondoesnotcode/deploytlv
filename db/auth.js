@@ -3,21 +3,21 @@
 (function(){
   var $=function(id){return document.getElementById(id);};
   var C=window.DDB_CONFIG||{};
-  var VIEWS=["vSignin","vCheck","vSub","vWait"];
-  var timer=null,me=null,session=null;
+  var VIEWS=["vSignin","vLogin","vCheck","vSub","vWait"];
+  var timer=null,me=null,session=null,mode="signup";
   var CONSENT=($("consentText")&&$("consentText").textContent.trim())||"Yes, send me the Deploy Log weekly email.";
 
   function toast(t){var h=$("toastHost");h.textContent="";var d=document.createElement("div");d.className="toast";d.setAttribute("role","status");d.textContent=t;h.appendChild(d);setTimeout(function(){if(d.parentNode)d.remove();},3800);}
   function card(id){VIEWS.forEach(function(v){if($(v))$(v).hidden=v!==id;});}
-  function showGate(view){$("gate").hidden=false;$("app").hidden=true;$("acct").hidden=true;$("navSignIn").hidden=false;card(view||"vSignin");}
+  function showGate(view){$("gate").hidden=false;$("app").hidden=true;$("acct").hidden=true;$("navSignIn").hidden=false;$("navLogin").hidden=false;card(view||"vSignin");}
   function fail(msg){showGate("vSignin");toast(msg);}
   if(!window.supabase||!C.url||!C.anonKey){fail("Sign-in isn't configured yet. Add the Supabase URL and key to db/config.js.");return;}
 
   var storage={getItem:function(k){try{return localStorage.getItem(k);}catch(e){return null;}},setItem:function(k,v){try{localStorage.setItem(k,v);}catch(e){}},removeItem:function(k){try{localStorage.removeItem(k);}catch(e){}}};
-  var sb=window.supabase.createClient(C.url,C.anonKey,{auth:{storage:storage,persistSession:true,detectSessionInUrl:true,flowType:"pkce"}});
+  var sb=window.supabase.createClient(C.url,C.anonKey,{auth:{storage:storage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:"implicit"}});
   var here=location.origin+location.pathname;
 
-  /* pending consent survives the trip to the inbox (same browser, required by the PKCE link anyway) */
+  /* pending consent survives the trip to the inbox in this browser; on another browser they tick it on the "one step left" card */
   function savePending(email,name){storage.setItem("ddb_pending",JSON.stringify({email:email.toLowerCase(),name:name||"",text:CONSENT,at:Date.now()}));}
   function takePending(email){var p=null;try{p=JSON.parse(storage.getItem("ddb_pending")||"null");}catch(e){}storage.removeItem("ddb_pending");
     if(p&&p.email===String(email||"").toLowerCase()&&Date.now()-p.at<86400000)return p;return null;}
@@ -74,7 +74,7 @@
         $("chipAva").textContent=initials(nm);$("chipName").textContent=me.name?me.name.split(" ")[0]:"Account";$("menuName").textContent=me.name||"Subscriber";$("menuEmail").textContent=me.email;
         $("menuSince").textContent=me.member_since?"SUBSCRIBER · SINCE "+new Date(me.member_since).toLocaleDateString("en-GB",{month:"short",year:"numeric"}).toUpperCase():"SUBSCRIBER";
         $("privacyState").textContent=me.hidden?"Hidden":"Visible";
-        $("gate").hidden=true;$("app").hidden=false;$("acct").hidden=false;$("navSignIn").hidden=true;
+        $("gate").hidden=true;$("app").hidden=false;$("acct").hidden=false;$("navSignIn").hidden=true;$("navLogin").hidden=true;
         window.DDB_BOOT&&window.DDB_BOOT();window.scrollTo(0,0);
         toast(isNew?"You're subscribed. Welcome to the Deploy DB.":"Welcome back"+(me.name?", "+me.name.split(" ")[0]:"")+".");
       });
@@ -86,30 +86,53 @@
     if(s&&(ev==="SIGNED_IN"||ev==="INITIAL_SESSION")&&$("app").hidden)enter(s);
   });
   sb.auth.getSession().then(function(r){if(!r.data.session)showGate("vSignin");});
+  /* an old or already-used link lands here with #error=…; point them at a fresh email */
+  if(/[#&]error=/.test(location.hash)){history.replaceState(null,"",here);setTimeout(function(){toLogin();toast("That sign-in link expired or was already used. Enter your email for a new one.");},0);}
 
   /* ---------- subscribe form ---------- */
   function valid(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
+  /* one email, two ways in: the link, or the 6-digit code typed on whichever device you're on */
   function sendLink(email,btn){
+    var label=btn&&btn.textContent;
     if(btn){btn.disabled=true;btn.textContent="SENDING…";}
-    return sb.auth.signInWithOtp({email:email,options:{shouldCreateUser:true,emailRedirectTo:here}}).then(function(r){
-      if(btn){btn.disabled=false;btn.textContent="SUBSCRIBE & GET ACCESS";}
+    return sb.auth.signInWithOtp({email:email,options:{shouldCreateUser:mode==="signup",emailRedirectTo:here}}).then(function(r){
+      if(btn){btn.disabled=false;btn.textContent=label;}
       if(r.error){
         var m=(r.error.message||"").toLowerCase();
         if(r.error.status===429||m.indexOf("rate")>-1){toast("Too many emails sent. Wait a minute, then try again.");return;}
-        toast("We couldn't send the link: "+r.error.message);return;
+        if(mode==="login"&&(m.indexOf("signup")>-1||m.indexOf("not found")>-1||r.error.status===422)){toast("No subscription for that email yet. Get free access below.");toSignup(email);return;}
+        toast("We couldn't send the email: "+r.error.message);return;
       }
-      $("sentTo").textContent=email;card("vCheck");startResend();
+      $("sentTo").textContent=email;$("code").value="";$("codeErr").hidden=true;card("vCheck");startResend();
     });
   }
+  function toLogin(){mode="login";card("vLogin");$("loginEmail").value=$("loginEmail").value||$("email").value.trim();$("loginEmail").focus();}
+  function toSignup(email){mode="signup";card("vSignin");if(email)$("email").value=email;$("email").focus();}
+  $("toLogin").addEventListener("click",toLogin);
+  $("toSignup").addEventListener("click",function(){toSignup();});
+  $("loginForm").addEventListener("submit",function(e){e.preventDefault();var v=$("loginEmail").value.trim();
+    if(!valid(v)){$("loginErr").hidden=false;$("loginEmail").setAttribute("aria-invalid","true");$("loginEmail").focus();return;}
+    $("loginErr").hidden=true;$("loginEmail").removeAttribute("aria-invalid");mode="login";sendLink(v,$("loginBtn"));});
+  $("codeForm").addEventListener("submit",function(e){e.preventDefault();
+    var t=$("code").value.replace(/\D/g,"");
+    if(t.length<6){$("codeErr").hidden=false;$("code").focus();return;}
+    $("codeBtn").disabled=true;$("codeBtn").textContent="CHECKING…";
+    sb.auth.verifyOtp({email:$("sentTo").textContent,token:t,type:"email"}).then(function(r){
+      $("codeBtn").disabled=false;$("codeBtn").textContent="SIGN IN";
+      if(r.error){$("codeErr").hidden=false;$("code").focus();return;}
+      $("codeErr").hidden=true;/* onAuthStateChange(SIGNED_IN) opens the DB */
+    });});
+  $("code").addEventListener("input",function(){var v=this.value.replace(/\D/g,"");if(v!==this.value)this.value=v;if(v.length===6&&!$("codeBtn").disabled)$("codeForm").requestSubmit();});
   $("emailForm").addEventListener("submit",function(e){e.preventDefault();var v=$("email").value.trim();var ok=true;
     if(!valid(v)){$("emailErr").hidden=false;$("email").setAttribute("aria-invalid","true");ok=false;}else{$("emailErr").hidden=true;$("email").removeAttribute("aria-invalid");}
     if(!$("consent").checked){$("consentErr").hidden=false;ok=false;}else $("consentErr").hidden=true;
     if(!ok){(valid(v)?$("consent"):$("email")).focus();return;}
-    savePending(v,$("name").value.trim());sendLink(v,$("sendLink"));});
+    mode="signup";savePending(v,$("name").value.trim());sendLink(v,$("sendLink"));});
   function startResend(){var n=30;clearInterval(timer);$("resend").disabled=true;$("resend").style.opacity=".5";$("resendIn").textContent="in 0:"+n;timer=setInterval(function(){n--;if(n<=0){clearInterval(timer);$("resend").disabled=false;$("resend").style.opacity="1";$("resendIn").textContent="";}else $("resendIn").textContent="in 0:"+String(n).padStart(2,"0");},1000);}
-  $("resend").addEventListener("click",function(){sendLink($("sentTo").textContent,null).then(function(){toast("New link sent to "+$("sentTo").textContent+".");});});
-  $("diffEmail").addEventListener("click",function(e){e.preventDefault();card("vSignin");$("email").focus();});
-  $("navSignIn").addEventListener("click",function(){showGate("vSignin");$("email").focus();});
+  $("resend").addEventListener("click",function(){sendLink($("sentTo").textContent,null).then(function(){toast("New email sent to "+$("sentTo").textContent+".");});});
+  $("diffEmail").addEventListener("click",function(e){e.preventDefault();if(mode==="login")toLogin();else toSignup();});
+  $("navSignIn").addEventListener("click",function(){showGate("vSignin");toSignup();});
+  $("navLogin").addEventListener("click",function(){showGate("vLogin");toLogin();$("vLogin").scrollIntoView({block:"center"});});
 
   /* signed in but not subscribed */
   $("subForm").addEventListener("submit",function(e){e.preventDefault();
