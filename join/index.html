@@ -65,13 +65,14 @@ body{background:var(--paper)}
 .j-foot{display:flex;align-items:center;gap:12px;font:500 13px var(--mono);color:var(--muted);padding-top:18px;border-top:2px solid var(--rule)}
 
 /* "which one are you" tiles */
-.j-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.j-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .j-tile{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;cursor:pointer;border:2px solid var(--ink);background:var(--card);padding:18px 16px 16px;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s;font:inherit;color:var(--ink)}
 .j-tile:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .j-tile .k{font:700 11px var(--px);border:1.5px solid var(--ink);padding:2px 6px;background:var(--paper)}
 .j-tile b{font:400 26px/1 var(--disp)}
 .j-tile span{font:400 14px/1.4 var(--sans);color:var(--ink-2)}
-.j-tile.f{--c:var(--sun)}.j-tile.b{--c:var(--sky)}.j-tile.o{--c:var(--pink)}
+.j-tile.f{--c:var(--sun)}.j-tile.b{--c:var(--sky)}.j-tile.w{--c:var(--lime)}.j-tile.o{--c:var(--pink)}
+.j-two{display:grid;gap:18px}
 .j-tile[aria-pressed="true"]{background:var(--c);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .j-pick{margin-top:26px}
 .j-pick[hidden]{display:none}
@@ -130,10 +131,10 @@ body{background:var(--paper)}
 
 <main class="j-stage">
   <section class="j-pitch" aria-label="About the community">
-    <div class="j-sticker">founders<br>&amp; builders<br>only</div>
+    <div class="j-sticker" id="sticker">founders<br>&amp; builders<br>only</div>
     <span class="j-tag"><i></i>NOW ACCEPTING MEMBERS</span>
     <h1>Get in<br>the room.<span class="hand">Takes about a minute.</span></h1>
-    <p class="lede">Deploy is Tel Aviv's English-speaking community of people building with AI. The WhatsApp group is where the nights, the coworking days and the intros happen.</p>
+    <p class="lede" id="lede">Deploy is Tel Aviv's English-speaking community of people building with AI. The WhatsApp group is where the nights, the coworking days and the intros happen.</p>
     <div class="j-faces">
       <div class="stack">
         <img src="/assets/people/Neta_Dror.jpg" alt=""><img src="/assets/people/Eliezer_Steinbock.jpg" alt=""><img src="/assets/people/Mona_Cohen.jpg" alt=""><img src="/assets/people/Ilan_Oz.jpg" alt=""><img src="/assets/people/Shahar_Luftig.jpg" alt="">
@@ -169,7 +170,8 @@ body{background:var(--paper)}
         <div class="j-tiles" role="group" aria-label="Which one are you">
           <button type="button" class="j-tile f" data-role="founder" aria-pressed="false"><span class="k">A</span><b>Founder</b><span>I'm building a company.</span></button>
           <button type="button" class="j-tile b" data-role="builder" aria-pressed="false"><span class="k">B</span><b>Builder</b><span>I ship products, at a job or on the side.</span></button>
-          <button type="button" class="j-tile o" data-role="other" aria-pressed="false"><span class="k">C</span><b>Curious</b><span>Investor, operator, or learning to build.</span></button>
+          <button type="button" class="j-tile w" data-role="work" aria-pressed="false"><span class="k">C</span><b>Startup team</b><span>I work at a startup and use AI in my job.</span></button>
+          <button type="button" class="j-tile o" data-role="other" aria-pressed="false"><span class="k">D</span><b>Curious</b><span>Investor, operator, or learning to build.</span></button>
         </div>
         <div class="j-err"></div>
       </div>
@@ -196,6 +198,37 @@ body{background:var(--paper)}
         <p class="hint">Tap all that apply. We use this to make the right intros.</p>
         <div class="j-pick big" role="group" aria-label="What would help most">
           <div class="j-chips"><button type="button" class="j-chip">A cofounder</button><button type="button" class="j-chip">First users</button><button type="button" class="j-chip">Hiring</button><button type="button" class="j-chip">Investors</button><button type="button" class="j-chip">Feedback on what I'm building</button><button type="button" class="j-chip">Learning to build with AI</button><button type="button" class="j-chip">Just people who build</button></div>
+        </div>
+        <div class="j-err"></div>
+      </div>
+      <!-- startup-team track (DeployTLV for Startups) -->
+      <div class="j-step" data-step="work">
+        <span class="j-q">Q_03</span>
+        <h2>Where do you work?</h2>
+        <p class="hint">The company and your role there.</p>
+        <div class="j-two">
+          <input class="j-in" name="company" autocomplete="organization" placeholder="Company, e.g. Wix">
+          <input class="j-in" name="title" autocomplete="organization-title" placeholder="Your role, e.g. Product manager">
+        </div>
+        <div class="j-err"></div>
+      </div>
+      <div class="j-step" data-step="aiuse">
+        <span class="j-q">Q_04</span>
+        <h2>How do you use AI at work?</h2>
+        <p class="hint">A line or two. Not using it much yet? Say how you'd like to.</p>
+        <input class="j-in" name="aiuse" placeholder="I use Claude to write specs and turn customer calls into tickets">
+        <div class="j-pick" data-aitools role="group" aria-labelledby="ait">
+          <span class="lbl" id="ait">What do you use? <em>Tap all that apply, optional</em></span>
+          <div class="j-chips"><button type="button" class="j-chip">ChatGPT</button><button type="button" class="j-chip">Claude</button><button type="button" class="j-chip">Gemini</button><button type="button" class="j-chip">Copilot</button><button type="button" class="j-chip">Cursor</button><button type="button" class="j-chip">Claude Code</button><button type="button" class="j-chip">n8n / Zapier</button></div>
+        </div>
+        <div class="j-err"></div>
+      </div>
+      <div class="j-step" data-step="live">
+        <span class="j-q">Q_05</span>
+        <h2>Where do you live?</h2>
+        <p class="hint">The group meets in Tel Aviv.</p>
+        <div class="j-pick big" data-single data-live role="group" aria-label="Where do you live">
+          <div class="j-chips"><button type="button" class="j-chip">Tel Aviv</button><button type="button" class="j-chip">Elsewhere in Israel</button><button type="button" class="j-chip">Moving to Tel Aviv</button><button type="button" class="j-chip">Abroad</button></div>
         </div>
         <div class="j-err"></div>
       </div>
@@ -273,33 +306,48 @@ body{background:var(--paper)}
 <script>
 /* Steps, validation, then one POST to the `join` edge function, which screens, stores and emails. */
 const API="https://ketmhhwpkafgwvpwfukd.supabase.co/functions/v1/join", T0=Date.now()
-const steps=[...document.querySelectorAll('.j-step')], N=7, REVIEW=7, IN=8, PENDING=9
+const steps=[...document.querySelectorAll('.j-step')], byName=n=>steps.findIndex(s=>s.dataset.step===n)
+/* Two tracks. Startup team → DeployTLV for Startups; everyone else → Founders/Builders. */
+const SEQ={builders:['name','role','building','want','linkedin','whatsapp','email'],work:['name','role','work','aiuse','live','linkedin','whatsapp','email']}
 /* Captured silently, never asked: where they came from. */
 const p=new URLSearchParams(location.search)
 const meta={ref:p.get('ref')||'',utm_source:p.get('utm_source')||'',utm_campaign:p.get('utm_campaign')||'',referrer:document.referrer,landed:new Date().toISOString()}
 const fill=document.getElementById('fill'), count=document.getElementById('count')
 const next=document.getElementById('next'), back=document.getElementById('back'), go=document.getElementById('go')
-let i=0, role=''
+let i=0, role='', preset=p.get('for')==='startups'
+const seq=()=>{ const q=SEQ[role==='work'?'work':'builders']; return preset?q.filter(x=>x!=='role'):q }
+if(preset){
+  role='work'
+  document.getElementById('sticker').innerHTML='startup<br>teams<br>only'
+  document.getElementById('lede').textContent='DeployTLV for Startups is where people at Tel Aviv startups swap how they actually use AI at work: the tools, the workflows, and what\u2019s worth it.'
+  document.title='Join DeployTLV for Startups · people using AI at work'
+}
 
 function show(n){
   steps[i].classList.remove('on'); steps[i].classList.add('out')
   const old=steps[i]; setTimeout(()=>old.classList.remove('out'),450)
   i=n; steps[i].classList.add('on')
-  const q=Math.min(i+1,N)
-  count.textContent=i<N?String(q).padStart(2,"0")+" / 0"+N:(i===REVIEW?"CHECKING":"DONE")
-  fill.style.width=(i<N?(i/N)*100:100)+'%'
-  go.style.visibility=i<N?'visible':'hidden'
-  back.hidden=i===0||i>=N
-  next.textContent=i===N-1?'Send application →':'Continue →'
+  const q=seq(), pos=q.indexOf(steps[i].dataset.step), N=q.length, pad=x=>String(x).padStart(2,'0')
+  const qn=steps[i].querySelector('.j-q'); if(pos>-1&&qn) qn.textContent='Q_'+pad(pos+1)
+  count.textContent=pos>-1?pad(pos+1)+' / '+pad(N):(steps[i].dataset.step==='review'?'CHECKING':'DONE')
+  fill.style.width=(pos>-1?(pos/N)*100:100)+'%'
+  go.style.visibility=pos>-1?'visible':'hidden'
+  back.hidden=pos<1
+  next.textContent=pos===N-1?'Send application \u2192':'Continue \u2192'
   const inp=steps[i].querySelector('input'); if(inp) setTimeout(()=>inp.focus({preventScroll:true}),350)
-  if(i===REVIEW) review()
+  if(steps[i].dataset.step==='review') review()
 }
+const go2=name=>show(byName(name))
+const stepOffset=d=>{ const q=seq(), pos=q.indexOf(steps[i].dataset.step); return q[pos+d] }
 function err(msg){ steps[i].querySelector('.j-err').textContent=msg||''; return !msg }
 function valid(){
   const s=steps[i].dataset.step, v=n=>(steps[i].querySelector(`[name=${n}]`)||{}).value?.trim()||''
   if(s==='name') return err(v('name').split(/\s+/).length<2?'First and last name, please.':'')
   if(s==='role') return err(role?'':'Pick one to keep going.')
   if(s==='building') return err(v('building').length<8?'Tell us a little more, one line is fine.':(role==='founder'&&!steps[i].querySelector('[data-single] [aria-pressed=true]'))?'Pick where it’s at.':'')
+  if(s==='work') return err(v('company').length<2?'Which company?':v('title').length<2?'And your role there?':'')
+  if(s==='aiuse') return err(v('aiuse').length<8?'Tell us a little more, a line is fine.':'')
+  if(s==='live') return err(steps[i].querySelector('[aria-pressed=true]')?'':'Pick one.')
   if(s==='want') return err(steps[i].querySelector('[aria-pressed=true]')?'':'Pick at least one.')
   if(s==='linkedin') return err(v('linkedin').length<3?'We need your LinkedIn to let you in.':'')
   if(s==='whatsapp') return err(v('phone').replace(/\D/g,'').length<8?'That number looks short.':'')
@@ -308,7 +356,7 @@ function valid(){
 }
 function advance(){ if(!valid()) return
   if(i===0){ const f=steps[0].querySelector('input').value.trim().split(/\s+/)[0]; document.querySelectorAll('[data-first]').forEach(e=>e.textContent=f) }
-  show(i+1) }
+  const nx=stepOffset(1); go2(nx||'review') }
 const picked=el=>[...el.querySelectorAll('.j-chip[aria-pressed=true]')].map(c=>c.textContent.trim())
 const val=n=>(document.querySelector(`[name=${n}]`)||{}).value?.trim()||''
 let sending=false
@@ -317,28 +365,33 @@ function review(){
   const rows=[...document.querySelectorAll('#scan div')]; rows.forEach(r=>r.classList.remove('done'))
   rows.forEach((r,k)=>setTimeout(()=>r.classList.add('done'),500+k*550))
   const minWait=new Promise(r=>setTimeout(r,500+rows.length*550+400))
-  const body={action:'apply',name:val('name'),email:val('email'),phone:val('phone'),linkedin:val('linkedin'),role,building:val('building'),
+  const work=role==='work'
+  const body={action:'apply',name:val('name'),email:val('email'),phone:val('phone'),linkedin:val('linkedin'),role,
+    building:work?val('aiuse'):val('building'),
     stage:role==='founder'?(picked(document.querySelector('[data-founder]'))[0]||''):'',
-    tools:picked(document.querySelector('[data-step=building] .j-pick:not([data-single])')),wants:picked(document.querySelector('[data-step=want]')),
+    tools:work?picked(document.querySelector('[data-aitools]')):picked(document.querySelector('[data-step=building] .j-pick:not([data-single])')),
+    wants:work?[]:picked(document.querySelector('[data-step=want]')),
+    company:work?val('company'):'',title:work?val('title'):'',location:work?(picked(document.querySelector('[data-live]'))[0]||''):'',
     source:meta,hp:document.getElementById('hp').value,ms:Date.now()-T0}
   const call=fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
     .then(r=>r.json().then(d=>r.ok?d:Promise.reject(d.error))).catch(e=>({error:typeof e==='string'?e:'We couldn\u2019t reach the server. Check your connection and try again.'}))
   Promise.all([call,minWait]).then(([d])=>{
     sending=false
-    if(d.error){ show(N-1); err(d.error); return }
-    if(d.status==='approved'&&d.invite){ document.getElementById('wa').href=d.invite; show(IN) } else show(PENDING)
+    if(d.error){ go2('email'); err(d.error); return }
+    if(d.status==='approved'&&d.invite){ document.getElementById('wa').href=d.invite; go2('in') } else go2('pending')
   })
 }
 next.onclick=advance
-back.onclick=()=>show(i-1)
+back.onclick=()=>{ const pv=stepOffset(-1); if(pv) go2(pv) }
 document.getElementById('steps').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); advance() } })
 document.addEventListener('keydown',e=>{
-  if(i!==1) return; const m={a:'founder',b:'builder',c:'other'}[e.key.toLowerCase()]
+  if(steps[i].dataset.step!=='role') return; const m={a:'founder',b:'builder',c:'work',d:'other'}[e.key.toLowerCase()]
   if(m) document.querySelector(`[data-role=${m}]`).click()
 })
 document.querySelectorAll('.j-tile').forEach(t=>t.onclick=()=>{
   role=t.dataset.role
   document.querySelectorAll('.j-tile').forEach(x=>x.setAttribute('aria-pressed',x===t))
+  if(role==='work'){ err(''); setTimeout(advance,320); return }
   document.getElementById('bq').textContent=role==='founder'?'What’s the company building?':role==='builder'?'What are you building right now?':'What are you working on or learning?'
   document.querySelector("[data-founder]").hidden=role!=="founder"
   err(''); setTimeout(advance,320)

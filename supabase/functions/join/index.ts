@@ -12,7 +12,9 @@
 //       with per-person decline links and one "approve everyone left" link.
 //   { action: "approve_all", cutoff, sig }   that link: approves everyone waiting who applied before cutoff.
 //
-// Secrets (supabase secrets set): RESEND_API_KEY, RESEND_FROM, JOIN_SECRET, WHATSAPP_INVITE,
+// Two communities: "builders" (DeployTLV Founders/Builders) and "startups" (DeployTLV for Startups,
+// people using AI at work; role "work"). Each has its own invite link.
+// Secrets (supabase secrets set): RESEND_API_KEY, RESEND_FROM, JOIN_SECRET, WHATSAPP_INVITE, WHATSAPP_INVITE_STARTUPS,
 // JOIN_NOTIFY_TO (where review emails go), JOIN_AUTO_APPROVE ("off" holds everyone for review). No WHATSAPP_INVITE → nobody is auto-approved.
 // SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY are provided by the platform.
 
@@ -22,7 +24,13 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
 const FROM = Deno.env.get("RESEND_FROM") ?? "Deploy TLV <hello@mail.deploytlv.com>";
 const TO = Deno.env.get("JOIN_NOTIFY_TO") ?? "hello@deploytlv.com";
 const SECRET = Deno.env.get("JOIN_SECRET") ?? "";
-const INVITE = Deno.env.get("WHATSAPP_INVITE") ?? "";
+const INVITES: Record<string, string> = {
+  builders: Deno.env.get("WHATSAPP_INVITE") ?? "",
+  startups: Deno.env.get("WHATSAPP_INVITE_STARTUPS") ?? "",
+};
+const GROUP: Record<string, string> = { builders: "DeployTLV Founders/Builders", startups: "DeployTLV for Startups" };
+const inviteFor = (c: string) => INVITES[c] ?? "";
+const ANY_INVITE = Object.values(INVITES).some(Boolean);
 const AUTO = (Deno.env.get("JOIN_AUTO_APPROVE") ?? "on") !== "off";   // "off" → every application waits for a human
 const SITE = "https://deploytlv.com";
 const ALLOWED = [SITE, "http://localhost:4321", "http://localhost:4320", "http://localhost:3456"];
@@ -60,14 +68,16 @@ function slug(li: string) {
   const s = li.trim().replace(/^https?:\/\//i, "").replace(/^(www\.)?linkedin\.com\/(in\/)?/i, "").replace(/[/?#].*$/, "");
   return s;
 }
-function screen(a: { name: string; email: string; linkedin: string; role: string; building: string }) {
+function screen(a: { name: string; email: string; linkedin: string; role: string; building: string; community: string; company: string }) {
   const why: string[] = [];
   if (a.role === "other") why.push("Picked “Curious”, not founder or builder");
+  if (a.role === "work" && a.company.length < 2) why.push("Didn’t say where they work");
   if (!/^[\p{L}][\p{L}'’.-]*(\s+[\p{L}'’.-]+)+$/u.test(a.name)) why.push("Name doesn’t look like a full name");
   if (!/^[A-Za-z0-9\-_%.À-￿]{3,100}$/.test(a.linkedin)) why.push("LinkedIn handle looks off");
-  if (a.building.length < 15 || a.building.split(/\s+/).length < 3) why.push("Very short answer on what they’re building");
+  if (a.building.length < 15 || a.building.split(/\s+/).length < 3)
+    why.push(a.role === "work" ? "Very short answer on how they use AI" : "Very short answer on what they’re building");
   if (THROWAWAY.test(a.email)) why.push("Throwaway email address");
-  if (!INVITE) why.push("No WhatsApp invite link is set yet, so nobody is auto-approved");
+  if (!inviteFor(a.community)) why.push(`No invite link set for ${GROUP[a.community]} yet`);
   return why;
 }
 
@@ -91,13 +101,13 @@ const button = (href: string, label: string, bg = "#ff5a18") =>
 function first(name: string) { return name.split(/\s+/)[0]; }
 
 async function emailInvite(row: Record<string, any>) {
-  const f = esc(first(row.name));
+  const f = esc(first(row.name)), INVITE = inviteFor(row.community), work = row.community === "startups";
   const html = shell(`<h1 style="font:900 28px/1.1 Arial Black,Arial,sans-serif;margin:0 0 14px">You're in, ${f}.</h1>
-<p style="margin:0 0 18px">Welcome to Deploy, Tel Aviv's English-speaking community of people building with AI. Tap below to join the WhatsApp group.</p>
+<p style="margin:0 0 18px">Welcome to ${work ? "DeployTLV for Startups, where people at Tel Aviv startups share how they use AI at work" : "Deploy, Tel Aviv's English-speaking community of people building with AI"}. Tap below to join the WhatsApp group.</p>
 ${button(INVITE, "Join the WhatsApp group →", "#25d366")}
-<p style="margin:18px 0 0">When you're in, say hi with one line on what you're building. The group has the next night, the coworking days and the intros.</p>
+<p style="margin:18px 0 0">${work ? "When you're in, say hi with where you work and one thing AI does for you at work." : "When you're in, say hi with one line on what you're building. The group has the next night, the coworking days and the intros."}</p>
 <p style="margin:18px 0 0;color:#6b6458;font-size:14px">See you in the room,<br>Myron</p>`);
-  const text = `You're in, ${first(row.name)}.\n\nJoin the Deploy WhatsApp group: ${INVITE}\n\nSay hi with one line on what you're building.\n\nMyron`;
+  const text = `You're in, ${first(row.name)}.\n\nJoin the ${GROUP[row.community]} WhatsApp group: ${INVITE}\n\n${work ? "Say hi with where you work and one thing AI does for you." : "Say hi with one line on what you're building."}\n\nMyron`;
   const ok = await send(row.email, "You're in: your Deploy WhatsApp invite", html, text, TO);
   if (ok) await admin.from("join_applications").update({ invited_at: new Date().toISOString() }).eq("id", row.id);
   return ok;
@@ -114,8 +124,10 @@ async function emailMyron(row: Record<string, any>) {
   const src = row.source || {};
   const from = [src.ref && `ref=${src.ref}`, src.utm_source && `utm=${src.utm_source}`, src.utm_campaign, src.referrer].filter(Boolean).join(" · ") || "direct";
   const rows: [string, string][] = [
-    ["Role", row.role], ["Building", row.building || ""], ["Stage", row.stage || ""],
-    ["Builds with", (row.tools || []).join(", ")], ["Wants", (row.wants || []).join(", ")],
+    ["Community", GROUP[row.community] ?? row.community], ["Role", row.role],
+    ["Works at", [row.title, row.company].filter(Boolean).join(" at ")], ["Lives", row.location || ""],
+    [row.role === "work" ? "Uses AI" : "Building", row.building || ""], ["Stage", row.stage || ""],
+    [row.role === "work" ? "AI tools" : "Builds with", (row.tools || []).join(", ")], ["Wants", (row.wants || []).join(", ")],
     ["Email", row.email], ["WhatsApp", row.phone || ""], ["Came from", from], ["When", when],
   ];
   const approved = row.status === "approved";
@@ -136,8 +148,9 @@ ${li ? `<p style="margin:0 0 14px"><a href="${esc(li)}" style="color:#c23b05;fon
   const text = `${row.name} (${approved ? "auto-approved" : "needs review: " + (row.reasons || []).join("; ")})\n` +
     (li ? `LinkedIn: ${li}\n` : "") + rows.map(([k, v]) => `${k}: ${v}`).join("\n") +
     (approved ? "" : `\n\nApprove: ${await decideUrl(row.id, "approve")}\nDecline: ${await decideUrl(row.id, "decline")}`);
-  const subject = approved ? `Join: ✅ ${clip(row.name, 50)} (${row.role}) is in`
-    : `Join: ${(row.reasons || []).length ? "⚠️ check" : "new"} ${clip(row.name, 50)} (${row.role})`;
+  const tag = row.community === "startups" ? "startups" : row.role;
+  const subject = approved ? `Join: ✅ ${clip(row.name, 50)} (${tag}) is in`
+    : `Join: ${(row.reasons || []).length ? "⚠️ check" : "new"} ${clip(row.name, 50)} (${tag})`;
   return send(TO, subject, html, text, row.email);
 }
 
@@ -146,7 +159,7 @@ async function decide(id: string, decision: string, by: string) {
   const { data: row } = await admin.from("join_applications").select("*").eq("id", id).maybeSingle();
   if (!row) return { error: "not found", code: 404 };
   if (decision === "approve") {
-    if (!INVITE) return { error: "Set the WhatsApp invite link first (WHATSAPP_INVITE secret).", code: 409 };
+    if (!inviteFor(row.community)) return { error: `Set the ${GROUP[row.community]} invite link first.`, code: 409 };
     const { data: upd } = await admin.from("join_applications")
       .update({ status: "approved", decided_by: by, decided_at: new Date().toISOString() }).eq("id", id).select("*").single();
     const sent = row.invited_at ? true : await emailInvite(upd);   // never double-send
@@ -160,7 +173,7 @@ async function decide(id: string, decision: string, by: string) {
 /* ---------- end of day: approve everyone still waiting ---------- */
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function approveAll(cutoff: string, by: string) {
-  if (!INVITE) return { error: "Set the WhatsApp invite link first (WHATSAPP_INVITE secret).", code: 409 };
+  if (!ANY_INVITE) return { error: "Set a WhatsApp invite link first.", code: 409 };
   const { data: rows } = await admin.from("join_applications").select("id,name")
     .eq("status", "pending").lte("created_at", cutoff).order("created_at");
   const names: string[] = [];
@@ -181,19 +194,19 @@ async function emailDigest() {
     const li = r.linkedin ? `<a href="https://www.linkedin.com/in/${esc(r.linkedin)}" style="color:#c23b05;font-weight:700">LinkedIn ↗</a> · ` : "";
     const flag = (r.reasons || []).length ? `<div style="font-size:13px;color:#8a3a00;margin-top:4px">⚠️ ${r.reasons.map(esc).join(" · ")}</div>` : "";
     return `<tr><td style="padding:12px 0;border-top:1px solid #d6cfbd">
-<b>${esc(r.name)}</b> <span style="font-size:12px;border:1px solid #11100d;padding:1px 5px">${esc(String(r.role).toUpperCase())}</span><br>
-<span>${esc(r.building)}${r.stage ? ` · <span style="color:#6b6458">${esc(r.stage)}</span>` : ""}</span><br>
+<b>${esc(r.name)}</b> <span style="font-size:12px;border:1px solid #11100d;padding:1px 5px;background:${r.community === "startups" ? "#c9f25d" : "#fff"}">${r.community === "startups" ? "STARTUPS" : esc(String(r.role).toUpperCase())}</span><br>
+${r.company ? `<span style="font-size:14px">${esc([r.title, r.company].filter(Boolean).join(" at "))}</span><br>` : ""}<span>${esc(r.building)}${r.stage ? ` · <span style="color:#6b6458">${esc(r.stage)}</span>` : ""}</span><br>
 <span style="font-size:14px">${li}${(r.wants || []).map(esc).join(", ")}</span>${flag}
 <div style="font-size:13px;margin-top:4px"><a href="${esc(await decideUrl(r.id, "decline"))}" style="color:#6b6458">Decline ${esc(first(r.name))}</a></div></td></tr>`;
   }));
   const flagged = rows.filter((r: any) => (r.reasons || []).length).length;
   const html = shell(`<h1 style="font:900 26px/1.1 Arial Black,Arial,sans-serif;margin:0 0 10px">${rows.length} waiting to join</h1>
 <p style="margin:0 0 16px">${flagged ? `${flagged} flagged (⚠️). ` : "All passed the checks. "}Decline anyone you don't want first, then approve the rest in one tap. Each person gets the WhatsApp invite by email.</p>
-${INVITE ? button(await batchUrl(cutoff), `Approve everyone left (${rows.length})`, "#c9f25d") : `<p style="color:#8a3a00"><b>Set the WhatsApp invite link before approving.</b></p>`}
+${ANY_INVITE ? button(await batchUrl(cutoff), `Approve everyone left (${rows.length})`, "#c9f25d") : `<p style="color:#8a3a00"><b>Set the WhatsApp invite link before approving.</b></p>`}
 <table style="border-collapse:collapse;width:100%;margin-top:14px">${items.join("")}</table>
 <p style="margin:16px 0 0;color:#6b6458;font-size:13px">Anyone who applies after this email goes in tomorrow's batch. Full list: deploytlv.com/db/applicants/</p>`);
   const text = `${rows.length} waiting to join.\n\n` + rows.map((r: any) => `- ${r.name} (${r.role}): ${r.building}`).join("\n") +
-    (INVITE ? `\n\nApprove everyone left: ${await batchUrl(cutoff)}` : "");
+    (ANY_INVITE ? `\n\nApprove everyone left: ${await batchUrl(cutoff)}` : "");
   await send(TO, `Join: ${rows.length} waiting${flagged ? ` (${flagged} flagged)` : ""}`, html, text);
   return { sent: true, pending: rows.length };
 }
@@ -212,7 +225,11 @@ Deno.serve(async (req) => {
       email: clip(b.email, 200).toLowerCase(),
       phone: clip(b.phone, 40),
       linkedin: slug(clip(b.linkedin, 200)),
-      role: ["founder", "builder", "other"].includes(b.role) ? b.role : "other",
+      role: ["founder", "builder", "work", "other"].includes(b.role) ? b.role : "other",
+      community: b.role === "work" ? "startups" : "builders",
+      company: clip(b.company, 120),
+      title: clip(b.title, 120),
+      location: clip(b.location, 80),
       building: clip(b.building, 400),
       stage: clip(b.stage, 60),
       tools: list(b.tools, 12),
@@ -223,8 +240,9 @@ Deno.serve(async (req) => {
     if (a.phone && !a.phone.startsWith("+")) a.phone = "+972 " + a.phone.replace(/^0/, "");
 
     // the same person again: approved before → same answer and the invite again; within 10 min → no new row
+    const INVITE = inviteFor(a.community);
     const { data: prev } = await admin.from("join_applications").select("id,status,created_at,invited_at")
-      .eq("email", a.email).order("created_at", { ascending: false }).limit(1).maybeSingle();
+      .eq("email", a.email).eq("community", a.community).order("created_at", { ascending: false }).limit(1).maybeSingle();
     if (prev?.status === "approved" && INVITE) return json({ status: "approved", invite: INVITE }, 200, origin);
     if (prev && Date.now() - new Date(prev.created_at).getTime() < 10 * 60 * 1000) return json({ status: prev.status === "approved" ? "approved" : "pending", ...(prev.status === "approved" && INVITE ? { invite: INVITE } : {}) }, 200, origin);
 
