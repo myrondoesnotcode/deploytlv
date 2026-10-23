@@ -19,7 +19,7 @@ window.ACADEMY_CONFIG = {
   "waitlist": "",
   "confirmation": "/academy/confirmed/",
   "whatsappClass": "",
-  "whatsappCommunity": "https://forms.fillout.com/t/gQiowrhyNAus",
+  "whatsappCommunity": "https://deploytlv.com/join/",
   "teamsContact": ""
  },
  "cohort": {
