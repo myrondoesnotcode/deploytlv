@@ -108,7 +108,7 @@ window.DEPLOY = {
   guide: [
     { weekly: 3, time: '19:00 – 21:00', cat: 'Workshop', color: 'sun', title: 'Academy 101: Build & ship a website with AI', badge: '10 SEATS',
       body: 'Every Wednesday. Two hours, beginners welcome, in English. Leave with your own website live on the internet.', cta: 'Book a seat', href: '/academy/build-and-ship/', hot: true },
-    { date: '2026-10-26', time: '18:00 – 20:00 · Sarona', cat: 'Deploy night', color: 'orange', title: 'DEPLOY_006', badge: 'NEXT',
+    { date: '2026-11-04', time: '18:00 – 20:00 · Sarona', cat: 'Deploy night', color: 'orange', title: 'DEPLOY_006', badge: 'NEXT',
       body: 'Our sixth night, at Sarona in Tel Aviv. People show what they built, then the room takes over. Free, in English.', cta: 'RSVP on Luma', href: 'https://luma.com/o8dzr1kh', hot: true },
     { date: '2026-11-16', time: '19:00 – 21:00 · 4 weeks', cat: 'Course', color: 'sun', title: 'Academy 201: Build an app with AI', badge: 'NEW',
       body: 'Four Monday evenings. Leave with your own working app, live on the internet and on your phone. ₪1,200.', cta: 'See the course', href: '/academy/build-an-app/' },
