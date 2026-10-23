@@ -35,7 +35,7 @@ body{background:var(--paper)}
 .a-why{grid-column:1;font:500 13px var(--mono);color:#8a3a00;margin-top:8px}
 .a-act{grid-column:2;grid-row:1/span 6;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:150px}
 .a-act .btn{min-height:42px;justify-content:center;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
-.a-act .btn.ok{background:var(--lime);color:var(--ink)}
+.a-act .btn.ok,#all{background:var(--lime);color:var(--ink)}
 .a-act time{font:500 12px var(--mono);color:var(--muted);text-align:right}
 .a-empty{font:500 16px var(--sans);color:var(--muted);padding:40px 0;text-align:center}
 .a-gate{max-width:460px;margin:60px auto;border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);padding:28px}
@@ -87,7 +87,7 @@ body{background:var(--paper)}
       <button class="a-tab" data-f="declined" aria-pressed="false">Declined<b id="nDeclined">0</b></button>
       <button class="a-tab" data-f="all" aria-pressed="false">All<b id="nAll">0</b></button>
     </div>
-    <div class="a-tools"><input id="q" type="search" placeholder="Search name, company, what they build…"></div>
+    <div class="a-tools"><input id="q" type="search" placeholder="Search name, company, what they build…"><button class="btn ok" id="all" hidden>Approve everyone waiting</button></div>
     <div class="a-list" id="list"></div>
   </section>
 </main>
@@ -107,6 +107,18 @@ body{background:var(--paper)}
 
   /* ---------- one-tap link from the email: ?id=…&a=approve|decline&sig=… ---------- */
   const p=new URLSearchParams(location.search)
+  /* ---------- "approve everyone left" from the daily email: ?batch=<cutoff>&sig=… ---------- */
+  if(p.get('batch')&&p.get('sig')){
+    $('decided').hidden=false;$('dTitle').textContent='Approving everyone…';$('dText').textContent='Sending each invite. This can take a minute for a big batch; keep this tab open.'
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'approve_all',cutoff:p.get('batch'),sig:p.get('sig')})})
+      .then(r=>r.json()).then(d=>{
+        history.replaceState(null,'','/db/applicants/')
+        if(d.error){$('dTitle').textContent='That didn’t work';$('dText').textContent=d.error;return}
+        $('dTitle').textContent=d.approved?`${d.approved} approved ✓`:'Nobody left to approve'
+        $('dText').textContent=d.approved?`Invites sent to ${d.names.join(', ')}.`:'Everyone in that email was already approved or declined.'
+      }).catch(()=>{$('dTitle').textContent='That didn’t work';$('dText').textContent='Couldn’t reach the server. Try the link again.'})
+    return
+  }
   if(p.get('id')&&p.get('sig')){
     $('decided').hidden=false
     const a=p.get('a')
@@ -152,6 +164,7 @@ body{background:var(--paper)}
   function render(){
     const n=s=>rows.filter(r=>r.status===s).length
     $('nPending').textContent=n('pending');$('nApproved').textContent=n('approved');$('nDeclined').textContent=n('declined');$('nAll').textContent=rows.length
+    $('all').hidden=filter!=='pending'||!n('pending');$('all').textContent=`Approve everyone waiting (${n('pending')})`
     const q=$('q').value.trim().toLowerCase()
     const shown=rows.filter(r=>(filter==='all'||r.status===filter)&&(!q||[r.name,r.email,r.building,r.linkedin,r.stage,(r.wants||[]).join(' '),(r.tools||[]).join(' ')].join(' ').toLowerCase().includes(q)))
     if(!shown.length){$('list').innerHTML=`<p class="a-empty">${filter==='pending'?'Nobody waiting. Nice.':'Nothing here yet.'}</p>`;return}
@@ -172,6 +185,12 @@ body{background:var(--paper)}
   }
   $('tabs').onclick=e=>{const b=e.target.closest('.a-tab');if(!b)return;filter=b.dataset.f;document.querySelectorAll('.a-tab').forEach(x=>x.setAttribute('aria-pressed',x===b));render()}
   $('q').oninput=render
+  $('all').onclick=async()=>{const k=rows.filter(r=>r.status==='pending').length
+    if(!confirm(`Approve all ${k} and email each of them the WhatsApp invite?`))return
+    const b=$('all');b.disabled=true;b.textContent='Sending invites…'
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+session.access_token,apikey:C.anonKey},body:JSON.stringify({action:'review',decision:'approve_all'})})
+    const d=await r.json().catch(()=>({error:'Server error'}));b.disabled=false
+    toast(d.error||`${d.approved} approved, invites sent`);load()}
   $('list').onclick=async e=>{const b=e.target.closest('[data-d]');if(!b)return
     b.disabled=true;const label=b.textContent;b.textContent='…'
     const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+session.access_token,apikey:C.anonKey},body:JSON.stringify({action:'review',id:b.dataset.id,decision:b.dataset.d})})

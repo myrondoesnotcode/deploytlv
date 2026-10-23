@@ -7,9 +7,13 @@
 //   { action: "decide", id, decision: "approve"|"decline", sig }
 //       one-tap links from Myron's email (they open /db/applicants/, which posts here). sig = HMAC(id).
 //   { action: "review", id, decision }   with an admin's JWT in Authorization (the /db/applicants/ page).
+//       decision "approve_all" approves everyone still waiting.
+//   { action: "digest" }   daily from pg_cron (x-join-secret header): emails Myron everyone waiting,
+//       with per-person decline links and one "approve everyone left" link.
+//   { action: "approve_all", cutoff, sig }   that link: approves everyone waiting who applied before cutoff.
 //
 // Secrets (supabase secrets set): RESEND_API_KEY, RESEND_FROM, JOIN_SECRET, WHATSAPP_INVITE,
-// JOIN_NOTIFY_TO (where review emails go). No WHATSAPP_INVITE → nobody is auto-approved.
+// JOIN_NOTIFY_TO (where review emails go), JOIN_AUTO_APPROVE ("off" holds everyone for review). No WHATSAPP_INVITE → nobody is auto-approved.
 // SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY are provided by the platform.
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
@@ -19,6 +23,7 @@ const FROM = Deno.env.get("RESEND_FROM") ?? "Deploy TLV <hello@mail.deploytlv.co
 const TO = Deno.env.get("JOIN_NOTIFY_TO") ?? "hello@deploytlv.com";
 const SECRET = Deno.env.get("JOIN_SECRET") ?? "";
 const INVITE = Deno.env.get("WHATSAPP_INVITE") ?? "";
+const AUTO = (Deno.env.get("JOIN_AUTO_APPROVE") ?? "on") !== "off";   // "off" → every application waits for a human
 const SITE = "https://deploytlv.com";
 const ALLOWED = [SITE, "http://localhost:4321", "http://localhost:4320", "http://localhost:3456"];
 
@@ -78,7 +83,7 @@ async function send(to: string, subject: string, html: string, text: string, rep
   return r.ok;
 }
 const shell = (inner: string) =>
-  `<div style="background:#f3eedf;padding:28px 16px"><div style="max-width:560px;margin:0 auto;background:#fbf6e8;border:2px solid #11100d;padding:28px;font:16px/1.6 -apple-system,Segoe UI,Helvetica,sans-serif;color:#11100d">
+  `<meta charset="utf-8"><div style="background:#f3eedf;padding:28px 16px"><div style="max-width:560px;margin:0 auto;background:#fbf6e8;border:2px solid #11100d;padding:28px;font:16px/1.6 -apple-system,Segoe UI,Helvetica,sans-serif;color:#11100d">
 <div style="font:900 15px/1 Arial Black,Arial,sans-serif;letter-spacing:.04em;margin-bottom:20px">DEPLOY <span style="color:#ff5a18">TLV</span></div>${inner}</div></div>`;
 const button = (href: string, label: string, bg = "#ff5a18") =>
   `<a href="${esc(href)}" style="display:inline-block;background:${bg};color:#11100d;border:2px solid #11100d;padding:12px 20px;font-weight:700;text-decoration:none;margin:4px 8px 4px 0">${esc(label)}</a>`;
@@ -116,7 +121,9 @@ async function emailMyron(row: Record<string, any>) {
   const approved = row.status === "approved";
   const head = approved
     ? `<p style="margin:0 0 14px"><b style="background:#c9f25d;padding:2px 6px">AUTO-APPROVED</b> They got the WhatsApp invite by email.</p>`
-    : `<p style="margin:0 0 6px"><b style="background:#8fd3ff;padding:2px 6px">NEEDS YOU</b> Held for review because:</p><ul style="margin:0 0 14px;padding-left:20px">${(row.reasons || []).map((r: string) => `<li>${esc(r)}</li>`).join("")}</ul>`;
+    : (row.reasons || []).length
+      ? `<p style="margin:0 0 6px"><b style="background:#ffd23f;padding:2px 6px">FLAGGED</b> Worth a look because:</p><ul style="margin:0 0 14px;padding-left:20px">${row.reasons.map((r: string) => `<li>${esc(r)}</li>`).join("")}</ul>`
+      : `<p style="margin:0 0 14px"><b style="background:#c9f25d;padding:2px 6px">LOOKS GOOD</b> Passed every check. Approve now, or leave it for tonight's batch email.</p>`;
   const actions = approved
     ? button(`${SITE}/db/applicants/`, "See all applicants", "#fbf6e8")
     : button(await decideUrl(row.id, "approve"), "Approve + send invite", "#c9f25d") + button(await decideUrl(row.id, "decline"), "Decline", "#fbf6e8");
@@ -129,7 +136,8 @@ ${li ? `<p style="margin:0 0 14px"><a href="${esc(li)}" style="color:#c23b05;fon
   const text = `${row.name} (${approved ? "auto-approved" : "needs review: " + (row.reasons || []).join("; ")})\n` +
     (li ? `LinkedIn: ${li}\n` : "") + rows.map(([k, v]) => `${k}: ${v}`).join("\n") +
     (approved ? "" : `\n\nApprove: ${await decideUrl(row.id, "approve")}\nDecline: ${await decideUrl(row.id, "decline")}`);
-  const subject = approved ? `Join: ✅ ${clip(row.name, 50)} (${row.role}) is in` : `Join: review ${clip(row.name, 50)} (${row.role})`;
+  const subject = approved ? `Join: ✅ ${clip(row.name, 50)} (${row.role}) is in`
+    : `Join: ${(row.reasons || []).length ? "⚠️ check" : "new"} ${clip(row.name, 50)} (${row.role})`;
   return send(TO, subject, html, text, row.email);
 }
 
@@ -147,6 +155,47 @@ async function decide(id: string, decision: string, by: string) {
   await admin.from("join_applications")
     .update({ status: "declined", decided_by: by, decided_at: new Date().toISOString() }).eq("id", id);
   return { status: "declined", name: row.name };
+}
+
+/* ---------- end of day: approve everyone still waiting ---------- */
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+async function approveAll(cutoff: string, by: string) {
+  if (!INVITE) return { error: "Set the WhatsApp invite link first (WHATSAPP_INVITE secret).", code: 409 };
+  const { data: rows } = await admin.from("join_applications").select("id,name")
+    .eq("status", "pending").lte("created_at", cutoff).order("created_at");
+  const names: string[] = [];
+  for (const r of rows ?? []) {           // one at a time: Resend allows ~2 emails a second
+    const d = await decide(r.id, "approve", by);
+    if (!(d as any).error) names.push(r.name);
+    await sleep(600);
+  }
+  return { status: "approved_all", approved: names.length, names };
+}
+const batchUrl = async (cutoff: string) => `${SITE}/db/applicants/?batch=${encodeURIComponent(cutoff)}&sig=${await sign("batch:" + cutoff)}`;
+
+async function emailDigest() {
+  const { data: rows } = await admin.from("join_applications").select("*").eq("status", "pending").order("created_at");
+  if (!rows?.length) return { sent: false, pending: 0 };
+  const cutoff = new Date().toISOString();
+  const items = await Promise.all(rows.map(async (r: any) => {
+    const li = r.linkedin ? `<a href="https://www.linkedin.com/in/${esc(r.linkedin)}" style="color:#c23b05;font-weight:700">LinkedIn ↗</a> · ` : "";
+    const flag = (r.reasons || []).length ? `<div style="font-size:13px;color:#8a3a00;margin-top:4px">⚠️ ${r.reasons.map(esc).join(" · ")}</div>` : "";
+    return `<tr><td style="padding:12px 0;border-top:1px solid #d6cfbd">
+<b>${esc(r.name)}</b> <span style="font-size:12px;border:1px solid #11100d;padding:1px 5px">${esc(String(r.role).toUpperCase())}</span><br>
+<span>${esc(r.building)}${r.stage ? ` · <span style="color:#6b6458">${esc(r.stage)}</span>` : ""}</span><br>
+<span style="font-size:14px">${li}${(r.wants || []).map(esc).join(", ")}</span>${flag}
+<div style="font-size:13px;margin-top:4px"><a href="${esc(await decideUrl(r.id, "decline"))}" style="color:#6b6458">Decline ${esc(first(r.name))}</a></div></td></tr>`;
+  }));
+  const flagged = rows.filter((r: any) => (r.reasons || []).length).length;
+  const html = shell(`<h1 style="font:900 26px/1.1 Arial Black,Arial,sans-serif;margin:0 0 10px">${rows.length} waiting to join</h1>
+<p style="margin:0 0 16px">${flagged ? `${flagged} flagged (⚠️). ` : "All passed the checks. "}Decline anyone you don't want first, then approve the rest in one tap. Each person gets the WhatsApp invite by email.</p>
+${INVITE ? button(await batchUrl(cutoff), `Approve everyone left (${rows.length})`, "#c9f25d") : `<p style="color:#8a3a00"><b>Set the WhatsApp invite link before approving.</b></p>`}
+<table style="border-collapse:collapse;width:100%;margin-top:14px">${items.join("")}</table>
+<p style="margin:16px 0 0;color:#6b6458;font-size:13px">Anyone who applies after this email goes in tomorrow's batch. Full list: deploytlv.com/db/applicants/</p>`);
+  const text = `${rows.length} waiting to join.\n\n` + rows.map((r: any) => `- ${r.name} (${r.role}): ${r.building}`).join("\n") +
+    (INVITE ? `\n\nApprove everyone left: ${await batchUrl(cutoff)}` : "");
+  await send(TO, `Join: ${rows.length} waiting${flagged ? ` (${flagged} flagged)` : ""}`, html, text);
+  return { sent: true, pending: rows.length };
 }
 
 Deno.serve(async (req) => {
@@ -181,7 +230,7 @@ Deno.serve(async (req) => {
 
     const reasons = screen(a);
     if (prev?.status === "declined") reasons.push("Applied before and was declined");
-    const status = reasons.length ? "pending" : "approved";
+    const status = reasons.length || !AUTO ? "pending" : "approved";
     const { data: row, error } = await admin.from("join_applications")
       .insert({ ...a, status, reasons, decided_by: status === "approved" ? "auto" : null, decided_at: status === "approved" ? new Date().toISOString() : null })
       .select("*").single();
@@ -192,6 +241,17 @@ Deno.serve(async (req) => {
     // @ts-ignore EdgeRuntime is provided by Supabase
     if (typeof EdgeRuntime !== "undefined") EdgeRuntime.waitUntil(Promise.all(jobs)); else await Promise.all(jobs);
     return json(status === "approved" ? { status, invite: INVITE } : { status }, 200, origin);
+  }
+
+  if (b.action === "digest") {           // daily, from pg_cron
+    if (!SECRET || req.headers.get("x-join-secret") !== SECRET) return json({ error: "unauthorized" }, 401, origin);
+    return json(await emailDigest(), 200, origin);
+  }
+
+  if (b.action === "approve_all") {      // the button in the digest email
+    if (!SECRET || !b.cutoff || b.sig !== await sign("batch:" + String(b.cutoff))) return json({ error: "This link isn't valid." }, 403, origin);
+    const r = await approveAll(String(b.cutoff), "batch email");
+    return json(r, (r as any).code ?? 200, origin);
   }
 
   if (b.action === "decide") {
@@ -207,6 +267,10 @@ Deno.serve(async (req) => {
     const { data: ok } = await anon.rpc("is_admin");
     const { data: { user } } = await anon.auth.getUser();
     if (!ok || !user) return json({ error: "forbidden" }, 403, origin);
+    if (b.decision === "approve_all") {
+      const r = await approveAll(new Date().toISOString(), user.email ?? "admin");
+      return json(r, (r as any).code ?? 200, origin);
+    }
     if (!b.id || !["approve", "decline"].includes(b.decision)) return json({ error: "bad request" }, 400, origin);
     const r = await decide(String(b.id), b.decision, user.email ?? "admin");
     return json(r, (r as any).code ?? 200, origin);
