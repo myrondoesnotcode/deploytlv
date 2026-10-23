@@ -100,14 +100,27 @@ const button = (href: string, label: string, bg = "#ff5a18") =>
 
 function first(name: string) { return name.split(/\s+/)[0]; }
 
+/* The Deploy Log pitch in every applicant email. 700+ = busiest weeks in the Founders/Builders
+   export to 19 Oct 2026 (720 and 714); DB access needs an active Deploy Log subscription. */
+const LOG_URL = `${SITE}/db/?utm_source=join&utm_medium=email`;
+function logPitch(community: string) {
+  const grp = community === "startups" ? "Our Founders &amp; Builders group" : "The group";
+  const html = `<div style="margin:22px 0 0;padding:18px;border:2px solid #11100d;background:#f3eedf">
+<p style="margin:0 0 6px;font-weight:700">A lot to keep up with?</p>
+<p style="margin:0 0 14px">${grp} can hit 700+ messages in a busy week. The tools, answers and projects people share there go into the <b>Deploy DB</b>, a searchable database of everything the group has figured out. It's free with the <b>Deploy Log</b>, our one email a week with the next Deploy night, Academy classes and new stories.</p>
+${button(LOG_URL, "Get the Deploy Log + the DB \u2192")}</div>`;
+  const text = `\n\nA lot to keep up with? ${grp.replace("&amp;", "&")} can hit 700+ messages in a busy week. The tools, answers and projects people share go into the Deploy DB, free with the Deploy Log (one email a week): ${LOG_URL}`;
+  return { html, text };
+}
+
 async function emailInvite(row: Record<string, any>) {
   const f = esc(first(row.name)), INVITE = inviteFor(row.community), work = row.community === "startups";
   const html = shell(`<h1 style="font:900 28px/1.1 Arial Black,Arial,sans-serif;margin:0 0 14px">You're in, ${f}.</h1>
 <p style="margin:0 0 18px">Welcome to ${work ? "DeployTLV for Startups, where people at Tel Aviv startups share how they use AI at work" : "Deploy, Tel Aviv's English-speaking community of people building with AI"}. Tap below to join the WhatsApp group.</p>
 ${button(INVITE, "Join the WhatsApp group →", "#25d366")}
 <p style="margin:18px 0 0">${work ? "When you're in, say hi with where you work and one thing AI does for you at work." : "When you're in, say hi with one line on what you're building. The group has the next night, the coworking days and the intros."}</p>
-<p style="margin:18px 0 0;color:#6b6458;font-size:14px">See you in the room,<br>Myron</p>`);
-  const text = `You're in, ${first(row.name)}.\n\nJoin the ${GROUP[row.community]} WhatsApp group: ${INVITE}\n\n${work ? "Say hi with where you work and one thing AI does for you." : "Say hi with one line on what you're building."}\n\nMyron`;
+<p style="margin:18px 0 0;color:#6b6458;font-size:14px">See you in the room,<br>Myron</p>${logPitch(row.community).html}`);
+  const text = `You're in, ${first(row.name)}.\n\nJoin the ${GROUP[row.community]} WhatsApp group: ${INVITE}\n\n${work ? "Say hi with where you work and one thing AI does for you." : "Say hi with one line on what you're building."}\n\nMyron${logPitch(row.community).text}`;
   const ok = await send(row.email, "You're in: your Deploy WhatsApp invite", html, text, TO);
   if (ok) await admin.from("join_applications").update({ invited_at: new Date().toISOString() }).eq("id", row.id);
   return ok;
@@ -115,8 +128,8 @@ ${button(INVITE, "Join the WhatsApp group →", "#25d366")}
 async function emailReceived(row: Record<string, any>) {
   const html = shell(`<h1 style="font:900 26px/1.1 Arial Black,Arial,sans-serif;margin:0 0 14px">Got it, ${esc(first(row.name))}.</h1>
 <p style="margin:0">Thanks for applying to Deploy. Myron reads every application himself, and you'll hear back here, usually within a day.</p>
-<p style="margin:18px 0 0;color:#6b6458;font-size:14px">Meanwhile, see what we make: <a href="https://instagram.com/deploytlv" style="color:#c23b05">@deploytlv</a></p>`);
-  return send(row.email, "We got your Deploy application", html, `Thanks for applying to Deploy, ${first(row.name)}. You'll hear back here, usually within a day.`, TO);
+<p style="margin:18px 0 0;color:#6b6458;font-size:14px">Meanwhile, see what we make: <a href="https://instagram.com/deploytlv" style="color:#c23b05">@deploytlv</a></p>${logPitch(row.community).html}`);
+  return send(row.email, "We got your Deploy application", html, `Thanks for applying to Deploy, ${first(row.name)}. You'll hear back here, usually within a day.${logPitch(row.community).text}`, TO);
 }
 async function emailMyron(row: Record<string, any>) {
   const li = row.linkedin ? `https://www.linkedin.com/in/${row.linkedin}` : "";
