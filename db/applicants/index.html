@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Applicants · Deploy</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+/* /db/applicants/ — admin list of /join applications. Data comes from Supabase (RLS: admins only). */
+body{background:var(--paper)}
+.a-wrap{max-width:1080px;margin:0 auto;padding:32px 16px 80px}
+.a-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.a-head h1{font:400 clamp(44px,6vw,72px)/.9 var(--num);text-transform:uppercase;margin:0}
+.a-head small{display:block;font:700 12px var(--px);color:var(--orange-text);margin-bottom:8px}
+.a-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.a-tab{font:600 14px var(--sans);border:2px solid var(--ink);border-radius:999px;padding:7px 14px;background:var(--paper);cursor:pointer;color:var(--ink)}
+.a-tab[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.a-tab b{font:700 12px var(--px);margin-left:6px}
+.a-tools{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.a-tools input{flex:1;min-width:200px;font:500 15px var(--sans);border:2px solid var(--ink);padding:10px 12px;background:var(--card)}
+.a-list{display:grid;gap:14px}
+.a-card{border:2px solid var(--ink);background:var(--card);box-shadow:4px 4px 0 var(--ink);padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px}
+.a-card h2{font:400 24px/1.1 var(--disp);margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.a-role{font:700 11px var(--px);border:1.5px solid var(--ink);padding:3px 7px;background:var(--paper)}
+.a-role.founder{background:var(--sun)}.a-role.builder{background:var(--sky)}.a-role.other{background:var(--pink)}
+.a-st{font:700 11px var(--px);padding:3px 7px;border:1.5px solid var(--ink)}
+.a-st.pending{background:#fff}.a-st.approved{background:var(--lime)}.a-st.declined{background:var(--rule)}
+.a-build{font:500 16px/1.45 var(--sans);margin:6px 0 0;grid-column:1}
+.a-meta{grid-column:1;display:flex;flex-wrap:wrap;gap:6px 16px;font:400 14px/1.5 var(--sans);color:var(--ink-2);margin-top:6px}
+.a-meta a{color:var(--orange-text);font-weight:600}
+.a-chips{grid-column:1;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.a-chips span{font:500 12px var(--sans);border:1.5px solid var(--ink);border-radius:999px;padding:2px 9px;background:var(--paper)}
+.a-chips span.w{background:var(--lime)}
+.a-why{grid-column:1;font:500 13px var(--mono);color:#8a3a00;margin-top:8px}
+.a-act{grid-column:2;grid-row:1/span 6;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:150px}
+.a-act .btn{min-height:42px;justify-content:center;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+.a-act .btn.ok{background:var(--lime);color:var(--ink)}
+.a-act time{font:500 12px var(--mono);color:var(--muted);text-align:right}
+.a-empty{font:500 16px var(--sans);color:var(--muted);padding:40px 0;text-align:center}
+.a-gate{max-width:460px;margin:60px auto;border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);padding:28px}
+.a-gate h2{font:400 30px/1.05 var(--disp);margin:0 0 10px}
+.a-gate p{font:400 15px/1.5 var(--sans);color:var(--ink-2);margin:0 0 16px}
+.a-gate input{width:100%;font:500 17px var(--sans);border:2px solid var(--ink);padding:12px;background:var(--paper);margin-bottom:12px}
+.a-gate .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.a-msg{font:600 14px var(--sans);color:#c21f05;min-height:20px;margin-top:10px}
+.a-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--paper);font:600 14px var(--sans);padding:12px 18px;border-radius:999px;z-index:99}
+@media (max-width:700px){
+  .a-card{grid-template-columns:1fr}
+  .a-act{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;margin-top:10px}
+  .a-act .btn{flex:1}
+  .a-act time{flex-basis:100%;text-align:left}
+}
+</style>
+</head><body>
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="logo" href="/" aria-label="Deploy TLV, home">DEPLOY <b>TLV</b></a>
+  <div class="navlinks"><a href="/db/">Deploy DB</a><a href="/join/">/join</a></div>
+  <div class="nav-end"><button class="btn c" id="out" hidden>Sign out</button></div>
+</div></nav>
+
+<main class="a-wrap">
+  <!-- one-tap decision from the email -->
+  <section class="a-gate" id="decided" hidden>
+    <h2 id="dTitle">Working on it…</h2>
+    <p id="dText"></p>
+    <a class="btn o" href="/db/applicants/">See all applicants →</a>
+  </section>
+
+  <!-- sign in (admins only) -->
+  <section class="a-gate" id="gate" hidden>
+    <h2>Applicants</h2>
+    <p id="gateText">Admins only. Enter your email and we'll send a 6-digit code.</p>
+    <form id="fEmail"><input type="email" id="email" placeholder="you@deploytlv.com" autocomplete="email" required><div class="row"><button class="btn o" type="submit">Send code</button></div></form>
+    <form id="fCode" hidden><input inputmode="numeric" id="code" placeholder="6-digit code" autocomplete="one-time-code" maxlength="6"><div class="row"><button class="btn o" type="submit">Sign in</button><button class="btn c" type="button" id="back">Use another email</button></div></form>
+    <div class="a-msg" id="gMsg"></div>
+  </section>
+
+  <section id="app" hidden>
+    <div class="a-head">
+      <div><small>DEPLOY · COMMUNITY</small><h1>Applicants</h1></div>
+      <button class="btn c" id="csv">Export CSV</button>
+    </div>
+    <div class="a-tabs" id="tabs">
+      <button class="a-tab" data-f="pending" aria-pressed="true">Needs review<b id="nPending">0</b></button>
+      <button class="a-tab" data-f="approved" aria-pressed="false">Approved<b id="nApproved">0</b></button>
+      <button class="a-tab" data-f="declined" aria-pressed="false">Declined<b id="nDeclined">0</b></button>
+      <button class="a-tab" data-f="all" aria-pressed="false">All<b id="nAll">0</b></button>
+    </div>
+    <div class="a-tools"><input id="q" type="search" placeholder="Search name, company, what they build…"></div>
+    <div class="a-list" id="list"></div>
+  </section>
+</main>
+<div id="toastHost"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="/db/config.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id), C=window.DDB_CONFIG
+  const API=C.url+'/functions/v1/join'
+  const storage={getItem:k=>{try{return localStorage.getItem(k)}catch(e){return null}},setItem:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},removeItem:k=>{try{localStorage.removeItem(k)}catch(e){}}}
+  const sb=supabase.createClient(C.url,C.anonKey,{auth:{storage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit'}})
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+  const toast=t=>{const d=document.createElement('div');d.className='a-toast';d.textContent=t;$('toastHost').replaceChildren(d);setTimeout(()=>d.remove(),3500)}
+  let rows=[], filter='pending', session=null
+
+  /* ---------- one-tap link from the email: ?id=…&a=approve|decline&sig=… ---------- */
+  const p=new URLSearchParams(location.search)
+  if(p.get('id')&&p.get('sig')){
+    $('decided').hidden=false
+    const a=p.get('a')
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'decide',id:p.get('id'),decision:a,sig:p.get('sig')})})
+      .then(r=>r.json()).then(d=>{
+        history.replaceState(null,'','/db/applicants/')
+        if(d.error){$('dTitle').textContent='That didn’t work';$('dText').textContent=d.error;return}
+        if(d.status==='approved'){$('dTitle').textContent=`${d.name} is in ✓`;$('dText').textContent=d.already?'They already had the invite, so nothing was sent twice.':(d.invited?'The WhatsApp invite is on its way to their inbox.':'Approved, but the invite email failed. Open the list and approve again to resend.')}
+        else{$('dTitle').textContent=`Declined ${d.name}`;$('dText').textContent='Nothing was sent to them.'}
+      }).catch(()=>{$('dTitle').textContent='That didn’t work';$('dText').textContent='Couldn’t reach the server. Try the link again.'})
+    return
+  }
+
+  /* ---------- sign in ---------- */
+  function gate(msg){$('gate').hidden=false;$('app').hidden=true;$('out').hidden=true;if(msg)$('gateText').textContent=msg}
+  $('fEmail').onsubmit=e=>{e.preventDefault();const v=$('email').value.trim();$('gMsg').textContent=''
+    sb.auth.signInWithOtp({email:v,options:{shouldCreateUser:false}}).then(r=>{
+      if(r.error){$('gMsg').textContent=r.error.status===429?'Too many codes. Wait a minute.':'No account for that email.';return}
+      $('fEmail').hidden=true;$('fCode').hidden=false;$('code').focus()})}
+  $('fCode').onsubmit=e=>{e.preventDefault()
+    sb.auth.verifyOtp({email:$('email').value.trim(),token:$('code').value.replace(/\D/g,''),type:'email'}).then(r=>{if(r.error)$('gMsg').textContent='That code didn’t work.'})}
+  $('back').onclick=()=>{$('fCode').hidden=true;$('fEmail').hidden=false}
+  $('out').onclick=()=>sb.auth.signOut()
+
+  sb.auth.onAuthStateChange((ev,s)=>{session=s
+    if(!s){gate('Admins only. Enter your email and we’ll send a 6-digit code.');return}
+    if(ev==='SIGNED_IN'||ev==='INITIAL_SESSION') enter()
+  })
+  async function enter(){
+    const {data:ok}=await sb.rpc('am_i_admin')
+    if(!ok){gate(`${session.user.email} isn’t an admin. Sign out and use your admin email.`);$('out').hidden=false;$('fEmail').hidden=true;return}
+    $('gate').hidden=true;$('app').hidden=false;$('out').hidden=false
+    load()
+  }
+  async function load(){
+    const {data,error}=await sb.from('join_applications').select('*').order('created_at',{ascending:false}).limit(2000)
+    if(error){toast('Couldn’t load applicants.');return}
+    rows=data;render()
+  }
+
+  /* ---------- list ---------- */
+  const fmt=d=>new Date(d).toLocaleString('en-GB',{timeZone:'Asia/Jerusalem',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})
+  function render(){
+    const n=s=>rows.filter(r=>r.status===s).length
+    $('nPending').textContent=n('pending');$('nApproved').textContent=n('approved');$('nDeclined').textContent=n('declined');$('nAll').textContent=rows.length
+    const q=$('q').value.trim().toLowerCase()
+    const shown=rows.filter(r=>(filter==='all'||r.status===filter)&&(!q||[r.name,r.email,r.building,r.linkedin,r.stage,(r.wants||[]).join(' '),(r.tools||[]).join(' ')].join(' ').toLowerCase().includes(q)))
+    if(!shown.length){$('list').innerHTML=`<p class="a-empty">${filter==='pending'?'Nobody waiting. Nice.':'Nothing here yet.'}</p>`;return}
+    $('list').innerHTML=shown.map(r=>{
+      const src=r.source||{}, from=[src.ref&&'ref '+src.ref,src.utm_source,src.utm_campaign].filter(Boolean).join(' · ')||(src.referrer?new URL(src.referrer,location.href).hostname:'direct')
+      const phone=(r.phone||'').replace(/\D/g,'')
+      const acts=r.status==='pending'?`<button class="btn ok" data-d="approve" data-id="${r.id}">Approve + invite</button><button class="btn c" data-d="decline" data-id="${r.id}">Decline</button>`
+        :r.status==='declined'?`<button class="btn c" data-d="approve" data-id="${r.id}">Approve instead</button>`
+        :`<span class="a-st approved" style="text-align:center">${r.invited_at?'INVITE SENT':'APPROVED'}</span>`
+      return `<article class="a-card">
+        <h2>${esc(r.name)} <span class="a-role ${esc(r.role)}">${esc(r.role).toUpperCase()}</span>${filter==='all'?`<span class="a-st ${esc(r.status)}">${esc(r.status).toUpperCase()}</span>`:''}</h2>
+        <p class="a-build">${esc(r.building)}${r.stage?` <span style="color:var(--muted)">· ${esc(r.stage)}</span>`:''}</p>
+        <div class="a-meta">${r.linkedin?`<a href="https://www.linkedin.com/in/${encodeURIComponent(r.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>`:''}<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>${phone?`<a href="https://wa.me/${phone}" target="_blank" rel="noopener">${esc(r.phone)}</a>`:''}<span>from ${esc(from)}</span></div>
+        <div class="a-chips">${(r.wants||[]).map(w=>`<span class="w">${esc(w)}</span>`).join('')}${(r.tools||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+        ${r.status==='pending'&&(r.reasons||[]).length?`<div class="a-why">Held: ${r.reasons.map(esc).join(' · ')}</div>`:''}
+        <div class="a-act">${acts}<time>${fmt(r.created_at)}${r.decided_by&&r.status!=='pending'?' · '+esc(r.decided_by==='auto'?'auto':'by '+r.decided_by):''}</time></div>
+      </article>`}).join('')
+  }
+  $('tabs').onclick=e=>{const b=e.target.closest('.a-tab');if(!b)return;filter=b.dataset.f;document.querySelectorAll('.a-tab').forEach(x=>x.setAttribute('aria-pressed',x===b));render()}
+  $('q').oninput=render
+  $('list').onclick=async e=>{const b=e.target.closest('[data-d]');if(!b)return
+    b.disabled=true;const label=b.textContent;b.textContent='…'
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+session.access_token,apikey:C.anonKey},body:JSON.stringify({action:'review',id:b.dataset.id,decision:b.dataset.d})})
+    const d=await r.json().catch(()=>({error:'Server error'}))
+    if(d.error){toast(d.error);b.disabled=false;b.textContent=label;return}
+    toast(d.status==='approved'?`${d.name} approved${d.invited&&!d.already?', invite sent':''}`:`${d.name} declined`);load()}
+
+  /* ---------- CSV export (opens locally; nothing leaves the browser) ---------- */
+  $('csv').onclick=()=>{
+    const cols=['created_at','status','name','email','phone','linkedin','role','building','stage','wants','tools','source','reasons','decided_by']
+    const cell=v=>{v=Array.isArray(v)?v.join('; '):(v&&typeof v==='object'?JSON.stringify(v):(v??''));v=String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+    const csv=[cols.join(','),...rows.map(r=>cols.map(c=>cell(r[c])).join(','))].join('\n')
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`deploy-applicants-${new Date().toISOString().slice(0,10)}.csv`;a.click()}
+})()
+</script>
+</body></html>

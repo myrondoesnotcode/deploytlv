@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join Deploy · Tel Aviv's English-speaking AI community</title>
+<meta name="description" content="Apply to join Deploy, Tel Aviv's English-speaking community of AI founders and builders. Takes a minute.">
+<link rel="canonical" href="https://deploytlv.com/join/">
+<meta property="og:title" content="Join Deploy · Tel Aviv's English-speaking AI community">
+<meta property="og:description" content="Apply to join Deploy, Tel Aviv's community of AI founders and builders. Takes about a minute.">
+<meta property="og:image" content="https://deploytlv.com/media/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+/* /join — mockup. Page-scoped (j-) on top of the site tokens. */
+body{background:var(--paper)}
+.j-mock{background:var(--ink);color:var(--sun);font:700 12px var(--px);letter-spacing:.06em;text-align:center;padding:7px 16px}
+.j-stage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:calc(100svh - 66px - 29px)}
+
+/* left: the pitch, on orange */
+.j-pitch{background:var(--orange);border-right:2px solid var(--ink);padding:56px 48px 40px;display:flex;flex-direction:column;gap:28px;position:relative;overflow:hidden}
+.j-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font:700 13px var(--px);border:2px solid var(--ink);background:var(--paper);padding:6px 11px;border-radius:999px}
+.j-tag i{width:9px;height:9px;border-radius:50%;background:#ff2d1a;border:1.5px solid var(--ink);animation:jblink 1.2s steps(2) infinite}
+@keyframes jblink{50%{opacity:0}}
+.j-pitch h1{font:400 clamp(56px,7.4vw,112px)/.88 var(--num);text-transform:uppercase;letter-spacing:-.01em;margin:0}
+.j-pitch h1 .hand{display:block;font:400 .42em/1 var(--hand);text-transform:none;color:var(--paper);transform:rotate(-3deg);margin-top:14px;-webkit-text-stroke:0}
+.j-pitch .lede{font:500 18px/1.5 var(--sans);max-width:30em;margin:0}
+.j-faces{display:flex;align-items:center;gap:14px}
+.j-faces .stack{display:flex}
+.j-faces img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--ink);margin-left:-12px;background:var(--card)}
+.j-faces img:first-child{margin-left:0}
+.j-faces span{font:600 14px/1.3 var(--sans)}
+.j-gets{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.j-gets li{display:flex;gap:12px;align-items:flex-start;font:500 15px/1.4 var(--sans);background:var(--paper);border:2px solid var(--ink);padding:12px 14px;box-shadow:4px 4px 0 var(--ink)}
+.j-gets li:nth-child(2){transform:rotate(-.6deg)}
+.j-gets li:nth-child(3){transform:rotate(.5deg)}
+.j-gets b{font:700 12px var(--px);background:var(--ink);color:var(--paper);padding:3px 6px;white-space:nowrap}
+.j-sticker{position:absolute;right:-18px;top:46px;transform:rotate(12deg);background:var(--sun);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font:400 18px/1.05 var(--hand);padding:14px 26px 14px 16px;text-align:center}
+.j-who{margin-top:auto;font:500 13px/1.5 var(--mono);opacity:.85}
+
+/* right: the form */
+.j-form{display:flex;flex-direction:column;padding:40px 56px 32px;position:relative}
+.j-bar{display:flex;align-items:center;gap:14px;font:700 13px var(--px)}
+.j-track{flex:1;height:12px;border:2px solid var(--ink);background:var(--card);position:relative;overflow:hidden}
+.j-track i{position:absolute;inset:0 auto 0 0;width:0;background:var(--orange);border-right:2px solid var(--ink);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.j-steps{flex:1;display:grid;align-items:center;position:relative}
+.j-step{grid-area:1/1;opacity:0;transform:translateY(28px);pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);max-width:620px}
+.j-step.on{opacity:1;transform:none;pointer-events:auto}
+.j-step.out{opacity:0;transform:translateY(-28px)}
+.j-q{font:700 13px var(--px);color:var(--orange-text);display:block;margin-bottom:14px}
+.j-step h2{font:400 clamp(34px,3.6vw,52px)/1.02 var(--disp);letter-spacing:-.02em;margin:0 0 10px}
+.j-step .hint{font:400 16px/1.5 var(--sans);color:var(--muted);margin:0 0 28px}
+.j-in{width:100%;font:500 clamp(22px,2.2vw,30px)/1.2 var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:3px solid var(--ink);padding:10px 2px;outline:none;border-radius:0}
+.j-in::placeholder{color:#b9b09c}
+.j-in:focus{border-bottom-color:var(--orange)}
+.j-row{display:flex;gap:14px;align-items:flex-end}
+.j-cc{font:500 clamp(22px,2.2vw,30px)/1.2 var(--sans);border-bottom:3px solid var(--ink);padding:10px 2px;white-space:nowrap}
+.j-err{font:600 14px var(--sans);color:#c21f05;min-height:22px;margin-top:10px}
+.j-go{display:flex;align-items:center;gap:16px;margin-top:22px}
+.j-go small{font:500 13px var(--mono);color:var(--muted)}
+.j-go small kbd{font:inherit;border:1.5px solid var(--muted);border-radius:4px;padding:1px 6px}
+.j-back{background:none;border:0;font:600 14px var(--sans);color:var(--muted);cursor:pointer;padding:8px 0;margin-right:auto}
+.j-back:hover{color:var(--ink)}
+.j-back[hidden]{display:none}
+.j-foot{display:flex;align-items:center;gap:12px;font:500 13px var(--mono);color:var(--muted);padding-top:18px;border-top:2px solid var(--rule)}
+
+/* "which one are you" tiles */
+.j-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.j-tile{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;cursor:pointer;border:2px solid var(--ink);background:var(--card);padding:18px 16px 16px;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s;font:inherit;color:var(--ink)}
+.j-tile:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.j-tile .k{font:700 11px var(--px);border:1.5px solid var(--ink);padding:2px 6px;background:var(--paper)}
+.j-tile b{font:400 26px/1 var(--disp)}
+.j-tile span{font:400 14px/1.4 var(--sans);color:var(--ink-2)}
+.j-tile.f{--c:var(--sun)}.j-tile.b{--c:var(--sky)}.j-tile.o{--c:var(--pink)}
+.j-tile[aria-pressed="true"]{background:var(--c);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.j-pick{margin-top:26px}
+.j-pick[hidden]{display:none}
+.j-pick .lbl{display:block;font:700 15px var(--sans);margin-bottom:10px}
+.j-pick .lbl em{font:400 13px var(--mono);font-style:normal;color:var(--muted);margin-left:6px}
+.j-chips{display:flex;flex-wrap:wrap;gap:8px}
+.j-chip{display:inline-flex;align-items:center;gap:6px;font:500 14px var(--sans);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:7px 13px;background:var(--paper);cursor:pointer;transition:background .12s}
+.j-chip::before{content:"+";font-weight:700;width:10px}
+.j-chip:hover{background:var(--card)}
+.j-chip[aria-pressed="true"]{background:var(--lime);box-shadow:2px 2px 0 var(--ink)}
+.j-chip[aria-pressed="true"]::before{content:"✓"}
+.j-pick[data-single] .j-chip::before{content:"○"}
+.j-pick[data-single] .j-chip[aria-pressed="true"]::before{content:"●"}
+.j-pick.big .j-chip{font-size:16px;padding:11px 16px}
+
+/* review + result */
+.j-review{text-align:left}
+.j-scan{display:grid;gap:10px;margin-top:22px;font:500 15px var(--mono)}
+.j-scan div{display:flex;gap:10px;align-items:center;opacity:.25;transition:opacity .3s}
+.j-scan div.done{opacity:1}
+.j-scan div i{width:18px;height:18px;border:2px solid var(--ink);display:grid;place-items:center;font-style:normal;font-size:12px;background:var(--paper)}
+.j-scan div.done i{background:var(--lime)}
+.j-in-card{border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);padding:28px;position:relative}
+.j-in-card .stamp{position:absolute;right:22px;top:-22px;transform:rotate(8deg);font:400 22px/1 var(--hand);background:var(--lime);border:2px solid var(--ink);padding:8px 14px}
+.j-wa{background:#25d366 !important;color:var(--ink) !important}
+.j-next{display:grid;gap:8px;margin:22px 0 0;padding:0;list-style:none;font:400 15px/1.45 var(--sans)}
+.j-next li{display:flex;gap:10px}.j-next li::before{content:"→";font-weight:700}
+.j-switch{display:flex;gap:6px;margin-top:22px;font:500 12px var(--mono);color:var(--muted);align-items:center;flex-wrap:wrap}
+.j-switch button{font:inherit;border:1.5px solid var(--rule);background:none;border-radius:999px;padding:3px 10px;cursor:pointer;color:var(--ink-2)}
+
+@media (max-width:900px){
+  .j-stage{grid-template-columns:1fr;min-height:0}
+  .j-pitch{border-right:0;border-bottom:2px solid var(--ink);padding:28px 16px 26px;gap:16px}
+  .j-pitch h1{font-size:clamp(52px,15vw,80px)}
+  .j-pitch .lede{font-size:16px}
+  .j-gets,.j-who{display:none}
+  .j-sticker{top:22px;right:-10px;font-size:15px;padding:10px 20px 10px 12px}
+  .j-form{padding:24px 16px 20px;min-height:72svh}
+  .j-steps{align-items:start;padding-top:34px}
+  .j-tiles{grid-template-columns:1fr;gap:10px}
+  .j-tile{flex-direction:row;align-items:center;flex-wrap:wrap;padding:14px}
+  .j-tile .k{display:none}
+  .j-tile span{flex-basis:100%}
+  .j-go small{display:none}
+}
+@media (prefers-reduced-motion:reduce){.j-step,.j-track i{transition:none}}
+</style>
+</head><body>
+
+
+<nav class="top" aria-label="Main"><div class="wrap">
+  <a class="logo" href="/" aria-label="Deploy TLV, home">DEPLOY <b>TLV</b></a>
+  <div class="navlinks"><a href="/#stories">Stories</a><a href="/#guide">What's on</a><a href="/academy/">Academy</a><a href="/#community">Community</a></div>
+  <div class="nav-end"><a class="btn c" href="/">Back to the site</a></div>
+</div></nav>
+
+<main class="j-stage">
+  <section class="j-pitch" aria-label="About the community">
+    <div class="j-sticker">founders<br>&amp; builders<br>only</div>
+    <span class="j-tag"><i></i>NOW ACCEPTING MEMBERS</span>
+    <h1>Get in<br>the room.<span class="hand">Takes about a minute.</span></h1>
+    <p class="lede">Deploy is Tel Aviv's English-speaking community of people building with AI. The WhatsApp group is where the nights, the coworking days and the intros happen.</p>
+    <div class="j-faces">
+      <div class="stack">
+        <img src="/assets/people/Neta_Dror.jpg" alt=""><img src="/assets/people/Eliezer_Steinbock.jpg" alt=""><img src="/assets/people/Mona_Cohen.jpg" alt=""><img src="/assets/people/Ilan_Oz.jpg" alt=""><img src="/assets/people/Shahar_Luftig.jpg" alt="">
+      </div>
+      <span>300+ founders and builders already inside</span>
+    </div>
+    <ul class="j-gets">
+      <li><b>NIGHTS</b>Founder nights where people show what they shipped, then the room takes over.</li>
+      <li><b>COWORK</b>A weekly day where we take over a room and build next to each other.</li>
+      <li><b>INTROS</b>The people you'd want to meet, in one group, in English.</li>
+    </ul>
+    <p class="j-who">We read every application. Building something? You're probably in.</p>
+  </section>
+
+  <section class="j-form" aria-label="Application">
+    <div class="j-bar"><span id="count">01 / 07</span><div class="j-track" aria-hidden="true"><i id="fill"></i></div></div>
+
+    <form class="j-steps" id="steps" novalidate autocomplete="on">
+      <input type="text" name="company_site" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <!-- 1 -->
+      <div class="j-step on" data-step="name">
+        <span class="j-q">Q_01</span>
+        <h2>First up, what's your name?</h2>
+        <p class="hint">First and last, like on LinkedIn.</p>
+        <input class="j-in" name="name" autocomplete="name" placeholder="Noa Levi" required>
+        <div class="j-err"></div>
+      </div>
+      <!-- 2 -->
+      <div class="j-step" data-step="role">
+        <span class="j-q">Q_02</span>
+        <h2>Hey <span data-first>there</span>. Which one are you?</h2>
+        <p class="hint">Pick the one that fits best right now.</p>
+        <div class="j-tiles" role="group" aria-label="Which one are you">
+          <button type="button" class="j-tile f" data-role="founder" aria-pressed="false"><span class="k">A</span><b>Founder</b><span>I'm building a company.</span></button>
+          <button type="button" class="j-tile b" data-role="builder" aria-pressed="false"><span class="k">B</span><b>Builder</b><span>I ship products, at a job or on the side.</span></button>
+          <button type="button" class="j-tile o" data-role="other" aria-pressed="false"><span class="k">C</span><b>Curious</b><span>Investor, operator, or learning to build.</span></button>
+        </div>
+        <div class="j-err"></div>
+      </div>
+      <!-- 3 -->
+      <div class="j-step" data-step="building">
+        <span class="j-q">Q_03</span>
+        <h2 id="bq">What are you building right now?</h2>
+        <p class="hint">One line is plenty. This is what people will know you for in the group.</p>
+        <input class="j-in" name="building" placeholder="AI bookkeeping for small shops" required>
+        <div class="j-pick" data-founder data-single role="group" aria-labelledby="stg">
+          <span class="lbl" id="stg">Where's it at? <em>Pick one</em></span>
+          <div class="j-chips"><button type="button" class="j-chip">Just an idea</button><button type="button" class="j-chip">Building it</button><button type="button" class="j-chip">Live, with users</button><button type="button" class="j-chip">Making money</button></div>
+        </div>
+        <div class="j-pick" role="group" aria-labelledby="tl">
+          <span class="lbl" id="tl">What do you build with? <em>Tap all that apply, optional</em></span>
+          <div class="j-chips"><button type="button" class="j-chip">Claude Code</button><button type="button" class="j-chip">Cursor</button><button type="button" class="j-chip">Codex</button><button type="button" class="j-chip">Lovable</button><button type="button" class="j-chip">n8n</button><button type="button" class="j-chip">I write the code myself</button></div>
+        </div>
+        <div class="j-err"></div>
+      </div>
+      <!-- 4 -->
+      <div class="j-step" data-step="want">
+        <span class="j-q">Q_04</span>
+        <h2>What would help you most right now?</h2>
+        <p class="hint">Tap all that apply. We use this to make the right intros.</p>
+        <div class="j-pick big" role="group" aria-label="What would help most">
+          <div class="j-chips"><button type="button" class="j-chip">A cofounder</button><button type="button" class="j-chip">First users</button><button type="button" class="j-chip">Hiring</button><button type="button" class="j-chip">Investors</button><button type="button" class="j-chip">Feedback on what I'm building</button><button type="button" class="j-chip">Learning to build with AI</button><button type="button" class="j-chip">Just people who build</button></div>
+        </div>
+        <div class="j-err"></div>
+      </div>
+      <!-- 5 -->
+      <div class="j-step" data-step="linkedin">
+        <span class="j-q">Q_05</span>
+        <h2>Where can we see your work?</h2>
+        <p class="hint">Your LinkedIn. It's how we check you're a real person (and how members find you).</p>
+        <div class="j-row"><span class="j-cc">linkedin.com/in/</span><input class="j-in" name="linkedin" placeholder="noalevi" required></div>
+        <div class="j-err"></div>
+      </div>
+      <!-- 6 -->
+      <div class="j-step" data-step="whatsapp">
+        <span class="j-q">Q_06</span>
+        <h2>Your WhatsApp number?</h2>
+        <p class="hint">So we know it's you when you join the group. We never share it.</p>
+        <div class="j-row"><span class="j-cc">+972</span><input class="j-in" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="50 123 4567" required></div>
+        <div class="j-err"></div>
+      </div>
+      <!-- 7 -->
+      <div class="j-step" data-step="email">
+        <span class="j-q">Q_07</span>
+        <h2>Last one. Your email?</h2>
+        <p class="hint">We send your invite here too, plus the occasional event. No spam.</p>
+        <input class="j-in" name="email" type="email" autocomplete="email" placeholder="noa@company.com" required>
+        <div class="j-err"></div>
+      </div>
+      <!-- reviewing -->
+      <div class="j-step j-review" data-step="review">
+        <span class="j-q">REVIEWING_</span>
+        <h2>Looking you over…</h2>
+        <div class="j-scan" id="scan">
+          <div><i>✓</i>Application received</div>
+          <div><i>✓</i>LinkedIn looks real</div>
+          <div><i>✓</i>Building with AI</div>
+          <div><i>✓</i>Picking your welcome</div>
+        </div>
+      </div>
+      <!-- approved -->
+      <div class="j-step" data-step="in">
+        <div class="j-in-card">
+          <span class="stamp">you're in!</span>
+          <span class="j-q">WELCOME_TO_DEPLOY</span>
+          <h2>Welcome, <span data-first>friend</span>.</h2>
+          <p class="hint" style="margin-bottom:22px">Tap below to join the WhatsApp group. We also emailed you the link.</p>
+          <a class="btn j-wa" id="wa" href="#" target="_blank" rel="noopener">Join the WhatsApp group →</a>
+          <ul class="j-next">
+            <li>Say hi with one line on what you're building.</li>
+            <li>Next night: DEPLOY_006 at Sarona, Wed 4 Nov.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- needs a human -->
+      <div class="j-step" data-step="pending">
+        <div class="j-in-card">
+          <span class="stamp" style="background:var(--sky)">got it!</span>
+          <span class="j-q">IN_REVIEW</span>
+          <h2>Thanks, <span data-first>friend</span>. A human's on it.</h2>
+          <p class="hint">Myron reads these himself. You'll hear back by email, usually within a day.</p>
+          <ul class="j-next">
+            <li>Meanwhile, see what we make: <a class="link" href="https://instagram.com/deploytlv" target="_blank" rel="noopener">@deploytlv ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </form>
+
+    <div class="j-go" id="go">
+      <button class="j-back" type="button" id="back" hidden>← Back</button>
+      <small>press <kbd>Enter ↵</kbd></small>
+      <button class="btn o" type="button" id="next">Continue →</button>
+    </div>
+  </section>
+</main>
+
+<script>
+/* Steps, validation, then one POST to the `join` edge function, which screens, stores and emails. */
+const API="https://ketmhhwpkafgwvpwfukd.supabase.co/functions/v1/join", T0=Date.now()
+const steps=[...document.querySelectorAll('.j-step')], N=7, REVIEW=7, IN=8, PENDING=9
+/* Captured silently, never asked: where they came from. */
+const p=new URLSearchParams(location.search)
+const meta={ref:p.get('ref')||'',utm_source:p.get('utm_source')||'',utm_campaign:p.get('utm_campaign')||'',referrer:document.referrer,landed:new Date().toISOString()}
+const fill=document.getElementById('fill'), count=document.getElementById('count')
+const next=document.getElementById('next'), back=document.getElementById('back'), go=document.getElementById('go')
+let i=0, role=''
+
+function show(n){
+  steps[i].classList.remove('on'); steps[i].classList.add('out')
+  const old=steps[i]; setTimeout(()=>old.classList.remove('out'),450)
+  i=n; steps[i].classList.add('on')
+  const q=Math.min(i+1,N)
+  count.textContent=i<N?String(q).padStart(2,"0")+" / 0"+N:(i===REVIEW?"CHECKING":"DONE")
+  fill.style.width=(i<N?(i/N)*100:100)+'%'
+  go.style.visibility=i<N?'visible':'hidden'
+  back.hidden=i===0||i>=N
+  next.textContent=i===N-1?'Send application →':'Continue →'
+  const inp=steps[i].querySelector('input'); if(inp) setTimeout(()=>inp.focus({preventScroll:true}),350)
+  if(i===REVIEW) review()
+}
+function err(msg){ steps[i].querySelector('.j-err').textContent=msg||''; return !msg }
+function valid(){
+  const s=steps[i].dataset.step, v=n=>(steps[i].querySelector(`[name=${n}]`)||{}).value?.trim()||''
+  if(s==='name') return err(v('name').split(/\s+/).length<2?'First and last name, please.':'')
+  if(s==='role') return err(role?'':'Pick one to keep going.')
+  if(s==='building') return err(v('building').length<8?'Tell us a little more, one line is fine.':(role==='founder'&&!steps[i].querySelector('[data-single] [aria-pressed=true]'))?'Pick where it’s at.':'')
+  if(s==='want') return err(steps[i].querySelector('[aria-pressed=true]')?'':'Pick at least one.')
+  if(s==='linkedin') return err(v('linkedin').length<3?'We need your LinkedIn to let you in.':'')
+  if(s==='whatsapp') return err(v('phone').replace(/\D/g,'').length<8?'That number looks short.':'')
+  if(s==='email') return err(/^\S+@\S+\.\S+$/.test(v('email'))?'':'That email doesn\'t look right.')
+  return true
+}
+function advance(){ if(!valid()) return
+  if(i===0){ const f=steps[0].querySelector('input').value.trim().split(/\s+/)[0]; document.querySelectorAll('[data-first]').forEach(e=>e.textContent=f) }
+  show(i+1) }
+const picked=el=>[...el.querySelectorAll('.j-chip[aria-pressed=true]')].map(c=>c.textContent.trim())
+const val=n=>(document.querySelector(`[name=${n}]`)||{}).value?.trim()||''
+let sending=false
+function review(){
+  if(sending) return; sending=true
+  const rows=[...document.querySelectorAll('#scan div')]; rows.forEach(r=>r.classList.remove('done'))
+  rows.forEach((r,k)=>setTimeout(()=>r.classList.add('done'),500+k*550))
+  const minWait=new Promise(r=>setTimeout(r,500+rows.length*550+400))
+  const body={action:'apply',name:val('name'),email:val('email'),phone:val('phone'),linkedin:val('linkedin'),role,building:val('building'),
+    stage:role==='founder'?(picked(document.querySelector('[data-founder]'))[0]||''):'',
+    tools:picked(document.querySelector('[data-step=building] .j-pick:not([data-single])')),wants:picked(document.querySelector('[data-step=want]')),
+    source:meta,hp:document.getElementById('hp').value,ms:Date.now()-T0}
+  const call=fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>r.json().then(d=>r.ok?d:Promise.reject(d.error))).catch(e=>({error:typeof e==='string'?e:'We couldn\u2019t reach the server. Check your connection and try again.'}))
+  Promise.all([call,minWait]).then(([d])=>{
+    sending=false
+    if(d.error){ show(N-1); err(d.error); return }
+    if(d.status==='approved'&&d.invite){ document.getElementById('wa').href=d.invite; show(IN) } else show(PENDING)
+  })
+}
+next.onclick=advance
+back.onclick=()=>show(i-1)
+document.getElementById('steps').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); advance() } })
+document.addEventListener('keydown',e=>{
+  if(i!==1) return; const m={a:'founder',b:'builder',c:'other'}[e.key.toLowerCase()]
+  if(m) document.querySelector(`[data-role=${m}]`).click()
+})
+document.querySelectorAll('.j-tile').forEach(t=>t.onclick=()=>{
+  role=t.dataset.role
+  document.querySelectorAll('.j-tile').forEach(x=>x.setAttribute('aria-pressed',x===t))
+  document.getElementById('bq').textContent=role==='founder'?'What’s the company building?':role==='builder'?'What are you building right now?':'What are you working on or learning?'
+  document.querySelector("[data-founder]").hidden=role!=="founder"
+  err(''); setTimeout(advance,320)
+})
+document.querySelectorAll(".j-chip").forEach(c=>{ c.setAttribute("aria-pressed","false"); c.onclick=()=>{
+  const single=c.closest("[data-single]"), on=c.getAttribute("aria-pressed")!=="true"
+  if(single) single.querySelectorAll(".j-chip").forEach(x=>x.setAttribute("aria-pressed","false"))
+  c.setAttribute("aria-pressed",single?"true":String(on)); err("") } })
+</script>
+</body></html>
