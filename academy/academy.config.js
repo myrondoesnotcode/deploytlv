@@ -19,15 +19,15 @@ window.ACADEMY_CONFIG = {
   "waitlist": "",
   "confirmation": "/academy/confirmed/",
   "whatsappClass": "",
-  "whatsappCommunity": "https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU",
+  "whatsappCommunity": "https://forms.fillout.com/t/gQiowrhyNAus",
   "teamsContact": ""
  },
  "cohort": {
-  "date": "2026-10-21",
+  "date": "2026-10-28",
   "startTime": "19:00",
   "endTime": "21:00",
   "timezone": "Asia/Jerusalem",
-  "dateLabel": "Wednesday 21 October",
+  "dateLabel": "Wednesday 28 October",
   "timeLabel": "19:00 – 21:00",
   "slot": "Evening"
  },
@@ -49,10 +49,10 @@ window.ACADEMY_CONFIG = {
    "label": "ACADEMY 101 — Build & ship a website with AI",
    "status": "enrolling",
    "price": 250,
-   "date": "2026-10-21",
+   "date": "2026-10-28",
    "startTime": "19:00",
    "endTime": "21:00",
-   "dateLabel": "Wednesday 21 October",
+   "dateLabel": "Wednesday 28 October",
    "timeLabel": "19:00 – 21:00",
    "slot": "Evening",
    "repeat": {

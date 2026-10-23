@@ -7,7 +7,7 @@ window.DEPLOY = {
     instagram: 'https://instagram.com/deploytlv',
     youtube: 'https://www.youtube.com/watch?v=bh5vQedObiQ',
     linkedin: 'https://www.linkedin.com/company/deploytlv',
-    whatsapp: 'https://chat.whatsapp.com/EeSySjLJKEc6JIeus3u6sU?mode=gi_t',
+    whatsapp: 'https://forms.fillout.com/t/gQiowrhyNAus',
     academy: '/academy/',
     academy101: '/academy/build-and-ship/',
     email: 'hello@deploytlv.com'

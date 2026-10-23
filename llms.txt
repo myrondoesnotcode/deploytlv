@@ -5,11 +5,11 @@
 Venue: Pinsker St 11, Tel Aviv-Yafo, Israel. Language: English (no Hebrew needed). Contact: hello@deploytlv.com, WhatsApp +972503512415.
 Instructor: Myron Shneider, founder and host of Deploy, an English-language tech media company in Israel that also runs Israel’s fastest-growing English-speaking AI community (300+ members). Previously produced media content for Aleph VC, including Invested with Michael Eisenberg.
 Refunds: Full refund if you cancel more than 48 hours before the class starts. Inside 48 hours we will move you to the next cohort.
-Updated: 2026-10-16
+Updated: 2026-10-23
 
 ## Courses
 
-- [Academy 101: Build & ship a website with AI](https://deploytlv.com/academy/build-and-ship/): Leave with your own website live on the internet. 2 hours. ₪250. 10 seats. Next: Wednesday 21 October 2026, 19:00 – 21:00 (runs every Wednesday at 19:00; next dates: Wed 21 Oct, Wed 28 Oct, Wed 4 Nov, Wed 11 Nov, Wed 18 Nov, Wed 25 Nov).
+- [Academy 101: Build & ship a website with AI](https://deploytlv.com/academy/build-and-ship/): Leave with your own website live on the internet. 2 hours. ₪250. 10 seats. Next: Wednesday 28 October 2026, 19:00 – 21:00 (runs every Wednesday at 19:00; next dates: Wed 28 Oct, Wed 4 Nov, Wed 11 Nov, Wed 18 Nov, Wed 25 Nov, Wed 2 Dec).
 - [Academy 102: Edit video with AI](https://deploytlv.com/academy/edit-video/): Learn the workflow to edit, caption and animate your own videos with Claude Code, and keep using it after class. 2 hours. ₪300. 10 seats. Next: Date not set yet; waitlist open.
 - [Academy 201: Build an app with AI](https://deploytlv.com/academy/build-an-app/): Four weekly evenings. Leave with your own working app, live on the internet and on your phone’s home screen. 4 weeks · 4 × 2 hours. ₪1,200. 10 seats. Next: Starts Monday 16 November 2026, 19:00 – 21:00, then weekly for 4 weeks.
 - [Academy 103: Automate your work](https://deploytlv.com/academy/): Build a working automation for a repetitive part of your actual job. ₪300. 10 seats. Next: Date not set yet; waitlist open.
@@ -19,7 +19,7 @@ Updated: 2026-10-16
 
 Nothing is charged when you ask for a seat. We confirm on WhatsApp, then you pay.
 
-- Fastest: message us on WhatsApp with the class, the date, your name and email: https://wa.me/972503512415?text=Hi%2C%20I%E2%80%99d%20like%20a%20seat%20in%20Academy%20101%20on%20Wednesday%2021%20October.%0AName%3A%0AEmail%3A
+- Fastest: message us on WhatsApp with the class, the date, your name and email: https://wa.me/972503512415?text=Hi%2C%20I%E2%80%99d%20like%20a%20seat%20in%20Academy%20101%20on%20Wednesday%2028%20October.%0AName%3A%0AEmail%3A
 - Academy 101 (Build & ship a website with AI): the request form at https://deploytlv.com/academy/build-and-ship/#regform needs only a name and an email.
 - Academy 201 (Build an app with AI): the request form at https://deploytlv.com/academy/build-an-app/#regform needs only a name and an email.
 - Classes without a date yet: the same forms put you on the waitlist, and you hear first when a date is set.
@@ -51,6 +51,7 @@ Nothing is charged when you ask for a seat. We confirm on WhatsApp, then you pay
 ## Optional
 
 - [Deploy TLV community](https://deploytlv.com/): the AI-builders community behind the Academy.
+
 
 ## Deploy media
 
