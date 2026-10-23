@@ -113,7 +113,7 @@ window.DEPLOY = {
     { date: '2026-11-16', time: '19:00 – 21:00 · 4 weeks', cat: 'Course', color: 'sun', title: 'Academy 201: Build an app with AI', badge: 'NEW',
       body: 'Four Monday evenings. Leave with your own working app, live on the internet and on your phone. ₪1,200.', cta: 'See the course', href: '/academy/build-an-app/' },
     { recurring: 'Every week', sub: 'Tel Aviv', cat: 'Coworking', color: 'lime', title: 'Bring your laptop',
-      body: 'We take over a room and build next to each other. The WhatsApp group has this week’s day and place.', cta: 'Get the details', href: 'whatsapp', video: '../clips/coworking.mp4', poster: '../clips/coworking.jpg' },
+      body: 'We take over a room and build next to each other. The WhatsApp group has this week’s day and place.', cta: 'Join the group for details', href: 'whatsapp', video: '../clips/coworking.mp4', poster: '../clips/coworking.jpg' },
     { recurring: 'Every few days', sub: 'Instagram', cat: 'New story', color: 'pink', title: 'A new story',
       body: 'The companies, the bets and the people behind them, in under a minute.', cta: 'Follow', href: 'instagram' }
   ],

@@ -710,3 +710,29 @@ dialog.clipdlg .x{all:unset;cursor:pointer;position:absolute;top:10px;right:10px
  .more .snap:nth-child(odd),.more .snap:nth-child(even){transform:none}
 }
 @media(max-width:400px){ body .sec .more .snap{transform:none;min-width:0} body .sec .more .snap .views{right:-2px} }
+
+/* community: the two WhatsApp groups */
+.wa{display:inline-block;width:16px;height:16px;border-radius:50%;background:#25d366;border:2px solid var(--ink);flex:none;position:relative}
+.wa::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--paper);clip-path:polygon(0 0,100% 0,100% 100%,30% 100%,0 130%)}
+.herojoin{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font:500 15px/1.35 var(--sans);background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:9px 16px 9px 12px;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.herojoin b{font-weight:700;white-space:nowrap}
+.herojoin:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.groups{margin-top:56px;text-align:center}
+.groups h3{font:400 clamp(40px,5vw,64px)/.95 var(--num,var(--disp));text-transform:uppercase;margin:0}
+.groups .gsub{font:500 17px/1.5 var(--sans);color:var(--ink-2);margin:12px auto 26px;max-width:34em}
+.gcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:900px;margin:0 auto;text-align:left}
+.gcard{display:flex;flex-direction:column;gap:12px;align-items:flex-start;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:24px 24px 22px;color:var(--ink);transition:transform .12s,box-shadow .12s}
+.gcard.g1{background:var(--sun);transform:rotate(-.6deg)}
+.gcard.g2{background:var(--lime);transform:rotate(.6deg)}
+.gcard:hover{transform:translate(-3px,-3px) rotate(0);box-shadow:9px 9px 0 var(--ink)}
+.gcard .gk{display:inline-flex;align-items:center;gap:8px;font:700 12px var(--px);background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:5px 11px}
+.gcard b{font:400 clamp(28px,3vw,38px)/1 var(--disp)}
+.gcard .gw{font:500 16px/1.45 var(--sans);flex:1}
+.gcard .btn{pointer-events:none;margin-top:4px}
+.groups .gnews{font:500 15px var(--sans);color:var(--ink-2);margin:28px 0 0}
+.groups .gnews .link{background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;color:var(--ink);font-size:15px;padding:0}
+@media (max-width:720px){
+  .gcards{grid-template-columns:1fr;gap:18px}
+  .gcard{padding:20px 18px}
+  .herojoin{font-size:15px}.herojoin .pre{display:none}
+}

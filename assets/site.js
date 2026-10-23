@@ -53,7 +53,7 @@ const CHS = [ {n:1,id:'watch',name:'ON AIR'}, {n:2,id:'stories',name:'STORIES'},
 /* ---------- chrome: nav, remote, feed, join dialog, footer ---------- */
 function chrome(){
   const here = location.pathname.split('/').pop() || HOME;
-  const links = [['Stories',HOME+'#stories'],['Long-form',HOME+'#longform'],["What's on",HOME+'#guide'],['Academy','/academy/'],['Community',HOME+'#community'],['Deploy DB','/db/'],['Work with us','partner.html']];
+  const links = [['Stories',HOME+'#stories'],['Long-form',HOME+'#longform'],["What's on",HOME+'#guide'],['Academy','/academy/'],['Community',HOME+'#community'],['Join the group','/join/'],['Deploy DB','/db/'],['Work with us','partner.html']];
   const nav = $('#nav');
   if (nav) nav.outerHTML = `<nav class="top" aria-label="Main"><div class="wrap">
     <a class="logo" href="${HOME}" aria-label="Deploy TLV, home">DEPLOY <b>TLV</b></a>
@@ -83,7 +83,7 @@ function chrome(){
       <label class="field">Email<input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com"></label>
       <label class="field">First and last name <span class="opt">(optional)</span><input name="name" autocomplete="name" maxlength="120"></label>
       <label class="consent"><input type="checkbox" name="consent"> <span>${esc(D.newsletter.consent)}</span></label>
-      <div class="acts"><button class="btn o" type="submit">Join the Deploy Log</button><a class="link" href="${L.whatsapp}" target="_blank" rel="noopener">Or jump into the WhatsApp group ↗</a></div>
+      <div class="acts"><button class="btn o" type="submit">Join the Deploy Log</button><a class="link" href="${L.whatsapp}">Or apply to the WhatsApp group →</a></div>
       <p class="formnote" role="status"></p>
       <p class="privacy">We'll email you a one-click link to confirm. No password. Unsubscribe from any email.</p>
     </form></div></dialog>`);
@@ -94,7 +94,7 @@ function chrome(){
       <div><h4>Watch</h4><ul><li><a href="${HOME}#stories">Stories</a></li><li><a href="${HOME}#longform">Long-form</a></li><li><a href="${HOME}#onthemic">On the mic</a></li></ul></div>
       <div><h4>Come along</h4><ul><li><a href="${HOME}#guide">What's on</a></li><li><a href="${HOME}#academy">Academy</a></li><li><a href="${HOME}#community">Community</a></li><li><a href="/db/">Deploy DB</a></li></ul></div>
       <div><h4>Work with us</h4><ul><li><a href="partner.html">Partner with Deploy</a></li><li><a href="kit.html">Media kit</a></li><li><a href="host.html">Book Myron</a></li></ul></div>
-      <div><h4>Follow</h4><ul><li><a href="${L.instagram}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a></li><li><a href="${L.linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a href="${L.whatsapp}" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="${L.instagram}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a></li><li><a href="${L.linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a href="${L.whatsapp}">WhatsApp group</a></li></ul></div>
     </div>
   </div>
   <div class="mega" aria-hidden="true">DEPLOY<b>TLV</b></div>
