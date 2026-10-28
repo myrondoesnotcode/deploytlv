@@ -155,12 +155,36 @@
        waitlist). For a dated class it is one more field between the visitor
        and the button, so it is hidden and its answer cleared. */
     var slotSel = document.getElementById('reg-slot')
+    var slotField = slotSel && slotSel.closest('.field')
+    var slotLabel = slotField && slotField.querySelector('label')
+    var slotHtml = slotSel ? slotSel.innerHTML : ''
+    var slotText = slotLabel ? slotLabel.textContent : ''
+    /* A day with a morning and an evening class is the exception: there the
+       visitor has to pick one, so the field shows those times and is required. */
     function toggleSlot () {
       if (!slotSel || !courseSel) return
       var c = (CFG.courses || []).filter(function (x) { return x.label === courseSel.value })[0]
       var dated = Boolean(c && c.date)
-      var field = slotSel.closest('.field')
-      if (field) field.hidden = dated
+      var times = c && c.times && c.times.length > 1 ? c.times : null
+      if (times) {
+        if (slotField) slotField.hidden = false
+        if (slotLabel) slotLabel.textContent = 'Morning or evening?'
+        slotSel.innerHTML = '<option value="">Choose a time</option>' + times.map(function (t) {
+          var v = t.part + ', ' + t.startTime + '–' + t.endTime
+          return '<option value="' + v + '">' + v + '</option>'
+        }).join('')
+        slotSel.required = true
+        /* ?time=morning or ?time=evening (the poster and group links) picks it. */
+        var wantTime = (new URLSearchParams(location.search).get('time') || '').toLowerCase()
+        times.forEach(function (t) {
+          if (wantTime && t.part.toLowerCase() === wantTime) slotSel.value = t.part + ', ' + t.startTime + '–' + t.endTime
+        })
+        return
+      }
+      slotSel.required = false
+      if (slotSel.innerHTML !== slotHtml) slotSel.innerHTML = slotHtml
+      if (slotLabel) slotLabel.textContent = slotText
+      if (slotField) slotField.hidden = dated
       if (dated) slotSel.value = ''
     }
     if (courseSel) courseSel.addEventListener('change', function () { showDetails(); toggleSlot() })
@@ -169,7 +193,7 @@
 
     /* Evening/daytime and "how did you hear" — both optional. */
     function extras (data) {
-      return [data.slot && 'Evening or daytime: ' + data.slot,
+      return [data.slot && 'Time: ' + data.slot,
               data.source && 'Heard about us: ' + data.source].filter(Boolean)
     }
 
@@ -304,7 +328,7 @@
     var lines = got
       ? ['Hi! I just requested a seat at Deploy Academy.', '',
          'Class: ' + got.course, 'Name: ' + got.name, 'Email: ' + got.email]
-          .concat(got.slot ? ['Evening or daytime: ' + got.slot] : [],
+          .concat(got.slot ? ['Time: ' + got.slot] : [],
                   got.source ? ['Heard about us: ' + got.source] : [],
                   ['What I want to build: ' + (got.idea || 'not sure yet')])
       : ['Hi! I just requested a seat at Deploy Academy.']
@@ -352,6 +376,13 @@
         when.querySelector('strong').textContent = booked.dateLabel || 'Date coming soon'
         when.querySelector('span').textContent = booked.timeLabel || 'We will email you the moment it is set'
       }
+    }
+    /* A morning + evening day: the invitation is for the time they picked. */
+    if (co.times && co.times.length > 1) {
+      var mine = null
+      try { mine = (JSON.parse(sessionStorage.getItem('academy_request') || 'null') || {}).slot } catch (e) {}
+      var pick = co.times.filter(function (t) { return mine && mine.indexOf(t.startTime) !== -1 })[0]
+      if (pick) co = Object.assign({}, co, { startTime: pick.startTime, endTime: pick.endTime, timeLabel: pick.startTime + ' – ' + pick.endTime })
     }
     if (!co.date) {
       icsBtn.setAttribute('aria-disabled', 'true')

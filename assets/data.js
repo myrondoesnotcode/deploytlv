@@ -106,8 +106,8 @@ window.DEPLOY = {
 
   /* The TV guide: what's coming up. `date` items disappear once past; `recurring` ones stay. */
   guide: [
-    { weekly: 3, time: '19:00 – 21:00', cat: 'Workshop', color: 'sun', title: 'Academy 101: Build & ship a website with AI', badge: '10 SEATS',
-      body: 'Every Wednesday. Two hours, beginners welcome, in English. Leave with your own website live on the internet.', cta: 'Book a seat', href: '/academy/build-and-ship/', hot: true },
+    { date: '2026-11-03', time: '11:00 or 18:00', cat: 'Workshop', color: 'sun', title: 'Academy 101: Build & ship a website with AI', badge: '10 SEATS',
+      body: 'Morning (11:00) or evening (18:00). Two hours, beginners welcome, in English. Leave with your own website live on the internet.', cta: 'Book a seat', href: '/academy/build-and-ship/', hot: true },
     { date: '2026-11-04', time: '18:00 – 20:00 · Sarona', cat: 'Deploy night', color: 'orange', title: 'DEPLOY_006', badge: 'NEXT',
       body: 'Our sixth night, at Sarona in Tel Aviv. People show what they built, then the room takes over. Free, in English.', cta: 'RSVP on Luma', href: 'https://luma.com/o8dzr1kh', hot: true },
     { date: '2026-11-16', time: '19:00 – 21:00 · 4 weeks', cat: 'Course', color: 'sun', title: 'Academy 201: Build an app with AI', badge: 'NEW',
@@ -120,7 +120,7 @@ window.DEPLOY = {
 
   /* Academy classes. A class whose date has passed shows "next date soon" + the waitlist. */
   academy: [
-    { code: '101', weekly: 3, time: '19:00', title: 'Build & ship a website with AI', meta: 'Every Wednesday · 2 hours · ₪250', href: '/academy/build-and-ship/' },
+    { code: '101', date: '2026-11-03', time: '11:00 + 18:00', title: 'Build & ship a website with AI', meta: 'Morning or evening · 2 hours · ₪250', href: '/academy/build-and-ship/' },
     { code: '201', date: '2026-11-16', time: '19:00', title: 'Build an app with AI', meta: '4 Monday evenings · ₪1,200', href: '/academy/build-an-app/' },
     { code: '102', date: null, title: 'Edit video with AI', meta: 'Waitlist open · ₪300', href: '/academy/edit-video/' }
   ],

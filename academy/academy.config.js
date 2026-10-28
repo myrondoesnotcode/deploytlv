@@ -23,13 +23,25 @@ window.ACADEMY_CONFIG = {
   "teamsContact": ""
  },
  "cohort": {
-  "date": "2026-10-28",
-  "startTime": "19:00",
-  "endTime": "21:00",
+  "date": "2026-11-03",
+  "startTime": "11:00",
+  "endTime": "13:00",
   "timezone": "Asia/Jerusalem",
-  "dateLabel": "Wednesday 28 October",
-  "timeLabel": "19:00 – 21:00",
-  "slot": "Evening"
+  "dateLabel": "Tuesday 3 November",
+  "timeLabel": "11:00 – 13:00 or 18:00 – 20:00",
+  "slot": "Morning and Evening",
+  "times": [
+   {
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "part": "Morning"
+   },
+   {
+    "startTime": "18:00",
+    "endTime": "20:00",
+    "part": "Evening"
+   }
+  ]
  },
  "venue": {
   "name": "Deploy TLV",
@@ -49,18 +61,24 @@ window.ACADEMY_CONFIG = {
    "label": "ACADEMY 101 — Build & ship a website with AI",
    "status": "enrolling",
    "price": 250,
-   "date": "2026-10-28",
-   "startTime": "19:00",
-   "endTime": "21:00",
-   "dateLabel": "Wednesday 28 October",
-   "timeLabel": "19:00 – 21:00",
-   "slot": "Evening",
-   "repeat": {
-    "weekday": 3,
-    "skip": [],
-    "startTime": "19:00",
-    "endTime": "21:00"
-   }
+   "date": "2026-11-03",
+   "startTime": "11:00",
+   "endTime": "13:00",
+   "dateLabel": "Tuesday 3 November",
+   "timeLabel": "11:00 – 13:00 or 18:00 – 20:00",
+   "slot": "Morning and Evening",
+   "times": [
+    {
+     "startTime": "11:00",
+     "endTime": "13:00",
+     "part": "Morning"
+    },
+    {
+     "startTime": "18:00",
+     "endTime": "20:00",
+     "part": "Evening"
+    }
+   ]
   },
   {
    "id": "academy-102",
@@ -82,7 +100,14 @@ window.ACADEMY_CONFIG = {
    "endTime": "21:00",
    "dateLabel": "Monday 16 November",
    "timeLabel": "19:00 – 21:00",
-   "slot": "Evening"
+   "slot": "Evening",
+   "times": [
+    {
+     "startTime": "19:00",
+     "endTime": "21:00",
+     "part": "Evening"
+    }
+   ]
   },
   {
    "id": "academy-103",
