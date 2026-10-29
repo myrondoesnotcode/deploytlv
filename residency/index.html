@@ -27,15 +27,15 @@
 .dream .link{color:var(--paper)}
 .ai{position:absolute;z-index:3;right:12px;bottom:10px;font:600 11px var(--mono);color:rgba(243,238,223,.7)}
 /* one-line answer */
-.answer{background:var(--orange);border-bottom:2px solid var(--ink)}
+.answer{background:var(--card);border-top:8px solid var(--orange);border-bottom:2px solid var(--ink)}
 .answer .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
 .answer .wrap>div{min-width:0;padding:30px 24px;border-left:2px solid var(--ink)}
 .answer .wrap>div:first-child{border-left:0;padding-left:0}
-.answer small{display:block;font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.answer small{display:block;font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;color:var(--orange-text,var(--orange))}
 .answer b{display:block;font:400 clamp(22px,2.1vw,34px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
 .answer .wrap>div{container-type:inline-size}
 @supports(font-size:1cqi){.answer b{font-size:clamp(14px,9.6cqi,38px)}}
-.answer span{display:block;font-size:16px;line-height:1.4;margin-top:8px}
+.answer span{display:block;font-size:16px;line-height:1.4;margin-top:8px;color:var(--ink-2)}
 /* story steps with images */
 .story3{display:flex;flex-direction:column;gap:70px}
 .st{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
@@ -52,20 +52,22 @@
 .st dt{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .st dd{margin:2px 0 0;font-size:18px;line-height:1.4}
 /* the climb */
-.climb{background:var(--ink);color:var(--paper)}
-.climb .big{font:400 clamp(72px,15vw,230px)/.85 var(--num);color:var(--orange);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* light on purpose: orange on black was hard on the eyes, on phones most of all */
+.climb{background:var(--card);color:var(--ink)}
+.climb .big{display:inline-block;font:400 clamp(72px,15vw,230px)/.85 var(--num);color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;background:linear-gradient(transparent 58%,var(--orange) 58% 90%,transparent 90%);padding:0 .06em}
 .climb .big-l{font:600 15px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:14px}
-.bars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:end;height:340px;margin:56px 0 14px;border-bottom:2px solid rgba(243,238,223,.4)}
+.bars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:end;height:340px;margin:56px 0 14px;border-bottom:2px solid var(--ink)}
 .bars .b{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
-.bars .fill{height:0;background:var(--paper);border:2px solid var(--paper);transition:height 1.6s cubic-bezier(.2,.8,.2,1);position:relative}
-.bars .b.goal .fill{background:var(--orange);border-color:var(--orange)}
-.bars .b:nth-child(2) .fill{background:var(--sun);border-color:var(--sun)}.bars .b:nth-child(3) .fill{background:var(--lime);border-color:var(--lime)}.bars .b:nth-child(4) .fill{background:var(--sky);border-color:var(--sky)}
+.bars .lab{display:none}
+.bars .fill{height:0;background:var(--ink);border:2px solid var(--ink);transition:height 1.6s cubic-bezier(.2,.8,.2,1);position:relative}
+.bars .b.goal .fill{background:var(--orange)}
+.bars .b:nth-child(2) .fill{background:var(--sun)}.bars .b:nth-child(3) .fill{background:var(--lime)}.bars .b:nth-child(4) .fill{background:var(--sky)}
 .bars .val{font:400 clamp(20px,2.4vw,36px)/1 var(--num);margin-bottom:8px}
 .blabels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
 .blabels span{font:600 13px/1.35 var(--mono)}
 .climb.go .bars .fill{height:var(--h)}
 .maths{margin-top:44px;font-size:19px;line-height:1.6;max-width:46em}
-.maths b{color:var(--orange)}
+.maths b{background:linear-gradient(transparent 62%,rgba(255,90,24,.5) 62%);padding:0 .1em}
 .ast{color:inherit;text-decoration:none;font-weight:700;margin-left:.08em}
 .fine{background:var(--paper);color:var(--ink);border-top:2px solid var(--ink);padding:22px 0 30px}.fine p{font:600 14px/1.55 var(--mono);opacity:.8;max-width:62em}.fine b{color:var(--orange-text,var(--orange))}
 .note{margin-top:18px;font:600 14px/1.5 var(--mono);opacity:.75;max-width:60em}
@@ -90,8 +92,8 @@
 .way small{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-text,var(--orange))}
 .way h4{font:400 28px/.95 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
 .way p{font-size:16px;line-height:1.5;flex:1}
-.indep{margin-top:40px;display:flex;gap:24px;align-items:center;background:var(--ink);color:var(--paper);padding:22px 28px;font-size:18px}
-.indep b{font:600 14px var(--mono);letter-spacing:.08em;color:var(--orange);flex:0 0 auto}
+.indep{margin-top:40px;display:flex;gap:24px;align-items:center;background:var(--orange);color:var(--ink);border:2px solid var(--ink);padding:22px 28px;font-size:18px}
+.indep b{font:600 14px var(--mono);letter-spacing:.08em;flex:0 0 auto}
 /* enquiry */
 .enq{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:60px;align-items:start}
 .enquiry{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:#fff;border:2px solid var(--ink);padding:32px;box-shadow:10px 10px 0 var(--orange)}
@@ -118,6 +120,18 @@
  .fund{grid-template-columns:1fr}.fund .pic{border-right:0;border-bottom:2px solid var(--ink);min-height:260px}.fund .txt{padding:26px 20px}.fund h3{font-size:36px}
  .indep{flex-direction:column;align-items:flex-start;gap:8px}
  .enq,.enquiry{grid-template-columns:1fr;gap:28px}.enquiry{padding:20px}
+}
+@media(max-width:600px){
+ .answer b{font-size:clamp(14px,10cqi,22px);line-height:1.05}.answer span{font-size:15px}
+ /* chart turns sideways on phones: one row per bar, label readable at full width */
+ .bars{display:flex;flex-direction:column;align-items:stretch;gap:16px;height:auto;margin:36px 0 0;border-bottom:0}
+ .bars .b{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:end;height:auto}
+ .bars .lab{display:block;font:600 14px/1.35 var(--mono)}
+ .bars .val{margin:0;font-size:26px}
+ .bars .fill{grid-column:1/-1;justify-self:start;height:20px;width:0;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+ .climb.go .bars .fill{height:20px;width:max(var(--h),8px)}
+ .blabels{display:none}
+ .maths{font-size:17px}.note{font-size:13px;opacity:.85}
 }
 @media(prefers-reduced-motion:reduce){.bars .fill{transition:none}}
 </style>
@@ -175,11 +189,11 @@
   <div class="big" id="counter" aria-label="100,000,000 views">100,000,000</div>
   <div class="big-l">Views across Season One · the target</div>
   <div class="bars" aria-hidden="true">
-    <div class="b" style="--h:2%"><span class="val">1.93M</span><span class="fill"></span></div>
-    <div class="b" style="--h:22%"><span class="val">~2M</span><span class="fill"></span></div>
-    <div class="b" style="--h:50%"><span class="val">~19.5M</span><span class="fill"></span></div>
-    <div class="b" style="--h:75%"><span class="val">~97.5M</span><span class="fill"></span></div>
-    <div class="b goal" style="--h:100%"><span class="val">~100M</span><span class="fill"></span></div>
+    <div class="b" style="--h:2%"><span class="lab">Deploy alone today, 30 days</span><span class="val">1.93M</span><span class="fill"></span></div>
+    <div class="b" style="--h:22%"><span class="lab">8 episodes × ~250K</span><span class="val">~2M</span><span class="fill"></span></div>
+    <div class="b" style="--h:50%"><span class="lab">150 shorts × ~130K, one channel</span><span class="val">~19.5M</span><span class="fill"></span></div>
+    <div class="b" style="--h:75%"><span class="lab">…on about five channels each</span><span class="val">~97.5M</span><span class="fill"></span></div>
+    <div class="b goal" style="--h:100%"><span class="lab">Season One target</span><span class="val">~100M</span><span class="fill"></span></div>
   </div>
   <div class="blabels"><span>Deploy alone today, 30 days</span><span>8 episodes × ~250K</span><span>150 shorts × ~130K, one channel</span><span>…on about five channels each</span><span>Season One target</span></div>
   <p class="maths">How it adds up: <b>150 shorts</b> (mid-point of 100–200) × <b>5 channels</b> each × <b>~130K</b> average views per post, plus <b>~2M</b> from 8 episodes at ~250K each, is about <b>100M</b>. Channels: Deploy's own, government and partner channels, a network partner and the founders' own audiences.</p>
