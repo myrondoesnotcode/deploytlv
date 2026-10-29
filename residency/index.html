@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deploy House · 10 founders, 30 days in Tel Aviv, on camera</title>
+<meta name="description" content="Deploy House is a documentary series. Season One follows 10 founders building their startups in Tel Aviv for 30 days. Filmed Summer 2027, released Fall 2027. Back it, partner with it or join it.">
+<link rel="canonical" href="https://deploytlv.com/residency/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:site_name" content="Deploy"><meta property="og:type" content="website">
+<meta property="og:title" content="Deploy House · 10 founders, 30 days in Tel Aviv, on camera"><meta property="og:description" content="A documentary series. Season One follows 10 founders building their startups in Tel Aviv for 30 days."><meta property="og:url" content="https://deploytlv.com/residency/">
+<meta property="og:image" content="https://deploytlv.com/media/house-hero.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://deploytlv.com/media/house-hero.jpg">
+<meta property="og:locale" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=mvtz3ty3">
+<style>
+/* hero: full-bleed image */
+.dream{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:var(--paper);border-bottom:2px solid var(--ink);overflow:hidden;background:var(--ink)}
+.dream img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dream::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,16,13,.05) 30%,rgba(17,16,13,.85) 100%)}
+.dream .wrap{position:relative;z-index:2;padding-bottom:64px;width:100%}
+.dream .kick{display:inline-block;font:600 14px var(--mono);letter-spacing:.1em;background:var(--orange);color:var(--ink);padding:8px 12px;border:2px solid var(--ink)}
+.dream h1{font-size:clamp(54px,9vw,148px);line-height:.84;letter-spacing:-.06em;margin:18px 0 22px;text-transform:uppercase}
+.dream h1 em{font-style:normal;color:var(--orange)}
+.dream .lede{font-size:clamp(18px,1.6vw,23px);line-height:1.5;max-width:40em}
+.dream .acts{margin-top:28px}
+.dream .btn:not(.o){background:var(--paper);color:var(--ink)}
+.dream .link{color:var(--paper)}
+.ai{position:absolute;z-index:3;right:12px;bottom:10px;font:600 11px var(--mono);color:rgba(243,238,223,.7)}
+/* one-line answer */
+.answer{background:var(--orange);border-bottom:2px solid var(--ink)}
+.answer .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.answer .wrap>div{min-width:0;padding:30px 24px;border-left:2px solid var(--ink)}
+.answer .wrap>div:first-child{border-left:0;padding-left:0}
+.answer small{display:block;font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.answer b{display:block;font:400 clamp(26px,2.6vw,40px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
+.answer span{display:block;font-size:16px;line-height:1.4;margin-top:8px}
+/* story steps with images */
+.story3{display:flex;flex-direction:column;gap:70px}
+.st{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.st:nth-child(even) .pic{order:2}
+.st .pic{position:relative;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink)}
+.st:nth-child(1) .pic{transform:rotate(-1deg)}.st:nth-child(2) .pic{transform:rotate(1deg)}.st:nth-child(3) .pic{transform:rotate(-1deg)}
+.st .pic img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.st .pic .sticker{top:-16px;left:-14px;transform:rotate(-5deg)}
+.st:nth-child(1) .sticker{background:var(--sun)}.st:nth-child(2) .sticker{background:var(--lime)}.st:nth-child(3) .sticker{background:var(--sky)}
+.st .num{font:400 90px/1 var(--num);color:var(--orange)}
+.st h3{font-size:clamp(36px,4vw,60px);line-height:.9;margin:6px 0 16px}
+.st p{font-size:19px;line-height:1.55;max-width:30em}
+.st dl{margin:18px 0 0;display:grid;gap:12px}
+.st dt{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.st dd{margin:2px 0 0;font-size:18px;line-height:1.4}
+/* the climb */
+.climb{background:var(--ink);color:var(--paper)}
+.climb .big{font:400 clamp(72px,15vw,230px)/.85 var(--num);color:var(--orange);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.climb .big-l{font:600 15px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:14px}
+.bars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:end;height:340px;margin:56px 0 14px;border-bottom:2px solid rgba(243,238,223,.4)}
+.bars .b{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bars .fill{height:0;background:var(--paper);border:2px solid var(--paper);transition:height 1.6s cubic-bezier(.2,.8,.2,1);position:relative}
+.bars .b.goal .fill{background:var(--orange);border-color:var(--orange)}
+.bars .b:nth-child(2) .fill{background:var(--sun);border-color:var(--sun)}.bars .b:nth-child(3) .fill{background:var(--lime);border-color:var(--lime)}.bars .b:nth-child(4) .fill{background:var(--sky);border-color:var(--sky)}
+.bars .val{font:400 clamp(20px,2.4vw,36px)/1 var(--num);margin-bottom:8px}
+.blabels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.blabels span{font:600 13px/1.35 var(--mono)}
+.climb.go .bars .fill{height:var(--h)}
+.maths{margin-top:44px;font-size:19px;line-height:1.6;max-width:46em}
+.maths b{color:var(--orange)}
+.ast{color:inherit;text-decoration:none;font-weight:700;margin-left:.08em}
+.fine{background:var(--paper);color:var(--ink);border-top:2px solid var(--ink);padding:22px 0 30px}.fine p{font:600 14px/1.55 var(--mono);opacity:.8;max-width:62em}.fine b{color:var(--orange-text,var(--orange))}
+.note{margin-top:18px;font:600 14px/1.5 var(--mono);opacity:.75;max-width:60em}
+/* manifesto grid */
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.m{border:2px solid var(--ink);padding:26px;background:#fff;display:flex;flex-direction:column;gap:10px}
+.m:nth-child(6n+1){background:var(--sun)}.m:nth-child(6n+3){background:var(--sky)}.m:nth-child(6n+5){background:var(--pink)}
+.m i{font:400 40px/1 var(--num);font-style:normal;color:var(--ink);opacity:.35}
+.m b{font:400 28px/.95 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
+.m span{font-size:16px;line-height:1.5}
+/* fund */
+.fund{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);background:#fff;overflow:hidden}
+.fund .pic{position:relative;min-height:360px;border-right:2px solid var(--ink)}
+.fund .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fund .pic .credit{position:absolute;left:20px;right:20px;bottom:20px;background:var(--paper);border:2px solid var(--ink);padding:12px 14px;font:600 14px var(--mono);text-align:center;box-shadow:4px 4px 0 var(--ink)}
+.fund .pic .credit b{display:block;font:400 26px var(--disp);margin-top:4px}
+.fund .txt{padding:40px}
+.fund h3{font-size:48px;line-height:.92;margin:0 0 14px}
+.fund .pitch{font-size:18px;line-height:1.55;margin-bottom:22px}
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
+.way{border:2px solid var(--ink);padding:24px;display:flex;flex-direction:column;gap:10px;background:var(--paper)}
+.way small{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-text,var(--orange))}
+.way h4{font:400 28px/.95 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
+.way p{font-size:16px;line-height:1.5;flex:1}
+.indep{margin-top:40px;display:flex;gap:24px;align-items:center;background:var(--ink);color:var(--paper);padding:22px 28px;font-size:18px}
+.indep b{font:600 14px var(--mono);letter-spacing:.08em;color:var(--orange);flex:0 0 auto}
+/* enquiry */
+.enq{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:60px;align-items:start}
+.enquiry{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:#fff;border:2px solid var(--ink);padding:32px;box-shadow:10px 10px 0 var(--orange)}
+.enquiry .full{grid-column:1/-1}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.chips label{font:500 15px var(--sans);border:2px solid var(--ink);padding:9px 13px;cursor:pointer;display:flex;gap:8px;align-items:center;background:var(--paper)}
+.chips input{accent-color:var(--orange);margin:0}
+.chips label:has(input:checked){background:var(--orange)}
+.chips label:has(input:focus-visible){outline:3px solid var(--ink);outline-offset:2px}
+.direct{border-top:2px solid var(--ink);padding-top:20px}
+.direct p{font-size:17px;line-height:1.55;margin-bottom:14px}
+.direct a.big{font:400 26px/1.1 var(--disp);text-transform:uppercase;letter-spacing:-.03em;border-bottom:3px solid var(--orange)}
+@media(max-width:980px){
+ .dream{min-height:640px}.dream .wrap{padding-bottom:40px}
+ .answer .wrap{grid-template-columns:1fr 1fr}.answer .wrap>div{padding:20px 14px;border-left:0;border-top:2px solid var(--ink)}.answer .wrap>div:nth-child(-n+2){border-top:0}.answer .wrap>div:nth-child(odd){padding-left:0}.answer .wrap>div:nth-child(even){border-left:2px solid var(--ink)}.answer b{font-size:19px;letter-spacing:-.03em}
+ .st{grid-template-columns:1fr;gap:28px}.st:nth-child(even) .pic{order:0}.st .num{font-size:64px}
+ .bars{height:240px;gap:8px}.blabels{gap:8px}.blabels span{font-size:11px}
+ .mgrid,.ways{grid-template-columns:1fr;gap:16px}
+ .fund{grid-template-columns:1fr}.fund .pic{border-right:0;border-bottom:2px solid var(--ink);min-height:260px}.fund .txt{padding:26px 20px}.fund h3{font-size:36px}
+ .indep{flex-direction:column;align-items:flex-start;gap:8px}
+ .enq,.enquiry{grid-template-columns:1fr;gap:28px}.enquiry{padding:20px}
+}
+@media(prefers-reduced-motion:reduce){.bars .fill{transition:none}}
+</style>
+</head><body class="">
+
+<nav class="top" aria-label="Main"><div class="wrap">
+    <a class="logo" href="/" aria-label="Deploy TLV, home">DEPLOY <b>TLV</b></a>
+    <div class="navlinks"><a href="/#stories">Stories</a><a href="/#longform">Long-form</a><a href="/#guide">What's on</a><a href="/academy/">Academy</a><a href="/#community">Community</a><a href="/join/">Join the group</a><a href="/db/">Deploy DB</a><a href="/partner/">Work with us</a></div>
+    <div class="nav-end"><span class="livebug"><i></i>LIVE TONIGHT</span><a class="btn o" href="/#subscribe">Subscribe</a>
+      <button class="menubtn" aria-expanded="false" aria-controls="menu">Menu</button></div>
+    <div class="menu" id="menu"><a href="/#stories">Stories</a><a href="/#longform">Long-form</a><a href="/#guide">What's on</a><a href="/academy/">Academy</a><a href="/#community">Community</a><a href="/join/">Join the group</a><a href="/db/">Deploy DB</a><a href="/partner/">Work with us</a><a href="/host/">Myron, the host</a><a class="btn o" href="/#subscribe">Subscribe</a></div>
+  </div></nav>
+<main>
+
+<header class="dream" id="top">
+  <img src="/media/house-hero.jpg" alt="A Tel Aviv rooftop at sunset set up as a startup house, with laptops, whiteboards and a film camera">
+  <div class="wrap">
+    <span class="kick">DEPLOY HOUSE · SEASON ONE</span>
+    <h1>10 founders.<br>30 days. <em>Tel Aviv.</em><br>On camera.</h1>
+    <p class="lede">Deploy House is a documentary series. Season One follows 10 founders as they build their startups in Tel Aviv for 30 days. We film all of it and release it as an English tech show, with Israel as the second character.</p>
+    <div class="acts"><a class="btn o" href="#fund">Back Season One →</a><a class="btn" href="#how">How it works</a></div>
+  </div>
+  <span class="ai">Illustration: AI-generated</span>
+</header>
+
+<section class="answer" aria-label="Deploy House in four lines"><div class="wrap">
+  <div><small>What it is</small><b>A documentary series</b><span>Season One of Deploy House</span></div>
+  <div><small>Who's in it</small><b>10 founders<a class="ast" href="#fine" aria-label="See note on the founder bar">*</a></b><span>Each has raised $1M+ or makes $250K+ in revenue</span></div>
+  <div><small>Where &amp; when</small><b>Tel Aviv, 30 days</b><span>Filmed Summer 2027</span></div>
+  <div><small>What comes out</small><b>7–10 episodes</b><span>Plus 100–200 shorts, Fall 2027</span></div>
+</div></section>
+<nav class="jump" aria-label="On this page"><div class="wrap"><a href="#how">How it works</a><a href="#climb">100M views</a><a href="#manifesto">Manifesto</a><a href="#fund">Back it</a><a href="#contact">Get in touch</a></div></nav>
+
+<section class="sec" id="how"><div class="wrap">
+  <div class="head"><h2>How it <em>works</em></h2><p>Three steps, from casting to your screen.</p></div>
+  <div class="story3">
+    <div class="st">
+      <div class="pic"><img src="/media/house-cowork.jpg" alt="Founders working on laptops at a Deploy night in Tel Aviv" loading="lazy"><span class="sticker">NOW</span></div>
+      <div><span class="num">01</span><h3>Cast the founders</h3><p>We scout and cast 10 founders who clear the bar: $1M+ raised or $250K+ in revenue.<a class="ast" href="#fine" aria-label="See note on the founder bar">*</a> Then we film each one's interview before the house opens: who they are, what they're building, the goal they came for.</p><p style="margin-top:12px">Those interviews become the first shorts, so people know the cast before day one.</p></div>
+    </div>
+    <div class="st">
+      <div class="pic"><img src="/media/house-build.jpg" alt="Founders building at night in a Tel Aviv loft while a film crew records" loading="lazy"><span class="sticker">SUMMER 2027</span></div>
+      <div><span class="num">02</span><h3>30 days in the house</h3><p>The 10 founders build in Tel Aviv for 30 days. We film the whole process: the meetings, the launches, the hard weeks.</p></div>
+    </div>
+    <div class="st">
+      <div class="pic"><img src="/media/house-phones.jpg" alt="Phones and a laptop showing colourful video thumbnails" loading="lazy"><span class="sticker">FALL 2027</span></div>
+      <div><span class="num">03</span><h3>Release everywhere</h3><p>Season One goes out on many channels at once.</p>
+        <dl><div><dt>Long form</dt><dd>7–10 full episodes</dd></div><div><dt>Short form</dt><dd>100–200 Reels, Shorts and TikToks cut from the season</dd></div><div><dt>Network partner</dt><dd>A potential partner such as Netflix Israel or a local channel. Nothing is signed yet.</dd></div></dl></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec climb" id="climb"><div class="wrap">
+  <div class="head" style="margin-bottom:24px"><h2>The target: <em>100M views</em></h2></div>
+  <div class="big" id="counter" aria-label="100,000,000 views">100,000,000</div>
+  <div class="big-l">Views across Season One · the target</div>
+  <div class="bars" aria-hidden="true">
+    <div class="b" style="--h:2%"><span class="val">1.93M</span><span class="fill"></span></div>
+    <div class="b" style="--h:22%"><span class="val">~2M</span><span class="fill"></span></div>
+    <div class="b" style="--h:50%"><span class="val">~19.5M</span><span class="fill"></span></div>
+    <div class="b" style="--h:75%"><span class="val">~97.5M</span><span class="fill"></span></div>
+    <div class="b goal" style="--h:100%"><span class="val">~100M</span><span class="fill"></span></div>
+  </div>
+  <div class="blabels"><span>Deploy alone today, 30 days</span><span>8 episodes × ~250K</span><span>150 shorts × ~130K, one channel</span><span>…on about five channels each</span><span>Season One target</span></div>
+  <p class="maths">How it adds up: <b>150 shorts</b> (mid-point of 100–200) × <b>5 channels</b> each × <b>~130K</b> average views per post, plus <b>~2M</b> from 8 episodes at ~250K each, is about <b>100M</b>. Channels: Deploy's own, government and partner channels, a network partner and the founders' own audiences.</p>
+  <p class="note">Deploy today: 1.93M Instagram views in 30 days (Instagram Insights, 29 Sep–28 Oct 2026), with no paid boosts. Bars are not to scale. 100M is a target, not a promise; we report every number against it.</p>
+</div></section>
+
+<section class="sec" id="manifesto"><div class="wrap">
+  <div class="head"><h2>Why we're <em>making it</em></h2><p>Advocacy through tech.</p></div>
+  <div class="mgrid">
+    <div class="m"><i>01</i><b>Show what gets built here.</b><span>The world argues about Israel. We'd rather show it the founders building here, and let the work speak.</span></div>
+    <div class="m"><i>02</i><b>Founders are the story.</b><span>Real companies, real launches, real hard weeks.</span></div>
+    <div class="m"><i>03</i><b>Israel is the second character.</b><span>Tel Aviv isn't the backdrop. The city, its people and its pace are in every episode.</span></div>
+    <div class="m"><i>04</i><b>In English, for everyone.</b><span>Made for the platforms people already watch, not for an audience that already agrees.</span></div>
+    <div class="m"><i>05</i><b>No one buys the edit.</b><span>Full editorial independence. No patron, sponsor or brand approves what goes out.</span></div>
+    <div class="m"><i>06</i><b>We show our numbers.</b><span>100M views is a target, not a promise. We report every number against it.</span></div>
+  </div>
+</div></section>
+
+<section class="sec" id="fund" style="background:var(--paper)"><div class="wrap">
+  <div class="head"><h2>Back <em>Season One</em></h2><p>You'd be backing the making of Season One: casting, the 30-day shoot in Tel Aviv, the edit and the release.</p></div>
+  <div class="fund">
+    <div class="pic"><img src="/media/house-premiere.jpg" alt="A rooftop premiere screening in Tel Aviv at dusk" loading="lazy"><div class="credit">Deploy House · made possible by<b>YOUR NAME</b></div></div>
+    <div class="txt"><h3>Founding patron</h3><p class="pitch">One founding patron underwrites Season One. Your name opens every episode.</p>
+      <ul class="ticks"><li>"Made possible by" your name, on every episode</li><li>Access to the house and the founders</li><li>Premieres</li></ul>
+      <div class="acts" style="margin-top:24px"><a class="btn o" href="#contact" data-pick="Founding patron">Ask for the patron deck →</a></div></div>
+  </div>
+  <div class="ways">
+    <div class="way"><small>Brands</small><h4>On top of the season</h4><p>A fridge from a tech company like ElevenLabs, branded moments, activations. Brand money goes into more production.</p><a class="link" href="#contact" data-pick="Brand partner">Talk brands</a></div>
+    <div class="way"><small>Distribution</small><h4>Take it to your audience</h4><p>Channels, platforms and a network partner to carry the episodes and shorts.</p><a class="link" href="#contact" data-pick="Distribution partner">Talk distribution</a></div>
+    <div class="way"><small>Founders</small><h4>Be in the house</h4><p>We're casting the 10 founders for Season One now. The bar: $1M+ raised or $250K+ in revenue.<a class="ast" href="#fine" aria-label="See note on the founder bar">*</a></p><a class="link" href="#contact" data-pick="Joining as a founder">Put yourself forward</a></div>
+  </div>
+  <div class="indep"><b>FULL EDITORIAL INDEPENDENCE</b><span>No patron, sponsor or brand approves the edit.</span></div>
+</div></section>
+
+<section class="sec" id="contact"><div class="wrap">
+  <div class="head"><h2>Get in <em>touch</em></h2><p>Tell me how you'd like to be part of Season One. The button opens an email to me, ready to send.</p></div>
+  <div class="enq">
+    <form class="enquiry" id="enq" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain">
+      <label class="field">Your name<input name="name" autocomplete="name" required=""></label>
+      <label class="field">Company or organisation<input name="company" autocomplete="organization"></label>
+      <label class="field full">Email<input name="email" type="email" autocomplete="email" required=""></label>
+      <fieldset class="full" style="border:0;padding:0;margin:0"><legend class="field" style="padding:0;margin-bottom:6px">I'm interested in</legend><div class="chips">
+        <label><input type="radio" name="what" value="Founding patron" checked=""> Founding patron</label>
+        <label><input type="radio" name="what" value="Brand partner"> Brand partner</label>
+        <label><input type="radio" name="what" value="Distribution partner"> Distribution</label>
+        <label><input type="radio" name="what" value="Joining as a founder"> Joining as a founder</label>
+        <label><input type="radio" name="what" value="Something else"> Something else</label></div></fieldset>
+      <label class="field full">Tell me more<textarea name="msg" placeholder="Who you are and what you'd like to do with Deploy House."></textarea></label>
+      <div class="full"><button class="btn o" type="submit">Open the email →</button></div>
+    </form>
+    <aside class="direct">
+      <p>Prefer to write it yourself? Email me directly:</p>
+      <a class="big" href="mailto:hello@deploytlv.com?subject=Deploy%20House">hello@deploytlv.com</a>
+      <p style="margin-top:22px">Myron Shneider, founder and host of Deploy. <a class="link" href="/host/">More about Myron</a></p>
+    </aside>
+  </div>
+</div></section>
+<section class="fine" id="fine" aria-label="Notes"><div class="wrap">
+  <p><b>*</b> The founder bar is a rough guide, not a final rule: about $1M raised, or about $250K in revenue. We'll set the exact criteria before casting closes.</p>
+</div></section>
+</main>
+<footer class="ft"><div class="wrap">
+    <div class="cols">
+      <div class="about"><a class="logo" href="/">DEPLOY <b>TLV</b></a>The show about the people building tech in Tel Aviv. Founder stories, long-form, the orange mic at events, and the room where it all happens.</div>
+      <div><h4>Watch</h4><ul><li><a href="/#stories">Stories</a></li><li><a href="/#longform">Long-form</a></li><li><a href="/#onthemic">On the mic</a></li></ul></div>
+      <div><h4>Come along</h4><ul><li><a href="/#guide">What's on</a></li><li><a href="/#academy">Academy</a></li><li><a href="/#community">Community</a></li><li><a href="/db/">Deploy DB</a></li></ul></div>
+      <div><h4>Work with us</h4><ul><li><a href="/partner/">Partner with Deploy</a></li><li><a href="/kit/">Media kit</a></li><li><a href="/host/">Book Myron</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="https://instagram.com/deploytlv" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://www.youtube.com/watch?v=bh5vQedObiQ" target="_blank" rel="noopener">YouTube ↗</a></li><li><a href="https://www.linkedin.com/company/deploytlv" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a href="https://deploytlv.com/join/">WhatsApp group</a></li></ul></div>
+    </div>
+  </div>
+  <div class="mega" aria-hidden="true">DEPLOY<b>TLV</b></div>
+  <div class="wrap">
+    <div class="fine"><span>Deploy TLV · made in Tel Aviv</span><span>Hosted by Myron Shneider</span><a href="mailto:hello@deploytlv.com">hello@deploytlv.com</a></div>
+  </div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvtz3ty3"></script>
+<script src="/assets/site.js?v=mvtz3ty3"></script>
+<script>
+window.DeployPage = function(){
+  const $ = s => document.querySelector(s);
+  // the climb: count up to 100M and grow the bars when the section comes into view
+  const sec = $('#climb'), out = $('#counter'), GOAL = 100000000;
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt = n => Math.round(n).toLocaleString('en-US');
+  const run = () => { sec.classList.add('go');
+    if (RM) { out.textContent = fmt(GOAL); return; }
+    out.textContent = '0';
+    const t0 = performance.now(), D = 2600;
+    const tick = t => { const p = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - p, 4);
+      out.textContent = fmt(GOAL * e); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick); };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); run(); } }, {threshold:.35});
+    io.observe(sec);
+  } else run();
+  const pick = v => { const r=$(`#enq input[value="${v}"]`); if(r) r.checked=true; };
+  document.addEventListener('click', e=>{ const a=e.target.closest('[data-pick]'); if(a) pick(a.dataset.pick); });
+  $('#enq').addEventListener('submit', e=>{ e.preventDefault(); const f=new FormData(e.target);
+    const subj = `Deploy House · ${f.get('what')}${f.get('company')?' · '+f.get('company'):''}`;
+    const body = [`Name: ${f.get('name')}`, `Company: ${f.get('company')||'-'}`, `Email: ${f.get('email')}`, `Interested in: ${f.get('what')}`, '', f.get('msg')||''].join('\n');
+    location.href = `mailto:hello@deploytlv.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`; });
+};
+</script>
+</body></html>
