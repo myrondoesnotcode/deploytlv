@@ -101,6 +101,10 @@
 .chips input{accent-color:var(--orange);margin:0}
 .chips label:has(input:checked){background:var(--orange)}
 .chips label:has(input:focus-visible){outline:3px solid var(--ink);outline-offset:2px}
+.enquiry[hidden],.err[hidden]{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.enquiry .err{margin-top:12px;font:600 14px/1.5 var(--mono);color:#b3261e}
+.sent{grid-template-columns:1fr}.sent small{font:700 13px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--orange-text,var(--orange))}.sent h3{font:400 clamp(30px,4vw,48px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.03em;margin:8px 0 14px}.sent p{font-size:18px;line-height:1.55}
 .direct{border-top:2px solid var(--ink);padding-top:20px}
 .direct p{font-size:17px;line-height:1.55;margin-bottom:14px}
 .direct a.big{font:400 26px/1.1 var(--disp);text-transform:uppercase;letter-spacing:-.03em;border-bottom:3px solid var(--orange)}
@@ -211,9 +215,10 @@
 </div></section>
 
 <section class="sec" id="contact"><div class="wrap">
-  <div class="head"><h2>Get in <em>touch</em></h2><p>Tell me how you'd like to be part of Season One. The button opens an email to me, ready to send.</p></div>
+  <div class="head"><h2>Get in <em>touch</em></h2><p>Tell me how you'd like to be part of Season One. Send it here and it comes straight to me. I reply from hello@deploytlv.com.</p></div>
   <div class="enq">
     <form class="enquiry" id="enq" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain">
+      <label class="hp" aria-hidden="true">Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label>
       <label class="field">Your name<input name="name" autocomplete="name" placeholder="Elon Musk" required=""></label>
       <label class="field">Company or organisation<input name="company" autocomplete="organization" placeholder="SpaceX"></label>
       <label class="field full">Email<input name="email" type="email" autocomplete="email" placeholder="elon@spacex.com" required=""></label>
@@ -224,8 +229,9 @@
         <label><input type="radio" name="what" value="Joining as a founder"> Joining as a founder</label>
         <label><input type="radio" name="what" value="Something else"> Something else</label></div></fieldset>
       <label class="field full">Tell me more<textarea name="msg" placeholder="We're building reusable rockets and want to be in the house."></textarea></label>
-      <div class="full"><button class="btn o" type="submit">Open the email →</button></div>
+      <div class="full"><button class="btn o" type="submit">Send →</button><p class="err" role="alert" hidden></p></div>
     </form>
+    <div class="enquiry sent" id="sent" hidden tabindex="-1"><div class="full"><small>Got it</small><h3>Thanks, <span id="sentname"></span>.</h3><p>Your note is with me. I'll reply from hello@deploytlv.com, usually within a couple of days.</p></div></div>
     <aside class="direct">
       <p>Prefer to write it yourself? Email me directly:</p>
       <a class="big" href="mailto:hello@deploytlv.com?subject=Deploy%20House">hello@deploytlv.com</a>
@@ -274,10 +280,22 @@ window.DeployPage = function(){
   } else run();
   const pick = v => { const r=$(`#enq input[value="${v}"]`); if(r) r.checked=true; };
   document.addEventListener('click', e=>{ const a=e.target.closest('[data-pick]'); if(a) pick(a.dataset.pick); });
-  $('#enq').addEventListener('submit', e=>{ e.preventDefault(); const f=new FormData(e.target);
-    const subj = `Deploy House · ${f.get('what')}${f.get('company')?' · '+f.get('company'):''}`;
+  // the form posts to the `house` function (saved in Supabase, emailed to Myron); if that fails, it opens the email instead
+  const API = 'https://ketmhhwpkafgwvpwfukd.supabase.co/functions/v1/house', T0 = Date.now();
+  const mailto = f => { const subj = `Deploy House · ${f.get('what')}${f.get('company')?' · '+f.get('company'):''}`;
     const body = [`Name: ${f.get('name')}`, `Company: ${f.get('company')||'-'}`, `Email: ${f.get('email')}`, `Interested in: ${f.get('what')}`, '', f.get('msg')||''].join('\n');
-    location.href = `mailto:hello@deploytlv.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`; });
+    location.href = `mailto:hello@deploytlv.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`; };
+  $('#enq').addEventListener('submit', async e=>{ e.preventDefault(); const form=e.target, f=new FormData(form);
+    const btn=form.querySelector('button'), err=form.querySelector('.err'); btn.disabled=true; btn.textContent='Sending…'; err.hidden=true;
+    try {
+      const r = await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        name:f.get('name'), email:f.get('email'), company:f.get('company'), interest:f.get('what'), message:f.get('msg'),
+        hp:f.get('hp'), ms:Date.now()-T0, source:{page:'/residency/', ref:document.referrer}})});
+      const j = await r.json().catch(()=>({}));
+      if (r.ok && j.ok) { $('#sentname').textContent=String(f.get('name')).split(' ')[0]; form.hidden=true; const s=$('#sent'); s.hidden=false; s.focus(); return; }
+      if (r.status===400 && j.error) { err.textContent=j.error; err.hidden=false; btn.disabled=false; btn.textContent='Send →'; return; }
+      throw new Error(j.error||r.status);
+    } catch(_) { btn.disabled=false; btn.textContent='Send →'; err.textContent="Couldn't send from here, so I've opened an email with your note in it."; err.hidden=false; mailto(f); } });
 };
 </script>
 </body></html>
