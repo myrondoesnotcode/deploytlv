@@ -228,6 +228,25 @@ function wireBumpers(){
 }
 function wireDoodles(){ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }),{threshold:.6}); $$('.doodle').forEach(d=>io.observe(d)); }
 
+/* big numbers climb from 0 to their value when they scroll into view: 12K … 950K → 1.0M … 2M */
+function wireCounts(){
+  const els=$$('.stat .n, .reach .n, #nums .n'); if(!els.length || RM || !window.IntersectionObserver) return;
+  const parse=t=>{ const m=String(t).trim().match(/^([\d.,]+)\s*([KkMm]?)(\+?)$/); if(!m) return null;
+    return {to:parseFloat(m[1].replace(/,/g,''))*({k:1e3,m:1e6}[m[2].toLowerCase()]||1), plus:m[3]}; };
+  const fmt=v=> v>=1e6 ? (v/1e6).toFixed(1)+'M' : v>=1e3 ? Math.floor(v/1e3)+'K' : String(Math.floor(v));
+  const run=(el,i)=>{ const fin=el.dataset.final, p=parse(fin); if(!p) return;
+    const dur=2000+Math.min(600,Math.log10(p.to+1)*90), t0=performance.now()+i*180;
+    el.classList.add('counting'); el.textContent='0';
+    const tick=now=>{ const k=Math.max(0,Math.min(1,(now-t0)/dur)), e=1-Math.pow(1-k,3);
+      if(k<1){ el.textContent=fmt(p.to*e); requestAnimationFrame(tick); }
+      else { el.textContent=fin; el.classList.remove('counting'); el.classList.add('landed'); } };
+    requestAnimationFrame(tick); };
+  els.forEach(el=>{ el.dataset.final=el.textContent; el.setAttribute('aria-label',el.textContent); el.textContent='0'; });
+  const groups=new Map(); els.forEach(el=>{ const g=el.closest('.stats,.reach,#nums')||el; groups.set(g,[...(groups.get(g)||[]),el]); });
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ io.unobserve(e.target); groups.get(e.target).forEach(run); } }),{threshold:.5});
+  groups.forEach((_,g)=>io.observe(g));
+}
+
 /* ---------- power-on (first visit, home only) ---------- */
 function wirePower(){
   const p=$('#power'); if(!p) return;
@@ -263,6 +282,6 @@ chrome();
 document.addEventListener('DOMContentLoaded', ()=>{
   $$('[data-render]').forEach(el=>R[el.dataset.render] && R[el.dataset.render](el));
   if (window.DeployPage) window.DeployPage();
-  wireRemote(); wirePhones(); wireFeed(); wireForms(); wireDoodles(); wirePower(); wireBumpers(); setSound(soundOn);
+  wireRemote(); wirePhones(); wireFeed(); wireForms(); wireDoodles(); wireCounts(); wirePower(); wireBumpers(); setSound(soundOn);
 });
 })();

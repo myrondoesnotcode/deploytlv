@@ -123,6 +123,18 @@ nav.top .btn{min-height:42px;padding:0 16px;font-size:14px;box-shadow:3px 3px 0 
 .stat .n{display:block;font-size:48px;line-height:1}
 .stat .lbl{display:block;font:600 14px/1.35 var(--mono);margin-top:8px;max-width:10.5em}
 .stat1 .doodle{position:absolute;left:-20px;top:-12px;width:150px;height:74px;pointer-events:none}
+/* count-up: the number climbs (same colour throughout) with an arrow, then lands with a pop and an underline.
+   --cl: arrow + underline. Hero is orange, reach is ink. */
+.n.counting,.n.landed{position:relative;display:inline-block;--cl:var(--orange)}
+.stat .n.counting,.stat .n.landed{display:block;width:max-content;--cl:var(--ink)}
+#nums .n.counting,#nums .n.landed{--cl:var(--ink)}
+.reach .n.counting,.reach .n.landed{--cl:var(--paper)}
+.n.counting::after{content:'';position:absolute;right:-.42em;top:.08em;border-left:.17em solid transparent;border-right:.17em solid transparent;border-bottom:.24em solid var(--cl);animation:climb .45s steps(3) infinite}
+.n.landed{animation:land .5s cubic-bezier(.2,1.6,.4,1)}
+.n.landed::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:-.08em;height:.1em;background:var(--cl);transform-origin:left;animation:swipe .35s .12s ease-out both}
+@keyframes climb{0%{transform:translateY(.12em);opacity:.4}100%{transform:translateY(-.18em);opacity:1}}
+@keyframes land{0%{transform:scale(1.28) rotate(-4deg)}60%{transform:scale(.94) rotate(1deg)}100%{transform:none}}
+@keyframes swipe{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .tvzone{position:static;padding:72px 0 30px}
 .tv{position:relative;z-index:3;background:var(--ink);border-radius:38px;padding:24px 24px 24px 128px;box-shadow:12px 12px 0 rgba(17,16,13,.35);transform:rotate(1.2deg);margin-right:30px}
 .tv .ant{position:absolute;bottom:100%;width:4px;height:120px;background:var(--ink);border-radius:4px;transform-origin:bottom}
