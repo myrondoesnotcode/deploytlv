@@ -161,11 +161,29 @@ window.DEPLOY = {
     { name: "Artem Belyakov", role: "Medida · Founding Engineer", img: '../people/Artem_Belyakov.jpg' },
     { name: "Ariel Cohen", role: "Swan · Founding GTM Engineer", img: '../people/Ariel_Cohen.jpg' }
   ],
-  /* Companies our community works at. Logos live in /assets/logos. */
+  /* Companies people in the room work at now (not former employers). From the
+     2026-10-29 who's-in-the-room count, ranked by how well known they are. */
   memberLogos: [
-    { src: '/assets/logos/monday.png', alt: 'monday.com' }, { src: '/assets/logos/google.png', alt: 'Google' },
-    { src: '/assets/logos/aleph.svg', alt: 'Aleph' }, { src: '/assets/logos/team8.svg', alt: 'Team8' },
-    { src: '/assets/logos/walkme_light.svg', alt: 'WalkMe' }, { src: '/assets/logos/payoneer.svg', alt: 'Payoneer' }
+    { name: "Google" },
+    { name: "Meta" },
+    { name: "Microsoft" },
+    { name: "AWS" },
+    { name: "PayPal" },
+    { name: "Palo Alto Networks" },
+    { name: "Fortinet" },
+    { name: "Mobileye" },
+    { name: "F5" },
+    { name: "monday.com" },
+    { name: "Wix" },
+    { name: "JFrog" },
+    { name: "Payoneer" },
+    { name: "Pagaya" },
+    { name: "Nebius" },
+    { name: "AI21 Labs" },
+    { name: "VAST Data" },
+    { name: "HoneyBook" },
+    { name: "Taboola" },
+    { name: "Artlist" },
   ],
   /* Footage from the nights, shown in The room. */
   nightClips: [

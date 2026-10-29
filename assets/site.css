@@ -664,9 +664,14 @@ a{text-underline-offset:.18em}
 .person img{width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid var(--ink);flex:none}
 .person b{display:block;font:700 15px/1.2 var(--sans)}
 .person span{display:block;font-size:14px;line-height:1.3;color:var(--ink-2)}
-.worksat{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin:40px 0 0;justify-content:center}
+.worksat{display:flex;flex-direction:column;align-items:center;gap:22px;margin:48px 0 0;text-align:center}
 .worksat>span{font:600 14px var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)}
-.worksat .logos{display:flex;gap:34px;align-items:center;flex-wrap:wrap;justify-content:center}
+.worksat .logos{display:flex;gap:14px 12px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:980px}
+.worksat .co{font:800 clamp(16px,1.6vw,21px)/1 var(--sans);letter-spacing:-.01em;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:10px 18px;box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.worksat .co:nth-child(5n+1){background:var(--sun)}.worksat .co:nth-child(5n+2){background:var(--sky)}.worksat .co:nth-child(5n+3){background:var(--pink)}.worksat .co:nth-child(5n+4){background:var(--lime)}
+.worksat .co:nth-child(odd){transform:rotate(-1.5deg)}.worksat .co:nth-child(even){transform:rotate(1.2deg)}
+.worksat .wsub{margin:4px 0 0;font-size:16px;color:var(--ink-2)}
+.worksat .wsub b{color:var(--ink);font-weight:800;background:linear-gradient(transparent 50%,var(--sun) 50%);padding:0 3px}
 .worksat .logos img{height:26px;width:auto;filter:grayscale(1) contrast(1.4) brightness(.6);opacity:.9}
 
 /* guide row "see what it looks like" + video player */
@@ -683,7 +688,7 @@ dialog.clipdlg .x{all:unset;cursor:pointer;position:absolute;top:10px;right:10px
  .nightclips .phone{width:150px}.nightclips figcaption{max-width:150px}
  .people{grid-template-columns:1fr 1fr;gap:12px}
  .person{padding:8px;gap:10px}.person img{width:44px;height:44px}
- .worksat .logos{gap:22px}.worksat .logos img{height:20px}
+ .worksat .logos{gap:10px 8px}.worksat .logos img{height:20px}.worksat .co{padding:8px 13px;font-size:15px;box-shadow:2px 2px 0 var(--ink)}
 }
 @media(max-width:420px){ .people{grid-template-columns:1fr} }
 /* footer wordmark: fit the width, centred, nothing clipped */

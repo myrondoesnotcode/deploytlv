@@ -252,7 +252,7 @@ const R = {
   nights: el => { el.innerHTML = [...D.nights].reverse().map(n=>{ const m=n.code.match(/(\d+)$/), num=m?+m[1]:'', st=/STARTUPS/.test(n.code);
       const name = st ? `Deploy for Startups #${num}` : `Deploy #${num}`;
       return `<div class="tk"><span class="no">#${num}</span><div><strong>${esc(name)}</strong><em>${esc(n.title)}</em><span>${fmtDate(n.date)}${n.applied?' · '+n.applied+' applied':''}</span></div></div>`; }).join(''); },
-  logos: el => { el.innerHTML = (D.memberLogos||[]).map(l=>`<img src="${l.src}" alt="${esc(l.alt)}" loading="lazy">`).join(''); },
+  logos: el => { el.innerHTML = (D.memberLogos||[]).map(l=>l.src?`<img src="${l.src}" alt="${esc(l.alt)}" loading="lazy">`:`<span class="co">${esc(l.name)}</span>`).join(''); },
   builds: el => { const t = D.builds.map(b=>esc(b)).join('<i>✺</i>'); el.innerHTML = `<div><span><b>WHAT THE ROOM IS BUILDING</b>${t}<i>✺</i></span><span><b>WHAT THE ROOM IS BUILDING</b>${t}<i>✺</i></span></div>`; }
 };
 

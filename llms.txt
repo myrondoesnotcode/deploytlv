@@ -52,7 +52,6 @@ Nothing is charged when you ask for a seat. We confirm on WhatsApp, then you pay
 
 - [Deploy TLV community](https://deploytlv.com/): the AI-builders community behind the Academy.
 
-
 ## Deploy media
 
 Deploy is an English-language media company telling the stories of Israeli tech and AI, based in Tel Aviv. It also runs Israel's fastest-growing English-speaking AI community.
