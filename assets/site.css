@@ -41,6 +41,8 @@ button{font:inherit;color:inherit}
 .on-ink :focus-visible,.on-orange :focus-visible{outline-color:var(--paper)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hand{font-family:var(--hand);text-transform:none;letter-spacing:0}
+/* Permanent Marker once per section: other captions are mono labels */
+figure figcaption.capm{font:600 13px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.06em}
 .n{font-family:var(--num);letter-spacing:.01em;font-weight:400}
 
 /* ---------- layout ---------- */
@@ -190,7 +192,7 @@ nav.top .btn{min-height:42px;padding:0 16px;font-size:14px;box-shadow:3px 3px 0 
 .snap:nth-child(1) .shot{flex:1;aspect-ratio:auto;min-height:400px}
 .snap .shot img,.snap .shot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .snap .shot video{opacity:0;transition:opacity .25s}.snap.playing .shot video{opacity:1}
-.snap .nm{position:absolute;left:10px;bottom:12px;z-index:2;font:400 clamp(18px,1.5vw,22px)/1 var(--num);text-transform:uppercase;background:var(--orange);color:#fff;padding:.12em .3em}
+.snap .nm{position:absolute;left:10px;bottom:12px;z-index:2;font:400 clamp(16px,1.3vw,20px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.01em;background:var(--orange);color:var(--ink);padding:.12em .3em}
 .snap:nth-child(1) .nm{font-size:clamp(26px,2.4vw,36px);left:16px;bottom:18px}
 .snap .pl{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--orange);border:2.5px solid var(--ink);display:grid;place-items:center;z-index:2;transition:transform .15s;box-shadow:3px 3px 0 var(--ink)}
 .snap:nth-child(1) .pl{width:86px;height:86px;margin:-43px 0 0 -43px}
@@ -310,8 +312,9 @@ nav.top .btn{min-height:42px;padding:0 16px;font-size:14px;box-shadow:3px 3px 0 
 .partner .acts{margin-top:56px}
 
 /* ---------- subscribe ---------- */
-.subband{background:var(--pink);border-bottom:2px solid var(--ink);padding:84px 0}
+.subband{background:var(--paper);border-bottom:2px solid var(--ink);padding:84px 0}
 .subband .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.subband .sublab{display:inline-block;font:700 14px/1 var(--px);text-transform:uppercase;letter-spacing:.04em;background:var(--pink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:8px 10px;margin-bottom:22px;transform:rotate(-3deg)}
 .subband h2{font-size:clamp(46px,5.4vw,84px);line-height:.85;letter-spacing:-.05em}
 .subband p{font-size:18px;line-height:1.55;margin-top:16px;max-width:28em}
 .subform{display:flex;border:2px solid var(--ink);background:#fff;box-shadow:6px 6px 0 var(--ink)}
@@ -533,6 +536,15 @@ a{text-underline-offset:.18em}
 
 /* ---------- hero fixes: readable intro, host clear of the TV, name tag clear of the host ---------- */
 .hero .lede{background:var(--paper);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:16px 20px;font-size:19px;font-weight:500;line-height:1.5;max-width:28em;transform:rotate(-.6deg)}
+/* the three parts of Deploy, as branded stickers (accents as chips, Sun for the Academy) */
+.hero .lede.pil p{margin:0 0 14px}
+.hero .lede.pil ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:12px 16px;align-items:center;font-size:.86em;line-height:1.4}
+.hero .lede.pil li{display:contents}
+.hero .lede.pil .ch{justify-self:start;font:700 12px/1 var(--px);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:6px 8px;white-space:nowrap}
+.hero .lede.pil .media{background:var(--orange);transform:rotate(-2deg)}
+.hero .lede.pil .comm{background:var(--lime);transform:rotate(1.5deg)}
+.hero .lede.pil .acad{background:var(--sun);transform:rotate(-1.5deg)}
+@media(max-width:600px){.hero .lede.pil ul{grid-template-columns:1fr;gap:6px}.hero .lede.pil li>span:last-child{margin-bottom:8px}}
 .tv,.feet{margin-right:250px}
 .hostbox{right:100px;height:min(330px,40%)}
 .hostlabel{right:46%;top:-64px}

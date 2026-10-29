@@ -22,8 +22,8 @@ body{background:var(--paper)}
 .j-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font:700 13px var(--px);border:2px solid var(--ink);background:var(--paper);padding:6px 11px;border-radius:999px}
 .j-tag i{width:9px;height:9px;border-radius:50%;background:#ff2d1a;border:1.5px solid var(--ink);animation:jblink 1.2s steps(2) infinite}
 @keyframes jblink{50%{opacity:0}}
-.j-pitch h1{font:400 clamp(56px,7.4vw,112px)/.88 var(--num);text-transform:uppercase;letter-spacing:-.01em;margin:0}
-.j-pitch h1 .hand{display:block;font:400 .42em/1 var(--hand);text-transform:none;color:var(--paper);transform:rotate(-3deg);margin-top:14px;-webkit-text-stroke:0}
+.j-pitch h1{font:400 clamp(52px,6.6vw,100px)/.9 var(--disp);text-transform:uppercase;letter-spacing:-.04em;margin:0}
+.j-pitch h1 .hand{display:block;font:400 .42em/1 var(--hand);text-transform:none;color:var(--ink);transform:rotate(-3deg);margin-top:14px;-webkit-text-stroke:0}
 .j-pitch .lede{font:500 18px/1.5 var(--sans);max-width:30em;margin:0}
 .j-faces{display:flex;align-items:center;gap:14px}
 .j-faces .stack{display:flex}
@@ -35,7 +35,7 @@ body{background:var(--paper)}
 .j-gets li:nth-child(2){transform:rotate(-.6deg)}
 .j-gets li:nth-child(3){transform:rotate(.5deg)}
 .j-gets b{font:700 12px var(--px);background:var(--ink);color:var(--paper);padding:3px 6px;white-space:nowrap}
-.j-sticker{position:absolute;right:-18px;top:46px;transform:rotate(12deg);background:var(--sun);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font:400 18px/1.05 var(--hand);padding:14px 26px 14px 16px;text-align:center}
+.j-sticker{position:absolute;right:-18px;top:46px;transform:rotate(6deg);background:var(--sun);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font:400 18px/1.05 var(--hand);padding:14px 26px 14px 16px;text-align:center}
 .j-who{margin-top:auto;font:500 13px/1.5 var(--mono);opacity:.85}
 
 /* right: the form */
@@ -68,7 +68,7 @@ body{background:var(--paper)}
 .j-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .j-tile{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;cursor:pointer;border:2px solid var(--ink);background:var(--card);padding:18px 16px 16px;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s;font:inherit;color:var(--ink)}
 .j-tile:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
-.j-tile .k{font:700 11px var(--px);border:1.5px solid var(--ink);padding:2px 6px;background:var(--paper)}
+.j-tile .k{font:700 12px var(--px);border:1.5px solid var(--ink);padding:2px 6px;background:var(--paper)}
 .j-tile b{font:400 26px/1 var(--disp)}
 .j-tile span{font:400 14px/1.4 var(--sans);color:var(--ink-2)}
 .j-tile.f{--c:var(--sun)}.j-tile.b{--c:var(--sky)}.j-tile.w{--c:var(--lime)}.j-tile.o{--c:var(--pink)}
@@ -96,7 +96,7 @@ body{background:var(--paper)}
 .j-scan div i{width:18px;height:18px;border:2px solid var(--ink);display:grid;place-items:center;font-style:normal;font-size:12px;background:var(--paper)}
 .j-scan div.done i{background:var(--lime)}
 .j-in-card{border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);padding:28px;position:relative}
-.j-in-card .stamp{position:absolute;right:22px;top:-22px;transform:rotate(8deg);font:400 22px/1 var(--hand);background:var(--lime);border:2px solid var(--ink);padding:8px 14px}
+.j-in-card .stamp{position:absolute;right:22px;top:-22px;transform:rotate(-5deg);font:400 22px/1 var(--hand);background:var(--lime);border:2px solid var(--ink);padding:8px 14px}
 .j-wa{background:#25d366 !important;color:var(--ink) !important}
 .j-next{display:grid;gap:8px;margin:22px 0 0;padding:0;list-style:none;font:400 15px/1.45 var(--sans)}
 .j-next li{display:flex;gap:10px}.j-next li::before{content:"→";font-weight:700}
@@ -106,7 +106,7 @@ body{background:var(--paper)}
 @media (max-width:900px){
   .j-stage{grid-template-columns:1fr;min-height:0}
   .j-pitch{border-right:0;border-bottom:2px solid var(--ink);padding:28px 16px 26px;gap:16px}
-  .j-pitch h1{font-size:clamp(52px,15vw,80px)}
+  .j-pitch h1{font-size:clamp(44px,13vw,72px)}
   .j-pitch .lede{font-size:16px}
   .j-gets,.j-who{display:none}
   .j-sticker{top:22px;right:-10px;font-size:15px;padding:10px 20px 10px 12px}

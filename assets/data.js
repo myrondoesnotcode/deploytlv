@@ -27,8 +27,8 @@ window.DEPLOY = {
 
   /* Headline numbers. Each one is said once in the hero and once to partners. */
   stats: [
-    { value: '1.9M', label: 'Instagram views in the last month' },
-    { value: '954K', label: 'Views on our biggest reel' },
+    { value: '2M', label: 'Instagram views in the last month' },
+    { value: '1M+', label: 'Views on our biggest reel' },
     { value: '500', label: 'People in the WhatsApp community' }
   ],
   /* Instagram audience (followers), from Instagram insights, 29 Oct 2026 (29 Sep–28 Oct). */
@@ -187,8 +187,8 @@ window.DEPLOY = {
   ],
   /* Footage from the nights, shown in The room. */
   nightClips: [
-    { src: '../clips/night-deploy2.mp4', poster: '../clips/night-deploy2.jpg', cap: 'Deploy #2 · AI Showcase' },
-    { src: '../clips/night-deploy4.mp4', poster: '../clips/night-deploy4.jpg', cap: 'Deploy #4 · Using AI to Hack Growth' }
+    { src: '../clips/night-deploy2.mp4', poster: '../clips/night-deploy2.jpg', cap: 'DEPLOY_002 · AI Showcase' },
+    { src: '../clips/night-deploy4.mp4', poster: '../clips/night-deploy4.jpg', cap: 'DEPLOY_004 · Using AI to Hack Growth' }
   ],
 
   /* Companies people in the community are building. */
@@ -221,7 +221,7 @@ window.DEPLOY = {
     photos: [
       { src: '../thumbs/host-1.jpg', cap: 'on stage at DEPLOY_005', alt: 'Myron on the mic on stage at DEPLOY_005' },
       { src: '../thumbs/host-2.jpg', cap: 'demo night', alt: 'Myron hosting demo night in front of the crowd' },
-      { src: '../thumbs/host-3.jpg', cap: 'teaching Academy #2', alt: 'Myron teaching at the screen during Deploy Academy' }
+      { src: '../thumbs/host-3.jpg', cap: 'teaching Academy 101', alt: 'Myron teaching at the screen during Deploy Academy' }
     ]
   }
 };

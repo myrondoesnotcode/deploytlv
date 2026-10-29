@@ -78,7 +78,7 @@ function chrome(){
   document.body.insertAdjacentHTML('beforeend', `<div id="feed" role="dialog" aria-modal="true" aria-label="Stories"><button class="x" aria-label="Close">✕</button><button class="snd2">Tap for sound</button><span class="hint">Swipe or press ↓ for the next one</span><div class="scroller"></div></div>
    <dialog class="clipdlg" id="clipdlg" aria-label="Video"><button class="x" aria-label="Close">✕</button><video controls playsinline></video></dialog>
    <dialog class="dlg" id="joindlg" aria-labelledby="jointitle"><div class="in"><button class="x" aria-label="Close">✕</button>
-    <h2 id="jointitle">Join Deploy</h2><p>Get the Deploy Log: one email a week with the next Deploy night, Academy classes, coworking and the newest stories. It also gets you into the Deploy DB.</p>
+    <h2 id="jointitle">Join Deploy</h2><p>Get the Deploy Log: one email a week with the next Deploy night, Academy classes, coworking and the newest stories. It also gets you into Deploy DB.</p>
     <form class="fields" data-subscribe novalidate>
       <label class="field">Email<input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com"></label>
       <label class="field">First and last name <span class="opt">(optional)</span><input name="name" autocomplete="name" maxlength="120"></label>

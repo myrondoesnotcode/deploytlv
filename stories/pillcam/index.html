@@ -15,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=mvtvo432">
+<link rel="stylesheet" href="/assets/site.css?v=mvu0fozs">
 <style>
 .story{padding:56px 0 112px;border-bottom:2px solid var(--ink)}
 .story .grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:80px;align-items:start}
@@ -25,7 +25,7 @@
 .story .views{position:static;display:inline-block;margin:0 0 18px;transform:rotate(-3deg)}
 .story h1{font-size:clamp(46px,5.6vw,92px);line-height:.86;letter-spacing:-.055em;margin:0 0 22px}
 .story h1 small{display:block;font:400 .42em/1 var(--num);letter-spacing:.01em;margin-bottom:14px}
-.story h1 small span{background:var(--orange);color:#fff;padding:.08em .3em}
+.story h1 small span{background:var(--orange);color:var(--ink);font-family:var(--disp);padding:.08em .3em}
 .story .facts{font:600 14px var(--mono);color:var(--muted);margin:0 0 26px}
 .story .who{font-size:17px;line-height:1.5;padding:16px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);margin-bottom:28px}
 .story .who b{font:600 14px var(--mono);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px;color:var(--orange-text)}
@@ -51,7 +51,7 @@
 @media(max-width:980px){
  .story{padding:32px 0 76px}
  .story .grid{grid-template-columns:1fr;gap:36px}
- .story .stick{position:static;max-width:280px;margin:0 auto}
+ .story .stick{position:static;width:min(280px,100%);margin:0 auto}
  .script{padding:22px 20px}.script p{font-size:17px}
  .more{grid-template-columns:1fr 1fr;gap:28px 14px}
 }
@@ -120,8 +120,8 @@
   </div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvtvo432"></script>
-<script src="/assets/site.js?v=mvtvo432"></script>
+<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvu0fozs"></script>
+<script src="/assets/site.js?v=mvu0fozs"></script>
    <dialog class="clipdlg" id="clipdlg" aria-label="Video"><button class="x" aria-label="Close">✕</button><video controls="" playsinline=""></video></dialog>
    
 <script>

@@ -15,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=mvtvo432">
+<link rel="stylesheet" href="/assets/site.css?v=mvu0fozs">
 <style>
 .phero .cut{max-width:420px}
 .yourhost{font-size:30px;transform:rotate(-5deg);display:inline-block;margin-bottom:6px}
@@ -94,7 +94,7 @@
 <section class="sec on-ink"><div class="wrap">
   <div class="head"><h2>In the <em>room</em></h2><p>AWS Summit, Builders &amp; Brews at Nebius, Agentic Israel, and the Academy. Tap SOUND on any of them to hear it.</p></div>
   <div class="reels" id="reels"><figure><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/aws.mp4" poster="/media/clips/aws.jpg" muted="" loop="" playsinline="" aria-label="AWS Summit Tel Aviv" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div><figcaption><strong>AWS Summit Tel Aviv</strong>10 Sept 2026</figcaption></figure><figure><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/nebius.mp4" poster="/media/clips/nebius.jpg" muted="" loop="" playsinline="" aria-label="Builders &amp; Brews" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div><figcaption><strong>Builders &amp; Brews</strong>15 Sept 2026</figcaption></figure><figure><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/agentic-v2.mp4" poster="/media/clips/agentic-v2.jpg" muted="" loop="" playsinline="" aria-label="Agentic Israel at Startup Nation Central" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div><figcaption><strong>Agentic Israel at Startup Nation Central</strong>5 Oct 2026</figcaption></figure><figure><div class="phone" data-wired="1"><div class="vid"><video data-src="/media/clips/academy.mp4" poster="/media/clips/academy.jpg" muted="" loop="" playsinline="" aria-label="Deploy Academy" data-wired="1"></video></div><span class="island"></span><button class="mute" type="button" aria-label="Sound on for this video"><i class="ic ic-snd-off" aria-hidden="true"></i> SOUND</button></div><figcaption><strong>Deploy Academy</strong>Workshops in Tel Aviv</figcaption></figure></div>
-  <div class="photos" id="photos"><figure><img src="/media/thumbs/host-1.jpg" alt="Myron on the mic on stage at DEPLOY_005" loading="lazy"><figcaption class="hand">on stage at DEPLOY_005</figcaption></figure><figure><img src="/media/thumbs/host-2.jpg" alt="Myron hosting demo night in front of the crowd" loading="lazy"><figcaption class="hand">demo night</figcaption></figure><figure><img src="/media/thumbs/host-3.jpg" alt="Myron teaching at the screen during Deploy Academy" loading="lazy"><figcaption class="hand">teaching Academy #2</figcaption></figure></div>
+  <div class="photos" id="photos"><figure><img src="/media/thumbs/host-1.jpg" alt="Myron on the mic on stage at DEPLOY_005" loading="lazy"><figcaption class="hand">on stage at DEPLOY_005</figcaption></figure><figure><img src="/media/thumbs/host-2.jpg" alt="Myron hosting demo night in front of the crowd" loading="lazy"><figcaption class="capm">demo night</figcaption></figure><figure><img src="/media/thumbs/host-3.jpg" alt="Myron teaching at the screen during Deploy Academy" loading="lazy"><figcaption class="capm">teaching Academy 101</figcaption></figure></div>
 </div></section>
 
 <section class="sec book" id="book"><div class="wrap">
@@ -121,8 +121,8 @@
   </div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvtvo432"></script>
-<script src="/assets/site.js?v=mvtvo432"></script>
+<script>window.DEPLOY_BASE="/";</script><script src="/assets/data.js?v=mvu0fozs"></script>
+<script src="/assets/site.js?v=mvu0fozs"></script>
    <dialog class="clipdlg" id="clipdlg" aria-label="Video"><button class="x" aria-label="Close">✕</button><video controls="" playsinline=""></video></dialog>
    
 <script>
@@ -130,7 +130,7 @@ window.DeployPage = function(){
   const {D,$,esc,phone} = Deploy;
   const items = [...D.aired.map(a=>({src:a.clip, poster:a.poster, t:a.what, d:DeployDates.fmtDate(a.date)})), {src:'../clips/academy.mp4', poster:'../clips/academy.jpg', t:'Deploy Academy', d:'Workshops in Tel Aviv'}];
   $('#reels').innerHTML = items.map(i=>`<figure>${phone(i.src, i.poster, {label:i.t})}<figcaption><strong>${esc(i.t)}</strong>${esc(i.d)}</figcaption></figure>`).join('');
-  $('#photos').innerHTML = (D.host.photos||[]).map(p=>`<figure><img src="${p.src}" alt="${esc(p.alt||'Myron hosting a Deploy event')}" loading="lazy"><figcaption class="hand">${esc(p.cap)}</figcaption></figure>`).join('');
+  $('#photos').innerHTML = (D.host.photos||[]).map((p,i)=>`<figure><img src="${p.src}" alt="${esc(p.alt||'Myron hosting a Deploy event')}" loading="lazy"><figcaption class="${i?'capm':'hand'}">${esc(p.cap)}</figcaption></figure>`).join('');
   if (!(D.host.photos||[]).length) $('#photos').remove();
   $('#copybio').onclick = async()=>{ try{ await navigator.clipboard.writeText($('#shortbio').textContent); $('#copybio').textContent='Copied ✓'; }catch(e){} };
 };
