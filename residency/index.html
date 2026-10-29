@@ -32,7 +32,9 @@
 .answer .wrap>div{min-width:0;padding:30px 24px;border-left:2px solid var(--ink)}
 .answer .wrap>div:first-child{border-left:0;padding-left:0}
 .answer small{display:block;font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-.answer b{display:block;font:400 clamp(26px,2.6vw,40px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
+.answer b{display:block;font:400 clamp(22px,2.1vw,34px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
+.answer .wrap>div{container-type:inline-size}
+@supports(font-size:1cqi){.answer b{font-size:clamp(14px,9.6cqi,38px)}}
 .answer span{display:block;font-size:16px;line-height:1.4;margin-top:8px}
 /* story steps with images */
 .story3{display:flex;flex-direction:column;gap:70px}
@@ -102,9 +104,10 @@
 .direct{border-top:2px solid var(--ink);padding-top:20px}
 .direct p{font-size:17px;line-height:1.55;margin-bottom:14px}
 .direct a.big{font:400 26px/1.1 var(--disp);text-transform:uppercase;letter-spacing:-.03em;border-bottom:3px solid var(--orange)}
+@media(max-width:1200px){.answer .wrap{grid-template-columns:1fr 1fr}.answer .wrap>div{border-left:0;border-top:2px solid var(--ink)}.answer .wrap>div:nth-child(-n+2){border-top:0}.answer .wrap>div:nth-child(odd){padding-left:0}.answer .wrap>div:nth-child(even){border-left:2px solid var(--ink)}}
 @media(max-width:980px){
  .dream{min-height:640px}.dream .wrap{padding-bottom:40px}
- .answer .wrap{grid-template-columns:1fr 1fr}.answer .wrap>div{padding:20px 14px;border-left:0;border-top:2px solid var(--ink)}.answer .wrap>div:nth-child(-n+2){border-top:0}.answer .wrap>div:nth-child(odd){padding-left:0}.answer .wrap>div:nth-child(even){border-left:2px solid var(--ink)}.answer b{font-size:19px;letter-spacing:-.03em}
+ .answer .wrap{grid-template-columns:1fr 1fr}.answer .wrap>div{padding:20px 14px;border-left:0;border-top:2px solid var(--ink)}.answer .wrap>div:nth-child(-n+2){border-top:0}.answer .wrap>div:nth-child(odd){padding-left:0}.answer .wrap>div:nth-child(even){border-left:2px solid var(--ink)}
  .st{grid-template-columns:1fr;gap:28px}.st:nth-child(even) .pic{order:0}.st .num{font-size:64px}
  .bars{height:240px;gap:8px}.blabels{gap:8px}.blabels span{font-size:11px}
  .mgrid,.ways{grid-template-columns:1fr;gap:16px}
@@ -211,16 +214,16 @@
   <div class="head"><h2>Get in <em>touch</em></h2><p>Tell me how you'd like to be part of Season One. The button opens an email to me, ready to send.</p></div>
   <div class="enq">
     <form class="enquiry" id="enq" action="mailto:hello@deploytlv.com" method="post" enctype="text/plain">
-      <label class="field">Your name<input name="name" autocomplete="name" required=""></label>
-      <label class="field">Company or organisation<input name="company" autocomplete="organization"></label>
-      <label class="field full">Email<input name="email" type="email" autocomplete="email" required=""></label>
+      <label class="field">Your name<input name="name" autocomplete="name" placeholder="Elon Musk" required=""></label>
+      <label class="field">Company or organisation<input name="company" autocomplete="organization" placeholder="SpaceX"></label>
+      <label class="field full">Email<input name="email" type="email" autocomplete="email" placeholder="elon@spacex.com" required=""></label>
       <fieldset class="full" style="border:0;padding:0;margin:0"><legend class="field" style="padding:0;margin-bottom:6px">I'm interested in</legend><div class="chips">
         <label><input type="radio" name="what" value="Founding patron" checked=""> Founding patron</label>
         <label><input type="radio" name="what" value="Brand partner"> Brand partner</label>
         <label><input type="radio" name="what" value="Distribution partner"> Distribution</label>
         <label><input type="radio" name="what" value="Joining as a founder"> Joining as a founder</label>
         <label><input type="radio" name="what" value="Something else"> Something else</label></div></fieldset>
-      <label class="field full">Tell me more<textarea name="msg" placeholder="Who you are and what you'd like to do with Deploy House."></textarea></label>
+      <label class="field full">Tell me more<textarea name="msg" placeholder="We're building reusable rockets and want to be in the house."></textarea></label>
       <div class="full"><button class="btn o" type="submit">Open the email →</button></div>
     </form>
     <aside class="direct">
