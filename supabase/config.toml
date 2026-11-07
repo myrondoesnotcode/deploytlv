@@ -4,7 +4,7 @@ project_id = "deploy-db"
 [auth]
 enabled = true
 site_url = "https://deploytlv.com/db/"
-additional_redirect_urls = ["https://deploytlv.com/db/", "http://localhost:4320/db/"]
+additional_redirect_urls = ["https://deploytlv.com/db/", "http://localhost:4320/db/", "https://deploytlv.com/db/radar/", "http://localhost:4320/db/radar/"]
 jwt_expiry = 3600
 # Anyone can create an account; access to the data still requires an active newsletter subscription (public.subscribers).
 enable_signup = true
