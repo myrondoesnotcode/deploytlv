@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Israeli tech companies hiring right now, one per screen, live from their job boards. Free with the Deploy Log."><meta name="robots" content="noindex"></head><body><title>Deploy Hiring Radar</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Israeli tech companies hiring right now, one per screen, live from their job boards. Free with the Deploy Log."><meta property="og:title" content="Deploy Hiring Radar: who's hiring in Israel right now"><meta property="og:description" content="Israeli tech companies hiring now, one per screen, live from their job boards. Updated daily."><meta property="og:image" content="https://myrondoesnotcode.github.io/hiring-radar/og/radar.png"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="noindex"></head><body><title>Deploy Hiring Radar</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Silkscreen&display=swap">
@@ -149,6 +149,8 @@ nav.bar .post span{display:grid;place-items:center;width:44px;height:28px;border
 .sheet li b{display:block;font-size:14px}
 .sheet li small{color:var(--muted);font-size:12px}
 .sheet li.locked{filter:blur(3px);pointer-events:none;user-select:none}
+.sheet li:has(a.ja){display:block;padding:0}.sheet a.ja{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));color:inherit;text-decoration:none}
+.sheet a.ja:active{background:var(--lock)}.sheet a.ja .go{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--orange);white-space:nowrap}
 .sheet .unlock{margin:8px 16px 14px;padding:12px;border-radius:999px;background:var(--orange);color:#11100D;font-weight:700;text-align:center}
 
 /* gate */
@@ -255,6 +257,9 @@ const C = R.companies.filter(c => c.israel > 0 && !c.locked);
 const LOCKED = R.companies.filter(c => c.locked);
 const ALL = C.concat(LOCKED);
 const FREE = MEMBER ? Infinity : 5, HARD = MEMBER ? Infinity : 10;
+const track = (ev, props) => { try { window.RADAR_TRACK && window.RADAR_TRACK(ev, props || {}); } catch (e) {} };
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const shareUrl = c => "https://deploytlv.com/radar/" + slug(c.name) + "/";
 const fmt = n => n == null ? "–" : n.toLocaleString("en-US");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const hue = s => [...s].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) % 360, 7);
@@ -345,8 +350,10 @@ feed.innerHTML = `<article class="slide intro" data-i="-1" style="--h:18">
 
 const layer = document.getElementById("layer");
 function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; layer.append(t); setTimeout(() => t.remove(), 1400); }
-function gate(reason) {
+function gate(reason, who) {
+  track("gate", {r: reason, c: who && who.name});
   const copy = {
+    company: who ? [`See ${who.name}'s open roles`, `${who.name} has ${fmt(who.israel)} open roles in Israel right now. Sign up free to see every company, every role and US pay.`] : null,
     limit: ["Sign up free to keep scrolling", `You've seen ${FREE} companies. Join Deploy for the full feed, US salary ranges and hiring alerts.`],
     hard: ["That's 10 companies", `Sign up free to see all ${ALL.length}, with every open role, US salary ranges and alerts.`],
     pay: ["Salaries are for members", "See the US pay ranges every company posts. It's free."],
@@ -366,13 +373,17 @@ function gate(reason) {
 }
 function sheet(c) {
   const free = MEMBER ? Infinity : 3, more = Math.min(c.locked_roles || 0, 5);
+  track("roles", {c: c.name});
+  const row = (j, k) => { const inner = `<span class="ic">${esc((j.dept || "R")[0])}</span><span><b>${esc(j.title)}</b><small>${esc(j.dept || "")}${j.dept ? " · " : ""}${esc(j.location)} · ${ago(j.published)}</small></span>`;
+    return k >= free ? `<li class="locked">${inner}</li>` : j.url ? `<li><a class="ja" href="${esc(j.url)}" target="_blank" rel="noopener" data-apply="${esc(c.name)}">${inner}<span class="go">Apply ↗</span></a></li>` : `<li>${inner}</li>`; };
   layer.innerHTML = `<div class="sheet-bg" id="s-bg"></div><div class="sheet" role="dialog" aria-modal="true" aria-label="Open roles">
     <header>${fmt(c.israel)} open roles in Israel<button id="s-x" aria-label="Close">×</button></header>
-    <ul>${c.latest_israel.map((j, k) => `<li class="${k >= free ? "locked" : ""}"><span class="ic">${esc((j.dept || "R")[0])}</span><span><b>${esc(j.title)}</b><small>${esc(j.dept || "")}${j.dept ? " · " : ""}${esc(j.location)} · ${ago(j.published)}</small></span></li>`).join("")}${Array.from({length: more}, (_, k) => `<li class="locked"><span class="ic">·</span><span><b>${["Senior Software Engineer", "Product Manager", "Data Scientist", "DevOps Engineer", "Account Executive"][k]}</b><small>Members only · Israel</small></span></li>`).join("")}</ul>
+    <ul>${c.latest_israel.map(row).join("")}${Array.from({length: more}, (_, k) => `<li class="locked"><span class="ic">·</span><span><b>${["Senior Software Engineer", "Product Manager", "Data Scientist", "DevOps Engineer", "Account Executive"][k]}</b><small>Members only · Israel</small></span></li>`).join("")}</ul>
     ${c.israel > free ? `<button class="unlock" id="s-u">Sign up to see all ${fmt(c.israel)} roles</button>` : ""}</div>`;
   const close = () => layer.innerHTML = "";
   document.getElementById("s-bg").onclick = close; document.getElementById("s-x").onclick = close;
   const u = document.getElementById("s-u"); if (u) u.onclick = () => gate("roles");
+  layer.querySelectorAll("[data-apply]").forEach(a => a.onclick = () => track("apply", {c: c.name, t: a.querySelector("b").textContent.slice(0, 80)}));
 }
 function burst(x, y, el) {
   const b = document.createElement("div"); b.className = "burst"; b.style.left = x + "px"; b.style.top = y + "px";
@@ -395,8 +406,10 @@ feed.addEventListener("click", e => {
   if (a.dataset.act === "like") setLike(s, !liked.has(name));
   if (a.dataset.act === "roles") sheet(c);
   if (a.dataset.act === "save") { saved.has(name) ? saved.delete(name) : saved.add(name); store.set("hr-saved", [...saved]); a.classList.toggle("on"); toast(saved.has(name) ? "Saved" : "Removed from saved"); }
-  if (a.dataset.act === "follow") { if (!MEMBER && followed.size >= 1 && !followed.has(name)) return gate("follow"); followed.has(name) ? followed.delete(name) : followed.add(name); store.set("hr-follow", [...followed]); a.classList.toggle("on"); a.querySelector(".plus").textContent = followed.has(name) ? "✓" : "+"; toast(followed.has(name) ? "Following " + name : "Unfollowed"); }
-  if (a.dataset.act === "share") { const txt = `${name}: +${c.israel_new30} new roles in Israel this month (Deploy Hiring Radar)`; navigator.clipboard?.writeText(txt).then(() => toast("Copied to share"), () => toast(txt)); }
+  if (a.dataset.act === "follow") { if (!MEMBER && followed.size >= 1 && !followed.has(name)) return gate("follow"); followed.has(name) ? followed.delete(name) : followed.add(name); store.set("hr-follow", [...followed]); track("follow", {c: name, on: followed.has(name)}); if (MEMBER && window.RADAR_FOLLOW) window.RADAR_FOLLOW(name, followed.has(name)); a.classList.toggle("on"); a.querySelector(".plus").textContent = followed.has(name) ? "✓" : "+"; toast(followed.has(name) ? "Following " + name : "Unfollowed"); }
+  if (a.dataset.act === "share") { const url = shareUrl(c), txt = `${name} is hiring in Israel: +${c.israel_new30} new roles this month`; track("share", {c: name});
+    if (navigator.share) navigator.share({title: name + " on the Deploy Hiring Radar", text: txt, url}).catch(() => {});
+    else navigator.clipboard?.writeText(txt + " " + url).then(() => toast("Link copied"), () => toast(url)); }
 });
 let lastTap = 0;
 feed.addEventListener("pointerup", e => {
@@ -428,10 +441,12 @@ function coach(slideEl) {
 }
 
 // count-up + gate after FREE companies
+let maxSeen = -1;
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;
   const i = +e.target.dataset.i;
+  if (i > maxSeen) { maxSeen = i; if (i === 0 || i % 5 === 0) track("view", {i}); }
   if (i >= HARD) { gate("hard"); }
   else if (i >= FREE && !unlocked && !gateShown) { gateShown = true; gate("limit"); }
   if (i === 0 && !store.get("hr-coach", false)) coach(e.target);
@@ -543,9 +558,15 @@ function view(v) {
   history.replaceState(null, "", d ? "#discover" : "#feed");
 }
 document.getElementById("n-home").onclick = () => view("feed");
-document.getElementById("n-disc").onclick = () => view("discover");
+document.getElementById("n-disc").onclick = () => { view("discover"); track("discover"); };
 document.querySelectorAll("nav.bar [data-gate]").forEach(b => b.onclick = () => MEMBER && window.RADAR_ACCOUNT ? window.RADAR_ACCOUNT(b.dataset.gate) : gate(b.dataset.gate));
-if (location.hash === "#discover") view("discover");
+if (location.hash === "#discover") { view("discover"); track("discover"); }
+const deep = (location.hash.match(/^#c=([a-z0-9-]+)/) || [])[1];
+if (deep) {
+  const hit = ALL.find(c => slug(c.name) === deep); track("deeplink", {c: hit ? hit.name : deep});
+  if (hit && hit.locked) { store.set("hr-coach", true); gate("company", hit); }
+  else if (hit) { store.set("hr-coach", true); requestAnimationFrame(() => feed.querySelector(`.slide[data-name="${CSS.escape(hit.name)}"]`)?.scrollIntoView()); }
+}
 </script>
 <!-- Deploy DB loader for deploytlv.com/db/radar/ (build_page.py puts this after the page; the page's own script is held as text/plain until the data is in).
      Data: Supabase radar_public() for everyone, radar_for_me() once signed in (everything for Deploy Log subscribers).
@@ -564,6 +585,11 @@ if (location.hash === "#discover") view("discover");
   var sb = window.supabase.createClient(C.url, C.anonKey, { auth: { storage: storage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: "implicit" } });
   var here = location.origin + location.pathname, session = null;
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  /* funnel tracking: anonymous browser id + step name (Supabase radar_track) */
+  var sid = storage.getItem("hr-sid"); if (!sid) { sid = Math.random().toString(36).slice(2) + Date.now().toString(36); storage.setItem("hr-sid", sid); }
+  function track(ev, props) { sb.rpc("radar_track", { p_sid: sid, p_event: ev, p_props: props || {} }).then(function () {}, function () {}); }
+  window.RADAR_TRACK = track;
+  window.RADAR_FOLLOW = function (name, on) { if (session) sb.rpc("radar_follow", { p_company: name, p_on: on }).then(function () {}, function () {}); };
   var valid = function (e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); };
 
   /* same pending-consent record the Deploy DB uses, so a magic link opened at /db/ finishes the sign-up too */
@@ -586,9 +612,9 @@ if (location.hash === "#discover") view("discover");
     ui("wait");
     return bee("check").then(function () { return sb.rpc("is_member"); }).then(function (r) {
       if (r.error) { ui("email", "We couldn't check your subscription. Try again in a minute."); return; }
-      if (r.data) return location.reload();
+      if (r.data) { track("signed_in", { m: true }); return location.reload(); }
       var p = takePending(session.user.email);
-      if (p) return subscribe(p.name, p.text).then(function (x) { if (x.error) return ui("sub", "Subscribing didn't work. Try again."); location.reload(); });
+      if (p) return subscribe(p.name, p.text).then(function (x) { if (x.error) return ui("sub", "Subscribing didn't work. Try again."); track("subscribed"); location.reload(); });
       ui("sub");
     });
   }
@@ -624,7 +650,7 @@ if (location.hash === "#discover") view("discover");
         go.disabled = true; go.textContent = "Sending…";
         sb.auth.signInWithOtp({ email: v, options: { shouldCreateUser: true, emailRedirectTo: here } }).then(function (r) {
           if (r.error) { var m = (r.error.message || "").toLowerCase(); return ui("email", r.error.status === 429 || m.indexOf("rate") > -1 ? "Too many emails sent. Wait a minute, then try again." : "We couldn't send the email: " + r.error.message); }
-          sentTo = v; ui("code");
+          sentTo = v; track("code_sent", { consent: consent }); ui("code");
         }); };
     } else if (step === "code") {
       var t = document.getElementById("su-t"); t.focus();
@@ -637,20 +663,27 @@ if (location.hash === "#discover") view("discover");
           session = r.data.session; afterSignIn(); }); };
     } else if (step === "sub") {
       go.onclick = function () { if (!document.getElementById("su-c").checked) return ui("sub", "Tick the box to get the Deploy Log, then try again.");
-        go.disabled = true; subscribe("", CONSENT).then(function (x) { if (x.error) return ui("sub", "Subscribing didn't work. Try again."); location.reload(); }); };
+        go.disabled = true; subscribe("", CONSENT).then(function (x) { if (x.error) return ui("sub", "Subscribing didn't work. Try again."); track("subscribed"); location.reload(); }); };
     } else if (step === "acct") {
       document.getElementById("su-out").onclick = function () { sb.auth.signOut().then(function () { location.reload(); }); };
     }
   }
   function close() { if (host) { host.remove(); host = null; } }
-  window.RADAR_SIGNUP = function () { var l = document.getElementById("layer"); if (l) l.innerHTML = ""; session ? afterSignIn() : ui("email"); };
+  window.RADAR_SIGNUP = function (reason) { var l = document.getElementById("layer"); if (l) l.innerHTML = ""; track("signup_open", { r: reason || "" }); session ? afterSignIn() : ui("email"); };
   window.RADAR_ACCOUNT = function () { ui("acct"); };
 
   /* ---------- boot ---------- */
   sb.auth.getSession().then(function (r) {
     session = r.data && r.data.session;
-    return Promise.all([data(), images()]);
+    var q = new URLSearchParams(location.search), ref = document.referrer ? new URL(document.referrer).hostname : "";
+    track("visit", { src: q.get("utm_source") || q.get("ref") || ref || "direct", c: (location.hash.match(/^#c=([a-z0-9-]+)/) || [])[1] || "" });
+    /* members: follows live in the account (radar_follows), so alerts work on any device */
+    var follows = session ? sb.rpc("radar_my_follows").then(function (r) { return r.error ? null : r.data; }, function () { return null; }) : Promise.resolve(null);
+    return Promise.all([data(), images(), follows]);
   }).then(function (res) {
+    if (res[0].member && res[2]) { var local = []; try { local = JSON.parse(storage.getItem("hr-follow") || "[]"); } catch (e) {}
+      local.filter(function (n) { return res[2].indexOf(n) < 0; }).forEach(function (n) { window.RADAR_FOLLOW(n, true); res[2].push(n); });
+      storage.setItem("hr-follow", JSON.stringify(res[2])); }
     window.__R = res[0]; window.__IMG = res[1];
     var s = document.createElement("script"); s.textContent = document.getElementById("radar-main").textContent; document.body.append(s);
     bootEl.remove();
