@@ -22,17 +22,25 @@ body:after{display:none}
 .page{width:210mm;min-height:297mm;margin:26px auto;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.18);padding:14mm;display:flex;flex-direction:column}
 .lbl{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between;border-bottom:2px solid currentColor;padding-bottom:7px;margin-bottom:8mm}
 /* page 1: cover band + numbers + audience + coverage */
-.cover{background:var(--orange);margin:-14mm -14mm 8mm;padding:14mm 14mm 0;position:relative;min-height:112mm;display:grid;grid-template-columns:1fr 62mm;gap:6mm}
+.cover{background:var(--paper);border-bottom:3px solid var(--ink);margin:-14mm -14mm 8mm;padding:14mm 14mm 0;position:relative;min-height:118mm;display:grid;grid-template-columns:minmax(0,1fr) 74mm;gap:6mm}
 .cover h1{font-size:30mm;line-height:.8;letter-spacing:-.06em}
-.cover h1.kitlogo{font:700 21mm/.9 var(--px);letter-spacing:-.06em}.cover h1.kitlogo b{color:var(--paper)}
-.cover .sub{font:400 8mm/1 var(--disp);text-transform:uppercase;letter-spacing:-.03em;margin-top:4mm}
-.cover .sub span{background:var(--paper);padding:0 .08em;display:inline-block;transform:rotate(-2deg)}
-.cover p{font-size:13px;line-height:1.55;max-width:105mm;margin-top:6mm}
-.cover img{align-self:end;width:100%;filter:drop-shadow(6px 8px 0 rgba(17,16,13,.25))}
-.cover .stamp{position:absolute;left:14mm;bottom:9mm;font-size:13px;background:var(--paper)}
+.cover h1.kitlogo{font:700 15.5mm/.9 var(--px);letter-spacing:-.06em}.cover h1.kitlogo b{color:var(--orange)}
+.cover .sub{font:400 6.6mm/1 var(--disp);white-space:nowrap;text-transform:uppercase;letter-spacing:-.03em;margin-top:4mm}
+.cover .sub span{background:var(--orange);padding:0 .08em;display:inline-block;transform:rotate(-2deg)}
+.cover p{font-size:14px;line-height:1.55;max-width:105mm;margin-top:6mm}
+/* photos: two event polaroids behind a studio cutout on an orange disc */
+.pics{position:relative;align-self:end;height:100mm;z-index:0}
+.pics:after{content:'';position:absolute;right:13mm;bottom:0;width:42mm;height:42mm;border-radius:50%;background:var(--orange);z-index:-1}
+.pics .ev{position:absolute;z-index:1;width:35mm;left:1mm;top:-2mm;margin:0;background:#fff;padding:2mm 2mm 6mm;border:2px solid var(--ink);transform:rotate(-6deg);box-shadow:4px 5px 0 var(--ink)}
+.pics .ev.r{left:auto;right:-4mm;top:-6mm;transform:rotate(6deg)}
+.pics .ev img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.pics figcaption{font:600 8px var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-top:2mm;text-align:center}
+.pics .cut{position:absolute;z-index:2;right:10mm;bottom:0;width:50mm;filter:drop-shadow(5px 6px 0 rgba(17,16,13,.18))}
+.cover .stamp{position:absolute;left:14mm;bottom:9mm;font-size:13px;background:var(--paper);border:2px solid var(--ink)}
 .nums{display:grid;grid-template-columns:repeat(4,1fr);border:2px solid var(--ink)}
 .nums div{padding:5mm}.nums div+div{border-left:2px solid var(--ink)}
-.nums b{display:block;font:400 13mm/.95 var(--num);color:var(--orange)}
+.nums b{display:block;font:400 13mm/.95 var(--num);color:var(--ink)}
+.nums b:after{content:'';display:block;width:12mm;height:2.2mm;background:var(--orange);margin:2mm 0 1mm}
 .nums span{display:block;font:600 13px/1.35 var(--mono);margin-top:2mm}
 h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
 .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;font-size:13px;line-height:1.5}
@@ -61,12 +69,14 @@ h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
 .contact h2{font-size:15mm;line-height:.85}
 .contact span{font:600 13px/2 var(--mono);text-align:right;overflow-wrap:anywhere;min-width:0}
 @media print{ @page{size:A4;margin:0} body{background:none} .bar{display:none!important} .page{margin:0;box-shadow:none;page-break-after:always;break-after:page} }
-@media(max-width:860px){ .cover img{max-width:100%;height:auto} .page{width:auto;min-height:0;margin:16px;padding:18px} .cover{margin:-18px -18px 20px;padding:18px 18px 0;grid-template-columns:1fr 34%;min-height:0} .cover h1{font-size:18vw} .cover .stamp{display:none}
+@media(max-width:860px){ .page{width:auto;min-height:0;margin:16px;padding:18px} .cover{margin:-18px -18px 20px;padding:18px 18px 0;grid-template-columns:1fr 34%;min-height:0} .cover h1{font-size:18vw} .cover .stamp{display:none}
  .nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){border-left:0}.nums div:nth-child(n+3){border-top:2px solid var(--ink)} .nums b{font-size:40px}
  .aud,.cov,.fmts,.spk,.offerk{grid-template-columns:1fr} .reels{grid-template-columns:1fr 1fr} h3.h{font-size:26px} .contact h2{font-size:44px} 
  .cover{grid-template-columns:minmax(0,1fr)} .cover>div{min-width:0}
  .cover h1.kitlogo{font-size:11.2vw;white-space:nowrap} .cover .sub{font-size:6.2vw;white-space:nowrap}
- .cover img{width:58%;justify-self:end;margin-top:-8px} }
+ .pics{width:100%;max-width:420px;justify-self:center;height:min(92vw,390px);margin-top:10px}
+ .pics .ev{width:42%;left:0;top:0}.pics .ev.r{right:0;top:-2%}
+ .pics .cut{width:58%;right:16%}.pics:after{width:48%;height:auto;aspect-ratio:1;right:21%} }
 </style>
 </head><body data-noremote="1">
 <div class="bar noprint"><a class="logo" href="/">DEPLOY <b>TLV</b></a><button class="btn o" onclick="print()">Save as PDF</button><a class="link" href="/partner/#enquire">Get in touch</a></div>
@@ -80,7 +90,11 @@ h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
       <div class="sub">Tel Aviv, you're <span>on air.</span></div>
       <p>An English-language tech and AI media company based in Tel Aviv: short founder stories, long-form episodes on YouTube, the orange mic at the city's tech events, and Israel's English-speaking AI community.</p>
     </div>
-    <img src="/media/sticker-host-fun.webp" alt="">
+    <div class="pics">
+      <figure class="ev"><img src="/media/host-couch.jpg" alt="Myron interviewing a guest on a couch with the orange Deploy mic"><figcaption>On the orange mic</figcaption></figure>
+      <figure class="ev r"><img src="/media/host-interview.jpg" alt="Myron laughing with a founder while holding the orange mic" style="object-position:60% 70%"><figcaption>Interviewing founders</figcaption></figure>
+      <img class="cut" src="/media/host-studio.webp" alt="Myron Shneider, founder and host of Deploy, holding the orange mic">
+    </div>
     <span class="stamp" id="nextstamp">Next night · Wed 4 Nov</span>
   </div>
   <div class="nums" id="nums"><div><b>3.6M</b><span>Instagram views in 30 days</span></div><div><b>1.3M</b><span>Views on our biggest reel</span></div><div><b>500</b><span>People in the WhatsApp community</span></div><div><b>7</b><span>Nights hosted since May 2026</span></div></div>
