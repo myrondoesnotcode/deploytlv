@@ -52,7 +52,7 @@ h3.h{font-size:7mm;line-height:.9;margin:8mm 0 4mm}
 /* page 2 */
 .page.k{background:var(--ink);color:var(--paper)}
 .reels{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
-.reels figure{margin:0}.reels img{aspect-ratio:1/1;object-fit:cover}
+.reels figure{margin:0}.reels a{color:inherit;text-decoration:none}.reels img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:2px solid var(--ink)}
 .reels figcaption{font:600 13px/1.3 var(--mono);margin-top:2mm}.reels figcaption b{font:400 16px var(--num);color:var(--orange);margin-right:3px}
 .fmts{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:2mm}
 .fmts div{border-top:2px solid #3a362f;padding-top:3mm;font-size:13px;line-height:1.5;color:#d8d1c0}
@@ -135,7 +135,18 @@ window.DeployPage = function(){
   const kn = [...D.stats, {value:'7', label:'Nights hosted since May 2026'}];
   $('#nums').innerHTML = kn.map(s=>`<div><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('');
   $('#cov').innerHTML = D.aired.map(a=>`<figure><img src="${a.cover}" alt=""><figcaption><b>${esc(a.who)}</b>${esc(a.what)} · ${DeployDates.fmtDate(a.date)}</figcaption></figure>`).join('');
-  $('#reels').innerHTML = D.stories.filter(s=>s.views).map(s=>`<figure><img src="${s.thumb}" alt=""><figcaption><b>${s.views}</b>${esc(s.name)}</figcaption></figure>`).join('');
+  // Top reels by Instagram views (deploy-hq ig_growth.db, 16 Nov 2026). Thumbs are the reel covers.
+  const TOP = [
+    {v:"1.3M", n:"Prime Messi vs the Iron Dome", t:"../thumbs/kit-messi.jpg", u:"https://www.instagram.com/reel/DfCOTo5tkL3/"},
+    {v:"748K", n:"Tesla Roadster drives upside down", t:"../thumbs/kit-tesla.jpg", u:"https://www.instagram.com/reel/DejV5HpNdcu/"},
+    {v:"499K", n:"Alexandr Wang, Meta", t:"../thumbs/kit-wang.jpg", u:"https://www.instagram.com/reel/DfMFQO6t4B9/"},
+    {v:"188K", n:"The $6.3B Binance hack", t:"../thumbs/kit-blockaid.jpg", u:"https://www.instagram.com/reel/DfKw3R5NczG/"},
+    {v:"149K", n:"Waze", t:"../thumbs/kit-waze.jpg", u:"https://www.instagram.com/reel/DeClc4-tpzR/"},
+    {v:"117K", n:"Sam Altman, OpenAI", t:"../thumbs/kit-altman.jpg", u:"https://www.instagram.com/reel/DfVU_o6Nd3Q/"},
+    {v:"112K", n:"Palmer Luckey, Anduril", t:"../thumbs/kit-luckey.jpg", u:"https://www.instagram.com/reel/DfFHYOJtB9y/"},
+    {v:"84K", n:"Cal AI", t:"../thumbs/kit-calai.jpg", u:"https://www.instagram.com/reel/DeQyTMNNwCh/"}
+  ];
+  $('#reels').innerHTML = TOP.map(s=>`<a href="${s.u}" target="_blank" rel="noopener"><figure><img src="${s.t}" alt="" loading="lazy"><figcaption><b>${s.v}</b>${esc(s.n)}</figcaption></figure></a>`).join('');
   $('#fmts').innerHTML = D.studio.map(f=>`<div><b>${esc(f.name)}</b>${esc(f.pitch)}</div>`).join('');
   const c = D.coverage;
   $('#offerk').innerHTML = `<div><span class="price">From ₪${c.from.toLocaleString('en-US')}<small>per event</small></span><h4>Event coverage · ${esc(c.name)} · ${esc(c.area)}</h4><p>${esc(c.pitch)}</p></div>
